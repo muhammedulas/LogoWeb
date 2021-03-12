@@ -1,0 +1,29 @@
+<div class="wrapper">
+  <div id="formContent">
+    <!-- Icon -->
+    <div class="fadeIn first">
+      <img src="https://hisselog.com/assets/companies/logo-yazilim-sanayi-ve-ticaret-a-s-logo-thumb.png" id="icon" alt="App Icon" />
+    </div>
+
+    <!-- Login Form -->
+    <ng-form #loginForm="ngForm">
+      <input type="text" autocomplete="off" id="login" class="fadeIn second" name="login" placeholder="Kullanıcı Adı" [(ngModel)]="usr">
+      <input type="password" id="password" class="fadeIn third" name="login" placeholder="Parola" [(ngModel)]="pw">
+      <div class="row">
+        <div class="col-md-5 ml-4">
+          <input type="text" name="firmNr" class="fadeIn fourth" id="firmNr" placeholder="Firma No" [(ngModel)]="frmNr">
+        </div>
+        <div class="col-md-5 ml-4">
+          <input type="text" name="periodNr" class="fadeIn fourth" id="periodNr" placeholder="Dönem No" [(ngModel)]="perNr">
+        </div>
+      </div>
+      <input type="submit" (click)="login()" class="fadeIn fifth" value="Giriş" routerLink="/">
+    </ng-form>
+
+    <!-- Configurations -->
+    <div id="formFooter">
+      <a class="underlineHover" href="configure">Bağlantı Ayarları</a>
+    </div>
+
+  </div>
+</div>

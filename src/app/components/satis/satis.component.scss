@@ -1,0 +1,19 @@
+.menu-item{
+    height: 150px;
+    width: 200px;
+    margin: 10px;
+    font-size: 130%;
+    text-align:center;
+    position: relative;
+    word-wrap: normal;
+    overflow-wrap: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    background: rgb(122,105,214);
+    background: linear-gradient(180deg, rgba(122,105,214,0.9424720571822479) 0%, rgba(75,60,152,0.9424720571822479) 100%);
+}
+
+h1{
+    font-size: 300%;
+}
