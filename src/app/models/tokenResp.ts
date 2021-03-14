@@ -1,4 +1,4 @@
-export class tokenResp{
+export class tokenResp {
     "access_token": string;
     "token_type": string;
     "expires_in": number;
@@ -14,4 +14,6 @@ export class tokenResp{
     "idmToken": string;
     ".issued": string;
     ".expires": string;
+    "error": string;
+    "error_description": string
 }
