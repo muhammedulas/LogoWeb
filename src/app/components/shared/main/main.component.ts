@@ -18,7 +18,6 @@ export class MainComponent implements OnInit {
   ngOnInit() {
     this.globalvars.getToggleInfo().subscribe(info=>{
       this.sidenavActive = info
-      console.log(this.sidenavActive)
     })
   }
 

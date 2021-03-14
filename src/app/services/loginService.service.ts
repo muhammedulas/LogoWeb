@@ -11,7 +11,7 @@ export class LoginServiceService {
   private rootUrl = localStorage.getItem('rootUrl');
   private clientID = localStorage.getItem('ClientID');
   private clientSecret = localStorage.getItem('clientSecret');
-  private response:tokenResp = {
+  private response: tokenResp = {
     "access_token": "",
     "token_type": "",
     "expires_in": 0,

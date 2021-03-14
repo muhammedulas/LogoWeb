@@ -11,16 +11,17 @@ import { HttpHeaders } from '@angular/common/http';
 export class LoginComponent implements OnInit {
 
   constructor(private loginSvc: LoginServiceService) { }
-  public usr:string = "LOGO";
-  public pw:string = "LOGO";
+  public usr: string = "LOGO";
+  public pw: string = "LOGO";
   public frmNr = "1";
   public perNr = "1";
+  private token: string = ""
 
   ngOnInit() {
   }
 
-  login(){
-    this.loginSvc.login(this.usr,this.pw,this.frmNr,this.perNr).subscribe(resp=> console.log(resp.access_token))
+  login() {
+    this.loginSvc.login(this.usr, this.pw, this.frmNr, this.perNr).subscribe(resp => localStorage.setItem('Token',resp.access_token));
   }
 
 }

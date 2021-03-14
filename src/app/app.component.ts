@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { GlobalVarsService } from './globalVars.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'LogoWeb';
+  constructor(private global:GlobalVarsService, private router:Router){
+  }
+
 }

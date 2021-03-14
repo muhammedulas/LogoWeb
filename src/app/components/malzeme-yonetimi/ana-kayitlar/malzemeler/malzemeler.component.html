@@ -1,3 +1,26 @@
-<p>
-  malzemeler works!
-</p>
+<mat-card class="container mt-5">
+  <table class="table table-hover">
+    <thead>
+      <th>Kodu</th>
+      <th>Açıklaması</th>
+      <th>Ana Birim</th>
+      <th>Fiili Stok</th>
+      <th>Gerçek Stok</th>
+      <th>Sevkedilebilir Stok</th>
+      <th>Konsinye Çıkışlar</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let malzeme of malzemeler" >
+        <td>{{malzeme.CODE}}</td>
+        <td>{{malzeme.NAME}}</td>
+        <td style="user-select: none;">{{malzeme.MAINUNIT}}</td>
+        <td style="user-select: none;">{{malzeme.DISTRIBUTED_AMOUNT}}</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+</mat-card>

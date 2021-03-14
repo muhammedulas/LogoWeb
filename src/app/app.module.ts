@@ -35,6 +35,7 @@ import { MatInputModule } from '@angular/material/input';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatTable, MatTableModule } from '@angular/material/table';
 
 
 @NgModule({
@@ -74,6 +75,7 @@ import { MatDividerModule } from '@angular/material/divider';
     MatButtonModule,
     MatDividerModule,
     HttpClientModule,
+    MatTableModule
 
   ],
   providers: [],
