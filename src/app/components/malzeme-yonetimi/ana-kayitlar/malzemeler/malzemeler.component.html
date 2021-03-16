@@ -1,6 +1,6 @@
 <mat-card class="container mt-5">
   <table class="table table-hover">
-    <thead>
+    <thead style="user-select: none;">
       <th>Kodu</th>
       <th>Açıklaması</th>
       <th>Ana Birim</th>
@@ -15,12 +15,11 @@
         <td>{{malzeme.NAME}}</td>
         <td style="user-select: none;">{{malzeme.MAINUNIT}}</td>
         <td style="user-select: none;">{{malzeme.DISTRIBUTED_AMOUNT}}</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
       </tr>
     </tbody>
+    <tfoot>
+
+    </tfoot>
   </table>
 
 </mat-card>

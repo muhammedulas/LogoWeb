@@ -15,6 +15,7 @@ import { MalzemeYonetimiComponent } from './components/malzeme-yonetimi/malzeme-
 import { SatinalmaComponent } from './components/satinalma/satinalma.component';
 import { SatisComponent } from './components/satis/satis.component';
 import { MainComponent } from './components/shared/main/main.component';
+import { AuthGuardService } from './services/authGuard.service';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -35,8 +36,9 @@ const routes: Routes = [
       { path: 'satis', component: SatisComponent },
       { path: 'ithalat', component: IthalatComponent },
       { path: 'ihracat', component: IhracatComponent }
-    ]
-  }
+    ],canActivate:[AuthGuardService]
+  },
+  {path:'**',component:LoginComponent}
 ];
 
 @NgModule({

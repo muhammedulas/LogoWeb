@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser/platform-browser';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { tokenResp } from '../models/tokenResp';
 import { Observable, observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class LoginServiceService {
   private clientID = localStorage.getItem('ClientID');
   private clientSecret = localStorage.getItem('clientSecret');
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   login(usr: string, pw: string, frmNo: string, perNo: string) {
     let reqString = btoa(this.clientID + ":" + this.clientSecret)
@@ -22,6 +23,15 @@ export class LoginServiceService {
     const body: string = "grant_type=password&username=" + usr + "&firmno=" + frmNo + "&password=" + pw
     return this.http.post<tokenResp>('http://localhost:33082/api/v1/token', body, { headers });
 
+  }
+
+  logout() {
+    this.loggedIn = false
+    this.router.navigate(['login'])
+  }
+
+  changeLoggedInState() {
+    this.loggedIn = true
   }
 
 }

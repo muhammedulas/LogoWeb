@@ -21,6 +21,7 @@ export class itemResp{
         "mediaType": string;
         "apiVersion": string;
     };
+    "status":number;
     "items": [
         {
             "Meta": {

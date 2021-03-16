@@ -23,12 +23,6 @@ export class MalzemelerComponent implements OnInit {
       console.log(this.response)
       this.malzemeler = this.response.items
       this.malzemeler.shift();
-    },
-    (err)=>{
-      this.errorMsg = err
-      console.log(err)
-      
-      
     })
 
   }

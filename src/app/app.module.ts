@@ -36,6 +36,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatTable, MatTableModule } from '@angular/material/table';
+import { AuthGuardService } from './services/authGuard.service';
 
 
 @NgModule({
@@ -78,7 +79,7 @@ import { MatTable, MatTableModule } from '@angular/material/table';
     MatTableModule
 
   ],
-  providers: [],
+  providers: [AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
