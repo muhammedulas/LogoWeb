@@ -19,7 +19,7 @@
           <!--  <input type="text" name="periodNr" class="fadeIn fourth" id="periodNr" placeholder="Dönem No" [(ngModel)]="perNr">-->
         </div>
       </div>
-      <input type="submit" (click)="login()" class="fadeIn fifth" value="Giriş">
+      <input type="submit" (click)="login()" class="fadeIn fifth" value="Giriş" [disabled]="isButtonDisabled">
     </ng-form>
 
     <!-- Configurations -->

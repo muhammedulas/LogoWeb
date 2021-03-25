@@ -14,8 +14,11 @@ export class LoginServiceService {
   private rootUrl = localStorage.getItem('rootUrl');
   private clientID = localStorage.getItem('ClientID');
   private clientSecret = localStorage.getItem('clientSecret');
+  private idleTimer: number = 30
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router) {
+    this.idleTimer = 30
+   }
 
   login(usr: string, pw: string, frmNo: string, perNo: string) {
     let reqString = btoa(this.clientID + ":" + this.clientSecret)
@@ -33,5 +36,4 @@ export class LoginServiceService {
   changeLoggedInState() {
     this.loggedIn = true
   }
-
 }

@@ -128,6 +128,7 @@ export class item {
     "DIST_LOT_UNITS": number;
     "COMB_LOT_UNITS": number;
     "MAINUNIT": string;
+    "AMNT": number;
     "FACTORY_PARAMS": {
         "Meta": {
             "href": string;
@@ -161,7 +162,20 @@ export class item {
             "href": string;
             "mediaType": string;
             "apiVersion": string;
-        }
+        },
+        "items": [
+            {
+                "UNIT_CODE": string;
+                "USEF_MTRLCLASS": number;
+                "USEF_PURCHCLAS": number;
+                "USEF_SALESCLAS": number;
+                "CONV_FACT1": number;
+                "CONV_FACT2": number;
+                "DATA_REFERENCE": number;
+                "INTERNAL_REFERENCE": number;
+                "BARCODE_LIST": {}
+            }
+        ]
     };
     "COMPOSITES": {
         "Meta": {

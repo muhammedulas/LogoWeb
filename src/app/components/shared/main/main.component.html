@@ -1,15 +1,27 @@
-<mat-sidenav-container class="sidenav" >
+<mat-sidenav-container class="sidenav">
   <mat-sidenav #sidenav mode="push" color="accent" [(opened)]="sidenavActive" (closed)="toggle()" class="sidenavMenu">
     <div style="text-align: center;">
       <img src="https://hisselog.com/assets/companies/logo-yazilim-sanayi-ve-ticaret-a-s-logo-thumb.png">
     </div>
     <mat-nav-list role="list">
-      <a [routerLink]="['malzeme-yonetimi']" routerLinkActive="active"><mat-list-item>Malzeme Yönetimi</mat-list-item></a>
-      <a [routerLink]="['finans']"routerLinkActive="active"><mat-list-item>Finans</mat-list-item></a>
-      <a [routerLink]="['satinalma']" routerLinkActive="active"><mat-list-item>Satınalma</mat-list-item></a>
-      <a [routerLink]="['satis']" routerLinkActive="active"><mat-list-item>Satış ve Dağıtım</mat-list-item></a>
-      <a [routerLink]="['ithalat']" routerLinkActive="active"><mat-list-item>İthalat</mat-list-item></a>
-      <a [routerLink]="['ihracat']" routerLinkActive="active"><mat-list-item>İhracat</mat-list-item></a>
+      <a [routerLink]="['malzeme-yonetimi']" routerLinkActive="active" (click)="toggle()">
+        <mat-list-item>Malzeme Yönetimi</mat-list-item>
+      </a>
+      <a [routerLink]="['finans']" routerLinkActive="active" (click)="toggle()">
+        <mat-list-item>Finans</mat-list-item>
+      </a>
+      <a [routerLink]="['satinalma']" routerLinkActive="active" (click)="toggle()">
+        <mat-list-item>Satınalma</mat-list-item>
+      </a>
+      <a [routerLink]="['satis']" routerLinkActive="active" (click)="toggle()">
+        <mat-list-item>Satış ve Dağıtım</mat-list-item>
+      </a>
+      <a [routerLink]="['ithalat']" routerLinkActive="active" (click)="toggle()">
+        <mat-list-item>İthalat</mat-list-item>
+      </a>
+      <a [routerLink]="['ihracat']" routerLinkActive="active" (click)="toggle()">
+        <mat-list-item>İhracat</mat-list-item>
+      </a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>

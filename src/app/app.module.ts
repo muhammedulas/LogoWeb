@@ -20,10 +20,11 @@ import { MalzemelerComponent } from './components/malzeme-yonetimi/ana-kayitlar/
 import { MalzemeYonetimFisleriComponent } from './components/malzeme-yonetimi/hareketler/malzeme-yonetim-fisleri/malzeme-yonetim-fisleri.component';
 import { MaliyetDagitimFisleriComponent } from './components/malzeme-yonetimi/hareketler/maliyet-dagitim-fisleri/maliyet-dagitim-fisleri.component';
 import { HizliUretimFisleriComponent } from './components/malzeme-yonetimi/hareketler/hizli-uretim-fisleri/hizli-uretim-fisleri.component';
-import { tokenResp } from './models/tokenResp';
+import { AuthGuardService } from './services/authGuard.service';
+
 
 import { HttpClientModule } from '@angular/common/http';
-import {MatSidenavModule} from '@angular/material/sidenav';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
@@ -35,8 +36,11 @@ import { MatInputModule } from '@angular/material/input';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
-import { MatTable, MatTableModule } from '@angular/material/table';
-import { AuthGuardService } from './services/authGuard.service';
+import { MatTableModule } from '@angular/material/table';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { ToastrModule } from 'ngx-toastr';
+import { ItemTypesPipe } from './components/malzeme-yonetimi/ana-kayitlar/malzemeler/itemTypes.pipe';
+
 
 
 @NgModule({
@@ -58,7 +62,8 @@ import { AuthGuardService } from './services/authGuard.service';
     MalzemelerComponent,
     MalzemeYonetimFisleriComponent,
     MaliyetDagitimFisleriComponent,
-    HizliUretimFisleriComponent
+    HizliUretimFisleriComponent,
+    ItemTypesPipe
   ],
   imports: [
     BrowserModule,
@@ -76,10 +81,12 @@ import { AuthGuardService } from './services/authGuard.service';
     MatButtonModule,
     MatDividerModule,
     HttpClientModule,
-    MatTableModule
+    MatTableModule,
+    ToastrModule.forRoot(),
+    MatProgressSpinnerModule
 
   ],
-  providers: [AuthGuardService],
+  providers: [AuthGuardService, LoginComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

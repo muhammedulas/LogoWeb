@@ -1,4 +1,4 @@
-export class itemResp{
+export class itemResp {
     "Meta": {
         "href": string;
         "mediaType": string;
@@ -21,7 +21,7 @@ export class itemResp{
         "mediaType": string;
         "apiVersion": string;
     };
-    "status":number;
+    "status": number;
     "items": [
         {
             "Meta": {
@@ -90,10 +90,11 @@ export class itemResp{
             "MIN_MODIFIED": number;
             "SEC_MODIFIED": number;
             "DATA_SITEID": number;
-            "DATA_REFERENCE": 2,
-            "DIST_LOT_UNITS": 1,
-            "COMB_LOT_UNITS": 1,
-            "MAINUNIT": "ADET",
+            "DATA_REFERENCE": number;
+            "DIST_LOT_UNITS": number;
+            "COMB_LOT_UNITS": number;
+            "MAINUNIT": string;
+            "AMNT": number;
             "FACTORY_PARAMS": {
                 "Meta": {
                     "href": string;
@@ -101,207 +102,220 @@ export class itemResp{
                     "apiVersion": string;
                 }
             },
-            "WH_PARAMS": {
-                "Meta": {
-                    "href": string;
-                    "mediaType": string;
-                    "apiVersion": string;
-                }
+        "WH_PARAMS": {
+            "Meta": {
+                "href": string;
+                "mediaType": string;
+                "apiVersion": string;
+            }
+        },
+        "CHARACTERISTICS": {
+            "Meta": {
+                "href": string;
+                "mediaType": string;
+                "apiVersion": string;
+            }
+        },
+        "DOMINANT_CLASSES": {
+            "Meta": {
+                "href": string;
+                "mediaType": string;
+                "apiVersion": string;
+            }
+        },
+        "UNITS": {
+            "Meta": {
+                "href": string;
+                "mediaType": string;
+                "apiVersion": string;
             },
-            "CHARACTERISTICS": {
-                "Meta": {
-                    "href": string;
-                    "mediaType": string;
-                    "apiVersion": string;
+            "items": [
+                {
+                    "UNIT_CODE": string;
+                    "USEF_MTRLCLASS": number;
+                    "USEF_PURCHCLAS": number;
+                    "USEF_SALESCLAS": number;
+                    "CONV_FACT1": number;
+                    "CONV_FACT2": number;
+                    "DATA_REFERENCE": number;
+                    "INTERNAL_REFERENCE": number;
+                    "BARCODE_LIST": {}
                 }
-            },
-            "DOMINANT_CLASSES": {
-                "Meta": {
-                    "href": string;
-                    "mediaType": string;
-                    "apiVersion": string;
-                }
-            },
-            "UNITS": {
-                "Meta": {
-                    "href": string;
-                    "mediaType": string;
-                    "apiVersion": string;
-                }
-            },
-            "COMPOSITES": {
-                "Meta": {
-                    "href": string;
-                    "mediaType": string;
-                    "apiVersion": string;
-                }
-            },
-            "GL_LINKS": {
-                "Meta": {
-                    "href": string;
-                    "mediaType": string;
-                    "apiVersion": string;
-                }
-            },
-            "SUPPLIERS": {
-                "Meta": {
-                    "href": string;
-                    "mediaType": string;
-                    "apiVersion": string;
-                }
-            },
-            "XCNT": number;
-            "LANGP":"",
-            "XML_ATTRIBUTE": number;
-            "DIST_POINT": number;
-            "CAN_USE_IN_TRANS": number;
-            "ADD_TAX_REF": number;
-            "EXT_ACC_FLAGS": number;
-            "MULTI_ADD_TAX": number;
-            "ADDTAXLIST": {
-                "Meta": {
-                    "href": string;
-                    "mediaType": string;
-                    "apiVersion": string;
-                }
-            },
-            "PACKET": number;
-            "SALVAGE_VAL": number;
-            "SELVAT": number;
-            "RETURNVAT": number;
-            "SELPRVAT": number;
-            "RETURNPRVAT": number;
-            "LID_CONFIRMED": number;
-            "QPRODS": {
-                "Meta": {
-                    "href": string;
-                    "mediaType": string;
-                    "apiVersion": string;
-                }
-            },
-            "QPRODSUBCONTS": {
-                "Meta": {
-                    "href": string;
-                    "mediaType": string;
-                    "apiVersion": string;
-                }
-            },
-            "MARKREF": number;
-            "IMG2INC": number;
-            "EXTCRD_FLAGS": number;
-            "MIN_ORD_AMNT": number;
-            "FREIGHT_TYPE_DEF1": number;
-            "FREIGHT_TYPE_DEF2": number;
-            "FREIGHT_TYPE_DEF3": number;
-            "FREIGHT_TYPE_DEF4": number;
-            "FREIGHT_TYPE_DEF5": number;
-            "FREIGHT_TYPE_DEF6": number;
-            "FREIGHT_TYPE_DEF7": number;
-            "FREIGHT_TYPE_DEF8": number;
-            "FREIGHT_TYPE_DEF9": number;
-            "FREIGHT_TYPE_DEF10": number;
-            "QPRODAMNT": number;
-            "QPROD_UOM": number;
-            "QPRODSOURCEINDEX": number;
-            "QPROD_DEPARTMENT": number;
-            "QPRODSUB_AMOUNT": number;
-            "QPRODSUB_UOM": number;
-            "QPRODSUB_SOURCEINDEX": number;
-            "QPRODSUB_DEPARTMENT": number;
-            "TEXTINCENG": number;
-            "LOSTFACTOR": number;
-            "GENIUSFLDSLIST": {
-                "Meta": {
-                    "href": string;
-                    "mediaType": string;
-                    "apiVersion": string;
-                }
-            },
-            "ADD_COST": number;
-            "DEFNFLDSLIST": {
-                "Meta": {
-                    "href": string;
-                    "mediaType": string;
-                    "apiVersion": string;
-                }
-            },
-            "WFLOWCARDREF": number;
-            "CODE_CHANGED": number;
-            "AVR_WH_DURAITON": number;
-            "IMAGE1_SIZE": number;
-            "IMAGE2_SIZE": number;
-            "CANCONFIGURE": number;
-            "CHARSETREF": number;
-            "VGEN_DATA_REFERENCE": number;
-            "VRNTEXCEPTIONS": {
-                "Meta": {
-                    "href": string;
-                    "mediaType": string;
-                    "apiVersion": string;
-                }
-            },
-            "VRNTCODETEMPS": {
-                "Meta": {
-                    "href": string;
-                    "mediaType": string;
-                    "apiVersion": string;
-                }
-            },
-            "VRNTEXCPTEMPS": {
-                "Meta": {
-                    "href": string;
-                    "mediaType": string;
-                    "apiVersion": string;
-                }
-            },
-            "CONSCODEREF": number;
-            "PROJECTREF": number;
-            "UPDATECHILDS": number;
-            "CAN_DEDUCT": number;
-            "EXPENSE": number;
-            "EXIM_TAX1": number;
-            "EXIM_TAX2": number;
-            "EXIM_TAX3": number;
-            "EXIM_TAX4": number;
-            "EXIM_TAX5": number;
-            "KDV_DEPT_NR": number;
-            "SCALES": number;
-            "SCALE_NR": number;
-            "APP_SPE_VAT_MATRAH": number;
-            "FLTIMAGE1": number;
-            "FLTIMAGE2": number;
-            "SALE_DEDUCTION_PART1": number;
-            "SALE_DEDUCTION_PART2": number;
-            "PURCH_DEDUCTION_PART1": number;
-            "PURCH_DEDUCTION_PART2": number;
-            "PRODUCT_LEVEL": number;
-            "PORD_AMOUNT_TOLERANCE": number;
-            "SORD_AMOUNT_TOLERANCE": number;
-            "ALTERNATIVES": {
-                "Meta": {
-                    "href": string;
-                    "mediaType": string;
-                    "apiVersion": string;
-                }
-            },
-            "PUBLICCOUNTRYREF": number;
-            "MOLD": number;
-            "MOLD_LIFETRACKTYPE": number;
-            "MOLD_USAGELIFE": number;
-            "MOLD_FACTOR": number;
-            "MOLD_MAINTNUMBER": number;
-            "MOLD_MAINTLIFETYPE": number;
-            "MOLD_MAINTLIFE": number;
-            "MOLD_LIFEASRATIO": number;
-            "MOLD_MAINTTYPE": number;
-            "MOLD_MAINTBEGDATE": string;
-            "MOLD_MAINTPERIOD": number;
-            "MOLD_MAINTPERUNIT": number;
-            "OBTAIN_TYPE": number;
-            "GAIN_TYPE": number;
-            "SALES_LIMIT_QUANTITY": number;
-            "NO_DISCOUNT": number;
-            "GUID": string;
+            ]
+        },
+        "COMPOSITES": {
+            "Meta": {
+                "href": string;
+                "mediaType": string;
+                "apiVersion": string;
+            }
+        },
+        "GL_LINKS": {
+            "Meta": {
+                "href": string;
+                "mediaType": string;
+                "apiVersion": string;
+            }
+        },
+        "SUPPLIERS": {
+            "Meta": {
+                "href": string;
+                "mediaType": string;
+                "apiVersion": string;
+            }
+        },
+        "XCNT": number;
+        "LANGP": "",
+        "XML_ATTRIBUTE": number;
+        "DIST_POINT": number;
+        "CAN_USE_IN_TRANS": number;
+        "ADD_TAX_REF": number;
+        "EXT_ACC_FLAGS": number;
+        "MULTI_ADD_TAX": number;
+        "ADDTAXLIST": {
+            "Meta": {
+                "href": string;
+                "mediaType": string;
+                "apiVersion": string;
+            }
+        },
+        "PACKET": number;
+        "SALVAGE_VAL": number;
+        "SELVAT": number;
+        "RETURNVAT": number;
+        "SELPRVAT": number;
+        "RETURNPRVAT": number;
+        "LID_CONFIRMED": number;
+        "QPRODS": {
+            "Meta": {
+                "href": string;
+                "mediaType": string;
+                "apiVersion": string;
+            }
+        },
+        "QPRODSUBCONTS": {
+            "Meta": {
+                "href": string;
+                "mediaType": string;
+                "apiVersion": string;
+            }
+        },
+        "MARKREF": number;
+        "IMG2INC": number;
+        "EXTCRD_FLAGS": number;
+        "MIN_ORD_AMNT": number;
+        "FREIGHT_TYPE_DEF1": number;
+        "FREIGHT_TYPE_DEF2": number;
+        "FREIGHT_TYPE_DEF3": number;
+        "FREIGHT_TYPE_DEF4": number;
+        "FREIGHT_TYPE_DEF5": number;
+        "FREIGHT_TYPE_DEF6": number;
+        "FREIGHT_TYPE_DEF7": number;
+        "FREIGHT_TYPE_DEF8": number;
+        "FREIGHT_TYPE_DEF9": number;
+        "FREIGHT_TYPE_DEF10": number;
+        "QPRODAMNT": number;
+        "QPROD_UOM": number;
+        "QPRODSOURCEINDEX": number;
+        "QPROD_DEPARTMENT": number;
+        "QPRODSUB_AMOUNT": number;
+        "QPRODSUB_UOM": number;
+        "QPRODSUB_SOURCEINDEX": number;
+        "QPRODSUB_DEPARTMENT": number;
+        "TEXTINCENG": number;
+        "LOSTFACTOR": number;
+        "GENIUSFLDSLIST": {
+            "Meta": {
+                "href": string;
+                "mediaType": string;
+                "apiVersion": string;
+            }
+        },
+        "ADD_COST": number;
+        "DEFNFLDSLIST": {
+            "Meta": {
+                "href": string;
+                "mediaType": string;
+                "apiVersion": string;
+            }
+        },
+        "WFLOWCARDREF": number;
+        "CODE_CHANGED": number;
+        "AVR_WH_DURAITON": number;
+        "IMAGE1_SIZE": number;
+        "IMAGE2_SIZE": number;
+        "CANCONFIGURE": number;
+        "CHARSETREF": number;
+        "VGEN_DATA_REFERENCE": number;
+        "VRNTEXCEPTIONS": {
+            "Meta": {
+                "href": string;
+                "mediaType": string;
+                "apiVersion": string;
+            }
+        },
+        "VRNTCODETEMPS": {
+            "Meta": {
+                "href": string;
+                "mediaType": string;
+                "apiVersion": string;
+            }
+        },
+        "VRNTEXCPTEMPS": {
+            "Meta": {
+                "href": string;
+                "mediaType": string;
+                "apiVersion": string;
+            }
+        },
+        "CONSCODEREF": number;
+        "PROJECTREF": number;
+        "UPDATECHILDS": number;
+        "CAN_DEDUCT": number;
+        "EXPENSE": number;
+        "EXIM_TAX1": number;
+        "EXIM_TAX2": number;
+        "EXIM_TAX3": number;
+        "EXIM_TAX4": number;
+        "EXIM_TAX5": number;
+        "KDV_DEPT_NR": number;
+        "SCALES": number;
+        "SCALE_NR": number;
+        "APP_SPE_VAT_MATRAH": number;
+        "FLTIMAGE1": number;
+        "FLTIMAGE2": number;
+        "SALE_DEDUCTION_PART1": number;
+        "SALE_DEDUCTION_PART2": number;
+        "PURCH_DEDUCTION_PART1": number;
+        "PURCH_DEDUCTION_PART2": number;
+        "PRODUCT_LEVEL": number;
+        "PORD_AMOUNT_TOLERANCE": number;
+        "SORD_AMOUNT_TOLERANCE": number;
+        "ALTERNATIVES": {
+            "Meta": {
+                "href": string;
+                "mediaType": string;
+                "apiVersion": string;
+            }
+        },
+        "PUBLICCOUNTRYREF": number;
+        "MOLD": number;
+        "MOLD_LIFETRACKTYPE": number;
+        "MOLD_USAGELIFE": number;
+        "MOLD_FACTOR": number;
+        "MOLD_MAINTNUMBER": number;
+        "MOLD_MAINTLIFETYPE": number;
+        "MOLD_MAINTLIFE": number;
+        "MOLD_LIFEASRATIO": number;
+        "MOLD_MAINTTYPE": number;
+        "MOLD_MAINTBEGDATE": string;
+        "MOLD_MAINTPERIOD": number;
+        "MOLD_MAINTPERUNIT": number;
+        "OBTAIN_TYPE": number;
+        "GAIN_TYPE": number;
+        "SALES_LIMIT_QUANTITY": number;
+        "NO_DISCOUNT": number;
+        "GUID": string;
         }
     ]
 }

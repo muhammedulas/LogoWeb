@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { MatList} from '@angular/material/list'
+import { MatList } from '@angular/material/list'
+import { Router } from '@angular/router';
 import { GlobalVarsService } from 'src/app/globalVars.service';
+import { LoginServiceService } from 'src/app/services/loginService.service';
 
 @Component({
   selector: 'app-main',
@@ -8,20 +10,20 @@ import { GlobalVarsService } from 'src/app/globalVars.service';
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent implements OnInit {
-  public sidenavActive!:boolean;
+  public sidenavActive!: boolean;
   public events: string[] = [];
-  public opened!:boolean
+  public opened!: boolean;
 
   shouldRun = [/(^|\.)plnkr\.co$/, /(^|\.)stackblitz\.io$/].some(h => h.test(window.location.host));
-  constructor(private globalvars:GlobalVarsService) { }
+  constructor(private globalvars: GlobalVarsService) {}
 
   ngOnInit() {
-    this.globalvars.getToggleInfo().subscribe(info=>{
+    this.globalvars.getToggleInfo().subscribe(info => {
       this.sidenavActive = info
     })
   }
 
-  toggle(){
-    this.globalvars.toggle(this.opened)
-  }
+toggle(){
+  this.globalvars.toggle(this.opened)
+}
 }

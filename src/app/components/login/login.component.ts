@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginServiceService } from '../../services/loginService.service';
 import { FormsModule } from '@angular/forms';
-import { HttpHeaders } from '@angular/common/http';
 import { httpError } from 'src/app/models/httpErrModel';
-import { ThisReceiver } from '@angular/compiler';
 import { Router } from '@angular/router';
 import { tokenResp } from 'src/app/models/tokenResp';
+import { ToastrService } from 'node_modules/ngx-toastr';
+import { GlobalVarsService } from 'src/app/globalVars.service';
 
 @Component({
   selector: 'app-login',
@@ -15,20 +15,20 @@ import { tokenResp } from 'src/app/models/tokenResp';
 export class LoginComponent implements OnInit {
   error: httpError = new httpError;
   response: tokenResp = new tokenResp;
-  constructor(private loginSvc: LoginServiceService, private router: Router) { }
-  public usr: string = "";
-  public pw: string = "";
-  public frmNr: string = "";
-  public perNr: string = "";
+  constructor(private loginSvc: LoginServiceService, private router: Router, private toast: ToastrService, private global: GlobalVarsService) { }
+  public usr: string = "REST";
+  public pw: string = "REST";
+  public frmNr: string = "1";
+  public perNr: string = "1";
+  public isButtonDisabled: boolean = false
 
 
 
   ngOnInit() {
-    console.log(this.error)
-    console.log(this.response)
   }
 
   login() {
+    this.isButtonDisabled = true
     this.loginSvc.login(this.usr, this.pw, this.frmNr, this.perNr).subscribe(
       resp => {
         this.response = resp;
@@ -36,15 +36,18 @@ export class LoginComponent implements OnInit {
         this.loginSvc.changeLoggedInState();
         this.router.navigate(['/']);
         console.log(resp)
+        this.toast.success('Giriş Başarılı', "", { positionClass: "toast-top-center", timeOut: 3000 })
+        this.global.startTimer()
       },
       err => {
         this.error = err
         console.log(this.error)
         if (this.error.ok == false) {
           if (this.error.status == 400 || this.error.status == 0) {
-            alert('Giriş Bilgilerinizi Kontrol Ediniz')
+            this.toast.error('Giriş Bilgilerinizi Kontrol Ediniz', "", { positionClass: "toast-top-center", timeOut: 3000 })
           }
         }
+        this.isButtonDisabled = false
       }
     )
 

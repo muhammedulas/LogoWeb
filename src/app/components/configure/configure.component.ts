@@ -5,29 +5,30 @@ import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatButton } from '@angular/material/button'
 import { configModel } from './config';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-configure',
   templateUrl: './configure.component.html',
   styleUrls: ['./configure.component.scss']
 })
 export class ConfigureComponent implements OnInit {
-  public config:configModel = {
-    rootUrl! : "",
-    clientID! : "",
-    clientSecret! : ""
+  public config: configModel = {
+    rootUrl!: "",
+    clientID!: "",
+    clientSecret!: ""
   };
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
     this.config.rootUrl = localStorage.getItem('rootUrl'),
-    this.config.clientID = localStorage.getItem('clientID'),
-    this.config.clientSecret = localStorage.getItem('clientSecret')
+      this.config.clientID = localStorage.getItem('clientID'),
+      this.config.clientSecret = localStorage.getItem('clientSecret')
   }
 
-  setConfigurations(){
-    localStorage.setItem('rootUrl',this.config.rootUrl),
-    localStorage.setItem('clientID',this.config.clientID),
-    localStorage.setItem('clientSecret',this.config.clientSecret)
+  setConfigurations() {
+    localStorage.setItem('rootUrl', this.config.rootUrl),
+      localStorage.setItem('clientID', this.config.clientID),
+      localStorage.setItem('clientSecret', this.config.clientSecret)
   }
 }

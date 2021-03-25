@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
-import { GlobalVarsService } from './globalVars.service';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { timer } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 import { LoginServiceService } from './services/loginService.service';
 
 @Component({
@@ -9,10 +10,7 @@ import { LoginServiceService } from './services/loginService.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  constructor(private global: GlobalVarsService, private router: Router, private loginSvc: LoginServiceService) {
-    if(loginSvc.loggedIn == false){
-      this.router.navigate(['login'])
-    }
-  }
+  constructor() { }
+
 
 }

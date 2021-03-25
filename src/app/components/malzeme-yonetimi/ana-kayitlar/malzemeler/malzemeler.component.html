@@ -1,25 +1,57 @@
-<mat-card class="container mt-5">
-  <table class="table table-hover">
-    <thead style="user-select: none;">
-      <th>Kodu</th>
-      <th>Açıklaması</th>
-      <th>Ana Birim</th>
-      <th>Fiili Stok</th>
-      <th>Gerçek Stok</th>
-      <th>Sevkedilebilir Stok</th>
-      <th>Konsinye Çıkışlar</th>
-    </thead>
-    <tbody>
-      <tr *ngFor="let malzeme of malzemeler" >
-        <td>{{malzeme.CODE}}</td>
-        <td>{{malzeme.NAME}}</td>
-        <td style="user-select: none;">{{malzeme.MAINUNIT}}</td>
-        <td style="user-select: none;">{{malzeme.DISTRIBUTED_AMOUNT}}</td>
-      </tr>
-    </tbody>
-    <tfoot>
+<h1 style="text-align: center;">Malzemeler</h1>
+<mat-card class="container mt-2">
+<mat-spinner class="spinner" *ngIf="!loaded"></mat-spinner>
 
-    </tfoot>
-  </table>
+<div class="table-responsive">
+<table mat-table [dataSource]="items" class="mat-elevation-z8 mat-table">
 
+  <ng-container matColumnDef="CardType">
+    <th mat-header-cell *matHeaderCellDef> Malzeme Türü </th>
+    <td mat-cell *matCellDef="let item" (click)='select(item)' [ngClass]="{'act':selectedItem.INTERNAL_REFERENCE == item.INTERNAL_REFERENCE}"> {{item.CARD_TYPE|itemTypes}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="Code">
+    <th mat-header-cell *matHeaderCellDef> Kodu </th>
+    <td mat-cell *matCellDef="let item" (click)='select(item)' [ngClass]="{'act':selectedItem.INTERNAL_REFERENCE == item.INTERNAL_REFERENCE}"> {{item.CODE}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="Name">
+    <th mat-header-cell *matHeaderCellDef> Açıklaması </th>
+    <td mat-cell *matCellDef="let item" (click)='select(item)' [ngClass]="{'act':selectedItem.INTERNAL_REFERENCE == item.INTERNAL_REFERENCE}"> {{item.NAME}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="MainUnit">
+    <th mat-header-cell *matHeaderCellDef> Ana Birimi </th>
+    <td mat-cell *matCellDef="let item" (click)='select(item)' [ngClass]="{'act':selectedItem.INTERNAL_REFERENCE == item.INTERNAL_REFERENCE}"> {{item.UNITS.items[0].UNIT_CODE}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="Vat">
+    <th mat-header-cell *matHeaderCellDef> KDV Oranı </th>
+    <td mat-cell *matCellDef="let item" (click)='select(item)' [ngClass]="{'act':selectedItem.INTERNAL_REFERENCE == item.INTERNAL_REFERENCE}"> {{item.SELVAT}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="ShelfLife">
+    <th mat-header-cell *matHeaderCellDef> Raf Ömrü </th>
+    <td mat-cell *matCellDef="let item" (click)='select(item)' [ngClass]="{'act':selectedItem.INTERNAL_REFERENCE == item.INTERNAL_REFERENCE}"> {{item.SHELF_LIFE}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="ShelfDate">
+    <th mat-header-cell *matHeaderCellDef> Son Tarihi </th>
+    <td mat-cell *matCellDef="let item" (click)='select(item)' [ngClass]="{'act':selectedItem.INTERNAL_REFERENCE == item.INTERNAL_REFERENCE}"> {{item.SHELF_DATE}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="Stock">
+    <th mat-header-cell *matHeaderCellDef> Stok Bilgisi </th>
+    <td mat-cell *matCellDef="let item" (click)='select(item)' [ngClass]="{'act':selectedItem.INTERNAL_REFERENCE == item.INTERNAL_REFERENCE}"> <button class="btn btn-sm btn-light">Görüntüle</button> </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns" style="position: sticky;"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+</div>
+<tfoot>
+  <a>
+    <i class="bi bi-plus-square"> s </i>
+  </a>
+</tfoot>
 </mat-card>

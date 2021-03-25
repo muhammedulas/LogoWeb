@@ -11,21 +11,25 @@ import { LoginServiceService } from 'src/app/services/loginService.service';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-  public sidenavToggle!:boolean;
-  constructor(private globalvars:GlobalVarsService,private loginSvc:LoginServiceService) { }
+  public sidenavToggle!: boolean;
+  constructor(private globalvars: GlobalVarsService, private loginSvc: LoginServiceService) { }
 
   ngOnInit() {
-    this.globalvars.getToggleInfo().subscribe(info=>{
+    this.globalvars.getToggleInfo().subscribe(info => {
       this.sidenavToggle = info
     })
   }
 
-  toggle(){
+  toggle() {
     this.globalvars.toggle(!this.sidenavToggle)
   }
 
-  logout(){
+  logout() {
     this.loginSvc.logout();
+
+  }
+
+  stopIdleness() {
     
   }
 
