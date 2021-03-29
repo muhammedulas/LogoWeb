@@ -20,6 +20,7 @@ import { MalzemelerComponent } from './components/malzeme-yonetimi/ana-kayitlar/
 import { MalzemeYonetimFisleriComponent } from './components/malzeme-yonetimi/hareketler/malzeme-yonetim-fisleri/malzeme-yonetim-fisleri.component';
 import { MaliyetDagitimFisleriComponent } from './components/malzeme-yonetimi/hareketler/maliyet-dagitim-fisleri/maliyet-dagitim-fisleri.component';
 import { HizliUretimFisleriComponent } from './components/malzeme-yonetimi/hareketler/hizli-uretim-fisleri/hizli-uretim-fisleri.component';
+import { Dialog_StockComponent } from './components/malzeme-yonetimi/ana-kayitlar/malzemeler/dialog_Stock/dialog_Stock.component';
 import { AuthGuardService } from './services/authGuard.service';
 
 
@@ -37,7 +38,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatTableModule } from '@angular/material/table';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatMenuModule } from '@angular/material/menu';
 import { ToastrModule } from 'ngx-toastr';
 import { ItemTypesPipe } from './components/malzeme-yonetimi/ana-kayitlar/malzemeler/itemTypes.pipe';
 
@@ -63,8 +67,10 @@ import { ItemTypesPipe } from './components/malzeme-yonetimi/ana-kayitlar/malzem
     MalzemeYonetimFisleriComponent,
     MaliyetDagitimFisleriComponent,
     HizliUretimFisleriComponent,
-    ItemTypesPipe
+    ItemTypesPipe,
+    Dialog_StockComponent
   ],
+  entryComponents:[Dialog_StockComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -83,7 +89,10 @@ import { ItemTypesPipe } from './components/malzeme-yonetimi/ana-kayitlar/malzem
     HttpClientModule,
     MatTableModule,
     ToastrModule.forRoot(),
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatDialogModule,
+    MatTooltipModule,
+    MatMenuModule
 
   ],
   providers: [AuthGuardService, LoginComponent],

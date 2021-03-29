@@ -1,0 +1,28 @@
+<div class="container">
+  <h2 mat-dialog-title>Malzeme Stok Bilgileri</h2>
+  <div mat-dialog-content>
+    <div class="row">
+      Malzeme Kodu: {{dialogData.code}}
+    </div>
+    <div class="row">
+      Malzeme Adı: {{dialogData.name}}
+    </div>
+    <table class="table">
+      <thead>
+        <td>Fiili Stok</td>
+        <td>Gerçek Stok</td>
+        <td>Rezerve</td>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{dialogData.onHand}}</td>
+          <td>{{dialogData.real}}</td>
+          <td>{{dialogData.acts}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button [mat-dialog-close]>Tamam</button>
+  </div>
+</div>

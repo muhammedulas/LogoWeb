@@ -19,6 +19,7 @@ export class itemResp {
     };
     "previous": {
         "mediaType": string;
+        "href":string
         "apiVersion": string;
     };
     "status": number;

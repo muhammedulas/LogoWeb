@@ -7,7 +7,10 @@ export class itemStock {
     "count": number;
     "items": [
         {
-            "PURAMNT": number
+            "PURAMNT": number;
+            "SALAMNT":number;
+            "ONHAND": number;
+            "ACTSORDER":number;
         }
     ]
 }

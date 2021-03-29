@@ -52,7 +52,7 @@ ng-container {
 .table-responsive {
     display: block;
     width: 100%;
-    height: 500px;
+    height: 93%;
     overflow-x: auto;
     overflow-y: auto;
     .mat-table {
@@ -63,7 +63,9 @@ ng-container {
         border-collapse: collapse;
         margin: 0px;
     }
-    .mat-row,
+    .mat-row:hover{
+      background-color: #ebebeb;
+    };
     .mat-header-row {
         display: table-row;
     }
@@ -83,6 +85,19 @@ ng-container {
 
   ng-content {
       position: sticky;
+  }
+
+  .footerContainer {
+    width: 100%;
+    display: inline-block;
+    height: 7%;
+    position: absolute;
+    bottom: 0;
+    left: 1;
+  }
+
+  .footerElement {
+    vertical-align: middle;
   }
 
 
@@ -119,4 +134,15 @@ ng-container {
   }
   ::-webkit-scrollbar-corner {
     background: transparent;
+  }
+
+  a.iconBtns{
+    margin-right: 3px;
+    user-select: none;
+    mat-icon{
+      color: purple;
+    }
+    mat-icon:hover{
+      color: blue;
+    }
   }
