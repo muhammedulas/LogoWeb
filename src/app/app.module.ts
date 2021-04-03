@@ -21,7 +21,9 @@ import { MalzemeYonetimFisleriComponent } from './components/malzeme-yonetimi/ha
 import { MaliyetDagitimFisleriComponent } from './components/malzeme-yonetimi/hareketler/maliyet-dagitim-fisleri/maliyet-dagitim-fisleri.component';
 import { HizliUretimFisleriComponent } from './components/malzeme-yonetimi/hareketler/hizli-uretim-fisleri/hizli-uretim-fisleri.component';
 import { Dialog_StockComponent } from './components/malzeme-yonetimi/ana-kayitlar/malzemeler/dialog_Stock/dialog_Stock.component';
+import { Dialog_newItemComponent } from './components/malzeme-yonetimi/ana-kayitlar/malzemeler/dialog_newItem/dialog_newItem.component';
 import { AuthGuardService } from './services/authGuard.service';
+import { ItemTypesPipe } from './components/malzeme-yonetimi/ana-kayitlar/malzemeler/itemTypes.pipe';
 
 
 import { HttpClientModule } from '@angular/common/http';
@@ -43,7 +45,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatMenuModule } from '@angular/material/menu';
 import { ToastrModule } from 'ngx-toastr';
-import { ItemTypesPipe } from './components/malzeme-yonetimi/ana-kayitlar/malzemeler/itemTypes.pipe';
+import { MatTabsModule } from '@angular/material/tabs';
+
 
 
 
@@ -68,7 +71,8 @@ import { ItemTypesPipe } from './components/malzeme-yonetimi/ana-kayitlar/malzem
     MaliyetDagitimFisleriComponent,
     HizliUretimFisleriComponent,
     ItemTypesPipe,
-    Dialog_StockComponent
+    Dialog_StockComponent,
+    Dialog_newItemComponent
   ],
   entryComponents:[Dialog_StockComponent],
   imports: [
@@ -92,7 +96,8 @@ import { ItemTypesPipe } from './components/malzeme-yonetimi/ana-kayitlar/malzem
     MatProgressSpinnerModule,
     MatDialogModule,
     MatTooltipModule,
-    MatMenuModule
+    MatMenuModule,
+    MatTabsModule
 
   ],
   providers: [AuthGuardService, LoginComponent],

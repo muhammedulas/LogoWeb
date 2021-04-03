@@ -137,6 +137,8 @@ ng-container {
   }
 
   a.iconBtns{
+    width: auto;
+    height: auto;
     margin-right: 3px;
     user-select: none;
     mat-icon{
@@ -144,5 +146,22 @@ ng-container {
     }
     mat-icon:hover{
       color: blue;
+    }
+  }
+
+  a.paginationBtns {
+    width: auto;
+    height: auto;
+    margin-right: 25px;
+    user-select: none;
+    mat-icon{
+      color: purple;
+    }
+    mat-icon:hover{
+      color: blue;
+    }
+    mat-icon:active{
+      color: darkblue;
+
     }
   }

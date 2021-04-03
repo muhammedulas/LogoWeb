@@ -3,7 +3,7 @@
   <mat-spinner class="spinner" *ngIf="!loaded"></mat-spinner>
 
   <div class="table-responsive">
-    <table mat-table [dataSource]="items" class="mat-elevation-z8 mat-table">
+    <table mat-table [dataSource]="items" class="mat-elevation-z4 mat-table">
 
       <ng-container matColumnDef="CardType">
         <th mat-header-cell *matHeaderCellDef> Malzeme Türü </th>
@@ -62,8 +62,8 @@
   </div>
   <div class="footerContainer">
     <div class="row">
-      <div class="col-md-3">
-        <a class="iconBtns" matTooltip="Ekle">
+      <div class="col-md-4">
+        <a class="iconBtns" matTooltip="Ekle" (click)="addItem()">
           <mat-icon>
             add
           </mat-icon>
@@ -88,40 +88,52 @@
             filter_alt
           </mat-icon>
         </a>
+        <a class="iconBtns" matTooltip="Kayıt Ara">
+          <mat-icon>
+            search
+          </mat-icon>
+        </a>
       </div>
-      <div class="col-md-9">
-        <button mat-button style="margin-left: 5%;" matTooltip="İlk Sayfa">
+      <div class="col-md-4 d-flex justify-content-center">
+        <a class="paginationBtns"  matTooltip="İlk Sayfa" (click)="firstPage()">
           <mat-icon>
             first_page
           </mat-icon>
-        </button>
+        </a>
 
-        <button mat-button matTooltip="Önceki Sayfa">
+        <a class="paginationBtns" matTooltip="Önceki Sayfa" (click)="previousPage()">
           <mat-icon>
             arrow_back
           </mat-icon>
-        </button>
+        </a>
 
-        <button mat-button [mat-menu-trigger-for]="pageSize" matTooltip="Sayfa Başına Kayıt Sayısını Seçin">Kayıt Sayısı</button>
+        <a [mat-menu-trigger-for]="pageSize" class="paginationBtns" matTooltip="Sayfa Başına {{recLimit}} Kayıt Gösteriliyor">
+          <mat-icon>
+            list
+          </mat-icon>
+        </a>
         <mat-menu #pageSize="matMenu">
-          <button mat-menu-item>10</button>
-          <button mat-menu-item>25</button>
-          <button mat-menu-item>50</button>
+          <button mat-menu-item (click)="setRecLimit(10)">10</button>
+          <button mat-menu-item (click)="setRecLimit(25)">25</button>
+          <button mat-menu-item (click)="setRecLimit(50)">50</button>
         </mat-menu>
-
-        <button mat-button matTooltip="Sonraki Sayfa">
+        <a class="paginationBtns" matTooltip="Sonraki Sayfa" (click)="nextPage()">
           <mat-icon>
             arrow_forward
           </mat-icon>
-        </button>
+        </a>
 
-        <button mat-button matTooltip="Son Sayfa">
+        <a class="paginationBtns" matTooltip="Son Sayfa" (click)="lastPage()">
           <mat-icon>
             last_page
           </mat-icon>
-        </button>
-
-        <span style="align-self: flex-end;">Sayfa:</span>
+        </a>
+      </div>
+      <div class="col-md-4 justify-content-center mb-3" style="vertical-align: middle;">
+        <mat-form-field style="width: 25px;">
+          <input (keyup.enter)="gotoPage()" matInput type="text" name="gotoPage" [(ngModel)]="currPage" [ngModelOptions]="{standalone:true}" matTooltip="Gitmek İstediğiniz Sayfayı Yazıp Enter'a Basın">
+        </mat-form-field>
+        <span >/{{pageCount}}</span>
       </div>
     </div>
   </div>
