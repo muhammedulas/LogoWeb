@@ -22,6 +22,8 @@ import { MaliyetDagitimFisleriComponent } from './components/malzeme-yonetimi/ha
 import { HizliUretimFisleriComponent } from './components/malzeme-yonetimi/hareketler/hizli-uretim-fisleri/hizli-uretim-fisleri.component';
 import { Dialog_StockComponent } from './components/malzeme-yonetimi/ana-kayitlar/malzemeler/dialog_Stock/dialog_Stock.component';
 import { Dialog_newItemComponent } from './components/malzeme-yonetimi/ana-kayitlar/malzemeler/dialog_newItem/dialog_newItem.component';
+import { Dialog_editInspectComponent } from './components/malzeme-yonetimi/ana-kayitlar/malzemeler/dialog_edit-inspect/dialog_edit-inspect.component';
+import { Dialog_deleteItemComponent } from './components/malzeme-yonetimi/ana-kayitlar/malzemeler/dialog_deleteItem/dialog_deleteItem.component'
 import { AuthGuardService } from './services/authGuard.service';
 import { ItemTypesPipe } from './components/malzeme-yonetimi/ana-kayitlar/malzemeler/itemTypes.pipe';
 
@@ -46,6 +48,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatMenuModule } from '@angular/material/menu';
 import { ToastrModule } from 'ngx-toastr';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatSelectModule } from '@angular/material/select';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 
 
@@ -59,6 +64,7 @@ import { MatTabsModule } from '@angular/material/tabs';
     FooterComponent,
     MainComponent,
     MalzemeYonetimiComponent,
+    MalzemelerComponent,
     FinansComponent,
     SatinalmaComponent,
     SatisComponent,
@@ -66,15 +72,18 @@ import { MatTabsModule } from '@angular/material/tabs';
     IhracatComponent,
     BirimSetleriComponent,
     MalzemeOzellikleriComponent,
-    MalzemelerComponent,
     MalzemeYonetimFisleriComponent,
     MaliyetDagitimFisleriComponent,
     HizliUretimFisleriComponent,
     ItemTypesPipe,
     Dialog_StockComponent,
-    Dialog_newItemComponent
+    Dialog_newItemComponent,
+    Dialog_editInspectComponent,
+    Dialog_deleteItemComponent,
+    
+
   ],
-  entryComponents:[Dialog_StockComponent],
+  entryComponents:[Dialog_StockComponent,Dialog_editInspectComponent,Dialog_newItemComponent,Dialog_deleteItemComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -97,7 +106,10 @@ import { MatTabsModule } from '@angular/material/tabs';
     MatDialogModule,
     MatTooltipModule,
     MatMenuModule,
-    MatTabsModule
+    MatTabsModule,
+    MatSelectModule,
+    MatRadioModule,
+    MatAutocompleteModule
 
   ],
   providers: [AuthGuardService, LoginComponent],

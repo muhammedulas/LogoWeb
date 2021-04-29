@@ -4,6 +4,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { tokenResp } from '../models/tokenResp';
 import { Observable, observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
@@ -16,20 +18,22 @@ export class LoginServiceService {
   private clientSecret = localStorage.getItem('clientSecret');
   private idleTimer: number = 30
 
-  constructor(private http: HttpClient, private router: Router) {
-    this.idleTimer = 30
-   }
+
+  constructor(private http: HttpClient, private router: Router, private dialog: MatDialog, private toastr: ToastrService) {
+    this.idleTimer = 5
+  }
 
   login(usr: string, pw: string, frmNo: string, perNo: string) {
     let reqString = btoa(this.clientID + ":" + this.clientSecret)
     let headers = new HttpHeaders().set('Authorization', 'Basic').set('Content-Type', 'application/json').set('Accept', 'application/json');
     const body: string = "grant_type=password&username=" + usr + "&firmno=" + frmNo + "&password=" + pw
-    return this.http.post<tokenResp>('http://localhost:33082/api/v1/token', body, { headers });
+    return this.http.post<tokenResp>(this.rootUrl + '/api/v1/token', body, { headers });
 
   }
 
   logout() {
     this.loggedIn = false
+    this.dialog.closeAll()
     this.router.navigate(['login'])
   }
 
