@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { item } from '../models/itemModel';
-import { itemResp } from '../models/itemResp';
+import { itemResp } from '../models/responseModels/itemResp';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { itemStock } from '../models/itemStockModel';
 import { LoginComponent } from '../components/login/login.component';
 import { itemCount } from '../models/count';
-import { itmSearchValue } from '../models/itmSearchResp';
+import { itmSearchValue } from '../models/responseModels/itmSearchResp';
 import { detailedItemModel } from '../models/detailedItemModel';
-import { unitSetsResp } from '../models/unitSetsResp';
+import { unitSetsResp } from '../models/responseModels/unitSetsResp';
 
 
 @Injectable({
@@ -19,11 +19,15 @@ export class ItemsService {
   private rootUrl = localStorage.getItem('rootUrl');
 
 
-  getItems(offset: number, lim: number) {
+  getItems(offset: number, lim: number, q?:string) {
     // let url :string = localStorage.getItem('rootUrl');
     let auth = "Bearer " + this.token;
     let headers = new HttpHeaders().set('Authorization', auth).set('Accept', 'application/json')
-    return this.http.get<itemResp>(this.rootUrl + "/api/v1/items?offset=" + offset + "&limit=" + lim, { headers })
+    if(q==null){
+      return this.http.get<itemResp>(this.rootUrl + "/api/v1/items?offset=" + offset + "&limit=" + lim+"&fields=INTERNAL_REFERENCE,CODE,NAME,CARD_TYPE,SELVAT,SHELF_LIFE,SHELF_DATE&withCount=true", { headers })
+     // return this.http.get<itemResp>(this.rootUrl + "/api/v1/items?offset=" + offset + "&limit=" + lim+"&q=(CODE like '*"+ q+"*' or NAME like '*"+q+"*')"+"&fields=INTERNAL_REFERENCE,CODE,NAME,CARD_TYPE,SELVAT,SHELF_LIFE,SHELF_DATE", { headers })
+    }
+    else    return this.http.get<itemResp>(this.rootUrl + "/api/v1/items?offset=" + offset + "&limit=" + lim+"&q=(CODE like '*"+ q+"*' or NAME like '*"+q+"*')"+"&fields=INTERNAL_REFERENCE,CODE,NAME,CARD_TYPE,SELVAT,SHELF_LIFE,SHELF_DATE&withCount=true", { headers })
 
   }
 
@@ -53,8 +57,6 @@ export class ItemsService {
     let auth = "Bearer " + this.token
     let headers = new HttpHeaders().set('Authorization', auth).set('Accept', 'application/json').set('Content-Type', 'application/json')
     let body = JSON.stringify(item)
-    console.log(body)
-    console.log(this.http.put(this.rootUrl + "/api/v1/items/" + item.INTERNAL_REFERENCE, body, { headers }))
     return this.http.put<detailedItemModel>(this.rootUrl + "/api/v1/items/" + item.INTERNAL_REFERENCE, body, { headers })
   }
 
@@ -72,10 +74,14 @@ export class ItemsService {
     return this.http.delete(this.rootUrl + '/api/v1/items/' + id , {headers})
   }
 
-  itemCount() {
+  itemCount(q?:string) {
     let auth = "Bearer " + this.token
     let headers = new HttpHeaders().set('Authorization', auth).set('Accept', 'application/json').set('Content-Type', 'application/json')
-    return this.http.get<itemCount>(this.rootUrl + "/api/v1/queries?tsql=SELECT COUNT(1) as recordCount FROM LG_00" + this.loginComp.frmNr + "_ITEMS", { headers })
+    if(q==null){
+      return this.http.get<itemCount>(this.rootUrl + "/api/v1/queries?tsql=SELECT COUNT(1) as recordCount FROM LG_00" + this.loginComp.frmNr + "_ITEMS", { headers })
+    }
+    else   return this.http.get<itemCount>(this.rootUrl + "/api/v1/queries?tsql=SELECT COUNT(1) WHERE CODE like '%"+q+"%' or NAME like '%"+q+"%' as recordCount FROM LG_00" + this.loginComp.frmNr + "_ITEMS", { headers })
+
   }
 
   changePage(url: string) {

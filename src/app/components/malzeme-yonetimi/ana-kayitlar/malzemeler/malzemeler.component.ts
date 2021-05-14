@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { item } from '../../../../models/itemModel';
-import { itemResp } from '../../../../models/itemResp';
+import { itemResp } from '../../../../models/responseModels/itemResp';
 import { ItemsService } from '../../../../services/items.service';
 import { ToastrService } from 'ngx-toastr';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -648,15 +648,18 @@ export class MalzemelerComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getItemCount()
+    /*     this.getItemCount() */
     this.getItems(1)
   }
 
-  getItems(offset: number) {
-    this.itemsSvc.getItems(offset, this.recLimit).subscribe((resp) => {
+  getItems(offset: number, q?: string) {
+    this.itemsSvc.getItems(offset, this.recLimit, q).subscribe((resp) => {
       this.response = resp
       console.log(this.response)
       this.items = this.response.items
+      this.itemCount = resp.totalCount
+      this.pageCount = Math.floor(this.itemCount / this.recLimit)
+      console.log(this.pageCount)
       this.loaded = true
     },
       err => {
@@ -668,12 +671,12 @@ export class MalzemelerComponent implements OnInit {
     )
   }
 
-  getItemCount() {
-    this.itemsSvc.itemCount().subscribe(r => {
-      this.itemCount = r.items[0].recordCount
-      this.pageCount = Math.floor(this.itemCount / this.recLimit)
-    })
-  }
+  /*   getItemCount(q?:string) {
+      this.itemsSvc.itemCount(q).subscribe(r => {
+        this.itemCount = r.items[0].recordCount
+        this.pageCount = Math.floor(this.itemCount / this.recLimit)
+      })
+    } */
 
   select(itm: item) {
     this.selectedItem = itm
@@ -706,9 +709,10 @@ export class MalzemelerComponent implements OnInit {
     })
   }
 
-  addItem() {
+  addItem(itemType:number) {
     var newItem: detailedItemModel = new detailedItemModel
     this.dialog.open(Dialog_newItemComponent, {
+      data:itemType,
       width: '90vw',
       height: '90vh'
     })
@@ -734,14 +738,14 @@ export class MalzemelerComponent implements OnInit {
 
   }
 
-  searchItem(key:KeyboardEvent, data:string) {
-    if(key.key == "Enter"){
-      console.log(data)
+  searchItem(key: KeyboardEvent, data: string) {
+    if (key.key == "Enter") {
+      this.getItems(1, data)
     }
   }
 
-  disableSearchMode(){
-    this.searchMode == false
+  disableSearchMode() {
+    this.getItems(1)
   }
 
   //Pagination
@@ -756,47 +760,48 @@ export class MalzemelerComponent implements OnInit {
   }
 
   nextPage() {
-    if (this.currPage <= this.pageCount) {
+    if (this.currPage < this.pageCount) {
       this.currPage++
-    }
-    this.loaded = false
-    this.itemsSvc.changePage(this.response.next.href).subscribe(
-      (resp) => {
-        this.response = resp
-        console.log(this.response)
-        this.items = this.response.items
-        this.router.navigate(['malzemeler'])
-        this.loaded = true
-      },
-      err => {
-        console.log('---', err)
-        if (err.status == 401) {
-          this.tstUnauthorized()
+
+      this.loaded = false
+      this.itemsSvc.changePage(this.response.next.href).subscribe(
+        (resp) => {
+          this.response = resp
+          console.log(this.response)
+          this.items = this.response.items
+          this.router.navigate(['malzemeler'])
+          this.loaded = true
+        },
+        err => {
+          console.log('---', err)
+          if (err.status == 401) {
+            this.tstUnauthorized()
+          }
         }
-      }
-    )
+      )
+    }
   }
 
   previousPage() {
-    if (this.currPage >= 1) {
+    if (this.currPage > 1) {
       this.currPage--
-    }
-    this.loaded = false
-    this.itemsSvc.changePage(this.response.previous.href).subscribe(
-      (resp) => {
-        this.response = resp
-        console.log(this.response)
-        this.items = this.response.items
-        this.router.navigate(['malzemeler'])
-        this.loaded = true
-      },
-      err => {
-        console.log('---', err)
-        if (err.status == 401) {
-          this.tstUnauthorized()
+      this.loaded = false
+      this.itemsSvc.changePage(this.response.previous.href).subscribe(
+        (resp) => {
+          this.response = resp
+          console.log(this.response)
+          this.items = this.response.items
+          this.router.navigate(['malzemeler'])
+          this.loaded = true
+        },
+        err => {
+          console.log('---', err)
+          if (err.status == 401) {
+            this.tstUnauthorized()
+          }
         }
-      }
-    )
+      )
+    }
   }
 
   firstPage() {

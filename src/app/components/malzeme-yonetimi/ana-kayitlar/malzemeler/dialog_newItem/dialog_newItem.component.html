@@ -14,7 +14,7 @@
                 <mat-form-field style="width: 80%;">
                     <mat-label>Açıklaması</mat-label>
                     <input matInput type="text" autocomplete="off"   [(ngModel)]="newItem.NAME"
-                        [ngModelOptions]="{standalone:true}"> 
+                        [ngModelOptions]="{standalone:true}" required> 
                 </mat-form-field>
             </div>
         </div>
@@ -320,6 +320,6 @@
     </div>
 </div>
 <mat-dialog-actions align="end">
-    <button mat-stroked-button cdkFocusInitial (click)="save()"  >Kaydet</button>
+    <button mat-stroked-button cdkFocusInitial (click)="save()" [mat-dialog-close]  >Kaydet</button>
     <button mat-stroked-button [mat-dialog-close]>İptal</button>
 </mat-dialog-actions>

@@ -1,4 +1,9 @@
 export class itemResp {
+    "Message": string;
+    "ModelState": {
+        "OtherError": string[];
+        "DBError": string[];
+    }
     "Meta": {
         "href": string;
         "mediaType": string;
@@ -6,6 +11,7 @@ export class itemResp {
     };
     "offset": number;
     "count": number;
+    "totalCount":number;
     "limit": number;
     "first": {
         "href": string;

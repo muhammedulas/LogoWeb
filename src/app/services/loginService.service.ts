@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser/platform-browser';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { tokenResp } from '../models/tokenResp';
+import { tokenResp } from '../models/responseModels/tokenResp';
 import { Observable, observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';

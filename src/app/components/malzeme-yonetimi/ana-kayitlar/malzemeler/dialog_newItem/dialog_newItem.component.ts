@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatTab } from '@angular/material/tabs';
+import { ToastrService } from 'ngx-toastr';
+import { httpErrResp } from 'src/app/models/responseModels/httpErrResp';
 import { unit } from '../../../../../models/unit';
 import { unitSet } from '../../../../../models/unitSet';
 import { ItemsService } from '../../../../../services/items.service';
@@ -46,13 +49,19 @@ export interface item {
   styleUrls: ['./dialog_newItem.component.scss']
 })
 export class Dialog_newItemComponent implements OnInit {
-  constructor(private itemsSvc: ItemsService) { }
+  constructor(private itemsSvc: ItemsService,
+    private toast:ToastrService,
+    @Inject(MAT_DIALOG_DATA) public itemType: number
+  ) { }
+
+  private httpError:httpErrResp = new httpErrResp
 
   public newItem = {
     CODE: "",
     NAME: "",
     NAME2: "",
     NAME3: "",
+    CARD_TYPE: this.itemType,
     AUXIL_CODE: "",
     AUXIL_CODE2: "",
     AUXIL_CODE3: "",
@@ -140,8 +149,11 @@ export class Dialog_newItemComponent implements OnInit {
 
 
   save() {
-    this.itemsSvc.addItem(this.newItem).subscribe(res=>{
+    this.itemsSvc.addItem(this.newItem).subscribe(res => {
       console.log(res)
+    }, err=>{
+      this.httpError = err
+      this.toast.error(this.httpError.error.ModelState.DBError[0], 'Kayıt Esnasında Hata Meydana Geldi', { positionClass: 'toast-top-center', timeOut: 300000 })
     })
   }
 }

@@ -7,6 +7,7 @@ export class unitSetsResp {
     };
     "offset": number;
     "count": number;
+    "totalCount":number;
     "limit":number;
     "first": {
         "href": string;
@@ -19,6 +20,7 @@ export class unitSetsResp {
         "apiVersion": string;
     };
     "previous": {
+        "href":string;
         "mediaType": string;
         "apiVersion": string;
     };

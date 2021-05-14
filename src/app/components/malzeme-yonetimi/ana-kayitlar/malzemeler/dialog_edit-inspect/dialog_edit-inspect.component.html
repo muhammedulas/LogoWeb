@@ -229,7 +229,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let unit of units" (click)="this.selectedUnit = unit" [ngClass]="{bold:unit.MAIN_UNIT==1}" [ngClass]="{act:unit.NAME==selectedUnit.NAME}">
+                                <tr *ngFor="let unit of units" (click)="this.selectedUnit = unit" [ngClass]="{bold:unit.MAIN_UNIT==1}" [ngClass]="{'act':unit.NAME==selectedUnit.NAME}">
                                     <td>
                                         {{unit.NAME}}
                                     </td>

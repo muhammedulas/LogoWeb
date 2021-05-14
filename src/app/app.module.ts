@@ -51,6 +51,10 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { USTypesPipe } from './components/malzeme-yonetimi/ana-kayitlar/birim-setleri/USTypes.pipe';
+import { Dialog_deleteUSComponent } from './components/malzeme-yonetimi/ana-kayitlar/birim-setleri/dialog_deleteUS/dialog_deleteUS.component';
+import { Dialog_editInspectUSComponent } from './components/malzeme-yonetimi/ana-kayitlar/birim-setleri/dialog_edit-inspectUS/dialog_edit-inspectUS.component';
+import { Dialog_newUSComponent } from './components/malzeme-yonetimi/ana-kayitlar/birim-setleri/dialog_newUS/dialog_newUS.component';
 
 
 
@@ -80,10 +84,23 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     Dialog_newItemComponent,
     Dialog_editInspectComponent,
     Dialog_deleteItemComponent,
-    
+    USTypesPipe,
+    Dialog_deleteUSComponent,
+    Dialog_editInspectUSComponent,
+    Dialog_newUSComponent
+
 
   ],
-  entryComponents:[Dialog_StockComponent,Dialog_editInspectComponent,Dialog_newItemComponent,Dialog_deleteItemComponent],
+  entryComponents: [
+    Dialog_StockComponent,
+    Dialog_editInspectComponent,
+    Dialog_newItemComponent,
+    Dialog_deleteItemComponent,
+    Dialog_deleteUSComponent,
+    Dialog_newUSComponent,
+    Dialog_editInspectUSComponent
+  ],
+
   imports: [
     BrowserModule,
     AppRoutingModule,

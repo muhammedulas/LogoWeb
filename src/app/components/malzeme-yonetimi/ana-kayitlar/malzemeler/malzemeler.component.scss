@@ -1,5 +1,5 @@
 .container {
-    width: 100vw;
+    width: 90vw;
     height: 80vh;
 }
 
@@ -62,6 +62,9 @@ ng-container {
         display: table;
         border-collapse: collapse;
         margin: 0px;
+    }
+    .mat-row{
+      height: 6.5vh;
     }
     .mat-row:hover{
       background-color: #ebebeb;

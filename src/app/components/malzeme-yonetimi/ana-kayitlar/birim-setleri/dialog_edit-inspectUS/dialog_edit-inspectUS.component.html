@@ -1,0 +1,94 @@
+<h2 mat-dialog-title style="text-align: center;">Yeni Birim Seti</h2>
+
+  <div class="row">
+    <div class="col-md-12">
+      <mat-form-field style="width: 50%;">
+        <mat-label>Kodu</mat-label>
+        <input matInput type="text" [(ngModel)]="unitSet.CODE" [disabled]="unitSet.INSPECT">
+      </mat-form-field>
+
+      <mat-form-field class="ml-4">
+        <mat-label>Özel Kodu</mat-label>
+        <input matInput type="text" [(ngModel)]="unitSet.AUXIL_CODE" [disabled]="unitSet.INSPECT">
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <mat-form-field style="width: 50%;">
+        <mat-label>Açıklaması</mat-label>
+        <input matInput type="text" [(ngModel)]="unitSet.DESCRIPTION" [disabled]="unitSet.INSPECT">
+      </mat-form-field>
+
+      <mat-form-field class="ml-4">
+        <mat-label>Yetki Kodu</mat-label>
+        <input matInput type="text" [(ngModel)]="unitSet.AUTH_CODE" [disabled]="unitSet.INSPECT">
+      </mat-form-field>
+    </div>
+  </div>
+  <mat-divider></mat-divider>
+  <div class="row">
+    <div class="col-md-3">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Birimler</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let unit of units" [ngClass]="{'act':selctedUnit == unit}" (click)="select(unit)">
+            <td>
+              {{unit.CODE}}
+            </td>
+          </tr>
+          <a class="Btn" matTooltip="Birim Ekle" (click)="newLine()" *ngIf="!unitSet.INSPECT" style="user-select: none;">
+            <mat-icon>
+              add
+            </mat-icon>
+          </a>
+        </tbody>
+      </table>
+      <mat-divider [vertical]="true"></mat-divider>
+    </div>
+    <div class="col-md-7">
+      <mat-divider [vertical]="true"></mat-divider>
+
+      <div class="row">
+        <mat-form-field class="ml-4" style="width: 40%;">
+          <mat-label>Birim Kodu</mat-label>
+          <input matInput type="text" [(ngModel)]="selctedUnit.CODE" [disabled]="unitSet.INSPECT">
+        </mat-form-field>
+
+        <mat-form-field class="ml-4" style="width: 40%;">
+          <mat-label>Evrensel Kodu</mat-label>
+          <input matInput type="text" [(ngModel)]="selctedUnit.GLOBAL_CODE" [disabled]="unitSet.INSPECT">
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field class="ml-4" style="width: 85%;">
+          <mat-label>Birim Açıklaması</mat-label>
+          <input matInput type="text" [(ngModel)]="selctedUnit.NAME" [disabled]="unitSet.INSPECT">
+        </mat-form-field>
+      </div>
+      <span style="text-align: center;">
+        <h4>Çevrim Katsayıları</h4>
+      </span>
+      <div class="row">
+
+        <mat-form-field class="ml-4">
+          <mat-label>{{units[0].CODE}}</mat-label>
+          <input matInput type="number" [(ngModel)]="selctedUnit.CONV_FACT1" [disabled]="unitSet.INSPECT">
+        </mat-form-field>
+        =
+        <mat-form-field class="ml-4">
+          <mat-label>{{selctedUnit.CODE}}</mat-label>
+          <input matInput type="number" [(ngModel)]="selctedUnit.CONV_FACT2" [disabled]="unitSet.INSPECT">
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+<mat-dialog-actions align="end" style="margin-top: 0px;">
+  <button mat-stroked-button [mat-dialog-close] (click)="save()" [disabled]="unitSet.INSPECT">Kaydet</button>
+  <button mat-stroked-button [mat-dialog-close]>Vazgeç</button>
+</mat-dialog-actions>
