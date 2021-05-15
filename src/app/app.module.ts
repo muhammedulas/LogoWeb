@@ -55,6 +55,7 @@ import { USTypesPipe } from './components/malzeme-yonetimi/ana-kayitlar/birim-se
 import { Dialog_deleteUSComponent } from './components/malzeme-yonetimi/ana-kayitlar/birim-setleri/dialog_deleteUS/dialog_deleteUS.component';
 import { Dialog_editInspectUSComponent } from './components/malzeme-yonetimi/ana-kayitlar/birim-setleri/dialog_edit-inspectUS/dialog_edit-inspectUS.component';
 import { Dialog_newUSComponent } from './components/malzeme-yonetimi/ana-kayitlar/birim-setleri/dialog_newUS/dialog_newUS.component';
+import { Odeme_tahsilatPlanlariComponent } from './components/finans/ana-kayitlar/odeme_tahsilat-planlari/odeme_tahsilat-planlari.component';
 
 
 
@@ -80,6 +81,7 @@ import { Dialog_newUSComponent } from './components/malzeme-yonetimi/ana-kayitla
     MaliyetDagitimFisleriComponent,
     HizliUretimFisleriComponent,
     ItemTypesPipe,
+    Odeme_tahsilatPlanlariComponent,
     Dialog_StockComponent,
     Dialog_newItemComponent,
     Dialog_editInspectComponent,
