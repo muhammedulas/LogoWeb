@@ -56,6 +56,7 @@ import { Dialog_deleteUSComponent } from './components/malzeme-yonetimi/ana-kayi
 import { Dialog_editInspectUSComponent } from './components/malzeme-yonetimi/ana-kayitlar/birim-setleri/dialog_edit-inspectUS/dialog_edit-inspectUS.component';
 import { Dialog_newUSComponent } from './components/malzeme-yonetimi/ana-kayitlar/birim-setleri/dialog_newUS/dialog_newUS.component';
 import { Odeme_tahsilatPlanlariComponent } from './components/finans/ana-kayitlar/odeme_tahsilat-planlari/odeme_tahsilat-planlari.component';
+import { BankaComponent } from './components/finans/ana-kayitlar/banka/banka.component';
 
 
 
@@ -77,6 +78,7 @@ import { Odeme_tahsilatPlanlariComponent } from './components/finans/ana-kayitla
     IhracatComponent,
     BirimSetleriComponent,
     MalzemeOzellikleriComponent,
+    BankaComponent,
     MalzemeYonetimFisleriComponent,
     MaliyetDagitimFisleriComponent,
     HizliUretimFisleriComponent,

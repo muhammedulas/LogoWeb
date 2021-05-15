@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ConfigureComponent } from './components/configure/configure.component';
+import { BankaComponent } from './components/finans/ana-kayitlar/banka/banka.component';
 import { FinansComponent } from './components/finans/finans.component';
 import { IhracatComponent } from './components/ihracat/ihracat.component';
 import { IthalatComponent } from './components/ithalat/ithalat.component';
@@ -30,8 +31,13 @@ const routes: Routes = [
         { path: 'hizli-uretim-fisleri', component: HizliUretimFisleriComponent },
         { path: 'maliyet-dagitim-fisleri', component: MaliyetDagitimFisleriComponent },
         { path: 'malzeme-yonetim-fisleri', component: MalzemeYonetimFisleriComponent },
-      //Malzeme Yönetimi
+      //
+
       { path: 'finans', component: FinansComponent },
+      //Finans
+        {path:'banka', component:BankaComponent},
+      //
+
       { path: 'satinalma', component: SatinalmaComponent },
       { path: 'satis', component: SatisComponent },
       { path: 'ithalat', component: IthalatComponent },
