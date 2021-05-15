@@ -1,22 +1,36 @@
-<!-- <div class="wrapper">
+<div class="wrapper">
   <h1 style="text-align: center;">Ödeme-Tahsilat Planları</h1>
   <mat-card class="container mt-2">
     <mat-spinner class="spinner" *ngIf="!loaded"></mat-spinner>
 
     <div class="table-responsive">
-      <table mat-table [dataSource]="itemChars" class="mat-elevation-z4 mat-table">
+      <table mat-table [dataSource]="paymentPlans" class="mat-elevation-z4 mat-table">
 
         <ng-container matColumnDef="Code">
           <th mat-header-cell *matHeaderCellDef> Kodu </th>
-          <td mat-cell *matCellDef="let itemChar" (click)='select(itemChar)'
-            [ngClass]="{'act':selectedItemChar.INTERNAL_REFERENCE == itemChar.INTERNAL_REFERENCE}"> {{itemChar.CODE}}
+          <td mat-cell *matCellDef="let plan" (click)='select(plan)'
+            [ngClass]="{'act':selectedPaymentPlan.INTERNAL_REFERENCE == plan.INTERNAL_REFERENCE}"> {{plan.CODE}}
           </td>
         </ng-container>
 
-        <ng-container matColumnDef="Name">
+        <ng-container matColumnDef="Description">
           <th mat-header-cell *matHeaderCellDef> Açıklaması </th>
-          <td mat-cell *matCellDef="let itemChar" (click)='select(itemChar)'
-            [ngClass]="{'act':selectedItemChar.INTERNAL_REFERENCE == itemChar.INTERNAL_REFERENCE}"> {{itemChar.NAME}} </td>
+          <td mat-cell *matCellDef="let plan" (click)='select(plan)'
+            [ngClass]="{'act':selectedPaymentPlan.INTERNAL_REFERENCE == plan.INTERNAL_REFERENCE}"> {{plan.DESCRIPTION}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="EIR">
+          <th mat-header-cell *matHeaderCellDef> Erken Ödeme Faizi </th>
+          <td mat-cell *matCellDef="let plan" (click)='select(plan)'
+            [ngClass]="{'act':selectedPaymentPlan.INTERNAL_REFERENCE == plan.INTERNAL_REFERENCE}"> %{{plan.EARLY_INTRATE}}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="LIR">
+          <th mat-header-cell *matHeaderCellDef> Geç Ödeme Faizi </th>
+          <td mat-cell *matCellDef="let plan" (click)='select(plan)'
+            [ngClass]="{'act':selectedPaymentPlan.INTERNAL_REFERENCE == plan.INTERNAL_REFERENCE}"> %{{plan.LATE_INTRATE}}
+          </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns" style="position: sticky;"></tr>
@@ -26,22 +40,22 @@
     <div class="footerContainer">
       <div class="row">
         <div class="col-md-4">
-          <a class="iconBtns" matTooltip="Ekle" (click)="addItemChar()" >
+          <a class="iconBtns" matTooltip="Ekle" (click)="addPP()" >
             <mat-icon>
               add
             </mat-icon>
           </a>        
-          <a class="iconBtns" matTooltip="Değiştir" (click)="edit_inspectItemChar(false)">
+          <a class="iconBtns" matTooltip="Değiştir" (click)="edit_inspectPP(false)">
             <mat-icon>
               edit_outline
             </mat-icon>
           </a>
-          <a class="iconBtns" matTooltip="Sil" (click)="deleteItemChar(this.selectedItemChar.INTERNAL_REFERENCE)">
+          <a class="iconBtns" matTooltip="Sil" (click)="deletePP(this.selectedPaymentPlan.INTERNAL_REFERENCE)">
             <mat-icon>
               delete_outline
             </mat-icon>
           </a>
-          <a class="iconBtns" matTooltip="İncele" (click)="edit_inspectItemChar(true)">
+          <a class="iconBtns" matTooltip="İncele" (click)="edit_inspectPP(true)">
             <mat-icon>
               find_in_page
             </mat-icon>
@@ -66,7 +80,7 @@
           <mat-form-field *ngIf="searchButtonActive"  >
             <mat-label>Aramak istediğiniz değeri girip Enter'a basın</mat-label>
             <input matInput #searchBox type="text" autocomplete="off" name="" id=""
-              (keyup)="searchItemChar($event, searchBox.value)" (keyup.esc)="cancelSearch()">
+              (keyup)="searchPP($event, searchBox.value)" (keyup.esc)="cancelSearch()">
           </mat-form-field>
         </div>
         <div class="col-md-4 d-flex justify-content-center">
@@ -115,4 +129,4 @@
       </div>
     </div>
   </mat-card>
-</div> -->
+</div>

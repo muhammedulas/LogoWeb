@@ -57,6 +57,12 @@ import { Dialog_editInspectUSComponent } from './components/malzeme-yonetimi/ana
 import { Dialog_newUSComponent } from './components/malzeme-yonetimi/ana-kayitlar/birim-setleri/dialog_newUS/dialog_newUS.component';
 import { Odeme_tahsilatPlanlariComponent } from './components/finans/ana-kayitlar/odeme_tahsilat-planlari/odeme_tahsilat-planlari.component';
 import { BankaComponent } from './components/finans/ana-kayitlar/banka/banka.component';
+import { CariHesaplarComponent } from './components/finans/ana-kayitlar/cari-hesaplar/cari-hesaplar.component';
+import { ARPTypePipe } from './components/finans/ana-kayitlar/cari-hesaplar/ARPType.pipe';
+import { KasaComponent } from './components/finans/ana-kayitlar/kasa/kasa.component';
+import { CekSenetlerComponent } from './components/finans/ana-kayitlar/cek-senetler/cek-senetler.component';
+import { ChequeAndPnoteStatusPipe } from './components/finans/ana-kayitlar/cek-senetler/chequeAndPnoteStatus.pipe';
+import { AlinanHizmetlerComponent } from './components/satinalma/ana-kayitlar/alinan-hizmetler/alinan-hizmetler.component';
 
 
 
@@ -84,11 +90,17 @@ import { BankaComponent } from './components/finans/ana-kayitlar/banka/banka.com
     HizliUretimFisleriComponent,
     ItemTypesPipe,
     Odeme_tahsilatPlanlariComponent,
+    CariHesaplarComponent,
+    CekSenetlerComponent,
+    KasaComponent,
+    AlinanHizmetlerComponent,
     Dialog_StockComponent,
     Dialog_newItemComponent,
     Dialog_editInspectComponent,
     Dialog_deleteItemComponent,
+    ChequeAndPnoteStatusPipe,
     USTypesPipe,
+    ARPTypePipe,
     Dialog_deleteUSComponent,
     Dialog_editInspectUSComponent,
     Dialog_newUSComponent
