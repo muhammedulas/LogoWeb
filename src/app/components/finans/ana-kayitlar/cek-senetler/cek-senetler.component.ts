@@ -107,7 +107,7 @@ export class CekSenetlerComponent implements OnInit {
     this.loaded = false
     this.getCPs(0)
     this.pageCount = Math.floor(this.itemCount / this.recLimit)
-    this.router.navigate(['birim-setleri'])
+    this.router.navigate(['cek-senetler'])
   }
 
   nextPage() {
@@ -119,7 +119,7 @@ export class CekSenetlerComponent implements OnInit {
           this.response = resp
           console.log(this.response)
           this.CPs = this.response.items
-          this.router.navigate(['birim-setleri'])
+          this.router.navigate(['cek-senetler'])
           this.loaded = true
         },
         err => {
@@ -141,7 +141,7 @@ export class CekSenetlerComponent implements OnInit {
           this.response = resp
           console.log(this.response)
           this.CPs = this.response.items
-          this.router.navigate(['birim-setleri'])
+          this.router.navigate(['cek-senetler'])
           this.loaded = true
         },
         err => {
@@ -158,10 +158,11 @@ export class CekSenetlerComponent implements OnInit {
     this.loaded = false
     this.currPage = 1
     this.getCPs(0)
-    this.router.navigate(['birim-setleri'])
+    this.router.navigate(['cek-senetler'])
   }
 
   lastPage() {
+    if(this.currPage >= this.pageCount) return
     this.loaded = false
     this.currPage = this.pageCount
     var offset = this.itemCount - this.recLimit
@@ -187,7 +188,7 @@ export class CekSenetlerComponent implements OnInit {
       this.response = resp
       console.log(this.response)
       this.CPs = this.response.items
-      this.router.navigate(['birim-setleri'])
+      this.router.navigate(['cek-senetler'])
       this.loaded = true
     },
       err => {

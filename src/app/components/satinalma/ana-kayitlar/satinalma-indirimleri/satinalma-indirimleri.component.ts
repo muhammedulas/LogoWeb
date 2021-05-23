@@ -108,7 +108,7 @@ export class SatinalmaIndirimleriComponent implements OnInit {
     this.loaded = false
     this.getAllRecords(0)
     this.pageCount = Math.floor(this.itemCount / this.recLimit)
-    this.router.navigate(['birim-setleri'])
+    this.router.navigate(['satinalma-indirimleri'])
   }
 
   nextPage() {
@@ -120,7 +120,7 @@ export class SatinalmaIndirimleriComponent implements OnInit {
           this.response = resp
           console.log(this.response)
           this.dataSet = this.response.items
-          this.router.navigate(['birim-setleri'])
+          this.router.navigate(['satinalma-indirimleri'])
           this.loaded = true
         },
         err => {
@@ -142,7 +142,7 @@ export class SatinalmaIndirimleriComponent implements OnInit {
           this.response = resp
           console.log(this.response)
           this.dataSet = this.response.items
-          this.router.navigate(['birim-setleri'])
+          this.router.navigate(['satinalma-indirimleri'])
           this.loaded = true
         },
         err => {
@@ -159,10 +159,11 @@ export class SatinalmaIndirimleriComponent implements OnInit {
     this.loaded = false
     this.currPage = 1
     this.getAllRecords(0)
-    this.router.navigate(['birim-setleri'])
+    this.router.navigate(['satinalma-indirimleri'])
   }
 
   lastPage() {
+    if(this.currPage >= this.pageCount) return
     this.loaded = false
     this.currPage = this.pageCount
     var offset = this.itemCount - this.recLimit
@@ -188,7 +189,7 @@ export class SatinalmaIndirimleriComponent implements OnInit {
       this.response = resp
       console.log(this.response)
       this.dataSet = this.response.items
-      this.router.navigate(['birim-setleri'])
+      this.router.navigate(['satinalma-indirimleri'])
       this.loaded = true
     },
       err => {

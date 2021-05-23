@@ -107,7 +107,7 @@ export class KasaComponent implements OnInit {
     this.loaded = false
     this.getSDs(0)
     this.pageCount = Math.floor(this.itemCount / this.recLimit)
-    this.router.navigate(['birim-setleri'])
+    this.router.navigate(['kasa'])
   }
 
   nextPage() {
@@ -119,7 +119,7 @@ export class KasaComponent implements OnInit {
           this.response = resp
           console.log(this.response)
           this.safeDeposits = this.response.items
-          this.router.navigate(['birim-setleri'])
+          this.router.navigate(['kasa'])
           this.loaded = true
         },
         err => {
@@ -141,7 +141,7 @@ export class KasaComponent implements OnInit {
           this.response = resp
           console.log(this.response)
           this.safeDeposits = this.response.items
-          this.router.navigate(['birim-setleri'])
+          this.router.navigate(['kasa'])
           this.loaded = true
         },
         err => {
@@ -158,10 +158,11 @@ export class KasaComponent implements OnInit {
     this.loaded = false
     this.currPage = 1
     this.getSDs(0)
-    this.router.navigate(['birim-setleri'])
+    this.router.navigate(['kasa'])
   }
 
   lastPage() {
+    if(this.currPage >= this.pageCount) return
     this.loaded = false
     this.currPage = this.pageCount
     var offset = this.itemCount - this.recLimit
@@ -187,7 +188,7 @@ export class KasaComponent implements OnInit {
       this.response = resp
       console.log(this.response)
       this.safeDeposits = this.response.items
-      this.router.navigate(['birim-setleri'])
+      this.router.navigate(['kasa'])
       this.loaded = true
     },
       err => {

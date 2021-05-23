@@ -163,6 +163,7 @@ export class BirimSetleriComponent implements OnInit {
   }
 
   lastPage() {
+    if(this.currPage >= this.pageCount) return
     this.loaded = false
     this.currPage = this.pageCount
     var offset = this.itemCount - this.recLimit

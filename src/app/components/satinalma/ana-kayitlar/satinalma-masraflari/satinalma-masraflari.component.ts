@@ -105,7 +105,7 @@ export class SatinalmaMasraflariComponent implements OnInit {
     this.loaded = false
     this.getAllRecords(0)
     this.pageCount = Math.floor(this.itemCount / this.recLimit)
-    this.router.navigate(['birim-setleri'])
+    this.router.navigate(['satinalma-masraflari'])
   }
 
   nextPage() {
@@ -117,7 +117,7 @@ export class SatinalmaMasraflariComponent implements OnInit {
           this.response = resp
           console.log(this.response)
           this.dataSet = this.response.items
-          this.router.navigate(['birim-setleri'])
+          this.router.navigate(['satinalma-masraflari'])
           this.loaded = true
         },
         err => {
@@ -139,7 +139,7 @@ export class SatinalmaMasraflariComponent implements OnInit {
           this.response = resp
           console.log(this.response)
           this.dataSet = this.response.items
-          this.router.navigate(['birim-setleri'])
+          this.router.navigate(['satinalma-masraflari'])
           this.loaded = true
         },
         err => {
@@ -156,10 +156,11 @@ export class SatinalmaMasraflariComponent implements OnInit {
     this.loaded = false
     this.currPage = 1
     this.getAllRecords(0)
-    this.router.navigate(['birim-setleri'])
+    this.router.navigate(['satinalma-masraflari'])
   }
 
   lastPage() {
+    if(this.currPage >= this.pageCount) return
     this.loaded = false
     this.currPage = this.pageCount
     var offset = this.itemCount - this.recLimit
@@ -185,7 +186,7 @@ export class SatinalmaMasraflariComponent implements OnInit {
       this.response = resp
       console.log(this.response)
       this.dataSet = this.response.items
-      this.router.navigate(['birim-setleri'])
+      this.router.navigate(['satinalma-masraflari'])
       this.loaded = true
     },
       err => {
