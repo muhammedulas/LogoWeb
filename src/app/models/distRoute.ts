@@ -1,0 +1,66 @@
+import { distRouteLine } from "./distRouteLine"
+
+export class distRoute {
+    "INSPECT": boolean;
+    "INTERNAL_REFERENCE": number;
+    "CODE": string;
+    "NAME": string;
+    "AUXIL_CODE": string;
+    "AUTH_CODE": string;
+    "RECORD_STATUS": number;
+    "CREATED_BY": number;
+    "DATE_CREATED": string;
+    "HOUR_CREATED": number;
+    "MIN_CREATED": number;
+    "SEC_CREATED": number;
+    "MODIFIED_BY": number;
+    "DATE_MODIFIED": string;
+    "HOUR_MODIFIED": number;
+    "MIN_MODIFIED": number;
+    "SEC_MODIFIED": number;
+    "DATA_SITEID": number;
+    "XML_ATTRIBUTE": number;
+    "DATA_REFERENCE": number;
+    "TEXTINC": number;
+    "WFSTATUS": number;
+    "INFO_LOGICALREF": number;
+    "INFO_DISTROUTREF": number;
+    "INFO_LINENR": number;
+    "INFO_SALESMANREF": number;
+    "INFO_BCOUNTRYCODE": string;
+    "INFO_BCITYCODE": string;
+    "INFO_BTOWNCODE": string;
+    "INFO_BDISTRICTCODE": string;
+    "INFO_ECOUNTRYCODE": string;
+    "INFO_ECITYCODE": string;
+    "INFO_ETOWNCODE": string;
+    "INFO_EDISTRICTCODE": string;
+    "SALESMANCODE": string;
+    "SALESMANNAME": string;
+    "BDISTRICTREF": number;
+    "BDISTRICT": string;
+    "BTOWNREF": number;
+    "BTOWN": string;
+    "BCITYREF": number;
+    "BCITY": string;
+    "BCOUNTRYNR": number;
+    "BCOUNTRYREF": number;
+    "BCOUNTRY": string;
+    "EDISTRICTREF": number;
+    "EDISTRICT": string;
+    "ETOWNREF": number;
+    "ETOWN": string;
+    "ECITYREF": number;
+    "ECITY": string;
+    "ECOUNTRYNR": number;
+    "ECOUNTRYREF": number;
+    "ECOUNTRY": string;
+    "DIST_RT_LINES": {
+        "items": distRouteLine[];
+    };
+    "DELLIST": string;
+    "TEXTCHG": number;
+    "ITEXT": string;
+    "FLDALS": string;
+    "XBUFS": string;
+}

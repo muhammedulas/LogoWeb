@@ -93,6 +93,7 @@ import { IthalatOperasyonFisleriComponent } from './components/ithalat/hareketle
 import { MalzemeDolasimFisleriComponent } from './components/ithalat/hareketler/malzeme-dolasim-fisleri/malzeme-dolasim-fisleri.component';
 import { MillilestirmeFisleriComponent } from './components/ithalat/hareketler/millilestirme-fisleri/millilestirme-fisleri.component';
 import { Odeme_tahsilatPlanlariComponent } from './components/finans/ana-kayitlar/odeme_tahsilat-planlari/odeme_tahsilat-planlari.component';
+import { ItemSalePriceTypePipe } from './components/satis/ana-kayitlar/malzeme-satis-fiyatlari/itemSalePriceType.pipe';
 
 
 
@@ -181,6 +182,7 @@ import { Odeme_tahsilatPlanlariComponent } from './components/finans/ana-kayitla
     ChequeAndPnoteStatusPipe,
     USTypesPipe,
     ARPTypePipe,
+    ItemSalePriceTypePipe,
     //
 
     Dialog_StockComponent,

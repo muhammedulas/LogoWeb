@@ -1,0 +1,34 @@
+export class distRouteLine {
+    "INTERNAL_REFERENCE": number;
+    "DISTROUTREF": number;
+    "LINENR": number;
+    "SALESMANREF": number;
+    "BCOUNTRYCODE": string;
+    "BCITYCODE": string;
+    "BTOWNCODE": string;
+    "BDISTRICTCODE": string;
+    "ECOUNTRYCODE": string;
+    "ECITYCODE": string;
+    "ETOWNCODE": string;
+    "EDISTRICTCODE": string;
+    "SALESMANCODE": string;
+    "SALESMANNAME": string;
+    "BDISTRICTREF": number;
+    "BDISTRICT": string;
+    "BTOWNREF": number;
+    "BTOWN": string;
+    "BCITYREF": number;
+    "BCITY": string;
+    "BCOUNTRYNR": number;
+    "BCOUNTRYREF": number;
+    "BCOUNTRY": string;
+    "EDISTRICTREF": number;
+    "EDISTRICT": string;
+    "ETOWNREF": number;
+    "ETOWN": string;
+    "ECITYREF": number;
+    "ECITY": string;
+    "ECOUNTRYNR": number;
+    "ECOUNTRYREF": number;
+    "ECOUNTRY": string;
+}

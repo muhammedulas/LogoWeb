@@ -23,6 +23,12 @@ import { SatinalmaIndirimleriComponent } from './components/satinalma/ana-kayitl
 import { SatinalmaKampanyalariComponent } from './components/satinalma/ana-kayitlar/satinalma-kampanyalari/satinalma-kampanyalari.component';
 import { SatinalmaMasraflariComponent } from './components/satinalma/ana-kayitlar/satinalma-masraflari/satinalma-masraflari.component';
 import { SatinalmaComponent } from './components/satinalma/satinalma.component';
+import { DagitimAraclariComponent } from './components/satis/ana-kayitlar/dagitim-araclari/dagitim-araclari.component';
+import { DagitimRotalariComponent } from './components/satis/ana-kayitlar/dagitim-rotalari/dagitim-rotalari.component';
+import { HizmetSatisFiyatlariComponent } from './components/satis/ana-kayitlar/hizmet-satis-fiyatlari/hizmet-satis-fiyatlari.component';
+import { MalzemeSatisFiyatlariComponent } from './components/satis/ana-kayitlar/malzeme-satis-fiyatlari/malzeme-satis-fiyatlari.component';
+import { SatisIndirimleriComponent } from './components/satis/ana-kayitlar/satis-indirimleri/satis-indirimleri.component';
+import { SatisMasraflariComponent } from './components/satis/ana-kayitlar/satis-masraflari/satis-masraflari.component';
 import { VerilenHizmetlerComponent } from './components/satis/ana-kayitlar/verilen-hizmetler/verilen-hizmetler.component';
 import { SatisComponent } from './components/satis/satis.component';
 import { MainComponent } from './components/shared/main/main.component';
@@ -64,6 +70,12 @@ const routes: Routes = [
       //Satış
       { path: 'satis', component: SatisComponent },
         {path:'verilen-hizmetler', component:VerilenHizmetlerComponent},
+        {path:'satis-indirimleri', component:SatisIndirimleriComponent},
+        {path:'satis-masraflari', component:SatisMasraflariComponent},
+        {path:'malzeme-satis-fiyatlari', component:MalzemeSatisFiyatlariComponent},
+        {path:'hizmet-satis-fiyatlari', component:HizmetSatisFiyatlariComponent},
+        {path:'dagitim-araclari', component:DagitimAraclariComponent},
+        {path:'dagitim-rotalari', component:DagitimRotalariComponent},
       //
       { path: 'ithalat', component: IthalatComponent },
       { path: 'ihracat', component: IhracatComponent }
