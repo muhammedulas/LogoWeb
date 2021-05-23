@@ -18,6 +18,10 @@ import { MaliyetDagitimFisleriComponent } from './components/malzeme-yonetimi/ha
 import { MalzemeYonetimFisleriComponent } from './components/malzeme-yonetimi/hareketler/malzeme-yonetim-fisleri/malzeme-yonetim-fisleri.component';
 import { MalzemeYonetimiComponent } from './components/malzeme-yonetimi/malzeme-yonetimi.component';
 import { AlinanHizmetlerComponent } from './components/satinalma/ana-kayitlar/alinan-hizmetler/alinan-hizmetler.component';
+import { HizmetAlimFiyatlariComponent } from './components/satinalma/ana-kayitlar/hizmet-alim-fiyatlari/hizmet-alim-fiyatlari.component';
+import { SatinalmaIndirimleriComponent } from './components/satinalma/ana-kayitlar/satinalma-indirimleri/satinalma-indirimleri.component';
+import { SatinalmaKampanyalariComponent } from './components/satinalma/ana-kayitlar/satinalma-kampanyalari/satinalma-kampanyalari.component';
+import { SatinalmaMasraflariComponent } from './components/satinalma/ana-kayitlar/satinalma-masraflari/satinalma-masraflari.component';
 import { SatinalmaComponent } from './components/satinalma/satinalma.component';
 import { SatisComponent } from './components/satis/satis.component';
 import { MainComponent } from './components/shared/main/main.component';
@@ -50,6 +54,10 @@ const routes: Routes = [
       { path: 'satinalma', component: SatinalmaComponent },
       //Satınalma
         {path:'alinan-hizmetler', component:AlinanHizmetlerComponent},
+        {path:'satinalma-indirimleri', component:SatinalmaIndirimleriComponent},
+        {path:'satinalma-masraflari',component:SatinalmaMasraflariComponent},
+        {path:'hizmet-alim-fiyatlari', component:HizmetAlimFiyatlariComponent},
+        {path:'satinalma-kampanyalari', component:SatinalmaKampanyalariComponent},
       //
       { path: 'satis', component: SatisComponent },
       { path: 'ithalat', component: IthalatComponent },

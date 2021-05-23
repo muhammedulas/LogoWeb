@@ -44,11 +44,17 @@ export class ItemsService {
   }
 
   getStock(ref: string) {
-    var resp
+    let firmNr = "0".repeat(3-this.loginComp.frmNr.length) + this.loginComp.frmNr
+    let periodNr = "0".repeat(2 - this.loginComp.perNr.length) + this.loginComp.perNr
+    let tableName = "LV_" + firmNr + "_" + periodNr + "_GNTOTST"
     let auth = "Bearer " + this.token;
     let headers = new HttpHeaders().set('Authorization', auth).set('Accept', 'application/json').set('Content-Type', 'application/json')
-    var body: string = '"SELECT PURAMNT FROM LV_001_01_STINVTOT WHERE STOCKREF = \'' + ref + '\''
-    return this.http.get<itemStock>(this.rootUrl + "/api/v1/queries?tsql=SELECT PURAMNT, ONHAND, ACTSORDER FROM LV_00" + this.loginComp.frmNr + '_0' + this.loginComp.perNr + '_STINVTOT WHERE STOCKREF = ' + ref + ' AND INVENNO = -1', { headers })
+    let queryString = "\"DECLARE  @STOCKREF AS INT = " + ref + ", @RECORDCOUNT AS INT " +
+    "SET @RECORDCOUNT = (SELECT COUNT(STOCKREF) AS RECORDCOUNT FROM " + tableName + " WHERE STOCKREF = @STOCKREF) "+
+    "IF (@RECORDCOUNT < 1) BEGIN "+
+    "SELECT 0 AS ONHAND, 0 AS ACTSORDER, 0 AS PURAMNT END ELSE BEGIN "+
+    "SELECT ONHAND, ACTSORDER, PURAMNT FROM " + tableName + " WHERE INVENNO = -1 AND STOCKREF = @STOCKREF END \""
+    return this.http.post<itemStock>(this.rootUrl + "/api/v1/queries/unsafe" , queryString, {headers})
   }
 
 

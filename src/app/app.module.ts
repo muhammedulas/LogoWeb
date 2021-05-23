@@ -63,6 +63,10 @@ import { KasaComponent } from './components/finans/ana-kayitlar/kasa/kasa.compon
 import { CekSenetlerComponent } from './components/finans/ana-kayitlar/cek-senetler/cek-senetler.component';
 import { ChequeAndPnoteStatusPipe } from './components/finans/ana-kayitlar/cek-senetler/chequeAndPnoteStatus.pipe';
 import { AlinanHizmetlerComponent } from './components/satinalma/ana-kayitlar/alinan-hizmetler/alinan-hizmetler.component';
+import { SatinalmaIndirimleriComponent } from './components/satinalma/ana-kayitlar/satinalma-indirimleri/satinalma-indirimleri.component';
+import { SatinalmaMasraflariComponent } from './components/satinalma/ana-kayitlar/satinalma-masraflari/satinalma-masraflari.component';
+import { HizmetAlimFiyatlariComponent } from './components/satinalma/ana-kayitlar/hizmet-alim-fiyatlari/hizmet-alim-fiyatlari.component';
+import { SatinalmaKampanyalariComponent } from './components/satinalma/ana-kayitlar/satinalma-kampanyalari/satinalma-kampanyalari.component';
 
 
 
@@ -94,6 +98,10 @@ import { AlinanHizmetlerComponent } from './components/satinalma/ana-kayitlar/al
     CekSenetlerComponent,
     KasaComponent,
     AlinanHizmetlerComponent,
+    SatinalmaIndirimleriComponent,
+    SatinalmaMasraflariComponent,
+    HizmetAlimFiyatlariComponent,
+    SatinalmaKampanyalariComponent,
     Dialog_StockComponent,
     Dialog_newItemComponent,
     Dialog_editInspectComponent,
