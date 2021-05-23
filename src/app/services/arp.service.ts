@@ -20,7 +20,7 @@ export class ArpService {
       return this.http.get<arpResp>(this.rootUrl + "/api/v1/ARPs?offset=" + offset + "&limit=" + lim + "&withCount=true", { headers })
     }
     
-    else return this.http.get<arpResp>(this.rootUrl + "/api/v1/ARPs?offset=" + offset + "&limit=" + lim + "&q=(CODE like '*" + q + "*' or NAME like '*" + q + "*')" + "&withCount=true", { headers }) 
+    else return this.http.get<arpResp>(this.rootUrl + "/api/v1/ARPs?offset=" + offset + "&limit=" + lim + "&q=(CODE like '*" + q + "*' or TITLE like '*" + q + "*')" + "&withCount=true", { headers }) 
   }
   
   

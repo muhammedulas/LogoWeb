@@ -19,7 +19,7 @@ export class VehiclesService {
       return this.http.get<vehicleResp>(this.rootUrl + "/api/v1/vehicles?offset=" + offset + "&limit=" + lim + "&withCount=true", { headers })
     }
 
-    else return this.http.get<vehicleResp>(this.rootUrl + "/api/v1/vehicles?offset=" + offset + "&limit=" + lim + "&q=(CODE like '*" + q + "*' or NAME like '*" + q + "*')" + "&withCount=true", { headers })
+    else return this.http.get<vehicleResp>(this.rootUrl + "/api/v1/vehicles?offset=" + offset + "&limit=" + lim + "&q=(CODE like '*" + q + "*' or DEFINITION like '*" + q + "*' or PLAQUE like '*" + q + "*')" + "&withCount=true", { headers })
   }
 
 

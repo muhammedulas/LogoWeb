@@ -136,7 +136,7 @@
           <mat-form-field *ngIf="searchButtonActive">
             <mat-label>Aramak istediğiniz değeri girip Enter'a basın</mat-label>
             <input matInput #searchBox type="text" autocomplete="off" name="" id=""
-              (keyup)="searchItem($event, searchBox.value)">
+              (keyup)="searchItem($event, searchBox.value)" (keyup.esc)="cancelSearch()">
           </mat-form-field>
         </div>
         <div class="col-md-4 d-flex justify-content-center">

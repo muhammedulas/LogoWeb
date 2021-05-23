@@ -19,7 +19,7 @@ export class PurchasedServicesService {
       return this.http.get<purchasedServicesResp>(this.rootUrl + "/api/v1/purchasedServices?offset=" + offset + "&limit=" + lim + "&withCount=true", { headers })
     }
     
-    else return this.http.get<purchasedServicesResp>(this.rootUrl + "/api/v1/purchasedServices?offset=" + offset + "&limit=" + lim + "&q=(CODE like '*" + q + "*' or NAME like '*" + q + "*')" + "&withCount=true", { headers }) 
+    else return this.http.get<purchasedServicesResp>(this.rootUrl + "/api/v1/purchasedServices?offset=" + offset + "&limit=" + lim + "&q=(CODE like '*" + q + "*' or DESCRIPTION like '*" + q + "*' or VAT_PERC like '*" + q + "*')" + "&withCount=true", { headers }) 
   }
   
   

@@ -20,7 +20,7 @@ export class PurchaseCampaignsService {
       return this.http.get<purchaseCampaignsResp>(this.rootUrl + "/api/v1/purchaseCampaigns?offset=" + offset + "&limit=" + lim + "&withCount=true", { headers })
     }
     
-    else return this.http.get<purchaseCampaignsResp>(this.rootUrl + "/api/v1/purchaseCampaigns?offset=" + offset + "&limit=" + lim + "&q=(CODE like '*" + q + "*' or NAME like '*" + q + "*')" + "&withCount=true", { headers }) 
+    else return this.http.get<purchaseCampaignsResp>(this.rootUrl + "/api/v1/purchaseCampaigns?offset=" + offset + "&limit=" + lim + "&q=(CODE like '*" + q + "*' or NAME like '*" + q + "*' or BEG_DATE like '*" + q + "*' or END_DATE like '*" + q + "*' or CLIENT_CODE like '*" + q + "*')" + "&withCount=true", { headers }) 
   }
   
   

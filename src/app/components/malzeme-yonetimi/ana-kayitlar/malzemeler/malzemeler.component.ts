@@ -744,6 +744,11 @@ export class MalzemelerComponent implements OnInit {
     }
   }
 
+  cancelSearch(){
+    this.searchButtonActive = false;
+    this.getItems(0);
+  }
+
   disableSearchMode() {
     this.getItems(1)
   }

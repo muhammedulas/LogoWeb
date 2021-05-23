@@ -20,7 +20,7 @@ export class BankService {
       return this.http.get<bankResp>(this.rootUrl + "/api/v1/banks?offset=" + offset + "&limit=" + lim + "&withCount=true", { headers })
     }
     
-    else return this.http.get<bankResp>(this.rootUrl + "/api/v1/banks?offset=" + offset + "&limit=" + lim + "&q=(CODE like '*" + q + "*' or NAME like '*" + q + "*')" + "&withCount=true", { headers }) 
+    else return this.http.get<bankResp>(this.rootUrl + "/api/v1/banks?offset=" + offset + "&limit=" + lim + "&q=(CODE like '*" + q + "*' or TITLE like '*" + q + "*' or DIVISION like '*" + q + "*')" + "&withCount=true", { headers }) 
   }
   
   

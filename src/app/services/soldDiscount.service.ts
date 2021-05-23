@@ -20,7 +20,7 @@ export class SoldDiscountService {
       return this.http.get<soldDiscountResp>(this.rootUrl + "/api/v1/salesDiscounts?offset=" + offset + "&limit=" + lim + "&withCount=true", { headers })
     }
 
-    else return this.http.get<soldDiscountResp>(this.rootUrl + "/api/v1/salesDiscounts?offset=" + offset + "&limit=" + lim + "&q=(CODE like '*" + q + "*' or NAME like '*" + q + "*')" + "&withCount=true", { headers })
+    else return this.http.get<soldDiscountResp>(this.rootUrl + "/api/v1/salesDiscounts?offset=" + offset + "&limit=" + lim + "&q=(CODE like '*" + q + "*' or DESCRIPTION like '*" + q + "*')" + "&withCount=true", { headers })
   }
 
 

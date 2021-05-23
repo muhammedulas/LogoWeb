@@ -20,7 +20,7 @@
         </ng-container>
 
         <ng-container matColumnDef="Division">
-          <th mat-header-cell *matHeaderCellDef> Açıklaması </th>
+          <th mat-header-cell *matHeaderCellDef> Şube </th>
           <td mat-cell *matCellDef="let bank" (click)='select(bank)'
             [ngClass]="{'act':selectedBank.INTERNAL_REFERENCE == bank.INTERNAL_REFERENCE}"> {{bank.DIVISION}} </td>
         </ng-container>

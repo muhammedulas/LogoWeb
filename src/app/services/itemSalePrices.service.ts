@@ -20,7 +20,7 @@ export class ItemSalePricesService {
       return this.http.get<itemSalePriceResp>(this.rootUrl + "/api/v1/salesItemPrices?offset=" + offset + "&limit=" + lim + "&withCount=true", { headers })
     }
 
-    else return this.http.get<itemSalePriceResp>(this.rootUrl + "/api/v1/salesItemPrices?offset=" + offset + "&limit=" + lim + "&q=(CODE like '*" + q + "*' or NAME like '*" + q + "*')" + "&withCount=true", { headers })
+    else return this.http.get<itemSalePriceResp>(this.rootUrl + "/api/v1/salesItemPrices?offset=" + offset + "&limit=" + lim + "&q=(CARD_CODE like '*" + q + "*' or ARP_CODE like '*" + q + "*' and OWNER_TYPE eq 2)" + "&withCount=true", { headers })
   }
 
 

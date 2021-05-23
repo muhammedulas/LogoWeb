@@ -20,7 +20,7 @@ export class PurchaseDiscountsService {
       return this.http.get<purchaseDiscountResp>(this.rootUrl + "/api/v1/purchaseDiscounts?offset=" + offset + "&limit=" + lim + "&withCount=true", { headers })
     }
     
-    else return this.http.get<purchaseDiscountResp>(this.rootUrl + "/api/v1/purchaseDiscounts?offset=" + offset + "&limit=" + lim + "&q=(CODE like '*" + q + "*' or NAME like '*" + q + "*')" + "&withCount=true", { headers }) 
+    else return this.http.get<purchaseDiscountResp>(this.rootUrl + "/api/v1/purchaseDiscounts?offset=" + offset + "&limit=" + lim + "&q=(CODE like '*" + q + "*' or DESCRIPTION like '*" + q + "*' and CardType = 1)" + "&withCount=true", { headers }) 
   }
   
   

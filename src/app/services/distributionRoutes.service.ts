@@ -20,7 +20,7 @@ export class DistributionRoutesService {
       return this.http.get<distRouteResp>(this.rootUrl + "/api/v1/distributionRoutes?offset=" + offset + "&limit=" + lim + "&withCount=true", { headers })
     }
 
-    else return this.http.get<distRouteResp>(this.rootUrl + "/api/v1/distributionRoutes?offset=" + offset + "&limit=" + lim + "&q=(CODE like '*" + q + "*' or NAME like '*" + q + "*')" + "&withCount=true", { headers })
+    else return this.http.get<distRouteResp>(this.rootUrl + "/api/v1/distributionRoutes?offset=" + offset + "&limit=" + lim + "&q=(CODE like '*" + q + "*' or NAME like '*" + q + "* 'or AUXIL_CODE like '*" + q + "*')" + "&withCount=true", { headers })
   }
 
 

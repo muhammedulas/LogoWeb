@@ -20,7 +20,7 @@ export class SafeDepositService {
       return this.http.get<safeDepositResp>(this.rootUrl + "/api/v1/safeDeposits?offset=" + offset + "&limit=" + lim + "&withCount=true", { headers })
     }
     
-    else return this.http.get<safeDepositResp>(this.rootUrl + "/api/v1/safeDeposits?offset=" + offset + "&limit=" + lim + "&q=(CODE like '*" + q + "*' or NAME like '*" + q + "*')" + "&withCount=true", { headers }) 
+    else return this.http.get<safeDepositResp>(this.rootUrl + "/api/v1/safeDeposits?offset=" + offset + "&limit=" + lim + "&q=(CODE like '*" + q + "*' or DESCRIPTION like '*" + q + "*' or USAGE_NOTE like '*" + q + "*')" + "&withCount=true", { headers }) 
   }
   
   

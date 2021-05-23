@@ -20,7 +20,7 @@ export class ChequeAndPnotesService {
       return this.http.get<chequeAndPnoteResp>(this.rootUrl + "/api/v1/chequeAndPnotes?offset=" + offset + "&limit=" + lim + "&withCount=true", { headers })
     }
     
-    else return this.http.get<chequeAndPnoteResp>(this.rootUrl + "/api/v1/chequeAndPnotes?offset=" + offset + "&limit=" + lim + "&q=(CODE like '*" + q + "*' or NAME like '*" + q + "*')" + "&withCount=true", { headers }) 
+    else return this.http.get<chequeAndPnoteResp>(this.rootUrl + "/api/v1/chequeAndPnotes?offset=" + offset + "&limit=" + lim + "&q=(NUMBER like '*" + q + "*' or OWING like '*" + q + "*' or NEW_SERIAL_NO like '*" + q + "*')" + "&withCount=true", { headers }) 
   }
   
   
