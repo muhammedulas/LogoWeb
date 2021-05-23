@@ -23,6 +23,7 @@ import { SatinalmaIndirimleriComponent } from './components/satinalma/ana-kayitl
 import { SatinalmaKampanyalariComponent } from './components/satinalma/ana-kayitlar/satinalma-kampanyalari/satinalma-kampanyalari.component';
 import { SatinalmaMasraflariComponent } from './components/satinalma/ana-kayitlar/satinalma-masraflari/satinalma-masraflari.component';
 import { SatinalmaComponent } from './components/satinalma/satinalma.component';
+import { VerilenHizmetlerComponent } from './components/satis/ana-kayitlar/verilen-hizmetler/verilen-hizmetler.component';
 import { SatisComponent } from './components/satis/satis.component';
 import { MainComponent } from './components/shared/main/main.component';
 import { AuthGuardService } from './services/authGuard.service';
@@ -32,8 +33,9 @@ const routes: Routes = [
   { path: 'configure', component: ConfigureComponent },
   {
     path: '', component: MainComponent, children: [
-      { path: 'malzeme-yonetimi', component: MalzemeYonetimiComponent },
       //Malzeme Yönetimi
+      { path: 'malzeme-yonetimi', component: MalzemeYonetimiComponent },
+
         { path: 'malzemeler', component: MalzemelerComponent },
         { path: 'malzeme-ozellikleri', component: MalzemeOzellikleriComponent },
         { path: 'birim-setleri', component: BirimSetleriComponent },
@@ -41,30 +43,33 @@ const routes: Routes = [
         { path: 'maliyet-dagitim-fisleri', component: MaliyetDagitimFisleriComponent },
         { path: 'malzeme-yonetim-fisleri', component: MalzemeYonetimFisleriComponent },
       //
-
-      { path: 'finans', component: FinansComponent },
       //Finans
-        {path:'cari-hesaplar',component:CariHesaplarComponent},
-        {path:'odeme-tahsilat-planlari',component:Odeme_tahsilatPlanlariComponent},
-        {path:'cek-senetler',component:CekSenetlerComponent},
-        {path:'kasa',component:KasaComponent},
-        {path:'banka', component:BankaComponent},
-      //
+      { path: 'finans', component: FinansComponent },
 
-      { path: 'satinalma', component: SatinalmaComponent },
-      //Satınalma
-        {path:'alinan-hizmetler', component:AlinanHizmetlerComponent},
-        {path:'satinalma-indirimleri', component:SatinalmaIndirimleriComponent},
-        {path:'satinalma-masraflari',component:SatinalmaMasraflariComponent},
-        {path:'hizmet-alim-fiyatlari', component:HizmetAlimFiyatlariComponent},
-        {path:'satinalma-kampanyalari', component:SatinalmaKampanyalariComponent},
+        { path: 'cari-hesaplar', component: CariHesaplarComponent },
+        { path: 'odeme-tahsilat-planlari', component: Odeme_tahsilatPlanlariComponent },
+        { path: 'cek-senetler', component: CekSenetlerComponent },
+        { path: 'kasa', component: KasaComponent },
+        { path: 'banka', component: BankaComponent },
       //
+      //Satınalma
+      { path: 'satinalma', component: SatinalmaComponent },
+
+        { path: 'alinan-hizmetler', component: AlinanHizmetlerComponent },
+        { path: 'satinalma-indirimleri', component: SatinalmaIndirimleriComponent },
+        { path: 'satinalma-masraflari', component: SatinalmaMasraflariComponent },
+        { path: 'hizmet-alim-fiyatlari', component: HizmetAlimFiyatlariComponent },
+        { path: 'satinalma-kampanyalari', component: SatinalmaKampanyalariComponent },
+      //
+      //Satış
       { path: 'satis', component: SatisComponent },
+        {path:'verilen-hizmetler', component:VerilenHizmetlerComponent},
+      //
       { path: 'ithalat', component: IthalatComponent },
       { path: 'ihracat', component: IhracatComponent }
-    ],canActivate:[AuthGuardService]
+    ], canActivate: [AuthGuardService]
   },
-  {path:'**',component:LoginComponent}
+  { path: '**', component: LoginComponent }
 ];
 
 @NgModule({

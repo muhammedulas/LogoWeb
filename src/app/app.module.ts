@@ -55,7 +55,6 @@ import { USTypesPipe } from './components/malzeme-yonetimi/ana-kayitlar/birim-se
 import { Dialog_deleteUSComponent } from './components/malzeme-yonetimi/ana-kayitlar/birim-setleri/dialog_deleteUS/dialog_deleteUS.component';
 import { Dialog_editInspectUSComponent } from './components/malzeme-yonetimi/ana-kayitlar/birim-setleri/dialog_edit-inspectUS/dialog_edit-inspectUS.component';
 import { Dialog_newUSComponent } from './components/malzeme-yonetimi/ana-kayitlar/birim-setleri/dialog_newUS/dialog_newUS.component';
-import { Odeme_tahsilatPlanlariComponent } from './components/finans/ana-kayitlar/odeme_tahsilat-planlari/odeme_tahsilat-planlari.component';
 import { BankaComponent } from './components/finans/ana-kayitlar/banka/banka.component';
 import { CariHesaplarComponent } from './components/finans/ana-kayitlar/cari-hesaplar/cari-hesaplar.component';
 import { ARPTypePipe } from './components/finans/ana-kayitlar/cari-hesaplar/ARPType.pipe';
@@ -67,6 +66,33 @@ import { SatinalmaIndirimleriComponent } from './components/satinalma/ana-kayitl
 import { SatinalmaMasraflariComponent } from './components/satinalma/ana-kayitlar/satinalma-masraflari/satinalma-masraflari.component';
 import { HizmetAlimFiyatlariComponent } from './components/satinalma/ana-kayitlar/hizmet-alim-fiyatlari/hizmet-alim-fiyatlari.component';
 import { SatinalmaKampanyalariComponent } from './components/satinalma/ana-kayitlar/satinalma-kampanyalari/satinalma-kampanyalari.component';
+import { BankaFisleriComponent } from './components/finans/hareketler/banka-fisleri/banka-fisleri.component';
+import { CariHesapFisleriComponent } from './components/finans/hareketler/cari-hesap-fisleri/cari-hesap-fisleri.component';
+import { CekSenetBordrolariComponent } from './components/finans/hareketler/cek-senet-bordrolari/cek-senet-bordrolari.component';
+import { KasaFisleriComponent } from './components/finans/hareketler/kasa-fisleri/kasa-fisleri.component';
+import { OdemeTahsilatPlanlariComponent } from './components/satinalma/ana-kayitlar/odeme-tahsilat-planlari/odeme-tahsilat-planlari.component';
+import { SatinalmaFaturalariComponent } from './components/satinalma/hareketler/satinalma-faturalari/satinalma-faturalari.component';
+import { SatinalmaIrsaliyeleriComponent } from './components/satinalma/hareketler/satinalma-irsaliyeleri/satinalma-irsaliyeleri.component';
+import { SatinalmaSiparisleriComponent } from './components/satinalma/hareketler/satinalma-siparisleri/satinalma-siparisleri.component';
+import { DagitimAraclariComponent } from './components/satis/ana-kayitlar/dagitim-araclari/dagitim-araclari.component';
+import { DagitimRotalariComponent } from './components/satis/ana-kayitlar/dagitim-rotalari/dagitim-rotalari.component';
+import { HizmetSatisFiyatlariComponent } from './components/satis/ana-kayitlar/hizmet-satis-fiyatlari/hizmet-satis-fiyatlari.component';
+import { MalzemeSatisFiyatlariComponent } from './components/satis/ana-kayitlar/malzeme-satis-fiyatlari/malzeme-satis-fiyatlari.component';
+import { SatisFaturalariComponent } from './components/satis/hareketler/satis-faturalari/satis-faturalari.component';
+import { SatisIndirimleriComponent } from './components/satis/ana-kayitlar/satis-indirimleri/satis-indirimleri.component';
+import { SatisIrsaliyeleriComponent } from './components/satis/hareketler/satis-irsaliyeleri/satis-irsaliyeleri.component';
+import { SatisMasraflariComponent } from './components/satis/ana-kayitlar/satis-masraflari/satis-masraflari.component';
+import { SatisSiparisleriComponent } from './components/satis/hareketler/satis-siparisleri/satis-siparisleri.component';
+import { VerilenHizmetlerComponent } from './components/satis/ana-kayitlar/verilen-hizmetler/verilen-hizmetler.component';
+import { DagitimFisleriComponent } from './components/ithalat/hareketler/dagitim-fisleri/dagitim-fisleri.component';
+import { DiibComponent } from './components/ihracat/hareketler/diib/diib.component';
+import { IhracatOperasyonFisleriComponent } from './components/ihracat/hareketler/ihracat-operasyon-fisleri/ihracat-operasyon-fisleri.component';
+import { IkSatinalmaFaturalariComponent } from './components/ihracat/hareketler/ik-satinalma-faturalari/ik-satinalma-faturalari.component';
+import { IkSatisFaturalariComponent } from './components/ihracat/hareketler/ik-satis-faturalari/ik-satis-faturalari.component';
+import { IthalatOperasyonFisleriComponent } from './components/ithalat/hareketler/ithalat-operasyon-fisleri/ithalat-operasyon-fisleri.component';
+import { MalzemeDolasimFisleriComponent } from './components/ithalat/hareketler/malzeme-dolasim-fisleri/malzeme-dolasim-fisleri.component';
+import { MillilestirmeFisleriComponent } from './components/ithalat/hareketler/millilestirme-fisleri/millilestirme-fisleri.component';
+import { Odeme_tahsilatPlanlariComponent } from './components/finans/ana-kayitlar/odeme_tahsilat-planlari/odeme_tahsilat-planlari.component';
 
 
 
@@ -79,36 +105,88 @@ import { SatinalmaKampanyalariComponent } from './components/satinalma/ana-kayit
     NavbarComponent,
     FooterComponent,
     MainComponent,
+
+    //Malzeme yönetimi
     MalzemeYonetimiComponent,
     MalzemelerComponent,
-    FinansComponent,
-    SatinalmaComponent,
-    SatisComponent,
-    IthalatComponent,
-    IhracatComponent,
     BirimSetleriComponent,
     MalzemeOzellikleriComponent,
-    BankaComponent,
+
     MalzemeYonetimFisleriComponent,
     MaliyetDagitimFisleriComponent,
     HizliUretimFisleriComponent,
-    ItemTypesPipe,
+    //
+
+    //Finans
+    FinansComponent,
     Odeme_tahsilatPlanlariComponent,
     CariHesaplarComponent,
     CekSenetlerComponent,
+    BankaComponent,
     KasaComponent,
+
+    BankaFisleriComponent,
+    CariHesapFisleriComponent,
+    CekSenetBordrolariComponent,
+    KasaFisleriComponent,
+    //
+
+    //Satinalma
+    SatinalmaComponent,
     AlinanHizmetlerComponent,
     SatinalmaIndirimleriComponent,
     SatinalmaMasraflariComponent,
     HizmetAlimFiyatlariComponent,
     SatinalmaKampanyalariComponent,
+
+    SatinalmaSiparisleriComponent,
+    SatinalmaIrsaliyeleriComponent,
+    SatinalmaFaturalariComponent,
+    //
+
+    //Satis
+    SatisComponent,
+    VerilenHizmetlerComponent,
+    DagitimAraclariComponent,
+    DagitimRotalariComponent,
+    HizmetSatisFiyatlariComponent,
+    MalzemeSatisFiyatlariComponent,
+    SatisIndirimleriComponent,
+    SatisMasraflariComponent,
+
+    SatisSiparisleriComponent,
+    SatisIrsaliyeleriComponent,
+    SatisFaturalariComponent,
+    //
+
+    //Ithalat
+    IthalatComponent,
+    IthalatOperasyonFisleriComponent,
+    MalzemeDolasimFisleriComponent,
+    DagitimFisleriComponent,
+    MillilestirmeFisleriComponent,
+    //
+
+    //Ihracat
+    IhracatComponent,
+    IhracatOperasyonFisleriComponent,
+    DiibComponent,
+    IkSatinalmaFaturalariComponent,
+    IkSatisFaturalariComponent,
+    //
+
+
+    //Pipelines
+    ItemTypesPipe,
+    ChequeAndPnoteStatusPipe,
+    USTypesPipe,
+    ARPTypePipe,
+    //
+
     Dialog_StockComponent,
     Dialog_newItemComponent,
     Dialog_editInspectComponent,
     Dialog_deleteItemComponent,
-    ChequeAndPnoteStatusPipe,
-    USTypesPipe,
-    ARPTypePipe,
     Dialog_deleteUSComponent,
     Dialog_editInspectUSComponent,
     Dialog_newUSComponent
