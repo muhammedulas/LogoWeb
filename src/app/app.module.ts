@@ -70,7 +70,6 @@ import { BankaFisleriComponent } from './components/finans/hareketler/banka-fisl
 import { CariHesapFisleriComponent } from './components/finans/hareketler/cari-hesap-fisleri/cari-hesap-fisleri.component';
 import { CekSenetBordrolariComponent } from './components/finans/hareketler/cek-senet-bordrolari/cek-senet-bordrolari.component';
 import { KasaFisleriComponent } from './components/finans/hareketler/kasa-fisleri/kasa-fisleri.component';
-import { OdemeTahsilatPlanlariComponent } from './components/satinalma/ana-kayitlar/odeme-tahsilat-planlari/odeme-tahsilat-planlari.component';
 import { SatinalmaFaturalariComponent } from './components/satinalma/hareketler/satinalma-faturalari/satinalma-faturalari.component';
 import { SatinalmaIrsaliyeleriComponent } from './components/satinalma/hareketler/satinalma-irsaliyeleri/satinalma-irsaliyeleri.component';
 import { SatinalmaSiparisleriComponent } from './components/satinalma/hareketler/satinalma-siparisleri/satinalma-siparisleri.component';
