@@ -20,7 +20,7 @@ export class LoginServiceService {
 
 
   constructor(private http: HttpClient, private router: Router, private dialog: MatDialog, private toastr: ToastrService) {
-    this.idleTimer = 5
+    this.idleTimer = 1
   }
 
   login(usr: string, pw: string, frmNo: string, perNo: string) {
@@ -34,6 +34,7 @@ export class LoginServiceService {
   logout() {
     this.loggedIn = false
     this.dialog.closeAll()
+    localStorage.removeItem('Token')
     this.router.navigate(['login'])
   }
 

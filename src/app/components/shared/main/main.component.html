@@ -29,6 +29,38 @@
     <div class="row">
       <div class="col-md-1"></div>
       <div class="col-md-10">
+        <div *ngIf="mainMenuActive" class="container">
+          <div class="row">
+            <div class="col-md-12 mt-3" style="text-align: center;">
+              <h1><b>Ana Menü</b></h1>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <mat-divider></mat-divider>
+            <div class="row mb-4">
+              <div class="col-md-4">
+                <button class="menu-item" mat-raised-button color="primary" routerLink="/malzeme-yonetimi">Malzeme Yönetimi</button>
+              </div>
+              <div class="col-md-4">
+                <button class="menu-item" mat-raised-button color="primary" routerLink="/finans">Finans</button>
+              </div>
+              <div class="col-md-4">
+                <button class="menu-item" mat-raised-button color="primary" routerLink="/satinalma">Satınalma</button>
+              </div>
+            </div>
+            <div class="row mt-4">
+              <div class="col-md-4">
+                <button class="menu-item" mat-raised-button color="primary" routerLink="/satis">Satış ve Dağıtım</button>
+              </div>
+              <div class="col-md-4">
+                <button class="menu-item" mat-raised-button color="primary" routerLink="/ithalat">İthalat</button>
+              </div>
+              <div class="col-md-4">
+                <button class="menu-item" mat-raised-button color="primary" routerLink="/ihracat">İhracat</button>
+              </div>
+            </div>
+          </div>
+        </div>
         <router-outlet></router-outlet>
       </div>
       <div class="col-md-1"></div>
