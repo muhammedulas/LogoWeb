@@ -1,4 +1,6 @@
-export class chequeAndPnoteRolls {
+import { chequeAndPnoteRolls } from "../chequeAndPnoteRolls";
+
+export class chequeAndPnoteRollsResp {
 
     "Meta": {
         "href": string;

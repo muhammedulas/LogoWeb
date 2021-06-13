@@ -1,6 +1,6 @@
 import { purchaseOrder } from "../purchaseOrder";
 
-export class purchasedServicesResp{
+export class purchaseOrderResp{
     "Meta": {
         "href": string;
         "mediaType": string;
