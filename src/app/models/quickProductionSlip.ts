@@ -1,4 +1,5 @@
 export class quickProductionSlip {
+    "INSPECT"?:boolean;
     "INTERNAL_REFERENCE": number;
     "FICHENO": string;
     "DATE": string;

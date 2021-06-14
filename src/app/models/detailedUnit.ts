@@ -1,4 +1,5 @@
 export class detailedUnit{
+    "INSPECT"?:boolean;
     "INTERNAL_REFERENCE": number;
     "CODE": string;
     "NAME": string;

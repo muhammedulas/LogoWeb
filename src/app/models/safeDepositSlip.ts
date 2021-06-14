@@ -1,4 +1,5 @@
 export class safeDepositSlip {
+    "INSPECT"?:boolean;
     "INTERNAL_REFERENCE": number;
     "TYPE": number;
     "SD_CODE": string;

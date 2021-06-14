@@ -1,5 +1,5 @@
 export class itemCharasteristics {
-    "INSPECT":boolean;
+    "INSPECT"?:boolean;
     "INTERNAL_REFERENCE": number;
     "CODE": string;
     "NAME": string;

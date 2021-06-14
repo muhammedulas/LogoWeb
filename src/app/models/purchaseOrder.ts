@@ -1,4 +1,5 @@
 export class purchaseOrder {
+    "INSPECT"?:boolean;
     "INTERNAL_REFERENCE": number;
     "TYPE": number;
     "NUMBER": string;

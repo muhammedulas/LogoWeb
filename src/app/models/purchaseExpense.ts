@@ -1,5 +1,5 @@
 export class purchaseExpense {
-    "INSPECT":boolean;
+    "INSPECT"?:boolean;
     "INTERNAL_REFERENCE": number;
     "CARDTYPE": number;
     "RECORD_STATUS": number;

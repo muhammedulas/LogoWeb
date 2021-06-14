@@ -5,6 +5,7 @@ import { purchaseDispatch } from "./purchaseDispatch";
 import { transaction } from "./transaction";
 
 export class purchaseInvoice {
+    "INSPECT"?:boolean;
     "INTERNAL_REFERENCE": number;
     "GRPCODE": number;
     "TYPE": number;

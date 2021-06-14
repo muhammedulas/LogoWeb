@@ -94,6 +94,7 @@ import { MillilestirmeFisleriComponent } from './components/ithalat/hareketler/m
 import { Odeme_tahsilatPlanlariComponent } from './components/finans/ana-kayitlar/odeme_tahsilat-planlari/odeme_tahsilat-planlari.component';
 import { ItemSalePriceTypePipe } from './components/satis/ana-kayitlar/malzeme-satis-fiyatlari/itemSalePriceType.pipe';
 import { ItemsSlipTypePipe } from './components/malzeme-yonetimi/hareketler/malzeme-yonetim-fisleri/itemsSlipType.pipe';
+import { ProdTypePipe } from './components/malzeme-yonetimi/hareketler/maliyet-dagitim-fisleri/prodType.pipe';
 
 
 
@@ -184,6 +185,7 @@ import { ItemsSlipTypePipe } from './components/malzeme-yonetimi/hareketler/malz
     ARPTypePipe,
     ItemSalePriceTypePipe,
     ItemsSlipTypePipe,
+    ProdTypePipe,
     //
 
     Dialog_StockComponent,

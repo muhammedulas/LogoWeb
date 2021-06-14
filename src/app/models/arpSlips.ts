@@ -1,4 +1,5 @@
 export class arpSlips {
+    "INSPECT"?:boolean;
     "INTERNAL_REFERENCE": number;
     "NUMBER": string;
     "DATE": string;

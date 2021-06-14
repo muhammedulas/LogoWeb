@@ -1,7 +1,7 @@
 import { paymentTerms } from "./paymentTerms"
 
 export class paymentPlan{
-    "INSPECT":boolean;
+    "INSPECT"?:boolean;
     "INTERNAL_REFERENCE": number;
     "RECORD_STATUS": number;
     "CODE": string;

@@ -3,21 +3,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { Dialog_editInspectSalesOrderComponent } from './dialog_editInspectSalesOrder.component';
+import { Dialog_editInspectSalesInvoiceComponent } from './dialog_editInspectSalesInvoice.component';
 
-describe('Dialog_editInspectSalesOrderComponent', () => {
-  let component: Dialog_editInspectSalesOrderComponent;
-  let fixture: ComponentFixture<Dialog_editInspectSalesOrderComponent>;
+describe('Dialog_editInspectSalesInvoiceComponent', () => {
+  let component: Dialog_editInspectSalesInvoiceComponent;
+  let fixture: ComponentFixture<Dialog_editInspectSalesInvoiceComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ Dialog_editInspectSalesOrderComponent ]
+      declarations: [ Dialog_editInspectSalesInvoiceComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(Dialog_editInspectSalesOrderComponent);
+    fixture = TestBed.createComponent(Dialog_editInspectSalesInvoiceComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

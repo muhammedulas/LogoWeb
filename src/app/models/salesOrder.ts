@@ -1,6 +1,7 @@
 import { transaction } from "./transaction"
 
 export class salesOrder {
+    "INSPECT":boolean;
     "INTERNAL_REFERENCE": number;
     "TYPE": number;
     "NUMBER": string;

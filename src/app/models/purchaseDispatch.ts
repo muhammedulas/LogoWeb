@@ -1,6 +1,7 @@
 import { transaction } from "./transaction";
 
 export class purchaseDispatch{
+    "INSPECT"?:boolean;
     "INTERNAL_REFERENCE": number;
     "GRPCODE": number;
     "TYPE": number;

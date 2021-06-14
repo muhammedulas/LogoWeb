@@ -1,5 +1,5 @@
 export class purchaseDiscount{
-    "INSPECT":boolean;
+    "INSPECT"?:boolean;
     "INTERNAL_REFERENCE": number;
     "CODE": string;
     "DESCRIPTION": string;

@@ -28,7 +28,7 @@ export class ChequeAndPnoteRollsService {
     console.log(this.rootUrl + "api/v1/ARPs/" + id)
     let auth = "Bearer " + this.token;
     let headers = new HttpHeaders().set('Authorization', auth).set('Accept', 'application/json')
-    return this.http.get<chequeAndPnoteRollsResp>(this.rootUrl + "/api/v1/chequeAndPnoteRolls/" + id, { headers })
+    return this.http.get<chequeAndPnoteRolls>(this.rootUrl + "/api/v1/chequeAndPnoteRolls/" + id, { headers })
   }
 
   delete(id: number) {

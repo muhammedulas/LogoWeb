@@ -1,5 +1,5 @@
 export class purchasedServicePrices {
-    "INSPECT":boolean;
+    "INSPECT"?:boolean;
     "INTERNAL_REFERENCE": number;
     "CARD_CODE": string;
     "OWNER_TYPE": number;

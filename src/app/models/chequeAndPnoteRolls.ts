@@ -1,4 +1,5 @@
 export class chequeAndPnoteRolls{
+    "INSPECT"?:boolean;
     "INTERNAL_REFERENCE": number;
     "TYPE": number;
     "NUMBER": string;

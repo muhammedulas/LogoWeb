@@ -1,5 +1,5 @@
 export class arp {
-    "INSPECT":boolean;
+    "INSPECT"?:boolean;
     "INTERNAL_REFERENCE": number;
     "ACCOUNT_TYPE": number;
     "CODE": string;

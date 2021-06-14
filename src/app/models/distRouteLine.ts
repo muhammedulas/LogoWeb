@@ -1,4 +1,5 @@
 export class distRouteLine {
+    "INSPECT"?:boolean;
     "INTERNAL_REFERENCE": number;
     "DISTROUTREF": number;
     "LINENR": number;

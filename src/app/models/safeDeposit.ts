@@ -1,5 +1,5 @@
 export class safeDeposit {
-    "INSPECT":boolean;
+    "INSPECT"?:boolean;
     "INTERNAL_REFERENCE": number;
     "RECORD_STATUS": number;
     "CODE": string;

@@ -1,5 +1,5 @@
 export class purchaseCampaigns {
-    "INSPECT":boolean;
+    "INSPECT"?:boolean;
     "INTERNAL_REFERENCE": number;
     "RECORD_STATUS": number;
     "CARD_TYPE": number;

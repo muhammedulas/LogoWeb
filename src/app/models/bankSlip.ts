@@ -1,4 +1,5 @@
 export class bankSlip {
+    "INSPECT"?:boolean;
     "INTERNAL_REFERENCE": number;
     "DATE": string;
     "TIME": number;

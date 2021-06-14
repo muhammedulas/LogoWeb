@@ -4,6 +4,7 @@ import { paymentList } from "./paymentList"
 import { salesDispatch } from "./salesDispatch"
 
 export class salesInvoice {
+    "INSPECT":boolean;
     "INTERNAL_REFERENCE": number;
     "GRPCODE": number;
     "TYPE": number;
