@@ -95,6 +95,7 @@ import { Odeme_tahsilatPlanlariComponent } from './components/finans/ana-kayitla
 import { ItemSalePriceTypePipe } from './components/satis/ana-kayitlar/malzeme-satis-fiyatlari/itemSalePriceType.pipe';
 import { ItemsSlipTypePipe } from './components/malzeme-yonetimi/hareketler/malzeme-yonetim-fisleri/itemsSlipType.pipe';
 import { ProdTypePipe } from './components/malzeme-yonetimi/hareketler/maliyet-dagitim-fisleri/prodType.pipe';
+import { ArpSlipTypePipe } from './components/finans/hareketler/cari-hesap-fisleri/arpSlipType.pipe';
 
 
 
@@ -186,6 +187,7 @@ import { ProdTypePipe } from './components/malzeme-yonetimi/hareketler/maliyet-d
     ItemSalePriceTypePipe,
     ItemsSlipTypePipe,
     ProdTypePipe,
+    ArpSlipTypePipe,
     //
 
     Dialog_StockComponent,

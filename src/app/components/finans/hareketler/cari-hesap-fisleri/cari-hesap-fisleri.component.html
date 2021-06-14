@@ -28,31 +28,31 @@
           </td>
         </ng-container>
 
-        <ng-container matColumnDef="DocNum">
-          <th mat-header-cell *matHeaderCellDef> Belge Kodu </th>
-          <td mat-cell *matCellDef="let rec" (click)='select(rec)'
-            [ngClass]="{'act':selectedRecord.INTERNAL_REFERENCE == rec.INTERNAL_REFERENCE}"> {{rec.DOC_TRACK_NR}}
-          </td>
-        </ng-container>
-
         <ng-container matColumnDef="Type">
           <th mat-header-cell *matHeaderCellDef> Fiş Türü </th>
           <td mat-cell *matCellDef="let rec" (click)='select(rec)'
-            [ngClass]="{'act':selectedRecord.INTERNAL_REFERENCE == rec.INTERNAL_REFERENCE}"> {{rec.TYPE|itemsSlipType}}
+            [ngClass]="{'act':selectedRecord.INTERNAL_REFERENCE == rec.INTERNAL_REFERENCE}"> {{rec.TYPE|arpSlipType}}
           </td>
         </ng-container>
 
-        <ng-container matColumnDef="POrderFicheNr">
-          <th mat-header-cell *matHeaderCellDef> Üretim Emri No </th>
+        <ng-container matColumnDef="Debit">
+          <th mat-header-cell *matHeaderCellDef> Borç </th>
           <td mat-cell *matCellDef="let rec" (click)='select(rec)'
-            [ngClass]="{'act':selectedRecord.INTERNAL_REFERENCE == rec.INTERNAL_REFERENCE}"> {{rec.PORDER_FICHE_NR}}
+            [ngClass]="{'act':selectedRecord.INTERNAL_REFERENCE == rec.INTERNAL_REFERENCE}"> <div *ngIf="rec.TOTAL_DEBIT > 0">{{rec.TOTAL_DEBIT}} &#8378;</div>
           </td>
         </ng-container>
 
-        <ng-container matColumnDef="Amount">
-          <th mat-header-cell *matHeaderCellDef> Tutar </th>
+        <ng-container matColumnDef="Credit">
+          <th mat-header-cell *matHeaderCellDef> Alacak </th>
           <td mat-cell *matCellDef="let rec" (click)='select(rec)'
-            [ngClass]="{'act':selectedRecord.INTERNAL_REFERENCE == rec.INTERNAL_REFERENCE}"> {{rec.TOTAL_NET}}
+            [ngClass]="{'act':selectedRecord.INTERNAL_REFERENCE == rec.INTERNAL_REFERENCE}"> <div *ngIf="rec.TOTAL_CREDIT > 0">{{rec.TOTAL_CREDIT}} &#8378;</div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Notes">
+          <th mat-header-cell *matHeaderCellDef> Açıklama </th>
+          <td mat-cell *matCellDef="let rec" (click)='select(rec)'
+            [ngClass]="{'act':selectedRecord.INTERNAL_REFERENCE == rec.INTERNAL_REFERENCE}"> {{rec.NOTES1}}
           </td>
         </ng-container>
 
