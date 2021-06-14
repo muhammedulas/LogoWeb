@@ -1,0 +1,28 @@
+/* tslint:disable:no-unused-variable */
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
+import { DebugElement } from '@angular/core';
+
+import { Dialog_editInspectBankSlipComponent } from './dialog_editInspectBankSlip.component';
+
+describe('Dialog_editInspectBankSlipComponent', () => {
+  let component: Dialog_editInspectBankSlipComponent;
+  let fixture: ComponentFixture<Dialog_editInspectBankSlipComponent>;
+
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [ Dialog_editInspectBankSlipComponent ]
+    })
+    .compileComponents();
+  }));
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(Dialog_editInspectBankSlipComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});

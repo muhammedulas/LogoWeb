@@ -1,4 +1,5 @@
 export class itemSlip {
+    "INSPECT":boolean;
     "INTERNAL_REFERENCE": number;
     "GROUP": number;
     "TYPE": number;

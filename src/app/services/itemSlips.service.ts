@@ -18,7 +18,7 @@ export class ItemSlipsService {
     let auth = "Bearer " + this.token;
     let headers = new HttpHeaders().set('Authorization', auth).set('Accept', 'application/json')
     if (q == undefined) {
-      return this.http.get<itemSlipResp>(this.rootUrl + "/api/v1/itemSlips?offset=" + offset + "&limit=" + lim + "&withCount=true", { headers })
+      return this.http.get<itemSlipResp>(this.rootUrl + "/api/v1/itemSlips?offset=" + offset + "&limit=" + lim + "&withCount=true&expandLevel=full", { headers })
     }
 
     else return this.http.get<itemSlipResp>(this.rootUrl + "/api/v1/itemSlips?offset=" + offset + "&limit=" + lim + "&q=(NUMBER like '*" + q + "*' or DOC_NUMBER like '*" + q + "* 'or ARP_CODE like '*" + q + "*')" + "&withCount=true", { headers })
