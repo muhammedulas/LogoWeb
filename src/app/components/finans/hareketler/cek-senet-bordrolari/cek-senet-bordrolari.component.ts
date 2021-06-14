@@ -33,7 +33,7 @@ export class CekSenetBordrolariComponent implements OnInit {
   private errorMsg: string = "";
   private errorCode: string = "";
   public loaded: boolean = false;
-  public displayedColumns: string[] = ["HyerarchyCode", "Type", "Date", "FicheNo", "DocNum", "POrderFicheNr", "Amount"]
+  public displayedColumns: string[] = ["Number", "Date", "Type", "ARP", "Amount", "Notes"]
 
 
 

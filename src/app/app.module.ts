@@ -96,6 +96,12 @@ import { ItemSalePriceTypePipe } from './components/satis/ana-kayitlar/malzeme-s
 import { ItemsSlipTypePipe } from './components/malzeme-yonetimi/hareketler/malzeme-yonetim-fisleri/itemsSlipType.pipe';
 import { ProdTypePipe } from './components/malzeme-yonetimi/hareketler/maliyet-dagitim-fisleri/prodType.pipe';
 import { ArpSlipTypePipe } from './components/finans/hareketler/cari-hesap-fisleri/arpSlipType.pipe';
+import { ChequenPnoteRollTypePipe } from './components/finans/hareketler/cek-senet-bordrolari/chequenPnoteRollType.pipe';
+import { BankSlipTypePipe } from './components/finans/hareketler/banka-fisleri/bankSlipType.pipe';
+import { PurcDispatchTypePipe } from './components/satinalma/hareketler/satinalma-irsaliyeleri/purcDispatchType.pipe';
+import { PurchaseInvoiceTypePipe } from './components/satinalma/hareketler/satinalma-faturalari/purchaseInvoiceType.pipe';
+import { SalesDispatchTypePipe } from './components/satis/hareketler/satis-irsaliyeleri/salesDispatchType.pipe';
+import { SalesInvoiceTypePipe } from './components/satis/hareketler/satis-faturalari/salesInvoiceType.pipe';
 
 
 
@@ -188,6 +194,12 @@ import { ArpSlipTypePipe } from './components/finans/hareketler/cari-hesap-fisle
     ItemsSlipTypePipe,
     ProdTypePipe,
     ArpSlipTypePipe,
+    ChequenPnoteRollTypePipe,
+    BankSlipTypePipe,
+    PurcDispatchTypePipe,
+    PurchaseInvoiceTypePipe,
+    SalesDispatchTypePipe,
+    SalesInvoiceTypePipe,
     //
 
     Dialog_StockComponent,

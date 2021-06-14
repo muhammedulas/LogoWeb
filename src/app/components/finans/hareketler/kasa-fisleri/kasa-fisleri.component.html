@@ -31,7 +31,7 @@
         <ng-container matColumnDef="DocNum">
           <th mat-header-cell *matHeaderCellDef> Belge Kodu </th>
           <td mat-cell *matCellDef="let rec" (click)='select(rec)'
-            [ngClass]="{'act':selectedRecord.INTERNAL_REFERENCE == rec.INTERNAL_REFERENCE}"> {{rec.DOC_TRACK_NR}}
+            [ngClass]="{'act':selectedRecord.INTERNAL_REFERENCE == rec.INTERNAL_REFERENCE}"> {{rec.DOC_NUMBER}}
           </td>
         </ng-container>
 
