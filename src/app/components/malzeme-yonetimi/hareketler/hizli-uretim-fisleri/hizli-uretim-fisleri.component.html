@@ -45,21 +45,21 @@
         </ng-container>
 
         <ng-container matColumnDef="ItemDef">
-          <th mat-header-cell *matHeaderCellDef> Özel Kodu </th>
+          <th mat-header-cell *matHeaderCellDef> Mamül Adı </th>
           <td mat-cell *matCellDef="let rec" (click)='select(rec)'
             [ngClass]="{'act':selectedRecord.INTERNAL_REFERENCE == rec.INTERNAL_REFERENCE}"> {{rec.DEF}}
           </td>
         </ng-container>
 
         <ng-container matColumnDef="Amount">
-          <th mat-header-cell *matHeaderCellDef> Yetki Kodu </th>
+          <th mat-header-cell *matHeaderCellDef> Miktarı </th>
           <td mat-cell *matCellDef="let rec" (click)='select(rec)'
             [ngClass]="{'act':selectedRecord.INTERNAL_REFERENCE == rec.INTERNAL_REFERENCE}"> {{rec.AMOUNT}}
           </td>
         </ng-container>
 
         <ng-container matColumnDef="Unit">
-          <th mat-header-cell *matHeaderCellDef> Yetki Kodu </th>
+          <th mat-header-cell *matHeaderCellDef> Birimi </th>
           <td mat-cell *matCellDef="let rec" (click)='select(rec)'
             [ngClass]="{'act':selectedRecord.INTERNAL_REFERENCE == rec.INTERNAL_REFERENCE}"> {{rec.UEDIT}}
           </td>

@@ -11,7 +11,7 @@
           <th mat-header-cell *matHeaderCellDef> Tarih </th>
           <td mat-cell *matCellDef="let rec" (click)='select(rec)'
             [ngClass]="{'act':selectedRecord.INTERNAL_REFERENCE == rec.INTERNAL_REFERENCE}">
-            {{rec.DATE|date:"dd.MM.yy"}}
+            {{rec.DATE|date:"dd.MM.yyyy"}}
           </td>
         </ng-container>
 

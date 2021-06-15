@@ -16,7 +16,7 @@ export class SalesOrdersService {
     let auth = "Bearer " + this.token;
     let headers = new HttpHeaders().set('Authorization', auth).set('Accept', 'application/json')
     if (q == undefined) {
-      return this.http.get<salesOrderResp>(this.rootUrl + "/api/v1/salesOrders?offset=" + offset + "&limit=" + lim + "&withCount=true", { headers })
+      return this.http.get<salesOrderResp>(this.rootUrl + "/api/v1/salesOrders?offset=" + offset + "&limit=" + lim + "&withCount=true&expandLevel=full", { headers })
     }
 
     else return this.http.get<salesOrderResp>(this.rootUrl + "/api/v1/salesOrders?offset=" + offset + "&limit=" + lim + "&q=(NUMBER like '*" + q + "*' or ARP_CODE like '*" + q + "* 'or DIVISION like '*" + q + "*')" + "&withCount=true", { headers })

@@ -33,7 +33,7 @@ export class KasaFisleriComponent implements OnInit {
   private errorMsg: string = "";
   private errorCode: string = "";
   public loaded: boolean = false;
-  public displayedColumns: string[] = ["HyerarchyCode", "Type", "Date", "FicheNo", "DocNum", "POrderFicheNr", "Amount"]
+  public displayedColumns: string[] = ["HyerarchyCode", "Type", "Date", "FicheNo", "DocNum", "Amount"]
 
 
 
@@ -107,7 +107,7 @@ export class KasaFisleriComponent implements OnInit {
     this.loaded = false
     this.getAllRecords(0)
     this.pageCount = Math.floor(this.itemCount / this.recLimit)
-    this.router.navigate(['malzeme-yonetim-fisleri'])
+    this.router.navigate(['kasa-islemleri'])
   }
 
   nextPage() {
@@ -119,7 +119,7 @@ export class KasaFisleriComponent implements OnInit {
           this.response = resp
           console.log(this.response)
           this.dataSet = this.response.items
-          this.router.navigate(['malzeme-yonetim-fisleri'])
+          this.router.navigate(['kasa-islemleri'])
           this.loaded = true
         },
         err => {
@@ -141,7 +141,7 @@ export class KasaFisleriComponent implements OnInit {
           this.response = resp
           console.log(this.response)
           this.dataSet = this.response.items
-          this.router.navigate(['malzeme-yonetim-fisleri'])
+          this.router.navigate(['kasa-islemleri'])
           this.loaded = true
         },
         err => {
@@ -158,7 +158,7 @@ export class KasaFisleriComponent implements OnInit {
     this.loaded = false
     this.currPage = 1
     this.getAllRecords(0)
-    this.router.navigate(['malzeme-yonetim-fisleri'])
+    this.router.navigate(['kasa-islemleri'])
   }
 
   lastPage() {
@@ -188,7 +188,7 @@ export class KasaFisleriComponent implements OnInit {
       this.response = resp
       console.log(this.response)
       this.dataSet = this.response.items
-      this.router.navigate(['malzeme-yonetim-fisleri'])
+      this.router.navigate(['kasa-islemleri'])
       this.loaded = true
     },
       err => {

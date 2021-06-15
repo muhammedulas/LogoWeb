@@ -102,6 +102,7 @@ import { PurcDispatchTypePipe } from './components/satinalma/hareketler/satinalm
 import { PurchaseInvoiceTypePipe } from './components/satinalma/hareketler/satinalma-faturalari/purchaseInvoiceType.pipe';
 import { SalesDispatchTypePipe } from './components/satis/hareketler/satis-irsaliyeleri/salesDispatchType.pipe';
 import { SalesInvoiceTypePipe } from './components/satis/hareketler/satis-faturalari/salesInvoiceType.pipe';
+import { SafeDepositSlipTypePipe } from './components/finans/hareketler/kasa-fisleri/safeDepositSlipType.pipe';
 
 
 
@@ -200,6 +201,7 @@ import { SalesInvoiceTypePipe } from './components/satis/hareketler/satis-fatura
     PurchaseInvoiceTypePipe,
     SalesDispatchTypePipe,
     SalesInvoiceTypePipe,
+    SafeDepositSlipTypePipe,
     //
 
     Dialog_StockComponent,
