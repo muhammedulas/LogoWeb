@@ -50,6 +50,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatGridListModule } from '@angular/material/grid-list';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { USTypesPipe } from './components/malzeme-yonetimi/ana-kayitlar/birim-setleri/USTypes.pipe';
 import { Dialog_deleteUSComponent } from './components/malzeme-yonetimi/ana-kayitlar/birim-setleri/dialog_deleteUS/dialog_deleteUS.component';
@@ -103,6 +104,7 @@ import { PurchaseInvoiceTypePipe } from './components/satinalma/hareketler/satin
 import { SalesDispatchTypePipe } from './components/satis/hareketler/satis-irsaliyeleri/salesDispatchType.pipe';
 import { SalesInvoiceTypePipe } from './components/satis/hareketler/satis-faturalari/salesInvoiceType.pipe';
 import { SafeDepositSlipTypePipe } from './components/finans/hareketler/kasa-fisleri/safeDepositSlipType.pipe';
+import { Dialog_orderComponent } from './commonDialogs/dialog_order/dialog_order.component';
 
 
 
@@ -210,7 +212,8 @@ import { SafeDepositSlipTypePipe } from './components/finans/hareketler/kasa-fis
     Dialog_deleteItemComponent,
     Dialog_deleteUSComponent,
     Dialog_editInspectUSComponent,
-    Dialog_newUSComponent
+    Dialog_newUSComponent,
+    Dialog_orderComponent
 
 
   ],
@@ -221,7 +224,8 @@ import { SafeDepositSlipTypePipe } from './components/finans/hareketler/kasa-fis
     Dialog_deleteItemComponent,
     Dialog_deleteUSComponent,
     Dialog_newUSComponent,
-    Dialog_editInspectUSComponent
+    Dialog_editInspectUSComponent,
+    Dialog_orderComponent
   ],
 
   imports: [
@@ -249,7 +253,8 @@ import { SafeDepositSlipTypePipe } from './components/finans/hareketler/kasa-fis
     MatTabsModule,
     MatSelectModule,
     MatRadioModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatGridListModule
 
   ],
   providers: [AuthGuardService, LoginComponent],

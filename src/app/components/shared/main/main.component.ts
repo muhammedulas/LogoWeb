@@ -14,7 +14,7 @@ export class MainComponent implements OnInit {
   public events: string[] = [];
   public opened!: boolean;
   private routerEvents:any;
-  public mainMenuActive:boolean = true;
+  public mainMenuActive:boolean = false;
 
   shouldRun = [/(^|\.)plnkr\.co$/, /(^|\.)stackblitz\.io$/].some(h => h.test(window.location.host));
   constructor(private globalvars: GlobalVarsService, private router:Router) {

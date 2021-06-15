@@ -22,8 +22,8 @@ export class ConfigureComponent implements OnInit {
 
   ngOnInit() {
     this.config.rootUrl = localStorage.getItem('rootUrl'),
-      this.config.clientID = localStorage.getItem('clientID'),
-      this.config.clientSecret = localStorage.getItem('clientSecret')
+      this.config.clientID = "DATAMER";
+      this.config.clientSecret = "m5QPX2Hf17JmMiuU0/w6PgGQeC1400KnvZei5WbzPaw=";
   }
 
   setConfigurations() {

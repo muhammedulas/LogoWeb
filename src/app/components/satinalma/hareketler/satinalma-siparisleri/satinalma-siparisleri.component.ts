@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Dialog_orderComponent } from 'src/app/commonDialogs/dialog_order/dialog_order.component';
 import { Dialog_deleteComponent } from 'src/app/components/shared/dialogs/dialog_delete/dialog_delete.component';
 import { purchaseOrder } from 'src/app/models/purchaseOrder';
 import { PurchaseOrdersService } from 'src/app/services/purchaseOrders.service';
@@ -97,6 +98,13 @@ export class SatinalmaSiparisleriComponent implements OnInit {
   cancelSearch() {
     this.searchButtonActive = false;
     this.getAllRecords(0);
+  }
+
+  test(){
+    this.dialog.open(Dialog_orderComponent,{
+      height:"70vh",
+      width:"70vw"
+    })
   }
 
   //Pagination

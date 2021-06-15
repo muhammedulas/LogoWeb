@@ -1,0 +1,35 @@
+export class factoryParam {
+    "INTERNAL_REFERENCE": number;
+    "FACTORYNR": number;
+    "SPECIALIZED": number;
+    "PROCURECLASS": number;
+    "LOWLEVELCODE": number;
+    "DIVLOTSIZE": number;
+    "MRPCNTRL": number;
+    "PLANPOLICY": number;
+    "LOTSIZINGMTD": number;
+    "FIXEDLOTSIZE": number;
+    "YIELD": number;
+    "MINORDERQTY": number;
+    "MAXORDERQTY": number;
+    "MULTORDERQTY": number;
+    "MINORDERDAY": number;
+    "MAXORDERDAY": number;
+    "REORDERPOINT": number;
+    "AUTOMTRISSUE": number;
+    "DEFSERILOTNO": string;
+    "AUTOLOTOUTMTD": number;
+    "LOTPARTY": number;
+    "OUTLOTSIZE": number;
+    "COUNTFORMPS": number;
+    "LOT_SIZING_MTD2": number;
+    "FIXED_LOT_SIZE2": number;
+    "YIELD2": number;
+    "MIN_ORDER_QTY2": number;
+    "MAX_ORDER_QTY2": number;
+    "MULT_ORDER_QTY2": number;
+    "CLAS": number;
+    "DOMINANTFLAG": number;
+    "DOMINANTCODE": string;
+    "PROCURE_INVEN": number;
+}
