@@ -17,10 +17,10 @@ export class ImportDistributionSlipsService {
     let auth = "Bearer " + this.token;
     let headers = new HttpHeaders().set('Authorization', auth).set('Accept', 'application/json')
     if (q == undefined) {
-      return this.http.get<importDistributionSlipResp>(this.rootUrl + "/api/v1/imortDistributionSlips?offset=" + offset + "&limit=" + lim + "&withCount=true", { headers })
+      return this.http.get<importDistributionSlipResp>(this.rootUrl + "/api/v1/importDistributionSlips?offset=" + offset + "&limit=" + lim + "&withCount=true", { headers })
     }
 
-    else return this.http.get<importDistributionSlipResp>(this.rootUrl + "/api/v1/imortDistributionSlips?offset=" + offset + "&limit=" + lim + "&q=(NUMBER like '*" + q + "*' or ARP_CODE like '*" + q + "* 'or DIVISION like '*" + q + "*')" + "&withCount=true", { headers })
+    else return this.http.get<importDistributionSlipResp>(this.rootUrl + "/api/v1/importDistributionSlips?offset=" + offset + "&limit=" + lim + "&q=(NUMBER like '*" + q + "*' or ARP_CODE like '*" + q + "* 'or DIVISION like '*" + q + "*')" + "&withCount=true", { headers })
   }
 
 
@@ -28,19 +28,19 @@ export class ImportDistributionSlipsService {
     console.log(this.rootUrl + "api/v1/ARPs/" + id)
     let auth = "Bearer " + this.token;
     let headers = new HttpHeaders().set('Authorization', auth).set('Accept', 'application/json')
-    return this.http.get<importDistributionSlip>(this.rootUrl + "/api/v1/imortDistributionSlips/" + id, { headers })
+    return this.http.get<importDistributionSlip>(this.rootUrl + "/api/v1/importDistributionSlips/" + id, { headers })
   }
 
   delete(id: number) {
     let auth = "Bearer " + this.token;
     let headers = new HttpHeaders().set('Authorization', auth).set('Accept', 'application/json')
-    return this.http.delete(this.rootUrl + "/api/v1/imortDistributionSlips/" + id, { headers })
+    return this.http.delete(this.rootUrl + "/api/v1/importDistributionSlips/" + id, { headers })
   }
 
   add(newRec: importDistributionSlip) {
     let auth = "Bearer " + this.token;
     let headers = new HttpHeaders().set('Authorization', auth).set('Accept', 'application/json').set('Content-Type', 'application/json')
-    return this.http.post(this.rootUrl + "/api/v1/imortDistributionSlips/", JSON.stringify(newRec), { headers })
+    return this.http.post(this.rootUrl + "/api/v1/importDistributionSlips/", JSON.stringify(newRec), { headers })
   }
 
   update(rec: importDistributionSlip) {
@@ -50,7 +50,7 @@ export class ImportDistributionSlipsService {
     let headers = new HttpHeaders().set('Authorization', auth).set('Accept', 'application/json').set('Content-Type', 'application/json')
     let body = JSON.stringify(rec)
     console.log(body)
-    return this.http.put<importDistributionSlipResp>(this.rootUrl + "/api/v1/imortDistributionSlips/" + id, body, { headers })
+    return this.http.put<importDistributionSlipResp>(this.rootUrl + "/api/v1/importDistributionSlips/" + id, body, { headers })
   }
 
 

@@ -19,7 +19,7 @@ export class ExportOperationSlipsService {
     let auth = "Bearer " + this.token;
     let headers = new HttpHeaders().set('Authorization', auth).set('Accept', 'application/json')
     if (q == undefined) {
-      return this.http.get<exportOperationSlipResp>(this.rootUrl + "/api/v1/exportOperationSlips?offset=" + offset + "&limit=" + lim + "&withCount=true", { headers })
+      return this.http.get<exportOperationSlipResp>(this.rootUrl + "/api/v1/exportOperationSlips?offset=" + offset + "&limit=" + lim + "&withCount=true&q=TYPE eq 8 and (EXIM_FICHE_TYPE  eq 3) or (EXIM_FICHE_TYPE  eq 2)", { headers })
     }
 
     else return this.http.get<exportOperationSlipResp>(this.rootUrl + "/api/v1/exportOperationSlips?offset=" + offset + "&limit=" + lim + "&q=(NUMBER like '*" + q + "*' or ARP_CODE like '*" + q + "* 'or DIVISION like '*" + q + "*')" + "&withCount=true", { headers })

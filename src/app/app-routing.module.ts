@@ -11,7 +11,15 @@ import { BankaFisleriComponent } from './components/finans/hareketler/banka-fisl
 import { CariHesapFisleriComponent } from './components/finans/hareketler/cari-hesap-fisleri/cari-hesap-fisleri.component';
 import { CekSenetBordrolariComponent } from './components/finans/hareketler/cek-senet-bordrolari/cek-senet-bordrolari.component';
 import { KasaFisleriComponent } from './components/finans/hareketler/kasa-fisleri/kasa-fisleri.component';
+import { DiibComponent } from './components/ihracat/hareketler/diib/diib.component';
+import { IhracatOperasyonFisleriComponent } from './components/ihracat/hareketler/ihracat-operasyon-fisleri/ihracat-operasyon-fisleri.component';
+import { IkSatinalmaFaturalariComponent } from './components/ihracat/hareketler/ik-satinalma-faturalari/ik-satinalma-faturalari.component';
+import { IkSatisFaturalariComponent } from './components/ihracat/hareketler/ik-satis-faturalari/ik-satis-faturalari.component';
 import { IhracatComponent } from './components/ihracat/ihracat.component';
+import { DagitimFisleriComponent } from './components/ithalat/hareketler/dagitim-fisleri/dagitim-fisleri.component';
+import { IthalatOperasyonFisleriComponent } from './components/ithalat/hareketler/ithalat-operasyon-fisleri/ithalat-operasyon-fisleri.component';
+import { MalzemeDolasimFisleriComponent } from './components/ithalat/hareketler/malzeme-dolasim-fisleri/malzeme-dolasim-fisleri.component';
+import { MillilestirmeFisleriComponent } from './components/ithalat/hareketler/millilestirme-fisleri/millilestirme-fisleri.component';
 import { IthalatComponent } from './components/ithalat/ithalat.component';
 import { LoginComponent } from './components/login/login.component';
 import { BirimSetleriComponent } from './components/malzeme-yonetimi/ana-kayitlar/birim-setleri/birim-setleri.component';
@@ -49,56 +57,77 @@ const routes: Routes = [
   { path: 'configure', component: ConfigureComponent },
   {
     path: '', component: MainComponent, children: [
-      //Malzeme Yönetimi
-      { path: 'malzeme-yonetimi', component: MalzemeYonetimiComponent },
+      {
+        path: 'malzeme-yonetimi', component: MalzemeYonetimiComponent, children: [
+          { path: 'malzemeler', component: MalzemelerComponent },
+          { path: 'malzeme-ozellikleri', component: MalzemeOzellikleriComponent },
+          { path: 'birim-setleri', component: BirimSetleriComponent },
+          { path: 'hizli-uretim-fisleri', component: HizliUretimFisleriComponent },
+          { path: 'maliyet-dagitim-fisleri', component: MaliyetDagitimFisleriComponent },
+          { path: 'malzeme-yonetim-fisleri', component: MalzemeYonetimFisleriComponent },
+        ]
+      },
 
-        { path: 'malzemeler', component: MalzemelerComponent },
-        { path: 'malzeme-ozellikleri', component: MalzemeOzellikleriComponent },
-        { path: 'birim-setleri', component: BirimSetleriComponent },
-        { path: 'hizli-uretim-fisleri', component: HizliUretimFisleriComponent },
-        { path: 'maliyet-dagitim-fisleri', component: MaliyetDagitimFisleriComponent },
-        { path: 'malzeme-yonetim-fisleri', component: MalzemeYonetimFisleriComponent },
-      //
-      //Finans
-      { path: 'finans', component: FinansComponent },
+      {
+        path: 'finans', component: FinansComponent, children: [
+          { path: 'cari-hesaplar', component: CariHesaplarComponent },
+          { path: 'odeme-tahsilat-planlari', component: Odeme_tahsilatPlanlariComponent },
+          { path: 'cek-senetler', component: CekSenetlerComponent },
+          { path: 'kasa', component: KasaComponent },
+          { path: 'banka', component: BankaComponent },
+          { path: 'cari-hesap-fisleri', component: CariHesapFisleriComponent },
+          { path: 'cek-senet-bordrolari', component: CekSenetBordrolariComponent },
+          { path: 'banka-fisleri', component: BankaFisleriComponent },
+          { path: 'kasa-islemleri', component: KasaFisleriComponent },
+        ]
+      },
 
-        { path: 'cari-hesaplar', component: CariHesaplarComponent },
-        { path: 'odeme-tahsilat-planlari', component: Odeme_tahsilatPlanlariComponent },
-        { path: 'cek-senetler', component: CekSenetlerComponent },
-        { path: 'kasa', component: KasaComponent },
-        { path: 'banka', component: BankaComponent },
-        { path:'cari-hesap-fisleri',component:CariHesapFisleriComponent},
-        { path:'cek-senet-bordrolari',component:CekSenetBordrolariComponent},
-        { path:'banka-fisleri',component:BankaFisleriComponent},
-         {path:'kasa-islemleri',component:KasaFisleriComponent},
-      //
-      //Satınalma
-      { path: 'satinalma', component: SatinalmaComponent },
-      
-        { path: 'alinan-hizmetler', component: AlinanHizmetlerComponent },
-        { path: 'satinalma-indirimleri', component: SatinalmaIndirimleriComponent },
-        { path: 'satinalma-masraflari', component: SatinalmaMasraflariComponent },
-        { path: 'hizmet-alim-fiyatlari', component: HizmetAlimFiyatlariComponent },
-        { path: 'satinalma-kampanyalari', component: SatinalmaKampanyalariComponent },
-        { path:'satinalma-siparisleri',component:SatinalmaSiparisleriComponent},
-        { path:'satinalma-irsaliyeleri',component:SatinalmaIrsaliyeleriComponent},
-        { path:'satinalma-faturalari',component:SatinalmaFaturalariComponent},
-      //
-      //Satış
-      { path: 'satis', component: SatisComponent },
-        { path:'verilen-hizmetler', component:VerilenHizmetlerComponent},
-        { path:'satis-indirimleri', component:SatisIndirimleriComponent},
-        { path:'satis-masraflari', component:SatisMasraflariComponent},
-        { path:'malzeme-satis-fiyatlari', component:MalzemeSatisFiyatlariComponent},
-        { path:'hizmet-satis-fiyatlari', component:HizmetSatisFiyatlariComponent},
-        { path:'dagitim-araclari', component:DagitimAraclariComponent},
-        { path:'dagitim-rotalari', component:DagitimRotalariComponent},
-        { path:'satis-siparisleri',component:SatisSiparisleriComponent},
-        { path:'satis-irsaliyeleri',component:SatisIrsaliyeleriComponent},
-        { path:'satis-faturalari',component:SatisFaturalariComponent},
-        //
-      { path: 'ithalat', component: IthalatComponent },
-      { path: 'ihracat', component: IhracatComponent }
+      {
+        path: 'satinalma', component: SatinalmaComponent, children: [
+          { path: 'alinan-hizmetler', component: AlinanHizmetlerComponent },
+          { path: 'satinalma-indirimleri', component: SatinalmaIndirimleriComponent },
+          { path: 'satinalma-masraflari', component: SatinalmaMasraflariComponent },
+          { path: 'hizmet-alim-fiyatlari', component: HizmetAlimFiyatlariComponent },
+          { path: 'satinalma-kampanyalari', component: SatinalmaKampanyalariComponent },
+          { path: 'satinalma-siparisleri', component: SatinalmaSiparisleriComponent },
+          { path: 'satinalma-irsaliyeleri', component: SatinalmaIrsaliyeleriComponent },
+          { path: 'satinalma-faturalari', component: SatinalmaFaturalariComponent },
+        ]
+      },
+
+      {
+        path: 'satis', component: SatisComponent, children: [
+          { path: 'verilen-hizmetler', component: VerilenHizmetlerComponent },
+          { path: 'satis-indirimleri', component: SatisIndirimleriComponent },
+          { path: 'satis-masraflari', component: SatisMasraflariComponent },
+          { path: 'malzeme-satis-fiyatlari', component: MalzemeSatisFiyatlariComponent },
+          { path: 'hizmet-satis-fiyatlari', component: HizmetSatisFiyatlariComponent },
+          { path: 'dagitim-araclari', component: DagitimAraclariComponent },
+          { path: 'dagitim-rotalari', component: DagitimRotalariComponent },
+          { path: 'satis-siparisleri', component: SatisSiparisleriComponent },
+          { path: 'satis-irsaliyeleri', component: SatisIrsaliyeleriComponent },
+          { path: 'satis-faturalari', component: SatisFaturalariComponent },
+        ]
+      },
+
+      {
+        path: 'ihracat', component: IhracatComponent, children: [
+          { path: 'diib', component: DiibComponent },
+          { path: 'ihracat-operasyon-fisleri', component: IhracatOperasyonFisleriComponent },
+          { path: 'ik-satinalma-faturalari', component: IkSatinalmaFaturalariComponent },
+          { path: 'ik-satis-faturalari', component: IkSatisFaturalariComponent },
+        ]
+      },
+
+      {
+        path: 'ithalat', component: IthalatComponent, children: [
+          { path: 'ithalat-operasyon-fisleri', component: IthalatOperasyonFisleriComponent },
+          { path: 'malzeme-dolasim-fisleri', component: MalzemeDolasimFisleriComponent },
+          { path: 'dagitim-fisleri', component: DagitimFisleriComponent },
+          { path: 'millilestirme-fisleri', component: MillilestirmeFisleriComponent }
+        ]
+      },
+
     ], canActivate: [AuthGuardService]
   },
   { path: '**', component: LoginComponent }

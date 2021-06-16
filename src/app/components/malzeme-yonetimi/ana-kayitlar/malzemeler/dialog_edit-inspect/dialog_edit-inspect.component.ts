@@ -83,9 +83,9 @@ export class Dialog_editInspectComponent implements OnInit {
     delete this.itemData.IMAGE
     delete this.itemData.DEFNFLDSLIST
     delete this.itemData.GENIUSFLDSLIST
-    this.itemsSvc.updateItem(this.itemData).subscribe(res => {
+/*     this.itemsSvc.updateItem(this.itemData).subscribe(res => {
       console.log(res)
-    })
+    }) */
 
 
   }

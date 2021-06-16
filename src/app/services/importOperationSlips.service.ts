@@ -16,10 +16,10 @@ export class ImportOperationSlipsService {
     let auth = "Bearer " + this.token;
     let headers = new HttpHeaders().set('Authorization', auth).set('Accept', 'application/json')
     if (q == undefined) {
-      return this.http.get<importOperationSlipResp>(this.rootUrl + "/api/v1/imortOperationSlips?offset=" + offset + "&limit=" + lim + "&withCount=true", { headers })
+      return this.http.get<importOperationSlipResp>(this.rootUrl + "/api/v1/importOperationSlips?offset=" + offset + "&limit=" + lim + "&withCount=true&q=EXIM_FICHE_TYPE eq 1", { headers })
     }
 
-    else return this.http.get<importOperationSlipResp>(this.rootUrl + "/api/v1/imortOperationSlips?offset=" + offset + "&limit=" + lim + "&q=(NUMBER like '*" + q + "*' or ARP_CODE like '*" + q + "* 'or DIVISION like '*" + q + "*')" + "&withCount=true", { headers })
+    else return this.http.get<importOperationSlipResp>(this.rootUrl + "/api/v1/importOperationSlips?offset=" + offset + "&limit=" + lim + "&q=(NUMBER like '*" + q + "*' or ARP_CODE like '*" + q + "* 'or DIVISION like '*" + q + "*')" + "&withCount=true", { headers })
   }
 
 
@@ -27,19 +27,19 @@ export class ImportOperationSlipsService {
     console.log(this.rootUrl + "api/v1/ARPs/" + id)
     let auth = "Bearer " + this.token;
     let headers = new HttpHeaders().set('Authorization', auth).set('Accept', 'application/json')
-    return this.http.get<importOperationSlip>(this.rootUrl + "/api/v1/imortOperationSlips/" + id, { headers })
+    return this.http.get<importOperationSlip>(this.rootUrl + "/api/v1/importOperationSlips/" + id, { headers })
   }
 
   delete(id: number) {
     let auth = "Bearer " + this.token;
     let headers = new HttpHeaders().set('Authorization', auth).set('Accept', 'application/json')
-    return this.http.delete(this.rootUrl + "/api/v1/imortOperationSlips/" + id, { headers })
+    return this.http.delete(this.rootUrl + "/api/v1/importOperationSlips/" + id, { headers })
   }
 
   add(newRec: importOperationSlip) {
     let auth = "Bearer " + this.token;
     let headers = new HttpHeaders().set('Authorization', auth).set('Accept', 'application/json').set('Content-Type', 'application/json')
-    return this.http.post(this.rootUrl + "/api/v1/imortOperationSlips/", JSON.stringify(newRec), { headers })
+    return this.http.post(this.rootUrl + "/api/v1/importOperationSlips/", JSON.stringify(newRec), { headers })
   }
 
   update(rec: importOperationSlip) {
@@ -49,7 +49,7 @@ export class ImportOperationSlipsService {
     let headers = new HttpHeaders().set('Authorization', auth).set('Accept', 'application/json').set('Content-Type', 'application/json')
     let body = JSON.stringify(rec)
     console.log(body)
-    return this.http.put<importOperationSlipResp>(this.rootUrl + "/api/v1/imortOperationSlips/" + id, body, { headers })
+    return this.http.put<importOperationSlipResp>(this.rootUrl + "/api/v1/importOperationSlips/" + id, body, { headers })
   }
 
 

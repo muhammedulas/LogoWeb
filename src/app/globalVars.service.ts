@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import { Router, RouterLink, RoutesRecognized } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Observable, Subject } from 'rxjs';
 import { LoginServiceService } from './services/loginService.service';
@@ -9,6 +9,7 @@ import { timer } from 'rxjs';
   providedIn: 'root'
 })
 export class GlobalVarsService {
+  public routeSnapshot: string = "";
   private idleTimer: any;
   private sidenavToggle = new Subject<boolean>();
   constructor(

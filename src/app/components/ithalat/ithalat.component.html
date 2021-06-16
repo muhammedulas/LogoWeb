@@ -1,19 +1,20 @@
-<div class="row">
+<div class="row" *ngIf="menuActive">
   <div class="col-md-12 mt-3" style="text-align: center;">
     <h1><b>İthalat</b></h1>
   </div>
 </div>
-<div class="container">
+<div class="container" *ngIf="menuActive">
   <div class="col-md-12">
     <div class="row ml-3 mb-1">
       <h2>Hareketler</h2>
     </div>
     <mat-divider></mat-divider>
     <div class="row m-3 p-3">
-      <button class="menu-item" mat-raised-button color="primary">İthalat Operasyon Fişleri</button>
-      <button class="menu-item" mat-raised-button color="primary">Malzeme Dolaşım Fişleri</button>
-      <button class="menu-item" mat-raised-button color="primary">Dağıtım Fişleri</button>
-      <button class="menu-item" mat-raised-button color="primary">Millileştirme Fişleri</button>
+      <button class="menu-item" mat-raised-button color="primary" routerLink="ithalat-operasyon-fisleri">İthalat Operasyon Fişleri</button>
+      <button class="menu-item" mat-raised-button color="primary" routerLink="malzeme-dolasim-fisleri">Malzeme Dolaşım Fişleri</button>
+      <button class="menu-item" mat-raised-button color="primary" routerLink="dagitim-fisleri">Dağıtım Fişleri</button>
+      <button class="menu-item" mat-raised-button color="primary" routerLink="millilestirme-fisleri">Millileştirme Fişleri</button>
     </div>
   </div>
 </div>
+<router-outlet></router-outlet>
