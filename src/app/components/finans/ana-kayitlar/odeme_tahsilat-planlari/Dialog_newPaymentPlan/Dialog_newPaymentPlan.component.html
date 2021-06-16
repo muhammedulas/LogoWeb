@@ -1,3 +1,38 @@
-<p>
-  Dialog_newPaymentPlan works!
-</p>
+<div mat-dialog-content>
+  <div class="row">
+    <div class="col-12">
+      <mat-form-field [style.width.%]="30">
+        <input type="text" matInput autocomplete="off" placeholder="Plan Kodu" [(ngModel)]="paymentPlan.CODE">
+      </mat-form-field>
+      &nbsp;
+      <mat-form-field [style.width.%]="20">
+        <input type="text" matInput autocomplete="off" placeholder="Erken Ödeme Faizi" [(ngModel)]="paymentPlan.EARLY_INTRATE">
+      </mat-form-field>
+      &nbsp;
+      <mat-form-field [style.width.%]="20">
+        <input type="text" matInput autocomplete="off" placeholder="Geç Ödeme Faizi" [(ngModel)]="paymentPlan.LATE_INTRATE">
+      </mat-form-field>
+      &nbsp;
+      <mat-form-field [style.width.%]="20">
+        <input type="text" matInput autocomplete="off" placeholder="Özel Kod" [(ngModel)]="paymentPlan.AUXIL_CODE">
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <mat-form-field [style.width.%]="50">
+        <input type="text" matInput autocomplete="off" placeholder="Plan Açıklaması" [(ngModel)]="paymentPlan.DESCRIPTION">
+      </mat-form-field>
+      &nbsp;
+      &nbsp;
+      &nbsp;
+      <mat-form-field [style.width.%]="20">
+        <input type="text" matInput autocomplete="off" placeholder="Grup Kodu" [(ngModel)]="paymentPlan.PP_GROUP_CODE">
+      </mat-form-field>
+      &nbsp;
+      <mat-form-field [style.width.%]="20">
+        <input type="text" matInput autocomplete="off" placeholder="Yetki Kodu" [(ngModel)]="paymentPlan.AUTH_CODE">
+      </mat-form-field>
+    </div>
+  </div>
+</div>

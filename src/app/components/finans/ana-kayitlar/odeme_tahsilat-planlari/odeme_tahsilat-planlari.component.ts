@@ -75,12 +75,12 @@ export class Odeme_tahsilatPlanlariComponent implements OnInit {
   }
 
   edit_inspectPP(inspectMode:boolean){
-    var bank
+    var plan
     this.PPService.getPaymentPlanByID(this.selectedPaymentPlan.INTERNAL_REFERENCE).subscribe(res=>{
-      bank = res
-      bank.INSPECT = inspectMode
+      plan = res
+      plan.INSPECT = inspectMode
       this.dialog.open(Dialog_editInspectPaymentPlanComponent,{
-        data:bank,
+        data:plan,
         width:"60vw",
         height:"65vh"
       })

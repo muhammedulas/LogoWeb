@@ -108,6 +108,11 @@ import { Dialog_orderComponent } from './commonDialogs/dialog_order/dialog_order
 import { Dialog_editInspectItemCharComponent } from './components/malzeme-yonetimi/ana-kayitlar/malzeme-ozellikleri/Dialog_edit-inspectItemChar/Dialog_edit-inspectItemChar.component';
 import { Dialog_newItemCharComponent } from './components/malzeme-yonetimi/ana-kayitlar/malzeme-ozellikleri/Dialog_newItemChar/Dialog_newItemChar.component';
 import { Dialog_deleteItemCharComponent } from './components/malzeme-yonetimi/ana-kayitlar/malzeme-ozellikleri/Dialog_deleteItemChar/Dialog_deleteItemChar.component';
+import { Dialog_newARPComponent } from './components/finans/ana-kayitlar/cari-hesaplar/Dialog_newARP/Dialog_newARP.component';
+import { Dialog_editInspectARPComponent } from './components/finans/ana-kayitlar/cari-hesaplar/Dialog_editInspectARP/Dialog_editInspectARP.component';
+import { Dialog_deleteARPComponent } from './components/finans/ana-kayitlar/cari-hesaplar/Dialog_deleteARP/Dialog_deleteARP.component';
+import { Dialog_newPaymentPlanComponent } from './components/finans/ana-kayitlar/odeme_tahsilat-planlari/Dialog_newPaymentPlan/Dialog_newPaymentPlan.component';
+import { Dialog_editInspectPaymentPlanComponent } from './components/finans/ana-kayitlar/odeme_tahsilat-planlari/Dialog_editInspectPaymentPlan/Dialog_editInspectPaymentPlan.component';
 
 
 
@@ -219,7 +224,12 @@ import { Dialog_deleteItemCharComponent } from './components/malzeme-yonetimi/an
     Dialog_orderComponent,
     Dialog_editInspectItemCharComponent,
     Dialog_newItemCharComponent,
-    Dialog_deleteItemCharComponent
+    Dialog_deleteItemCharComponent,
+    Dialog_newARPComponent,
+    Dialog_editInspectARPComponent,
+    Dialog_deleteARPComponent,
+    Dialog_newPaymentPlanComponent,
+    Dialog_editInspectPaymentPlanComponent
 
 
   ],
@@ -234,7 +244,11 @@ import { Dialog_deleteItemCharComponent } from './components/malzeme-yonetimi/an
     Dialog_orderComponent,
     Dialog_editInspectItemCharComponent,
     Dialog_newItemCharComponent,
-    Dialog_deleteItemCharComponent
+    Dialog_deleteItemCharComponent,
+    Dialog_newARPComponent,
+    Dialog_editInspectARPComponent,
+    Dialog_newPaymentPlanComponent,
+    Dialog_editInspectPaymentPlanComponent
   ],
 
   imports: [

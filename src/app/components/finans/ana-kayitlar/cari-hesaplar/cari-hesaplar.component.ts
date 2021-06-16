@@ -68,11 +68,16 @@ export class CariHesaplarComponent implements OnInit {
   }
 
   addARP(){
-    this.dialog.open(Dialog_newARPComponent,{width:"60vw",height:"65vh"})
+    let ref = this.dialog.open(Dialog_newARPComponent,{width:"65vw",height:"70vh"})
+    ref.afterClosed().subscribe(q=>{
+      this.getARPs(1)
+    })
   }
 
   deleteARP(id:number) {
-    this.dialog.open(Dialog_deleteARPComponent,{data:id})
+    this.dialog.open(Dialog_deleteARPComponent,{data:id}).afterClosed().subscribe(q=>{
+      this.getARPs(1)
+    })
   }
 
   edit_inspectARP(inspectMode:boolean){
@@ -82,8 +87,10 @@ export class CariHesaplarComponent implements OnInit {
       bank.INSPECT = inspectMode
       this.dialog.open(Dialog_editInspectARPComponent,{
         data:bank,
-        width:"60vw",
-        height:"65vh"
+        width:"65vw",
+        height:"70vh"
+      }).afterClosed().subscribe(q=>{
+        this.getARPs(1)
       })
     },err=>{
       this.toast.error(err.message,"Hata",{positionClass:"toast-top-center",timeOut:3000})
@@ -108,7 +115,7 @@ export class CariHesaplarComponent implements OnInit {
     this.loaded = false
     this.getARPs(1)
     this.pageCount = Math.floor(this.itemCount / this.recLimit)
-    this.router.navigate(['cari-hesaplar'])
+          this.router.navigate(['/finans/cari-hesaplar'])
   }
 
   nextPage() {
@@ -120,7 +127,7 @@ export class CariHesaplarComponent implements OnInit {
           this.response = resp
           console.log(this.response)
           this.ARPs = this.response.items
-          this.router.navigate(['cari-hesaplar'])
+          this.router.navigate(['/finans/cari-hesaplar'])
           this.loaded = true
         },
         err => {
@@ -142,7 +149,7 @@ export class CariHesaplarComponent implements OnInit {
           this.response = resp
           console.log(this.response)
           this.ARPs = this.response.items
-          this.router.navigate(['cari-hesaplar'])
+                this.router.navigate(['/finans/cari-hesaplar'])
           this.loaded = true
         },
         err => {
@@ -159,7 +166,7 @@ export class CariHesaplarComponent implements OnInit {
     this.loaded = false
     this.currPage = 1
     this.getARPs(1)
-    this.router.navigate(['cari-hesaplar'])
+          this.router.navigate(['/finans/cari-hesaplar'])
   }
 
   lastPage() {
@@ -189,7 +196,7 @@ export class CariHesaplarComponent implements OnInit {
       this.response = resp
       console.log(this.response)
       this.ARPs = this.response.items
-      this.router.navigate(['cari-hesaplar'])
+            this.router.navigate(['/finans/cari-hesaplar'])
       this.loaded = true
     },
       err => {

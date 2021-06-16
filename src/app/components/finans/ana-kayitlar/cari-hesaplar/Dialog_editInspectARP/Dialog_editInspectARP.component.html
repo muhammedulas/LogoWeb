@@ -1,3 +1,161 @@
-<p>
-  Dialog_editInspectARP works!
-</p>
+<div mat-dialog-content>
+  <div class="row">
+    <div class="col-8">
+      <mat-form-field>
+        <input matInput type="text" autocomplete="off" [disabled]="data.INSPECT!" placeholder="Kodu" [(ngModel)]="data.CODE">
+      </mat-form-field>
+      &nbsp;
+      <mat-form-field>
+        <mat-select placeholder="Statüsü" [(value)]="data.RECORD_STATUS" [disabled]="data.INSPECT">
+          <mat-option [value]=0>
+            Kullanımda
+          </mat-option>
+          <mat-option [value]=1>
+            Kullanım Dışı
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      &nbsp;
+      <mat-form-field>
+        <input matInput type="text" autocomplete="off" [disabled]="data.INSPECT!" placeholder="E-İş Kodu">
+      </mat-form-field>
+    </div>
+    <br>
+    <div class="col-8">
+      <mat-form-field [style.width.%]="100" [style.height.%]="70">
+        <input matInput type="text" autocomplete="off" [disabled]="data.INSPECT!" placeholder="Unvanı" [(ngModel)]="data.TITLE">
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <mat-tab-group>
+        <mat-tab label="İletişim Bilgileri" class="p-1" style="overflow: hidden;">
+          <div class="row ml-2">
+            <mat-form-field [style.width.%]="82">
+              <input matInput type="text" autocomplete="off" [disabled]="data.INSPECT!" placeholder="Adres" [(ngModel)]="data.ADDRESS1">
+            </mat-form-field>
+          </div>
+          <div class="row ml-2">
+            <mat-form-field [style.width.%]="10">
+              <input matInput type="text" autocomplete="off" [disabled]="data.INSPECT!" placeholder="İlçe Kodu" [(ngModel)]="data.TOWN_CODE">
+            </mat-form-field>
+            &nbsp;
+            <mat-form-field [style.width.%]="30">
+              <input matInput type="text" autocomplete="off" [disabled]="data.INSPECT!" placeholder="İlçe" [(ngModel)]="data.TOWN">
+            </mat-form-field>
+            &nbsp;
+            &nbsp;
+            <mat-form-field [style.width.%]="10">
+              <input matInput type="text" autocomplete="off" [disabled]="data.INSPECT!" placeholder="Alan Kodu" [(ngModel)]="data.TELEPHONE1_CODE">
+            </mat-form-field>
+            &nbsp;
+            <mat-form-field [style.width.%]="20">
+              <input matInput type="text" autocomplete="off" [disabled]="data.INSPECT!" placeholder="Telefon No" [(ngModel)]="data.TELEPHONE1">
+            </mat-form-field>
+          </div>
+          <div class="row ml-2">
+            <mat-form-field [style.width.%]="10">
+              <input matInput type="text" autocomplete="off" [disabled]="data.INSPECT!" placeholder="İl Kodu" [(ngModel)]="data.CITY_CODE">
+            </mat-form-field>
+            &nbsp;
+            <mat-form-field [style.width.%]="30">
+              <input matInput type="text" autocomplete="off" [disabled]="data.INSPECT!" placeholder="İl" [(ngModel)]="data.CITY">
+            </mat-form-field>
+            &nbsp;
+            &nbsp;
+            <mat-form-field [style.width.%]="30">
+              <input matInput type="text" autocomplete="off" [disabled]="data.INSPECT!" placeholder="E-Posta Adresi" [(ngModel)]="data.E_MAIL">
+            </mat-form-field>
+          </div>
+          <div class="row ml-2">
+            <mat-form-field [style.width.%]="10">
+              <input matInput type="text" autocomplete="off" [disabled]="data.INSPECT!" placeholder="Ülke Kodu" [(ngModel)]="data.COUNTRY_CODE">
+            </mat-form-field>
+            &nbsp;
+            <mat-form-field [style.width.%]="30">
+              <input matInput type="text" autocomplete="off" [disabled]="data.INSPECT!" placeholder="Ülke" [(ngModel)]="data.COUNTRY">
+            </mat-form-field>
+            &nbsp;
+            &nbsp;
+            <mat-form-field [style.width.%]="30">
+              <input matInput type="text" autocomplete="off" [disabled]="data.INSPECT!" placeholder="E-Posta Adresi 2">
+            </mat-form-field>
+          </div>
+        </mat-tab>
+        <mat-tab label="Ticari Bilgiler">
+          <div class="row ml-2">
+            <div class="col-3">
+              <mat-form-field>
+                <mat-select [(value)]="data.PCOMP" (selectionChange)="clearTaxId()" [disabled]="data.INSPECT">
+                  <mat-option [value]=0>
+                    Şahıs Şirketi
+                  </mat-option>
+                  <mat-option [value]=1>
+                    Tüzel
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="col-3">
+              <mat-form-field>
+                <input matInput [hidden]="data.PCOMP == 1" maxlength="10" type="text" autocomplete="off" [disabled]="data.INSPECT!" placeholder="TC Kimlik No" [disabled]="data.PCOMP == 1" [(ngModel)]="data.TAX_ID">
+              </mat-form-field>
+            </div>
+            <div class="col-3">
+              <mat-form-field>
+                <input matInput [hidden]="data.PCOMP == 0" maxlength="11" type="text" autocomplete="off" [disabled]="data.INSPECT!" placeholder="Vergi Numarası" [disabled]="data.PCOMP == 0" [(ngModel)]="data.TAX_ID">
+              </mat-form-field>
+            </div>
+            <div class="col-3">
+              <mat-form-field>
+                <input matInput type="text" autocomplete="off" [disabled]="data.INSPECT!" placeholder="Vergi Dairesi" [(ngModel)]="data.TAX_OFFICE">
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row ml-2">
+            <div class="col-3"></div>
+            <div class="col-3">
+              <mat-form-field>
+                <input matInput type="text" autocomplete="off" [disabled]="data.INSPECT!" placeholder="Adı" [(ngModel)]="data.BANK_NAME1">
+              </mat-form-field>
+            </div>
+            <div class="col-3">
+              <mat-form-field>
+                <input matInput type="text" autocomplete="off" [disabled]="data.INSPECT!" placeholder="Grup Şirketi Kodu" [(ngModel)]="data.TRADING_GRP">
+              </mat-form-field>
+            </div>
+            <div class="col-3">
+              <mat-form-field>
+                <input matInput type="text" autocomplete="off" [disabled]="data.INSPECT!" placeholder="VD Kodu" [(ngModel)]="data.TAX_OFFICE_CODE">
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row ml-2">
+            <div class="col-3">
+              
+            </div>
+            <div class="col-3">
+              <mat-form-field>
+                <input matInput type="text" autocomplete="off" [disabled]="data.INSPECT!" placeholder="Soyadı" [(ngModel)]="data.BANK_NAME2">
+              </mat-form-field>
+            </div>
+            <div class="col-3"></div>
+            <div class="col-3"></div>
+          </div>
+          <div class="row">
+            &nbsp;
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+</div>
+<div mat-dialog-actions align="end">
+<button mat-stroked-button cdkFocusInitial (click)="update()" [disabled]="data.INSPECT">
+  Güncelle
+</button>
+<button mat-stroked-button [mat-dialog-close]>
+  Vazgeç
+</button>
+</div>

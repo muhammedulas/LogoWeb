@@ -1,3 +1,161 @@
-<p>
-  Dialog_newARP works!
-</p>
+<div mat-dialog-content>
+  <div class="row">
+    <div class="col-8">
+      <mat-form-field>
+        <input matInput type="text" autocomplete="off" placeholder="Kodu" [(ngModel)]="newArp.CODE">
+      </mat-form-field>
+      &nbsp;
+      <mat-form-field>
+        <mat-select placeholder="Statüsü" [(value)]="newArp.RECORD_STATUS">
+          <mat-option [value]=0>
+            Kullanımda
+          </mat-option>
+          <mat-option [value]=1>
+            Kullanım Dışı
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      &nbsp;
+      <mat-form-field>
+        <input matInput type="text" autocomplete="off" placeholder="E-İş Kodu">
+      </mat-form-field>
+    </div>
+    <br>
+    <div class="col-8">
+      <mat-form-field [style.width.%]="100" [style.height.%]="70">
+        <input matInput type="text" autocomplete="off" placeholder="Unvanı" [(ngModel)]="newArp.TITLE">
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <mat-tab-group>
+        <mat-tab label="İletişim Bilgileri" class="p-1" style="overflow: hidden;">
+          <div class="row ml-2">
+            <mat-form-field [style.width.%]="82">
+              <input matInput type="text" autocomplete="off" placeholder="Adres" [(ngModel)]="newArp.ADDRESS1">
+            </mat-form-field>
+          </div>
+          <div class="row ml-2">
+            <mat-form-field [style.width.%]="10">
+              <input matInput type="text" autocomplete="off" placeholder="İlçe Kodu" [(ngModel)]="newArp.TOWN_CODE">
+            </mat-form-field>
+            &nbsp;
+            <mat-form-field [style.width.%]="30">
+              <input matInput type="text" autocomplete="off" placeholder="İlçe" [(ngModel)]="newArp.TOWN">
+            </mat-form-field>
+            &nbsp;
+            &nbsp;
+            <mat-form-field [style.width.%]="10">
+              <input matInput type="text" autocomplete="off" placeholder="Alan Kodu" [(ngModel)]="newArp.TELEPHONE1_CODE">
+            </mat-form-field>
+            &nbsp;
+            <mat-form-field [style.width.%]="30">
+              <input matInput type="text" autocomplete="off" placeholder="Telefon No" [(ngModel)]="newArp.TELEPHONE1">
+            </mat-form-field>
+          </div>
+          <div class="row ml-2">
+            <mat-form-field [style.width.%]="10">
+              <input matInput type="text" autocomplete="off" placeholder="İl Kodu" [(ngModel)]="newArp.CITY_CODE">
+            </mat-form-field>
+            &nbsp;
+            <mat-form-field [style.width.%]="30">
+              <input matInput type="text" autocomplete="off" placeholder="İl" [(ngModel)]="newArp.CITY">
+            </mat-form-field>
+            &nbsp;
+            &nbsp;
+            <mat-form-field [style.width.%]="30">
+              <input matInput type="text" autocomplete="off" placeholder="E-Posta Adresi" [(ngModel)]="newArp.E_MAIL">
+            </mat-form-field>
+          </div>
+          <div class="row ml-2">
+            <mat-form-field [style.width.%]="10">
+              <input matInput type="text" autocomplete="off" placeholder="Ülke Kodu" [(ngModel)]="newArp.COUNTRY_CODE">
+            </mat-form-field>
+            &nbsp;
+            <mat-form-field [style.width.%]="30">
+              <input matInput type="text" autocomplete="off" placeholder="Ülke" [(ngModel)]="newArp.COUNTRY">
+            </mat-form-field>
+            &nbsp;
+            &nbsp;
+            <mat-form-field [style.width.%]="30">
+              <input matInput type="text" autocomplete="off" placeholder="E-Posta Adresi 2">
+            </mat-form-field>
+          </div>
+        </mat-tab>
+        <mat-tab label="Ticari Bilgiler">
+          <div class="row ml-2">
+            <div class="col-3">
+              <mat-form-field>
+                <mat-select [(value)]="newArp.PCOMP" (selectionChange)="clearTaxId()">
+                  <mat-option [value]=0>
+                    Şahıs Şirketi
+                  </mat-option>
+                  <mat-option [value]=1>
+                    Tüzel
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="col-3">
+              <mat-form-field>
+                <input matInput [hidden]="newArp.PCOMP == 1" maxlength="10" type="text" autocomplete="off" placeholder="TC Kimlik No" [disabled]="newArp.PCOMP == 1" [(ngModel)]="newArp.TAX_ID">
+              </mat-form-field>
+            </div>
+            <div class="col-3">
+              <mat-form-field>
+                <input matInput [hidden]="newArp.PCOMP == 0" maxlength="11" type="text" autocomplete="off" placeholder="Vergi Numarası" [disabled]="newArp.PCOMP == 0" [(ngModel)]="newArp.TAX_ID">
+              </mat-form-field>
+            </div>
+            <div class="col-3">
+              <mat-form-field>
+                <input matInput type="text" autocomplete="off" placeholder="Vergi Dairesi" [(ngModel)]="newArp.TAX_OFFICE">
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row ml-2">
+            <div class="col-3"></div>
+            <div class="col-3">
+              <mat-form-field>
+                <input matInput type="text" autocomplete="off" placeholder="Adı" [(ngModel)]="newArp.BANK_NAME1">
+              </mat-form-field>
+            </div>
+            <div class="col-3">
+              <mat-form-field>
+                <input matInput type="text" autocomplete="off" placeholder="Grup Şirketi Kodu" [(ngModel)]="newArp.TRADING_GRP">
+              </mat-form-field>
+            </div>
+            <div class="col-3">
+              <mat-form-field>
+                <input matInput type="text" autocomplete="off" placeholder="VD Kodu" [(ngModel)]="newArp.TAX_OFFICE_CODE">
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row ml-2">
+            <div class="col-3">
+              
+            </div>
+            <div class="col-3">
+              <mat-form-field>
+                <input matInput type="text" autocomplete="off" placeholder="Soyadı" [(ngModel)]="newArp.BANK_NAME2">
+              </mat-form-field>
+            </div>
+            <div class="col-3"></div>
+            <div class="col-3"></div>
+          </div>
+          <div class="row">
+            &nbsp;
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+</div>
+<div mat-dialog-actions align="end">
+<button mat-stroked-button cdkFocusInitial (click)="create()">
+  Tamam
+</button>
+<button mat-stroked-button [mat-dialog-close]>
+  Vazgeç
+</button>
+</div>

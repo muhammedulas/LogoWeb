@@ -1,12 +1,79 @@
 export class arp {
-    "INSPECT"?:boolean;
+    "INSPECT"?: boolean;
+    "PCOMP"?: number;
     "INTERNAL_REFERENCE": number;
+    "RECORD_STATUS": number;
     "ACCOUNT_TYPE": number;
     "CODE": string;
     "TITLE": string;
+    "AUXIL_CODE": string;
+    "AUTH_CODE": string;
     "ADDRESS1": string;
+    "ADDRESS2": string;
+    "DISTRICT_CODE": string;
+    "DISTRICT": string;
+    "TOWN_CODE": string;
+    "TOWN": string;
+    "CITY_CODE": string;
+    "CITY": string;
+    "COUNTRY_CODE": string;
+    "COUNTRY": string;
+    "POSTAL_CODE": string;
+    "TELEPHONE1": string;
+    "TELEPHONE1_CODE": string;
+    "TELEPHONE2": string;
+    "TELEPHONE2_CODE": string;
+    "FAX": string;
+    "FAX_CODE": string;
+    "TAX_ID": string;
+    "TAX_OFFICE": string;
+    "TAX_OFFICE_CODE": string;
+    "CONTACT": string;
+    "DISCOUNT_RATE": number;
+    "EXTENREF": number;
+    "PAYMENT_CODE": string;
+    "PAYMENTREF": number;
     "E_MAIL": string;
+    "WEB_URL": string;
+    "FACEBOOK_URL": string;
+    "TWITTER_URL": string;
+    "APPLE_ID": string;
+    "SKYPE_ID": string;
+    "REMINDER_TYPE": number;
+    "REMINDER_EMAIL": string;
+    "REMINDER_FAX": string;
+    "CORRESP_LANG": number;
+    "VAT_ID": string;
+    "BLOCKED": number;
+    "BANK_ID1": string;
+    "BANK_ID2": string;
+    "BANK_ID3": string;
+    "BANK_ID4": string;
+    "BANK_ID5": string;
+    "BANK_ID6": string;
+    "BANK_ID7": string;
+    "BANK_NAME1": string;
+    "BANK_NAME2": string;
+    "BANK_NAME3": string;
+    "BANK_NAME4": string;
+    "BANK_NAME5": string;
+    "BANK_NAME6": string;
+    "BANK_NAME7": string;
+    "BANK_ACCOUNT1": string;
+    "BANK_ACCOUNT2": string;
+    "BANK_ACCOUNT3": string;
+    "BANK_ACCOUNT4": string;
+    "BANK_ACCOUNT5": string;
+    "BANK_ACCOUNT6": string;
+    "BANK_ACCOUNT7": string;
+    "DELIVERY_METHOD": string;
+    "SHIPMENT_AGENT": string;
+    "CURRENCY": number;
+    "TEXTINC": number;
+    "DATA_SITEID": number;
     "DATA_REFERENCE": number;
+    "E_COMM_ID": string;
+    "TRADING_GRP": string;
     "CREATED_BY": number;
     "DATE_CREATED": string;
     "HOUR_CREATED": number;
@@ -17,16 +84,17 @@ export class arp {
     "HOUR_MODIFIED": number;
     "MIN_MODIFIED": number;
     "SEC_MODIFIED": number;
+    "DEBT_TRCK_TYPE": number;
+    "XRTDIF_TYPE": number;
     "NOTES": {
         "items": [
             {
                 "INTERNAL_REFERENCE": number;
             }
         ]
-    };
+    }
     "KVKK_BEGIN_DATE": string;
     "KVKK_END_DATE": string;
     "KVKK_CANCEL_DATE": string;
     "KVKK_ANONYMIZE_DATE": string;
-
 }
