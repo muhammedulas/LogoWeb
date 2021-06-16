@@ -1,3 +1,76 @@
-<p>
-  Dialog_edit-inspectItemChar works!
-</p>
+<div class="container">
+  <div mat-dialog-content>
+    <div class="row">
+      <div class="col-6">
+        <mat-form-field [style.width.%]="100">
+          <input type="text" matInput autocomplete="off" placeholder="Kodu" [(ngModel)]="data.CODE" [disabled]="data.INSPECT!">
+        </mat-form-field>
+        <br>
+        <mat-form-field [style.width.%]="100">
+          <input type="text" matInput autocomplete="off" placeholder="Açıklaması" [(ngModel)]="data.NAME" [disabled]="data.INSPECT!">
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <mat-form-field [style.width.%]="100">
+          <input type="text" matInput autocomplete="off" placeholder="Özel Kod" [(ngModel)]="data.AUXIL_CODE" [disabled]="data.INSPECT!">
+        </mat-form-field>
+      </div>
+      <div class="col-4">
+        <mat-form-field [style.width.%]="100">
+          <input type="text" matInput autocomplete="off" placeholder="Yetki Kodu" [(ngModel)]="data.AUTH_CODE" [disabled]="data.INSPECT!">
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <h2>Değerler</h2>
+    </div>
+    <div class="row">
+      <div>
+        <table class="table-content">
+          <thead>
+            <th>Değer</th>
+            <th>Açıklaması</th>
+            <th>
+              <button mat-icon-button (click)="newLine()" matTooltip="Satır Ekle" [disabled]="data.INSPECT!">
+                <mat-icon>
+                  add
+                </mat-icon>
+              </button>
+            </th>
+          </thead>
+          <tbody>
+            <tr *ngFor="let val of data.VALUES.items; let i = index">
+              <td>
+                <mat-form-field>
+                  <input type="text" matInput autocomplete="off" [(ngModel)]="val.CODE" [disabled]="data.INSPECT!">
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field>
+                  <input type="text" matInput autocomplete="off" [(ngModel)]="val.NAME" [disabled]="data.INSPECT!">
+                </mat-form-field>
+              </td>
+              <td>
+                <button mat-icon-button color="warn" (click)="removeLine(i)" [disabled]="data.INSPECT!">
+                  <mat-icon>
+                    remove
+                  </mat-icon>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-stroked-button [mat-dialog-close]>
+    Vazgeç
+  </button>
+  <button mat-stroked-button (click)="update()" [disabled]="data.INSPECT!">
+    Güncelle
+  </button>
+</div>

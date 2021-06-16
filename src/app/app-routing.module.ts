@@ -92,6 +92,7 @@ const routes: Routes = [
           { path: 'satinalma-siparisleri', component: SatinalmaSiparisleriComponent },
           { path: 'satinalma-irsaliyeleri', component: SatinalmaIrsaliyeleriComponent },
           { path: 'satinalma-faturalari', component: SatinalmaFaturalariComponent },
+          { path: 'odeme-tahsilat-planlari', component: Odeme_tahsilatPlanlariComponent }
         ]
       },
 

@@ -17,13 +17,14 @@ export class itemCharasteristics {
     "SEC_MODIFIED": number;
     "DATA_REFERENCE": number;
     "VALUES": {
-        "items": [
-            {
-                "INTERNAL_REFERENCE": number;
-                "VALNO": number;
-                "CODE": string;
-                "NAME": string;
-            }
-        ]
+        "items": itemCharVal[]
     }
+}
+
+
+export class itemCharVal{
+    "INTERNAL_REFERENCE": number;
+    "VALNO": number;
+    "CODE": string;
+    "NAME": string;
 }

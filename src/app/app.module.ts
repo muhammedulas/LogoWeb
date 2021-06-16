@@ -105,6 +105,9 @@ import { SalesDispatchTypePipe } from './components/satis/hareketler/satis-irsal
 import { SalesInvoiceTypePipe } from './components/satis/hareketler/satis-faturalari/salesInvoiceType.pipe';
 import { SafeDepositSlipTypePipe } from './components/finans/hareketler/kasa-fisleri/safeDepositSlipType.pipe';
 import { Dialog_orderComponent } from './commonDialogs/dialog_order/dialog_order.component';
+import { Dialog_editInspectItemCharComponent } from './components/malzeme-yonetimi/ana-kayitlar/malzeme-ozellikleri/Dialog_edit-inspectItemChar/Dialog_edit-inspectItemChar.component';
+import { Dialog_newItemCharComponent } from './components/malzeme-yonetimi/ana-kayitlar/malzeme-ozellikleri/Dialog_newItemChar/Dialog_newItemChar.component';
+import { Dialog_deleteItemCharComponent } from './components/malzeme-yonetimi/ana-kayitlar/malzeme-ozellikleri/Dialog_deleteItemChar/Dialog_deleteItemChar.component';
 
 
 
@@ -213,7 +216,10 @@ import { Dialog_orderComponent } from './commonDialogs/dialog_order/dialog_order
     Dialog_deleteUSComponent,
     Dialog_editInspectUSComponent,
     Dialog_newUSComponent,
-    Dialog_orderComponent
+    Dialog_orderComponent,
+    Dialog_editInspectItemCharComponent,
+    Dialog_newItemCharComponent,
+    Dialog_deleteItemCharComponent
 
 
   ],
@@ -225,7 +231,10 @@ import { Dialog_orderComponent } from './commonDialogs/dialog_order/dialog_order
     Dialog_deleteUSComponent,
     Dialog_newUSComponent,
     Dialog_editInspectUSComponent,
-    Dialog_orderComponent
+    Dialog_orderComponent,
+    Dialog_editInspectItemCharComponent,
+    Dialog_newItemCharComponent,
+    Dialog_deleteItemCharComponent
   ],
 
   imports: [

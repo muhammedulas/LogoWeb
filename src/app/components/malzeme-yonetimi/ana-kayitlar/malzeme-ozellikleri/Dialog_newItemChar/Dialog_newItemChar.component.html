@@ -1,3 +1,74 @@
-<p>
-  Dialog_newItemChar works!
-</p>
+<div mat-dialog-content>
+  <div class="row">
+    <div class="col-6">
+      <mat-form-field [style.width.%]="100">
+        <input type="text" matInput autocomplete="off" placeholder="Kodu" [(ngModel)]="newItemChar.CODE">
+      </mat-form-field>
+      <br>
+      <mat-form-field [style.width.%]="100">
+        <input type="text" matInput autocomplete="off" placeholder="Açıklaması" [(ngModel)]="newItemChar.NAME">
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-4">
+      <mat-form-field [style.width.%]="100">
+        <input type="text" matInput autocomplete="off" placeholder="Özel Kod" [(ngModel)]="newItemChar.AUXIL_CODE">
+      </mat-form-field>
+    </div>
+    <div class="col-4">
+      <mat-form-field [style.width.%]="100">
+        <input type="text" matInput autocomplete="off" placeholder="Yetki Kodu" [(ngModel)]="newItemChar.AUTH_CODE">
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <h2>Değerler</h2>
+  </div>
+  <div class="row">
+    <div class="table-content">
+      <table>
+        <thead>
+          <th>Değer</th>
+          <th>Açıklaması</th>
+          <th>
+            <button mat-icon-button (click)="newLine()" matTooltip="Satır Ekle">
+              <mat-icon>
+                add
+              </mat-icon>
+            </button>
+          </th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let val of newItemChar.VALUES.items; let i = index">
+            <td>
+              <mat-form-field>
+                <input type="text" matInput autocomplete="off" [(ngModel)]="val.CODE">
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input type="text" matInput autocomplete="off" [(ngModel)]="val.NAME">
+              </mat-form-field>
+            </td>
+            <td>
+              <button mat-icon-button color="warn" (click)="removeLine(i)">
+                <mat-icon>
+                  remove
+                </mat-icon>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-stroked-button [mat-dialog-close]>
+    Vazgeç
+  </button>
+  <button mat-stroked-button cdkFocusInitial  (click)="create()" >
+    Tamam
+  </button>
+</div>

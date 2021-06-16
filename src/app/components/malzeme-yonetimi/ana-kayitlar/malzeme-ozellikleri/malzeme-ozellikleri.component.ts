@@ -16,10 +16,10 @@ import { Dialog_newItemCharComponent } from './Dialog_newItemChar/Dialog_newItem
 export class MalzemeOzellikleriComponent implements OnInit {
 
   constructor(
-    private toast:ToastrService,
-    private router:Router,
-    private ICService:ItemCharsService,
-    private dialog:MatDialog
+    private toast: ToastrService,
+    private router: Router,
+    private ICService: ItemCharsService,
+    private dialog: MatDialog
 
   ) { }
   public searchButtonActive: boolean = false;
@@ -27,9 +27,9 @@ export class MalzemeOzellikleriComponent implements OnInit {
   public itemCount: number = 0;
   public currPage: number = 1;
   public recLimit: number = 10;
-  private response:any;
-  public selectedItemChar:itemCharasteristics = new itemCharasteristics
-  public itemChars:itemCharasteristics[] = []
+  private response: any;
+  public selectedItemChar: itemCharasteristics = new itemCharasteristics
+  public itemChars: itemCharasteristics[] = []
   private errorMsg: string = "";
   private errorCode: string = "";
   public loaded: boolean = false;
@@ -41,13 +41,13 @@ export class MalzemeOzellikleriComponent implements OnInit {
     this.getItemChars(0)
   }
 
-  select(itemChar:itemCharasteristics){
+  select(itemChar: itemCharasteristics) {
     this.selectedItemChar = itemChar;
     console.log('s', this.selectedItemChar)
   }
 
   getItemChars(offset: number, q?: string) {
-    this.ICService.getItemChars(this.recLimit,offset, q).subscribe((resp) => {
+    this.ICService.getItemChars(this.recLimit, offset, q).subscribe((resp) => {
       this.response = resp
       console.log(this.response)
       this.itemChars = this.response.items
@@ -66,27 +66,37 @@ export class MalzemeOzellikleriComponent implements OnInit {
     )
   }
 
-  addItemChar(){
-    this.dialog.open(Dialog_newItemCharComponent,{width:"60vw",height:"65vh"})
+  addItemChar() {
+    let ref = this.dialog.open(Dialog_newItemCharComponent, { width: "60vw", height: "65vh" })
+    ref.afterClosed().subscribe(q => {
+      this.getItemChars(0)
+    })
   }
 
-  deleteItemChar(id:number) {
-    this.dialog.open(Dialog_deleteItemCharComponent,{data:id})
+  deleteItemChar(id: number) {
+    let ref = this.dialog.open(Dialog_deleteItemCharComponent, { data: id })
+    ref.afterClosed().subscribe(q => {
+      this.getItemChars(0)
+    })
   }
 
-  edit_inspectItemChar(inspectMode:boolean){
+  edit_inspectItemChar(inspectMode: boolean) {
     var itemChar
-    this.ICService.getItemCharByID(this.selectedItemChar.INTERNAL_REFERENCE).subscribe(res=>{
+    this.ICService.getItemCharByID(this.selectedItemChar.INTERNAL_REFERENCE).subscribe(res => {
       itemChar = res
       itemChar.INSPECT = inspectMode
-      this.dialog.open(Dialog_editInspectItemCharComponent,{
-        data:itemChar,
-        width:"60vw",
-        height:"65vh"
+      let ref = this.dialog.open(Dialog_editInspectItemCharComponent, {
+        data: itemChar,
+        width: "60vw",
+        height: "65vh"
       })
-    },err=>{
-      this.toast.error(err.message,"Hata",{positionClass:"toast-top-center",timeOut:3000})
+      ref.afterClosed().subscribe(q=>{
+        this.getItemChars(0)
+      })
+    }, err => {
+      this.toast.error(err.message, "Hata", { positionClass: "toast-top-center", timeOut: 3000 })
     })
+
 
   }
   searchItemChar(key: KeyboardEvent, data: string) {
@@ -94,7 +104,7 @@ export class MalzemeOzellikleriComponent implements OnInit {
       this.getItemChars(0, data)
     }
   }
-  cancelSearch(){
+  cancelSearch() {
     this.searchButtonActive = false;
     this.getItemChars(0);
   }
@@ -162,7 +172,7 @@ export class MalzemeOzellikleriComponent implements OnInit {
   }
 
   lastPage() {
-    if(this.currPage >= this.pageCount) return
+    if (this.currPage >= this.pageCount) return
     this.loaded = false
     this.currPage = this.pageCount
     var offset = this.itemCount - this.recLimit

@@ -56,7 +56,7 @@ export class Dialog_editInspectUSComponent implements OnInit {
       this.toast.success("Kayıt Başarılı", "", { positionClass: 'toast-top-center', timeOut: 300000 })
       console.log(res)
     }, err => {
-      this.toast.error("Kayıt Başarısız", "", { positionClass: 'toast-top-center', timeOut: 300000 })
+      this.toast.error(err.error.ModelState.OtherError[0], "", { positionClass: 'toast-top-center', timeOut: 300000 })
       console.log(err)
     })
   }

@@ -1,3 +1,14 @@
-<p>
-  Dialog_deleteItemChar works!
-</p>
+<h2>Silme İşlemini Onayla</h2>
+<div mat-dialog-content>
+  <p>
+    Web uygulamasından yapılan silme işlemlerinde ilişki kontolü yapılamamaktadır. Silme işlemini onaylıyor musunuz?
+  </p>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-stroked-button [mat-dialog-close]>
+    Vazgeç
+  </button>
+  <button mat-stroked-button (click)="delete()" color="warn">
+    Onayla
+  </button>
+</div>
