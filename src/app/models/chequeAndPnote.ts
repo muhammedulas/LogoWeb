@@ -11,6 +11,8 @@ export class cheque_Pnote {
         "ACCOUNT_NO": string;
         "DUE_DATE": string;
         "DATE": string;
+        "AUXIL_CODE":string;
+        "AUTH_CODE":string;
         "AMOUNT": number;
         "TC_XRATE": number;
         "TC_AMOUNT": number;
@@ -28,5 +30,7 @@ export class cheque_Pnote {
         "SUBDURATION": number;
         "MIN_CREATED": number;
         "TAX_NR": string;
+        "BANK_CODE":string;
+        "BANK_NAME":string;
 
 }

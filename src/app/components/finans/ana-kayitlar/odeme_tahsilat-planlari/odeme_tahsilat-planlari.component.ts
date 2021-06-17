@@ -67,11 +67,15 @@ export class Odeme_tahsilatPlanlariComponent implements OnInit {
   }
 
   addPP(){
-    this.dialog.open(Dialog_newPaymentPlanComponent,{width:"60vw",height:"65vh"})
+    this.dialog.open(Dialog_newPaymentPlanComponent,{width:"60vw",height:"65vh"}).afterClosed().subscribe(q=>{
+      this.getPPs(0)
+    })
   }
 
   deletePP(id:number) {
-    this.dialog.open(Dialog_deletePaymentPlanComponent,{data:id})
+    this.dialog.open(Dialog_deletePaymentPlanComponent,{data:id}).afterClosed().subscribe(q=>{
+      this.getPPs(0)
+    })
   }
 
   edit_inspectPP(inspectMode:boolean){
@@ -83,6 +87,8 @@ export class Odeme_tahsilatPlanlariComponent implements OnInit {
         data:plan,
         width:"60vw",
         height:"65vh"
+      }).afterClosed().subscribe(q=>{
+        this.getPPs(0)
       })
     },err=>{
       this.toast.error(err.message,"Hata",{positionClass:"toast-top-center",timeOut:3000})

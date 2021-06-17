@@ -38,7 +38,7 @@ export class AlinanHizmetlerComponent implements OnInit {
 
 
   ngOnInit() {
-    this.getSDs(0)
+    this.getPSs(0)
   }
 
   select(service:purchasedService){
@@ -46,7 +46,7 @@ export class AlinanHizmetlerComponent implements OnInit {
     console.log('s', this.selectedPS)
   }
 
-  getSDs(offset: number, q?: string) {
+  getPSs(offset: number, q?: string) {
     this.service.getPurchasedServices(this.recLimit,offset, q).subscribe((resp) => {
       this.response = resp
       console.log(this.response)
@@ -66,15 +66,21 @@ export class AlinanHizmetlerComponent implements OnInit {
     )
   }
 
-  addSD(){
-    this.dialog.open(Dialog_newPurchasedServiceComponent,{width:"60vw",height:"65vh"})
+  addPS(){
+    this.dialog.open(Dialog_newPurchasedServiceComponent,{width:"60vw",height:"65vh"}).afterClosed().subscribe(q => {
+      this.getPSs(0)
+      this.currPage = 1
+    })
   }
 
-  deleteSD(id:number) {
-    this.dialog.open(Dialog_deletePurchasedServiceComponent,{data:id})
+  deletePS(id:number) {
+    this.dialog.open(Dialog_deletePurchasedServiceComponent,{data:id}).afterClosed().subscribe(q => {
+      this.getPSs(0)
+      this.currPage = 1
+    })
   }
 
-  edit_inspectSD(inspectMode:boolean){
+  edit_inspectPS(inspectMode:boolean){
     var bank
     this.service.getPurchasedServiceByID(this.selectedPS.INTERNAL_REFERENCE).subscribe(res=>{
       bank = res
@@ -83,20 +89,23 @@ export class AlinanHizmetlerComponent implements OnInit {
         data:bank,
         width:"60vw",
         height:"65vh"
+      }).afterClosed().subscribe(q => {
+        this.getPSs(0)
+        this.currPage = 1
       })
     },err=>{
       this.toast.error(err.message,"Hata",{positionClass:"toast-top-center",timeOut:3000})
     })
 
   }
-  searchSD(key: KeyboardEvent, data: string) {
+  searchPS(key: KeyboardEvent, data: string) {
     if (key.key == "Enter") {
-      this.getSDs(0, data)
+      this.getPSs(0, data)
     }
   }
   cancelSearch(){
     this.searchButtonActive = false;
-    this.getSDs(0);
+    this.getPSs(0);
   }
 
   //Pagination
@@ -105,9 +114,9 @@ export class AlinanHizmetlerComponent implements OnInit {
     this.currPage = 1
     this.recLimit = newLim
     this.loaded = false
-    this.getSDs(0)
+    this.getPSs(0)
     this.pageCount = Math.floor(this.itemCount / this.recLimit)
-    this.router.navigate(['alinan-hizmetler'])
+    this.router.navigate(['/satinalma/alinan-hizmetler'])
   }
 
   nextPage() {
@@ -119,7 +128,7 @@ export class AlinanHizmetlerComponent implements OnInit {
           this.response = resp
           console.log(this.response)
           this.purchasedServices = this.response.items
-          this.router.navigate(['alinan-hizmetler'])
+          this.router.navigate(['/satinalma/alinan-hizmetler'])
           this.loaded = true
         },
         err => {
@@ -141,7 +150,7 @@ export class AlinanHizmetlerComponent implements OnInit {
           this.response = resp
           console.log(this.response)
           this.purchasedServices = this.response.items
-          this.router.navigate(['alinan-hizmetler'])
+          this.router.navigate(['/satinalma/alinan-hizmetler'])
           this.loaded = true
         },
         err => {
@@ -157,8 +166,8 @@ export class AlinanHizmetlerComponent implements OnInit {
   firstPage() {
     this.loaded = false
     this.currPage = 1
-    this.getSDs(0)
-    this.router.navigate(['alinan-hizmetler'])
+    this.getPSs(0)
+    this.router.navigate(['/satinalma/alinan-hizmetler'])
   }
 
   lastPage() {
@@ -166,7 +175,7 @@ export class AlinanHizmetlerComponent implements OnInit {
     this.loaded = false
     this.currPage = this.pageCount
     var offset = this.itemCount - this.recLimit
-    this.service.getPurchasedServices(offset, this.recLimit).subscribe((resp) => {
+    this.service.getPurchasedServices(this.recLimit,offset).subscribe((resp) => {
       this.response = resp
       console.log(this.response)
       this.purchasedServices = this.response.items
@@ -188,7 +197,7 @@ export class AlinanHizmetlerComponent implements OnInit {
       this.response = resp
       console.log(this.response)
       this.purchasedServices = this.response.items
-      this.router.navigate(['alinan-hizmetler'])
+      this.router.navigate(['/satinalma/alinan-hizmetler'])
       this.loaded = true
     },
       err => {

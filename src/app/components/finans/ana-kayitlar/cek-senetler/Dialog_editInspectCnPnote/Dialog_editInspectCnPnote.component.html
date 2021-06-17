@@ -1,3 +1,71 @@
-<p>
-  Dialog_editInspectCnPnote works!
-</p>
+<div mat-dialog-content>
+  <div class="row">
+    <div class="col-4">
+      <mat-form-field>
+        <input matInput type="text" autocomplete="off" placeholder="Portföy No" [(ngModel)]="data.NUMBER" [disabled]="data.INSPECT">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input matInput type="date" autocomplete="off" placeholder="Vade" disabled [(ngModel)]="data.DUE_DATE">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input matInput type="text" autocomplete="off" placeholder="Özel Kod" [(ngModel)]="data.AUXIL_CODE" [disabled]="data.INSPECT">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input matInput type="text" autocomplete="off" placeholder="Yetki Kodu" [(ngModel)]="data.AUTH_CODE" [disabled]="data.INSPECT">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input matInput type="text" autocomplete="off" placeholder="Muhabir Şube" [(ngModel)]="data.INFORMANT" [disabled]="data.INSPECT">
+      </mat-form-field>
+    </div>
+    <div class="col-4">
+      <mat-form-field>
+        <input matInput type="text" autocomplete="off" placeholder="Seri No" [(ngModel)]="data.NEW_SERIAL_NO" [disabled]="data.INSPECT">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input matInput type="text" autocomplete="off" placeholder="Kefil" [(ngModel)]="data.GUARANTOR" [disabled]="data.INSPECT">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input matInput type="text" autocomplete="off" placeholder="Borçlu" [(ngModel)]="data.OWING" [disabled]="data.INSPECT">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input matInput type="text" autocomplete="off" placeholder="TC Kimlik/Vergi No" [(ngModel)]="data.TAX_NR" [disabled]="data.INSPECT">
+      </mat-form-field>
+    </div>
+    <div class="col-4">
+      <mat-form-field>
+        <input matInput type="text" autocomplete="off" placeholder="Banka Kodu" [(ngModel)]="data.BANK_CODE" [disabled]="data.INSPECT">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input matInput type="text" autocomplete="off" placeholder="Banka Adı" [(ngModel)]="data.BANK_NAME" [disabled]="data.INSPECT">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input matInput type="text" autocomplete="off" placeholder="Hesap No" [(ngModel)]="data.ACCOUNT_NO" [disabled]="data.INSPECT">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input matInput type="text" autocomplete="off" placeholder="IBAN" [(ngModel)]="data.IBAN" [disabled]="data.INSPECT">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input matInput type="text" autocomplete="off" placeholder="İbraz Süresi" [(ngModel)]="data.SUBDURATION" [disabled]="data.INSPECT">
+      </mat-form-field>
+    </div>
+  </div>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-stroked-button cdkFocusInitial [disabled]="data.INSPECT" (click)="update()">
+    Güncelle
+  </button>
+  <button mat-stroked-button [mat-dialog-close]>
+    Vazgeç
+  </button>
+</div>

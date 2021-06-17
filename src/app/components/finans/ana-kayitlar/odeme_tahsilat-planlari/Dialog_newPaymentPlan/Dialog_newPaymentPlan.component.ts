@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
+import { MatTable, MatTableModule } from '@angular/material/table';
 import { ToastrService } from 'ngx-toastr';
 import { paymentPlan } from 'src/app/models/paymentPlans';
 import { paymentTerms } from 'src/app/models/paymentTerms';
@@ -12,6 +13,9 @@ import { PaymentPlansService } from 'src/app/services/paymentPlans.service';
 })
 export class Dialog_newPaymentPlanComponent implements OnInit {
   public paymentPlan = new paymentPlan();
+  public displayedColumns = ["PaymentType", "Formula", "Condition", "Discount", "Day", "Month", "Year", "RoundBase"]
+  @ViewChild('tableRef')
+  table!: MatTable<paymentTerms[]>;
   constructor(
     private svc: PaymentPlansService,
     public dialogRef: MatDialogRef<Dialog_newPaymentPlanComponent>,
@@ -28,8 +32,9 @@ export class Dialog_newPaymentPlanComponent implements OnInit {
     this.svc.addPaymentPlan(this.paymentPlan).subscribe(res => {
       this.toast.success("Kayıt Başarılı", "", { positionClass: 'toast-top-center', timeOut: 3000 })
       this.dialogRef.close()
+      console.log(res)
     }, err => {
-      this.toast.error(err.error.ModelState.OtherError[0], "", { positionClass: 'toast-top-center', timeOut: 3000 })
+      this.toast.error(err.error.ModelState[0], "", { positionClass: 'toast-top-center', timeOut: 3000 })
       console.log(err)
       this.dialogRef.close()
     })
@@ -39,7 +44,7 @@ export class Dialog_newPaymentPlanComponent implements OnInit {
     let empty = {
       INTERNAL_REFERENCE: 0,
       PAYPLANREF: 0,
-      LINENO: 0,
+      LINENO: (this.paymentPlan.PAYMENT_TERMS.items[this.paymentPlan.PAYMENT_TERMS.items.length - 1].LINENO) + 1,
       AFTER_DAYS: 0,
       FORMULA: "",
       CONDITION: "",
@@ -59,7 +64,12 @@ export class Dialog_newPaymentPlanComponent implements OnInit {
       TR_CURR: 0,
       GLOBAL_CODE: ""
     }
-    this.paymentPlan.PAYMENT_TERMS.items.push(empty)
+    let temp = this.paymentPlan.PAYMENT_TERMS.items
+    temp.push(empty)
+    this.paymentPlan.PAYMENT_TERMS.items = temp
+    this.table.renderRows();
+
+
   }
 
 

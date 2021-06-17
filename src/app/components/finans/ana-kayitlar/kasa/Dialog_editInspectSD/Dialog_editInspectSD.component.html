@@ -1,3 +1,140 @@
-<p>
-  Dialog_editInspectSD works!
-</p>
+<div mat-dialog-content>
+  <div class="row">
+    <div class="col-10">
+      <div class="row">
+        <mat-form-field [style.width.%]="30">
+          <input matInput type="text" autocomplete="off" [disabled]="data.INSPECT!"  placeholder="Kodu" [(ngModel)]="data.CODE">
+        </mat-form-field>
+        &nbsp;
+        <mat-form-field [style.width.%]="30">
+          <mat-select placeholder="Statüsü" [(value)]="data.RECORD_STATUS" [disabled]="data.INSPECT!" #status>
+            <mat-option [value]=0>
+              Kullanımda
+            </mat-option>
+            <mat-option [value]=1>
+              Kullanım Dışı
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field [style.width.%]="80">
+          <input matInput type="text" autocomplete="off" [disabled]="data.INSPECT!"  placeholder="Adı" [(ngModel)]="data.DESCRIPTION">
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field [style.width.%]="80">
+          <input matInput type="text" autocomplete="off" [disabled]="data.INSPECT!"  placeholder="Açıklaması" [(ngModel)]="data.USAGE_NOTE">
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="col-1"></div>
+  </div>
+  <div class="row">
+    <mat-tab-group [style.width.%]="90" dynamicHeight>
+      <mat-tab label="Tanımlar">
+        <div class="row">
+          <div class="col-10">
+            <mat-form-field [style.width.%]="20">
+              <input matInput type="text" autocomplete="off" [disabled]="data.INSPECT!"  placeholder="Özel Kodu" [(ngModel)]="data.AUXIL_CODE">
+            </mat-form-field>
+            &nbsp;
+            <mat-form-field [style.width.%]="20">
+              <input matInput type="text" autocomplete="off" [disabled]="data.INSPECT!"  placeholder="Yetki Kodu" [(ngModel)]="data.AUTH_CODE">
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-10">
+            Adres:
+            <mat-form-field [style.width.%]="80">
+              <input matInput type="text" autocomplete="off" [disabled]="data.INSPECT!"  [(ngModel)]="data.ADDRESS1">
+            </mat-form-field>
+            <br>
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            <mat-form-field [style.width.%]="80">
+              <input matInput type="text" autocomplete="off" [disabled]="data.INSPECT!"  [(ngModel)]="data.ADDRESS2">
+            </mat-form-field>
+          </div>
+        </div>
+      </mat-tab>
+      <mat-tab label="Muhasebe Kodları">
+        <div class="row">
+          <div class="col-3"></div>
+          <div class="col-3" style="text-align: center;">Hesap Kodu</div>
+          <div class="col-1"></div>
+          <div class="col-3" style="text-align: center;">Masraf Merkezi</div>
+        </div>
+        <div class="row">
+          <div class="col-3">Kasa</div>
+          <div class="col-3">
+            <mat-form-field>
+              <input matInput type="text" autocomplete="off" [disabled]="data.INSPECT!"  [(ngModel)]="data.GL_CODE1">
+            </mat-form-field>
+          </div>
+          <div class="col-1"></div>
+          <div class="col-3">
+            <mat-form-field>
+              <input matInput type="text" autocomplete="off" [disabled]="data.INSPECT!"  [(ngModel)]="data.OHP_CODE1">
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-3">İşlem Masrafları</div>
+          <div class="col-3">
+            <mat-form-field>
+              <input matInput type="text" autocomplete="off" [disabled]="data.INSPECT!"  [(ngModel)]="data.GL_CODE2">
+            </mat-form-field>
+          </div>
+          <div class="col-1"></div>
+          <div class="col-3">
+            <mat-form-field>
+              <input matInput type="text" autocomplete="off" [disabled]="data.INSPECT!"  [(ngModel)]="data.OHP_CODE2">
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-3">Kur Farkı Borç Hesabı</div>
+          <div class="col-3">
+            <mat-form-field>
+              <input matInput type="text" autocomplete="off" [disabled]="data.INSPECT!"  [(ngModel)]="data.GL_CODE3">
+            </mat-form-field>
+          </div>
+          <div class="col-1"></div>
+          <div class="col-3">
+            <mat-form-field>
+              <input matInput type="text" autocomplete="off" [disabled]="data.INSPECT!"  [(ngModel)]="data.OHP_CODE3">
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-3">Kur Farkı Alacak Hesabı</div>
+          <div class="col-3">
+            <mat-form-field>
+              <input matInput type="text" autocomplete="off" [disabled]="data.INSPECT!"  [(ngModel)]="data.GL_CODE4">
+            </mat-form-field>
+          </div>
+          <div class="col-1"></div>
+          <div class="col-3">
+            <mat-form-field>
+              <input matInput type="text" autocomplete="off" [disabled]="data.INSPECT!"  [(ngModel)]="data.OHP_CODE4">
+            </mat-form-field>
+          </div>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-stroked-button cdkFocusInitial [disabled]="data.INSPECT!" (click)="update()">
+    Güncelle
+  </button>
+  <button mat-stroked-button [mat-dialog-close]>
+    Vazgeç
+  </button>
+</div>

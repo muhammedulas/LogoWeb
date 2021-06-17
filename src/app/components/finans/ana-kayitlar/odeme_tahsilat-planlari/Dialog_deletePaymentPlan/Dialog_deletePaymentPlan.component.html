@@ -1,3 +1,12 @@
-<p>
-  Dialog_deletePaymentPlan works!
-</p>
+<div class="wrapper">
+  <h3 matDialogTitle style="text-align: center;">
+    Silme İşlemini Onaylayın
+  </h3>
+  <div matDialogContent>
+    <span style="font-size: smaller;">Ödeme/Tahsilat planını silmek istediğinizden emin misiniz?</span>
+  </div>
+  <mat-dialog-actions align="end">
+    <button mat-stroked-button color="warn"(click)="delete()">Sil</button>
+    <button mat-stroked-button [mat-dialog-close]>Vazgeç</button>
+  </mat-dialog-actions>
+</div>

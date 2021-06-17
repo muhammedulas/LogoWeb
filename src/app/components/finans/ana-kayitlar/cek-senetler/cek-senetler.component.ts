@@ -6,7 +6,6 @@ import { cheque_Pnote } from 'src/app/models/chequeAndPnote';
 import { ChequeAndPnotesService } from 'src/app/services/chequeAndPnotes.service';
 import { Dialog_deleteCnPnoteComponent } from './Dialog_deleteCnPnote/Dialog_deleteCnPnote.component';
 import { Dialog_editInspectCnPnoteComponent } from './Dialog_editInspectCnPnote/Dialog_editInspectCnPnote.component';
-import { Dialog_newCnPnoteComponent } from './Dialog_newCnPnote/Dialog_newCnPnote.component';
 
 @Component({
   selector: 'app-cek-senetler',
@@ -66,9 +65,6 @@ export class CekSenetlerComponent implements OnInit {
     )
   }
 
-  add(){
-    this.dialog.open(Dialog_newCnPnoteComponent,{width:"60vw",height:"65vh"})
-  }
 
   delete(id:number) {
     this.dialog.open(Dialog_deleteCnPnoteComponent,{data:id})
@@ -81,8 +77,8 @@ export class CekSenetlerComponent implements OnInit {
       CP.INSPECT = inspectMode
       this.dialog.open(Dialog_editInspectCnPnoteComponent,{
         data:CP,
-        width:"60vw",
-        height:"65vh"
+        width:"50vw",
+        height:"50vh"
       })
     },err=>{
       this.toast.error(err.message,"Hata",{positionClass:"toast-top-center",timeOut:3000})

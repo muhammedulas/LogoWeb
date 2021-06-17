@@ -16,10 +16,10 @@ import { Dialog_newSDComponent } from './Dialog_newSD/Dialog_newSD.component';
 export class KasaComponent implements OnInit {
 
   constructor(
-    private toast:ToastrService,
-    private router:Router,
-    private SDService:SafeDepositService,
-    private dialog:MatDialog
+    private toast: ToastrService,
+    private router: Router,
+    private SDService: SafeDepositService,
+    private dialog: MatDialog
 
   ) { }
   public searchButtonActive: boolean = false;
@@ -27,9 +27,9 @@ export class KasaComponent implements OnInit {
   public itemCount: number = 0;
   public currPage: number = 1;
   public recLimit: number = 10;
-  private response:any;
-  public selectedSD:safeDeposit = new safeDeposit
-  public safeDeposits:safeDeposit[] = []
+  private response: any;
+  public selectedSD: safeDeposit = new safeDeposit
+  public safeDeposits: safeDeposit[] = []
   private errorMsg: string = "";
   private errorCode: string = "";
   public loaded: boolean = false;
@@ -41,13 +41,13 @@ export class KasaComponent implements OnInit {
     this.getSDs(0)
   }
 
-  select(itemChar:safeDeposit){
+  select(itemChar: safeDeposit) {
     this.selectedSD = itemChar;
     console.log('s', this.selectedSD)
   }
 
   getSDs(offset: number, q?: string) {
-    this.SDService.getSDs(this.recLimit,offset, q).subscribe((resp) => {
+    this.SDService.getSDs(this.recLimit, offset, q).subscribe((resp) => {
       this.response = resp
       console.log(this.response)
       this.safeDeposits = this.response.items
@@ -66,26 +66,32 @@ export class KasaComponent implements OnInit {
     )
   }
 
-  addSD(){
-    this.dialog.open(Dialog_newSDComponent,{width:"60vw",height:"65vh"})
+  addSD() {
+    this.dialog.open(Dialog_newSDComponent, { width: "50vw", height: "65vh" }).afterClosed().subscribe(q => {
+      this.getSDs(0)
+    })
   }
 
-  deleteSD(id:number) {
-    this.dialog.open(Dialog_deleteSDComponent,{data:id})
+  deleteSD(id: number) {
+    this.dialog.open(Dialog_deleteSDComponent, { data: id }).afterClosed().subscribe(q => {
+      this.getSDs(0)
+    })
   }
 
-  edit_inspectSD(inspectMode:boolean){
+  edit_inspectSD(inspectMode: boolean) {
     var bank
-    this.SDService.getSDByID(this.selectedSD.INTERNAL_REFERENCE).subscribe(res=>{
+    this.SDService.getSDByID(this.selectedSD.INTERNAL_REFERENCE).subscribe(res => {
       bank = res
       bank.INSPECT = inspectMode
-      this.dialog.open(Dialog_editInspectSDComponent,{
-        data:bank,
-        width:"60vw",
-        height:"65vh"
+      this.dialog.open(Dialog_editInspectSDComponent, {
+        data: bank,
+        width: "60vw",
+        height: "65vh"
+      }).afterClosed().subscribe(q => {
+        this.getSDs(0)
       })
-    },err=>{
-      this.toast.error(err.message,"Hata",{positionClass:"toast-top-center",timeOut:3000})
+    }, err => {
+      this.toast.error(err.message, "Hata", { positionClass: "toast-top-center", timeOut: 3000 })
     })
 
   }
@@ -94,7 +100,7 @@ export class KasaComponent implements OnInit {
       this.getSDs(0, data)
     }
   }
-  cancelSearch(){
+  cancelSearch() {
     this.searchButtonActive = false;
     this.getSDs(0);
   }
@@ -162,7 +168,7 @@ export class KasaComponent implements OnInit {
   }
 
   lastPage() {
-    if(this.currPage >= this.pageCount) return
+    if (this.currPage >= this.pageCount) return
     this.loaded = false
     this.currPage = this.pageCount
     var offset = this.itemCount - this.recLimit

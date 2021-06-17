@@ -1,3 +1,102 @@
-<p>
-  Dialog_newPurchasedService works!
-</p>
+<div mat-dialog-content>
+  <div class="row">
+    <div class="col-6">
+      <mat-form-field [style.width.%]="40">
+        <input type="text" matInput autocomplete="off" placeholder="Hizmet Kodu" required [(ngModel)]="purSvc.CODE">
+      </mat-form-field>
+      &nbsp;
+      <mat-form-field [style.width.%]="25">
+        <mat-select placeholder="Statüsü" [(value)]="purSvc.RECORD_STATUS">
+          <mat-option [value]="0">
+            Kullanımda
+          </mat-option>
+          <mat-option [value]="1">
+            Kullanım Dışı
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
+      <mat-form-field [style.width.%]="80">
+        <input type="text" matInput autocomplete="off" placeholder="Açıklaması" required [(ngModel)]="purSvc.DESCRIPTION"> 
+      </mat-form-field>
+      <br>
+      <mat-form-field [style.width.%]="80">
+        <input type="text" matInput autocomplete="off" placeholder="Açıklaması 2" [(ngModel)]="purSvc.DESCRIPTION2">
+      </mat-form-field>
+      <br>
+      <mat-form-field [style.width.%]="38">
+        <input type="text" matInput autocomplete="off" placeholder="Ödeme Şekli" [(ngModel)]="purSvc.PAYMENT_CODE">
+      </mat-form-field>
+      &nbsp;
+      <mat-form-field [style.width.%]="39">
+        <input type="text" matInput autocomplete="off" placeholder="Proje Kodu" [(ngModel)]="purSvc.PROJECT_CODE">
+      </mat-form-field>
+      <br>
+      <mat-form-field [style.width.%]="17">
+        <input type="text" matInput autocomplete="off" placeholder="Satınalma KDV"  [(ngModel)]="purSvc.VAT_PERC">
+      </mat-form-field>
+      &nbsp;
+      <mat-form-field [style.width.%]="17">
+        <input type="text" matInput autocomplete="off" placeholder="İade KDV" [(ngModel)]="purSvc.RETURNVAT">
+      </mat-form-field>
+      &nbsp;
+      <mat-checkbox [(ngModel)]="canDeduct">
+        Tevkifat Uygulansın
+      </mat-checkbox>
+      <br>
+      <mat-form-field [style.width.%]="35">
+        <input type="text" matInput autocomplete="off" placeholder="Tevkifat Kodu" [(ngModel)]="purSvc.DEDUCT_CODE">
+      </mat-form-field>
+      <span style="width: 35%;">Tevkifat oranı:</span>
+      &nbsp;
+      <mat-form-field [style.width.%]="10">
+        <input type="text" matInput autocomplete="off" [(ngModel)]="purSvc.DEDUCTION_PART1">
+      </mat-form-field>
+      /
+      <mat-form-field [style.width.%]="10">
+        <input type="text" matInput autocomplete="off" [(ngModel)]="purSvc.DEDUCTION_PART2">
+      </mat-form-field>
+    </div>
+    <div class="col-6">
+      <mat-form-field [style.width.%]="40">
+        <input type="text" matInput autocomplete="off" placeholder="Özel Kod" [(ngModel)]="purSvc.AUXIL_CODE">
+      </mat-form-field>
+      &nbsp;
+      <mat-form-field [style.width.%]="40">
+        <input type="text" matInput autocomplete="off" placeholder="Yetki Kodu" [(ngModel)]="purSvc.AUTH_CODE">
+      </mat-form-field>
+      <br>
+      <mat-form-field [style.width.%]="40">
+        <input type="text" matInput autocomplete="off" placeholder="Ek Vergi Kodu" [(ngModel)]="purSvc.ADD_TAXCODE">
+      </mat-form-field>
+      &nbsp;
+      <mat-form-field [style.width.%]="40">
+        <input type="text" matInput autocomplete="off" placeholder="Karşı İşlem Hizmet Kodu" [(ngModel)]="purSvc.COUNTER_SRV_CODE">
+      </mat-form-field>
+      <br>
+      <mat-form-field [style.width.%]="40">
+        <input type="text" matInput autocomplete="off" placeholder="Birim Seti" required [(ngModel)]="purSvc.UNITSET_CODE">
+      </mat-form-field>
+      &nbsp;
+      <mat-form-field [style.width.%]="40">
+        <input type="text" matInput autocomplete="off" placeholder="Menşei(Kamu)" [(ngModel)]="purSvc.PUBLIC_COUNTRY_CODE">
+      </mat-form-field>
+      <br>
+      <mat-form-field [style.width.%]="80">
+        <input type="text" matInput autocomplete="off" placeholder="CPA Kodu" [(ngModel)]="purSvc.CPA_CODE">
+      </mat-form-field>
+      <br>
+      <mat-form-field [style.width.%]="80">
+        <input type="text" matInput autocomplete="off" placeholder="GTIP Kodu" [(ngModel)]="purSvc.GTIP_CODE">
+      </mat-form-field>
+    </div>
+  </div>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-stroked-button cdkFocusInitial (click)="create()">
+    Tamam
+  </button>
+  <button mat-stroked-button [mat-dialog-close]>
+    Vazgeç
+  </button>
+</div>

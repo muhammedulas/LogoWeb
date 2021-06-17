@@ -50,6 +50,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { USTypesPipe } from './components/malzeme-yonetimi/ana-kayitlar/birim-setleri/USTypes.pipe';
@@ -113,6 +114,18 @@ import { Dialog_editInspectARPComponent } from './components/finans/ana-kayitlar
 import { Dialog_deleteARPComponent } from './components/finans/ana-kayitlar/cari-hesaplar/Dialog_deleteARP/Dialog_deleteARP.component';
 import { Dialog_newPaymentPlanComponent } from './components/finans/ana-kayitlar/odeme_tahsilat-planlari/Dialog_newPaymentPlan/Dialog_newPaymentPlan.component';
 import { Dialog_editInspectPaymentPlanComponent } from './components/finans/ana-kayitlar/odeme_tahsilat-planlari/Dialog_editInspectPaymentPlan/Dialog_editInspectPaymentPlan.component';
+import { Dialog_deletePaymentPlanComponent } from './components/finans/ana-kayitlar/odeme_tahsilat-planlari/Dialog_deletePaymentPlan/Dialog_deletePaymentPlan.component';
+import { Dialog_editInspectCnPnoteComponent } from './components/finans/ana-kayitlar/cek-senetler/Dialog_editInspectCnPnote/Dialog_editInspectCnPnote.component';
+import { Dialog_deleteCnPnoteComponent } from './components/finans/ana-kayitlar/cek-senetler/Dialog_deleteCnPnote/Dialog_deleteCnPnote.component';
+import { Dialog_newSDComponent } from './components/finans/ana-kayitlar/kasa/Dialog_newSD/Dialog_newSD.component';
+import { Dialog_editInspectSDComponent } from './components/finans/ana-kayitlar/kasa/Dialog_editInspectSD/Dialog_editInspectSD.component';
+import { Dialog_deleteSDComponent } from './components/finans/ana-kayitlar/kasa/Dialog_deleteSD/Dialog_deleteSD.component';
+import { Dialog_newPurchasedServiceComponent } from './components/satinalma/ana-kayitlar/alinan-hizmetler/Dialog_newPurchasedService/Dialog_newPurchasedService.component';
+import { Dialog_editInspectPurchasedServiceComponent } from './components/satinalma/ana-kayitlar/alinan-hizmetler/Dialog_editInspectPurchasedService/Dialog_editInspectPurchasedService.component';
+import { Dialog_deletePurchasedServiceComponent } from './components/satinalma/ana-kayitlar/alinan-hizmetler/Dialog_deletePurchasedService/Dialog_deletePurchasedService.component';
+import { Dialog_newPurchaseDiscountComponent } from './components/satinalma/ana-kayitlar/satinalma-indirimleri/Dialog_newPurchaseDiscount/Dialog_newPurchaseDiscount.component';
+import { Dialog_editInspectPurchaseDiscountComponent } from './components/satinalma/ana-kayitlar/satinalma-indirimleri/Dialog_editInspectPurchaseDiscount/Dialog_editInspectPurchaseDiscount.component';
+import { Dialog_deletePurchaseDiscountComponent } from './components/satinalma/ana-kayitlar/satinalma-indirimleri/Dialog_deletePurchaseDiscount/Dialog_deletePurchaseDiscount.component';
 
 
 
@@ -229,7 +242,19 @@ import { Dialog_editInspectPaymentPlanComponent } from './components/finans/ana-
     Dialog_editInspectARPComponent,
     Dialog_deleteARPComponent,
     Dialog_newPaymentPlanComponent,
-    Dialog_editInspectPaymentPlanComponent
+    Dialog_editInspectPaymentPlanComponent,
+    Dialog_deletePaymentPlanComponent,
+    Dialog_editInspectCnPnoteComponent,
+    Dialog_deleteCnPnoteComponent,
+    Dialog_newSDComponent,
+    Dialog_editInspectSDComponent,
+    Dialog_deleteSDComponent,
+    Dialog_newPurchasedServiceComponent,
+    Dialog_editInspectPurchasedServiceComponent,
+    Dialog_deletePurchasedServiceComponent,
+    Dialog_newPurchaseDiscountComponent,
+    Dialog_editInspectPurchaseDiscountComponent,
+    Dialog_deletePurchaseDiscountComponent
 
 
   ],
@@ -248,7 +273,19 @@ import { Dialog_editInspectPaymentPlanComponent } from './components/finans/ana-
     Dialog_newARPComponent,
     Dialog_editInspectARPComponent,
     Dialog_newPaymentPlanComponent,
-    Dialog_editInspectPaymentPlanComponent
+    Dialog_editInspectPaymentPlanComponent,
+    Dialog_deletePaymentPlanComponent,
+    Dialog_editInspectCnPnoteComponent,
+    Dialog_deleteCnPnoteComponent,
+    Dialog_newSDComponent,
+    Dialog_editInspectSDComponent,
+    Dialog_deleteSDComponent,
+    Dialog_newPurchasedServiceComponent,
+    Dialog_editInspectPurchasedServiceComponent,
+    Dialog_deletePurchasedServiceComponent,
+    Dialog_newPurchaseDiscountComponent,
+    Dialog_editInspectPurchaseDiscountComponent,
+    Dialog_deletePurchaseDiscountComponent
   ],
 
   imports: [
@@ -277,7 +314,8 @@ import { Dialog_editInspectPaymentPlanComponent } from './components/finans/ana-
     MatSelectModule,
     MatRadioModule,
     MatAutocompleteModule,
-    MatGridListModule
+    MatGridListModule,
+    MatCheckboxModule
 
   ],
   providers: [AuthGuardService, LoginComponent],
