@@ -1,3 +1,5 @@
+import { divisionList } from "./divisionList";
+
 export class purchasedServicePrices {
     "INSPECT"?:boolean;
     "INTERNAL_REFERENCE": number;
@@ -64,13 +66,7 @@ export class purchasedServicePrices {
     "COST_VALUE": number;
     "ALL_DIVISIONS": number;
     "DIVISION_LIST": {
-        "items": [
-            {
-                "INTERNAL_REFERENCE": number;
-                "PARENTPRCREF": number;
-                "DIVCODES": string;
-            }
-        ]
+        "items": divisionList[]
     };
     "DIVISION_STR": string;
     "ARP_AUXCODE2": string;

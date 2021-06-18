@@ -67,11 +67,17 @@ export class HizmetAlimFiyatlariComponent implements OnInit {
   }
 
   add(){
-    this.dialog.open(Dialog_newPurchasedServicePriceComponent,{width:"60vw",height:"65vh"})
+    this.dialog.open(Dialog_newPurchasedServicePriceComponent).afterClosed().subscribe(q => {
+      this.getAllRecords(0)
+      this.currPage = 1
+    })
   }
 
   delete(id:number) {
-    this.dialog.open(Dialog_deletePurchasedServicePriceComponent,{data:id})
+    this.dialog.open(Dialog_deletePurchasedServicePriceComponent,{data:id}).afterClosed().subscribe(q => {
+      this.getAllRecords(0)
+      this.currPage = 1
+    })
   }
 
   edit_inspect(inspectMode:boolean){
@@ -80,9 +86,10 @@ export class HizmetAlimFiyatlariComponent implements OnInit {
       data = res
       data.INSPECT = inspectMode
       this.dialog.open(Dialog_editInspectPurchasedServicePriceComponent,{
-        data:data,
-        width:"60vw",
-        height:"65vh"
+        data:data
+      }).afterClosed().subscribe(q => {
+        this.getAllRecords(0)
+        this.currPage = 1
       })
     },err=>{
       this.toast.error(err.message,"Hata",{positionClass:"toast-top-center",timeOut:3000})

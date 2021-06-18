@@ -30,14 +30,14 @@
         <ng-container matColumnDef="BeginDate">
           <th mat-header-cell *matHeaderCellDef> Başlangıç Tarihi </th>
           <td mat-cell *matCellDef="let rec" (click)='select(rec)'
-            [ngClass]="{'act':selectedRecord.INTERNAL_REFERENCE == rec.INTERNAL_REFERENCE}"> {{rec.BEG_DATE|date:"dd.mm.yyyy"}}
+            [ngClass]="{'act':selectedRecord.INTERNAL_REFERENCE == rec.INTERNAL_REFERENCE}"> {{rec.BEG_DATE|date:"dd.MM.yyyy"}}
           </td>
         </ng-container>
 
         <ng-container matColumnDef="EndDate">
           <th mat-header-cell *matHeaderCellDef> Bitiş Tarihi </th>
           <td mat-cell *matCellDef="let rec" (click)='select(rec)'
-            [ngClass]="{'act':selectedRecord.INTERNAL_REFERENCE == rec.INTERNAL_REFERENCE}"> {{rec.END_DATE|date:"dd.mm.yyyy"}}
+            [ngClass]="{'act':selectedRecord.INTERNAL_REFERENCE == rec.INTERNAL_REFERENCE}"> {{rec.END_DATE|date:"dd.MM.yyyy"}}
           </td>
         </ng-container>
 

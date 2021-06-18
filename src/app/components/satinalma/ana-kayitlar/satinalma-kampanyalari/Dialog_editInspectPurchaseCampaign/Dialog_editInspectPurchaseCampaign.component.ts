@@ -1,5 +1,6 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, ElementRef, Inject, Input, OnInit, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { DatepickerServiceInputs } from '@ng-bootstrap/ng-bootstrap/datepicker/datepicker-service';
 import { ToastrService } from 'ngx-toastr';
 import { purchaseCampaigns } from 'src/app/models/purchaseCampaigns';
 import { PurchaseCampaignsService } from 'src/app/services/purchaseCampaigns.service';
@@ -10,16 +11,19 @@ import { PurchaseCampaignsService } from 'src/app/services/purchaseCampaigns.ser
   styleUrls: ['./Dialog_editInspectPurchaseCampaign.component.scss']
 })
 export class Dialog_editInspectPurchaseCampaignComponent implements OnInit {
-
+  public date:Date = new Date()
   public isRateChangable: boolean = false;
+  @ViewChild('begDate') begDate: any
   constructor(
     public dialogRef: MatDialogRef<Dialog_editInspectPurchaseCampaignComponent>,
     @Inject(MAT_DIALOG_DATA) public data: purchaseCampaigns,
     private toast: ToastrService,
     private svc: PurchaseCampaignsService
-  ) { }
+  ) {
+   }
 
   ngOnInit() {
+    console.log(this.date.toJSON())
   }
 
   update() {
@@ -32,5 +36,6 @@ export class Dialog_editInspectPurchaseCampaignComponent implements OnInit {
       this.dialogRef.close()
     })
   }
+
 
 }

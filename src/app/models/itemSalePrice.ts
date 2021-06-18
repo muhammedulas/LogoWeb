@@ -1,7 +1,7 @@
 import { divisionList } from "./divisionList";
 
 export class itemSalePrice {
-    "INSPECT": boolean;
+    "INSPECT"?: boolean;
     "INTERNAL_REFERENCE": number;
     "CARD_CODE": string;
     "OWNER_TYPE": number;

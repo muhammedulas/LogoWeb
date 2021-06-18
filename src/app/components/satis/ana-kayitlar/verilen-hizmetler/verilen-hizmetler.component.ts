@@ -67,7 +67,7 @@ export class VerilenHizmetlerComponent implements OnInit {
   }
 
   add(){
-    this.dialog.open(Dialog_newSoldServiceComponent,{width:"60vw",height:"65vh"})
+    this.dialog.open(Dialog_newSoldServiceComponent)
   }
 
   delete(id:number) {
@@ -80,9 +80,7 @@ export class VerilenHizmetlerComponent implements OnInit {
       data = res
       data.INSPECT = inspectMode
       this.dialog.open(Dialog_editInspectSoldServiceComponent,{
-        data:data,
-        width:"60vw",
-        height:"65vh"
+        data:data
       })
     },err=>{
       this.toast.error(err.message,"Hata",{positionClass:"toast-top-center",timeOut:3000})

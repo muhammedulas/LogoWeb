@@ -1,3 +1,102 @@
-<p>
-  Dialog_editInspectSoldService works!
-</p>
+<div mat-dialog-content>
+  <div class="row">
+    <div class="col-6">
+      <mat-form-field [style.width.%]="40">
+        <input type="text" matInput autocomplete="off" placeholder="Hizmet Kodu" required [(ngModel)]="data.CODE" [disabled]="data.INSPECT!">
+      </mat-form-field>
+      &nbsp;
+      <mat-form-field [style.width.%]="25">
+        <mat-select placeholder="Statüsü" [(value)]="data.RECORD_STATUS" [disabled]="data.INSPECT!">
+          <mat-option [value]="0">
+            Kullanımda
+          </mat-option>
+          <mat-option [value]="1">
+            Kullanım Dışı
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
+      <mat-form-field [style.width.%]="80">
+        <input type="text" matInput autocomplete="off" placeholder="Açıklaması" required [(ngModel)]="data.DESCRIPTION" [disabled]="data.INSPECT!"> 
+      </mat-form-field>
+      <br>
+      <mat-form-field [style.width.%]="80">
+        <input type="text" matInput autocomplete="off" placeholder="Açıklaması 2" [(ngModel)]="data.DESCRIPTION2" [disabled]="data.INSPECT!">
+      </mat-form-field>
+      <br>
+      <mat-form-field [style.width.%]="38">
+        <input type="text" matInput autocomplete="off" placeholder="Ödeme Şekli" [(ngModel)]="data.PAYMENT_CODE" [disabled]="data.INSPECT!">
+      </mat-form-field>
+      &nbsp;
+      <mat-form-field [style.width.%]="39">
+        <input type="text" matInput autocomplete="off" placeholder="Proje Kodu" [(ngModel)]="data.PROJECT_CODE" [disabled]="data.INSPECT!">
+      </mat-form-field>
+      <br>
+      <mat-form-field [style.width.%]="17">
+        <input type="text" matInput autocomplete="off" placeholder="Satınalma KDV"  [(ngModel)]="data.VAT_PERC" [disabled]="data.INSPECT!">
+      </mat-form-field>
+      &nbsp;
+      <mat-form-field [style.width.%]="17">
+        <input type="text" matInput autocomplete="off" placeholder="İade KDV" [(ngModel)]="data.RETURNVAT" [disabled]="data.INSPECT!">
+      </mat-form-field>
+      &nbsp;
+      <mat-checkbox [(ngModel)]="data.CANDEDUCT" [disabled]="data.INSPECT!">
+        Tevkifat Uygulansın
+      </mat-checkbox>
+      <br>
+      <mat-form-field [style.width.%]="35">
+        <input type="text" matInput autocomplete="off" placeholder="Tevkifat Kodu" [(ngModel)]="data.DEDUCT_CODE" [disabled]="data.INSPECT!">
+      </mat-form-field>
+      <span style="width: 35%;">Tevkifat oranı:</span>
+      &nbsp;
+      <mat-form-field [style.width.%]="10">
+        <input type="text" matInput autocomplete="off" [(ngModel)]="data.DEDUCTION_PART1" [disabled]="data.INSPECT!">
+      </mat-form-field>
+      /
+      <mat-form-field [style.width.%]="10">
+        <input type="text" matInput autocomplete="off" [(ngModel)]="data.DEDUCTION_PART2" [disabled]="data.INSPECT!">
+      </mat-form-field>
+    </div>
+    <div class="col-6">
+      <mat-form-field [style.width.%]="40">
+        <input type="text" matInput autocomplete="off" placeholder="Özel Kod" [(ngModel)]="data.AUXIL_CODE" [disabled]="data.INSPECT!">
+      </mat-form-field>
+      &nbsp;
+      <mat-form-field [style.width.%]="40">
+        <input type="text" matInput autocomplete="off" placeholder="Yetki Kodu" [(ngModel)]="data.AUTH_CODE" [disabled]="data.INSPECT!">
+      </mat-form-field>
+      <br>
+      <mat-form-field [style.width.%]="40">
+        <input type="text" matInput autocomplete="off" placeholder="Ek Vergi Kodu" [(ngModel)]="data.ADD_TAXCODE" [disabled]="data.INSPECT!">
+      </mat-form-field>
+      &nbsp;
+      <mat-form-field [style.width.%]="40">
+        <input type="text" matInput autocomplete="off" placeholder="Karşı İşlem Hizmet Kodu" [(ngModel)]="data.COUNTER_SRV_CODE" [disabled]="data.INSPECT!">
+      </mat-form-field>
+      <br>
+      <mat-form-field [style.width.%]="40">
+        <input type="text" matInput autocomplete="off" placeholder="Birim Seti" required [(ngModel)]="data.UNITSET_CODE" [disabled]="data.INSPECT!">
+      </mat-form-field>
+      &nbsp;
+      <mat-form-field [style.width.%]="40">
+        <input type="text" matInput autocomplete="off" placeholder="Menşei(Kamu)" [(ngModel)]="data.PUBLIC_COUNTRY_CODE" [disabled]="data.INSPECT!">
+      </mat-form-field>
+      <br>
+      <mat-form-field [style.width.%]="80">
+        <input type="text" matInput autocomplete="off" placeholder="CPA Kodu" [(ngModel)]="data.CPA_CODE" [disabled]="data.INSPECT!">
+      </mat-form-field>
+      <br>
+      <mat-form-field [style.width.%]="80">
+        <input type="text" matInput autocomplete="off" placeholder="GTIP Kodu" [(ngModel)]="data.GTIP_CODE" [disabled]="data.INSPECT!">
+      </mat-form-field>
+    </div>
+  </div>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-stroked-button cdkFocusInitial [disabled]="data.INSPECT">
+    Güncelle
+  </button>
+  <button mat-stroked-button [mat-dialog-close]>
+    Vazgeç
+  </button>
+</div>

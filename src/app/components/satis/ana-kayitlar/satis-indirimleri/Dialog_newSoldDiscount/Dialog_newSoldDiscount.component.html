@@ -1,3 +1,60 @@
-<p>
-  Dialog_newSoldDiscount works!
-</p>
+<div mat-dialog-content>
+  <div class="row">
+    <div class="col-11">
+      <mat-form-field [style.width.%]="50">
+        <input type="text" matInput autocomplete="off" placeholder="Kodu" [(ngModel)]="newRecord.CODE">
+      </mat-form-field>
+      <br>
+      <mat-form-field [style.width.%]="80">
+        <input type="text" matInput autocomplete="off" placeholder="Açıklaması" [(ngModel)]="newRecord.DESCRIPTION">
+      </mat-form-field>
+      <br>
+      <mat-form-field [style.width.%]="25">
+        <input type="text" matInput autocomplete="off" placeholder="Özel Kod" [(ngModel)]="newRecord.AUXIL_CODE">
+      </mat-form-field>
+      &nbsp;
+      <mat-form-field [style.width.%]="25">
+        <input type="text" matInput autocomplete="off" placeholder="Yetki Kodu" [(ngModel)]="newRecord.AUTH_CODE">
+      </mat-form-field>
+      &nbsp;
+      <mat-form-field [style.width.%]="20">
+        <input type="text" matInput autocomplete="off" placeholder="Yuvarlama Tabanı" [(ngModel)]="newRecord.ROUND_BASE">
+      </mat-form-field>
+      &nbsp;
+      <mat-form-field [style.width.%]="20">
+        <mat-select [(value)]="newRecord.RECORD_STATUS">
+          <mat-option value=0>
+            Kullanımda
+          </mat-option>
+          <mat-option value=0>
+            Kullanım Dışı
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
+      <mat-checkbox [(ngModel)]="stopage">
+        Stopaj ve Ek Vergi İndirimi
+      </mat-checkbox>
+      <br>
+      <mat-form-field [style.width.%]="30">
+        <input type="text" matInput autocomplete="off" placeholder="Evrensel Kodu" [(ngModel)]="newRecord.UNICODE">
+      </mat-form-field>
+      &nbsp;
+      <mat-form-field [style.width.%]="30">
+        <input type="text" matInput autocomplete="off" placeholder="Açıklaması" [(ngModel)]="newRecord.UNICODE_DEF">
+      </mat-form-field>
+      <br>
+      <mat-form-field [style.width.%]="80">
+        <input type="text" matInput autocomplete="off" placeholder="Formül" [(ngModel)]="newRecord.FORMULA">
+      </mat-form-field>
+    </div>
+  </div>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-stroked-button cdkFocusInitial (click)="create()">
+    Tamam
+  </button>
+  <button mat-stroked-button [mat-dialog-close] >
+    Vazgeç
+  </button>
+</div>

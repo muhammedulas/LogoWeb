@@ -7,6 +7,9 @@ import { SalesExpensesService } from 'src/app/services/salesExpenses.service';
 import { Dialog_deleteSoldDiscountComponent } from '../satis-indirimleri/Dialog_deleteSoldDiscount/Dialog_deleteSoldDiscount.component';
 import { Dialog_editInspectSoldDiscountComponent } from '../satis-indirimleri/Dialog_editInspectSoldDiscount/Dialog_editInspectSoldDiscount.component';
 import { Dialog_newSoldDiscountComponent } from '../satis-indirimleri/Dialog_newSoldDiscount/Dialog_newSoldDiscount.component';
+import { Dialog_deleteSalesExpenseComponent } from './Dialog_deleteSalesExpense/Dialog_deleteSalesExpense.component';
+import { Dialog_editInspectSalesExpenseComponent } from './Dialog_editInspectSalesExpense/Dialog_editInspectSalesExpense.component';
+import { Dialog_newSalesExpenseComponent } from './Dialog_newSalesExpense/Dialog_newSalesExpense.component';
 
 @Component({
   selector: 'app-satis-masraflari',
@@ -67,11 +70,11 @@ export class SatisMasraflariComponent implements OnInit {
   }
 
   add(){
-    this.dialog.open(Dialog_newSoldDiscountComponent,{width:"60vw",height:"65vh"})
+    this.dialog.open(Dialog_newSalesExpenseComponent)
   }
 
   delete(id:number) {
-    this.dialog.open(Dialog_deleteSoldDiscountComponent,{data:id})
+    this.dialog.open(Dialog_deleteSalesExpenseComponent,{data:id})
   }
 
   edit_inspect(inspectMode:boolean){
@@ -79,10 +82,8 @@ export class SatisMasraflariComponent implements OnInit {
     this.service.getRecordByID(this.selectedRecord.INTERNAL_REFERENCE).subscribe(res=>{
       data = res
       data.INSPECT = inspectMode
-      this.dialog.open(Dialog_editInspectSoldDiscountComponent,{
-        data:data,
-        width:"60vw",
-        height:"65vh"
+      this.dialog.open(Dialog_editInspectSalesExpenseComponent,{
+        data:data
       })
     },err=>{
       this.toast.error(err.message,"Hata",{positionClass:"toast-top-center",timeOut:3000})

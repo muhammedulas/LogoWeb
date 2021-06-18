@@ -132,6 +132,24 @@ import { Dialog_deletePurchaseExpenseComponent } from './components/satinalma/an
 import { Dialog_newPurchaseCampaignComponent } from './components/satinalma/ana-kayitlar/satinalma-kampanyalari/Dialog_newPurchaseCampaign/Dialog_newPurchaseCampaign.component';
 import { Dialog_editInspectPurchaseCampaignComponent } from './components/satinalma/ana-kayitlar/satinalma-kampanyalari/Dialog_editInspectPurchaseCampaign/Dialog_editInspectPurchaseCampaign.component';
 import { Dialog_deletePurchaseCampaignComponent } from './components/satinalma/ana-kayitlar/satinalma-kampanyalari/Dialog_deletePurchaseCampaign/Dialog_deletePurchaseCampaign.component';
+import { Dialog_newPurchasedServicePriceComponent } from './components/satinalma/ana-kayitlar/hizmet-alim-fiyatlari/Dialog_newPurchasedServicePrice/Dialog_newPurchasedServicePrice.component';
+import { Dialog_editInspectPurchasedServicePriceComponent } from './components/satinalma/ana-kayitlar/hizmet-alim-fiyatlari/Dialog_editInspectPurchasedServicePrice/Dialog_editInspectPurchasedServicePrice.component';
+import { Dialog_deletePurchasedServicePriceComponent } from './components/satinalma/ana-kayitlar/hizmet-alim-fiyatlari/Dialog_deletePurchasedServicePrice/Dialog_deletePurchasedServicePrice.component';
+import { Dialog_deleteSoldServiceComponent } from './components/satis/ana-kayitlar/verilen-hizmetler/Dialog_deleteSoldService/Dialog_deleteSoldService.component';
+import { Dialog_editInspectSoldServiceComponent } from './components/satis/ana-kayitlar/verilen-hizmetler/Dialog_editInspectSoldService/Dialog_editInspectSoldService.component';
+import { Dialog_newSoldServiceComponent } from './components/satis/ana-kayitlar/verilen-hizmetler/Dialog_newSoldService/Dialog_newSoldService.component';
+import { Dialog_newSalesExpenseComponent } from './components/satis/ana-kayitlar/satis-masraflari/Dialog_newSalesExpense/Dialog_newSalesExpense.component';
+import { Dialog_editInspectSalesExpenseComponent } from './components/satis/ana-kayitlar/satis-masraflari/Dialog_editInspectSalesExpense/Dialog_editInspectSalesExpense.component';
+import { Dialog_deleteSalesExpenseComponent } from './components/satis/ana-kayitlar/satis-masraflari/Dialog_deleteSalesExpense/Dialog_deleteSalesExpense.component';
+import { Dialog_deleteSoldDiscountComponent } from './components/satis/ana-kayitlar/satis-indirimleri/Dialog_deleteSoldDiscount/Dialog_deleteSoldDiscount.component';
+import { Dialog_editInspectSoldDiscountComponent } from './components/satis/ana-kayitlar/satis-indirimleri/Dialog_editInspectSoldDiscount/Dialog_editInspectSoldDiscount.component';
+import { Dialog_newSoldDiscountComponent } from './components/satis/ana-kayitlar/satis-indirimleri/Dialog_newSoldDiscount/Dialog_newSoldDiscount.component';
+import { Dialog_deleteItemSalePriceComponent } from './components/satis/ana-kayitlar/malzeme-satis-fiyatlari/Dialog_deleteItemSalePrice/Dialog_deleteItemSalePrice.component';
+import { Dialog_deleteServiceSalePriceComponent } from './components/satis/ana-kayitlar/hizmet-satis-fiyatlari/Dialog_deleteServiceSalePrice/Dialog_deleteServiceSalePrice.component';
+import { Dialog_editInspectServiceSalePriceComponent } from './components/satis/ana-kayitlar/hizmet-satis-fiyatlari/Dialog_editInspectServiceSalePrice/Dialog_editInspectServiceSalePrice.component';
+import { Dialog_editInspectItemSalePriceComponent } from './components/satis/ana-kayitlar/malzeme-satis-fiyatlari/Dialog_editInspectItemSalePrice/Dialog_editInspectItemSalePrice.component';
+import { Dialog_newItemSalePriceComponent } from './components/satis/ana-kayitlar/malzeme-satis-fiyatlari/Dialog_newItemSalePrice/Dialog_newItemSalePrice.component';
+import { Dialog_newServiceSalePriceComponent } from './components/satis/ana-kayitlar/hizmet-satis-fiyatlari/Dialog_newServiceSalePrice/Dialog_newServiceSalePrice.component';
 
 
 
@@ -266,7 +284,25 @@ import { Dialog_deletePurchaseCampaignComponent } from './components/satinalma/a
     Dialog_deletePurchaseExpenseComponent,
     Dialog_newPurchaseCampaignComponent,
     Dialog_editInspectPurchaseCampaignComponent,
-    Dialog_deletePurchaseCampaignComponent
+    Dialog_deletePurchaseCampaignComponent,
+    Dialog_newPurchasedServicePriceComponent,
+    Dialog_editInspectPurchasedServicePriceComponent,
+    Dialog_deletePurchasedServicePriceComponent,
+    Dialog_deleteSoldServiceComponent,
+    Dialog_editInspectSoldServiceComponent,
+    Dialog_newSoldServiceComponent,
+    Dialog_newSalesExpenseComponent,
+    Dialog_editInspectSalesExpenseComponent,
+    Dialog_deleteSalesExpenseComponent,
+    Dialog_deleteSoldDiscountComponent,
+    Dialog_editInspectSoldDiscountComponent,
+    Dialog_newSoldDiscountComponent,
+    Dialog_editInspectItemSalePriceComponent,
+    Dialog_deleteItemSalePriceComponent,
+    Dialog_editInspectServiceSalePriceComponent,
+    Dialog_deleteServiceSalePriceComponent,
+    Dialog_newItemSalePriceComponent,
+    Dialog_newServiceSalePriceComponent
 
 
   ],
@@ -303,7 +339,26 @@ import { Dialog_deletePurchaseCampaignComponent } from './components/satinalma/a
     Dialog_deletePurchaseExpenseComponent,
     Dialog_newPurchaseCampaignComponent,
     Dialog_editInspectPurchaseCampaignComponent,
-    Dialog_deletePurchaseCampaignComponent
+    Dialog_deletePurchaseCampaignComponent,
+    Dialog_newPurchasedServicePriceComponent,
+    Dialog_editInspectPurchasedServicePriceComponent,
+    Dialog_deletePurchasedServicePriceComponent,
+    Dialog_deleteSoldServiceComponent,
+    Dialog_editInspectSoldServiceComponent,
+    Dialog_newSoldServiceComponent,
+    Dialog_newSalesExpenseComponent,
+    Dialog_editInspectSalesExpenseComponent,
+    Dialog_deleteSalesExpenseComponent,
+    Dialog_deleteSoldDiscountComponent,
+    Dialog_editInspectSoldDiscountComponent,
+    Dialog_newSoldDiscountComponent,
+    Dialog_editInspectItemSalePriceComponent,
+    Dialog_deleteItemSalePriceComponent,
+    Dialog_editInspectServiceSalePriceComponent,
+    Dialog_deleteServiceSalePriceComponent,
+    Dialog_newItemSalePriceComponent,
+    Dialog_newServiceSalePriceComponent
+
   ],
 
   imports: [

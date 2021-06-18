@@ -1,5 +1,5 @@
 export class salesExpense {
-    "INSPECT": boolean;
+    "INSPECT"?: boolean;
     "INTERNAL_REFERENCE": number;
     "CARDTYPE": number;
     "RECORD_STATUS": number;

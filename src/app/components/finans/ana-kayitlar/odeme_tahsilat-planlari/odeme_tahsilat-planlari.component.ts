@@ -67,7 +67,7 @@ export class Odeme_tahsilatPlanlariComponent implements OnInit {
   }
 
   addPP(){
-    this.dialog.open(Dialog_newPaymentPlanComponent,{width:"60vw",height:"65vh"}).afterClosed().subscribe(q=>{
+    this.dialog.open(Dialog_newPaymentPlanComponent).afterClosed().subscribe(q=>{
       this.getPPs(0)
     })
   }
@@ -84,9 +84,7 @@ export class Odeme_tahsilatPlanlariComponent implements OnInit {
       plan = res
       plan.INSPECT = inspectMode
       this.dialog.open(Dialog_editInspectPaymentPlanComponent,{
-        data:plan,
-        width:"60vw",
-        height:"65vh"
+        data:plan
       }).afterClosed().subscribe(q=>{
         this.getPPs(0)
       })

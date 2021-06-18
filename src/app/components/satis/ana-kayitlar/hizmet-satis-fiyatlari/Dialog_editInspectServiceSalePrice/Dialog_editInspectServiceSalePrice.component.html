@@ -1,3 +1,66 @@
-<p>
-  Dialog_editInspectServiceSalePrice works!
-</p>
+<div mat-dialog-content>
+  <div class="row">
+    <div class="col-12">
+      <mat-form-field [style.width.%]="70">
+        <input type="text" matInput autocomplete="off" placeholder="Kodu" [(ngModel)]="data.CARD_CODE" [disabled]="data.INSPECT!">
+      </mat-form-field>
+      <br>
+      <mat-form-field [style.width.%]="70">
+        <input type="text" matInput autocomplete="off" placeholder="Hizmet Kodu" [(ngModel)]="data.OWNER_CODE" [disabled]="data.INSPECT!">
+      </mat-form-field>
+      <br>
+      <mat-select placeholder="Statüsü" [style.width.%]="15" [(value)]="data.ACTIVE" [disabled]="data.INSPECT!">
+        <mat-option value=0>Kullanımda</mat-option>
+        <mat-option value=1>Kullanım Dışı</mat-option>
+      </mat-select>
+      &nbsp;
+      <mat-form-field [style.width.%]="15" >
+        <input type="text" matInput autocomplete="off" placeholder="Yetki Kodu" [disabled]="data.INSPECT!"> 
+      </mat-form-field>
+      &nbsp;
+      <mat-form-field [style.width.%]="15">
+        <input type="text" matInput autocomplete="off" placeholder="Birim Fiyat" [(ngModel)]="data.PRICE" [disabled]="data.INSPECT!">
+      </mat-form-field>
+      &nbsp;
+        <mat-select placeholder="KDV" [(value)]="data.VAT_INCL" [style.width.%]="15" [disabled]="data.INSPECT!">
+          <mat-option value=0>Hariç</mat-option>
+          <mat-option value=1>Dahil</mat-option>
+        </mat-select>
+      &nbsp;
+      <mat-form-field [style.width.%]="15">
+        <input type="text" matInput autocomplete="off" placeholder="Birim Kodu" [(ngModel)]="data.UNIT_CODE" [disabled]="data.INSPECT!">
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <mat-form-field [style.width.%]="25">
+        <input type="text" matInput autocomplete="off" placeholder="Cari Hesap Kodu" [(ngModel)]="data.ARP_CODE" [disabled]="data.INSPECT!">
+      </mat-form-field>
+      &nbsp;
+      <mat-form-field [style.width.%]="25">
+        <input type="text" matInput autocomplete="off" placeholder="CH Özel Kodu" [(ngModel)]="data.ARP_AUXCODE" [disabled]="data.INSPECT!">
+      </mat-form-field>
+      &nbsp;
+      <mat-form-field [style.width.%]="25">
+        <input type="text" matInput autocomplete="off" placeholder="CH Yetki Kodu" >
+      </mat-form-field>
+      <br>
+      <mat-form-field [style.width.%]="90">
+        <input type="text" matInput autocomplete="off" placeholder="Koşul" [(ngModel)]="data.CONDITION" [disabled]="data.INSPECT!">
+      </mat-form-field>
+      <br>
+      <mat-form-field [style.width.%]="90">
+        <input type="text" matInput autocomplete="off" placeholder="Fiyat Açıklaması" [(ngModel)]="data.DEFINITION" [disabled]="data.INSPECT!">
+      </mat-form-field>
+    </div>
+  </div>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-stroked-button cdkFocusInitial  (click)="update()" [disabled]="data.INSPECT!">
+    Güncelle
+  </button>
+  <button mat-stroked-button [mat-dialog-close]>
+    Vazgeç
+  </button>
+</div>

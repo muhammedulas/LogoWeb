@@ -67,7 +67,7 @@ export class AlinanHizmetlerComponent implements OnInit {
   }
 
   addPS(){
-    this.dialog.open(Dialog_newPurchasedServiceComponent,{width:"60vw",height:"65vh"}).afterClosed().subscribe(q => {
+    this.dialog.open(Dialog_newPurchasedServiceComponent).afterClosed().subscribe(q => {
       this.getPSs(0)
       this.currPage = 1
     })
@@ -86,9 +86,7 @@ export class AlinanHizmetlerComponent implements OnInit {
       bank = res
       bank.INSPECT = inspectMode
       this.dialog.open(Dialog_editInspectPurchasedServiceComponent,{
-        data:bank,
-        width:"60vw",
-        height:"65vh"
+        data:bank
       }).afterClosed().subscribe(q => {
         this.getPSs(0)
         this.currPage = 1

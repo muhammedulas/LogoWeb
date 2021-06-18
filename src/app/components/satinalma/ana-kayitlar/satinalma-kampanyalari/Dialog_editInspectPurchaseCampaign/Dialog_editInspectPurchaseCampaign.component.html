@@ -31,11 +31,11 @@
   <div class="row mt-1">
     <div class="col-4">
       <mat-form-field [style.width.%]="100">
-        <input type="date" matInput autocomplete="off" placeholder="Başlangıç Tarihi" [(ngModel)]="data.BEG_DATE" [disabled]="data.INSPECT!">
+        <input  type="datetime-local" matInput autocomplete="off" placeholder="Başlangıç Tarihi" [(ngModel)]="data.BEG_DATE" [disabled]="data.INSPECT!" #begDate>
       </mat-form-field>
       <br>
       <mat-form-field [style.width.%]="100">
-        <input type="date" matInput autocomplete="off" placeholder="Bitiş Tarihi" [(ngModel)]="data.END_DATE" [disabled]="data.INSPECT!">
+        <input type="datetime-local" matInput autocomplete="off" placeholder="Bitiş Tarihi" [(ngModel)]="data.END_DATE" [disabled]="data.INSPECT!" #endDate>
       </mat-form-field>
       <br>
       <mat-form-field [style.width.%]="100">

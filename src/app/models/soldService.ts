@@ -1,7 +1,8 @@
 import { glLink } from "./glLink";
+import { unit } from "./unit";
 
 export class soldService {
-    "INSPECT": boolean;
+    "INSPECT"?: boolean;
     "INTERNAL_REFERENCE": number;
     "RECORD_STATUS": number;
     "CARD_TYPE": number;
@@ -36,16 +37,7 @@ export class soldService {
     "DATA_REFERENCE": number;
     "XDEFS": string;
     "UNITS": {
-        "items": [
-            {
-                "INTERNAL_REFERENCE": number;
-                "SRVREF": number;
-                "LINENR": number;
-                "UNIT_CODE": string;
-                "UNITLINEREF": number;
-                "PRIORITY": number;
-            }
-        ]
+        "items": unit[]
     };
     "GL_LINKS": {
         "items": glLink[]
