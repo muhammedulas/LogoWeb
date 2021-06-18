@@ -126,6 +126,12 @@ import { Dialog_deletePurchasedServiceComponent } from './components/satinalma/a
 import { Dialog_newPurchaseDiscountComponent } from './components/satinalma/ana-kayitlar/satinalma-indirimleri/Dialog_newPurchaseDiscount/Dialog_newPurchaseDiscount.component';
 import { Dialog_editInspectPurchaseDiscountComponent } from './components/satinalma/ana-kayitlar/satinalma-indirimleri/Dialog_editInspectPurchaseDiscount/Dialog_editInspectPurchaseDiscount.component';
 import { Dialog_deletePurchaseDiscountComponent } from './components/satinalma/ana-kayitlar/satinalma-indirimleri/Dialog_deletePurchaseDiscount/Dialog_deletePurchaseDiscount.component';
+import { Dialog_newPurchaseExpenseComponent } from './components/satinalma/ana-kayitlar/satinalma-masraflari/Dialog_newPurchaseExpense/Dialog_newPurchaseExpense.component';
+import { Dialog_editInspectPurchaseExpenseComponent } from './components/satinalma/ana-kayitlar/satinalma-masraflari/Dialog_editInspectPurchaseExpense/Dialog_editInspectPurchaseExpense.component';
+import { Dialog_deletePurchaseExpenseComponent } from './components/satinalma/ana-kayitlar/satinalma-masraflari/Dialog_deletePurchaseExpense/Dialog_deletePurchaseExpense.component';
+import { Dialog_newPurchaseCampaignComponent } from './components/satinalma/ana-kayitlar/satinalma-kampanyalari/Dialog_newPurchaseCampaign/Dialog_newPurchaseCampaign.component';
+import { Dialog_editInspectPurchaseCampaignComponent } from './components/satinalma/ana-kayitlar/satinalma-kampanyalari/Dialog_editInspectPurchaseCampaign/Dialog_editInspectPurchaseCampaign.component';
+import { Dialog_deletePurchaseCampaignComponent } from './components/satinalma/ana-kayitlar/satinalma-kampanyalari/Dialog_deletePurchaseCampaign/Dialog_deletePurchaseCampaign.component';
 
 
 
@@ -254,7 +260,13 @@ import { Dialog_deletePurchaseDiscountComponent } from './components/satinalma/a
     Dialog_deletePurchasedServiceComponent,
     Dialog_newPurchaseDiscountComponent,
     Dialog_editInspectPurchaseDiscountComponent,
-    Dialog_deletePurchaseDiscountComponent
+    Dialog_deletePurchaseDiscountComponent,
+    Dialog_newPurchaseExpenseComponent,
+    Dialog_editInspectPurchaseExpenseComponent,
+    Dialog_deletePurchaseExpenseComponent,
+    Dialog_newPurchaseCampaignComponent,
+    Dialog_editInspectPurchaseCampaignComponent,
+    Dialog_deletePurchaseCampaignComponent
 
 
   ],
@@ -285,7 +297,13 @@ import { Dialog_deletePurchaseDiscountComponent } from './components/satinalma/a
     Dialog_deletePurchasedServiceComponent,
     Dialog_newPurchaseDiscountComponent,
     Dialog_editInspectPurchaseDiscountComponent,
-    Dialog_deletePurchaseDiscountComponent
+    Dialog_deletePurchaseDiscountComponent,
+    Dialog_newPurchaseExpenseComponent,
+    Dialog_editInspectPurchaseExpenseComponent,
+    Dialog_deletePurchaseExpenseComponent,
+    Dialog_newPurchaseCampaignComponent,
+    Dialog_editInspectPurchaseCampaignComponent,
+    Dialog_deletePurchaseCampaignComponent
   ],
 
   imports: [

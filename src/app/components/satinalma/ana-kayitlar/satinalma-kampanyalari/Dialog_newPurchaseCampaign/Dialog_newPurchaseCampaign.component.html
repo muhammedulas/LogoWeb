@@ -1,3 +1,119 @@
-<p>
-  Dialog_newPurchaseCampaign works!
-</p>
+<div mat-dialog-content>
+  <div class="row">
+    <div class="col-7">
+      <mat-form-field [style.width.%]="50">
+        <input type="text" matInput autocomplete="off" placeholder="Kodu" [(ngModel)]="newRecord.CODE">
+      </mat-form-field>
+      <br>
+      <mat-form-field [style.width.%]="80">
+        <input type="text" matInput autocomplete="off" placeholder="Açıklaması" [(ngModel)]="newRecord.NAME">
+      </mat-form-field>
+      <br>
+      <mat-select label="Statüsü" [style.width.%]="30" [(value)]="newRecord.RECORD_STATUS">
+        <mat-option value=0>
+          Kullanımda
+        </mat-option>
+        <mat-option value=1>
+          Kullanım Dışı
+        </mat-option>
+      </mat-select>
+    </div>
+    <div class="col-4">
+      <mat-form-field [style.width.%]="80">
+        <input type="text" matInput autocomplete="off" placeholder="Özel Kod" [(ngModel)]="newRecord.AUXIL_CODE">
+      </mat-form-field>
+      <br>
+      <mat-form-field [style.width.%]="80">
+        <input type="text" matInput autocomplete="off" placeholder="Yetki Kodu" [(ngModel)]="newRecord.AUTH_CODE">
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row mt-1">
+    <div class="col-4">
+      <mat-form-field [style.width.%]="100">
+        <input type="date" matInput autocomplete="off" placeholder="Başlangıç Tarihi" [(ngModel)]="newRecord.BEG_DATE">
+      </mat-form-field>
+      <br>
+      <mat-form-field [style.width.%]="100">
+        <input type="date" matInput autocomplete="off" placeholder="Bitiş Tarihi" [(ngModel)]="newRecord.END_DATE">
+      </mat-form-field>
+      <br>
+      <mat-form-field [style.width.%]="100">
+        <input type="text" matInput autocomplete="off" placeholder="Öncelik Grubu" [(ngModel)]="newRecord.PP_GROUP_CODE">
+      </mat-form-field>
+      <br>
+      <mat-form-field [style.width.%]="100">
+        <input type="text" matInput autocomplete="off" placeholder="Öncelik Sırası" [(ngModel)]="newRecord.PRIORITY">
+      </mat-form-field>
+    </div>
+    <div class="col-4">
+      <mat-form-field [style.width.%]="100">
+        <input type="text" matInput autocomplete="off" placeholder="Cari Hesap Kodu" [(ngModel)]="newRecord.CLIENT_CODE">
+      </mat-form-field>
+      <br>
+      <mat-form-field [style.width.%]="100">
+        <input type="text" matInput autocomplete="off" placeholder="Cari Hesap Yetki Kodu" [(ngModel)]="newRecord.CL_AUTH_CODE">
+      </mat-form-field>
+      <br>
+      <mat-form-field [style.width.%]="100">
+        <input type="text" matInput autocomplete="off" placeholder="Ödeme planı Kodu" [(ngModel)]="newRecord.PAY_PLAN_CODE">
+      </mat-form-field>
+    </div>
+    <div class="col-4">
+      <mat-form-field [style.width.%]="100">
+        <input type="text" matInput autocomplete="off" placeholder="Ticari İşlem Grubu" [(ngModel)]="newRecord.TRADING_GRP">
+      </mat-form-field>
+      <br>
+      <mat-form-field [style.width.%]="100">
+        <input type="text" matInput autocomplete="off" placeholder="İl" [(ngModel)]="newRecord.CITY_CODE">
+      </mat-form-field>
+      <br>
+      <mat-form-field [style.width.%]="100">
+        <input type="text" matInput autocomplete="off" placeholder="İlçe" [(ngModel)]="newRecord.TOWN_CODE" >
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="row">
+        <h3 style="font-weight: bold;">Değişkenler</h3>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          V1
+          <mat-form-field [style.width.%]="80">
+            <input matInput type="text" autocomplete="off" [(ngModel)]="newRecord.VARIABLE_DEFS1">
+          </mat-form-field>
+        </div>
+        <div class="col-6">
+          V2
+          <mat-form-field [style.width.%]="80">
+            <input matInput type="text" autocomplete="off" [(ngModel)]="newRecord.VARIABLE_DEFS2">
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          V3
+          <mat-form-field [style.width.%]="80">
+            <input matInput type="text" autocomplete="off" [(ngModel)]="newRecord.VARIABLE_DEFS3">
+          </mat-form-field>
+        </div>
+        <div class="col-6">
+          V4
+          <mat-form-field [style.width.%]="80">
+            <input matInput type="text" autocomplete="off" [(ngModel)]="newRecord.VARIABLE_DEFS4">
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-stroked-button cdkFocusInitial (click)="create()">
+    Tamam
+  </button>
+  <button mat-stroked-button [matDialogClose]>
+    Vazgeç
+  </button>
+</div>

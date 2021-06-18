@@ -65,22 +65,29 @@ export class SatinalmaMasraflariComponent implements OnInit {
   }
 
   add(){
-    this.dialog.open(Dialog_newPurchaseExpenseComponent,{width:"60vw",height:"65vh"})
+    this.dialog.open(Dialog_newPurchaseExpenseComponent).afterClosed().subscribe(q => {
+      this.getAllRecords(0)
+      this.currPage = 1
+    })
   }
 
   delete(id:number) {
-    this.dialog.open(Dialog_deletePurchaseExpenseComponent,{data:id})
+    this.dialog.open(Dialog_deletePurchaseExpenseComponent,{data:id}).afterClosed().subscribe(q => {
+      this.getAllRecords(0)
+      this.currPage = 1
+    })
   }
 
   edit_inspect(inspectMode:boolean){
-    var bank
+    var record
     this.service.getPurchaseExpenseByID(this.selectedRecord.INTERNAL_REFERENCE).subscribe(res=>{
-      bank = res
-      bank.INSPECT = inspectMode
+      record = res
+      record.INSPECT = inspectMode
       this.dialog.open(Dialog_editInspectPurchaseExpenseComponent,{
-        data:bank,
-        width:"60vw",
-        height:"65vh"
+        data:record
+      }).afterClosed().subscribe(q => {
+        this.getAllRecords(0)
+        this.currPage = 1
       })
     },err=>{
       this.toast.error(err.message,"Hata",{positionClass:"toast-top-center",timeOut:3000})

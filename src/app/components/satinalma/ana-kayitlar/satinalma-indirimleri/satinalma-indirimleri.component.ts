@@ -68,22 +68,29 @@ export class SatinalmaIndirimleriComponent implements OnInit {
   }
 
   add(){
-    this.dialog.open(Dialog_newPurchaseDiscountComponent,{width:"60vw",height:"65vh"})
+    this.dialog.open(Dialog_newPurchaseDiscountComponent).afterClosed().subscribe(q => {
+      this.getAllRecords(0)
+      this.currPage = 1
+    })
   }
 
   delete(id:number) {
-    this.dialog.open(Dialog_deletePurchaseDiscountComponent,{data:id})
+    this.dialog.open(Dialog_deletePurchaseDiscountComponent,{data:id}).afterClosed().subscribe(q => {
+      this.getAllRecords(0)
+      this.currPage = 1
+    })
   }
 
   edit_inspect(inspectMode:boolean){
-    var bank
+    var record
     this.service.getPurchaseDiscountByID(this.selectedRecord.INTERNAL_REFERENCE).subscribe(res=>{
-      bank = res
-      bank.INSPECT = inspectMode
+      record = res
+      record.INSPECT = inspectMode
       this.dialog.open(Dialog_editInspectPurchaseDiscountComponent,{
-        data:bank,
-        width:"60vw",
-        height:"65vh"
+        data:record
+      }).afterClosed().subscribe(q => {
+        this.getAllRecords(0)
+        this.currPage = 1
       })
     },err=>{
       this.toast.error(err.message,"Hata",{positionClass:"toast-top-center",timeOut:3000})
@@ -108,7 +115,7 @@ export class SatinalmaIndirimleriComponent implements OnInit {
     this.loaded = false
     this.getAllRecords(0)
     this.pageCount = Math.floor(this.itemCount / this.recLimit)
-    this.router.navigate(['satinalma-indirimleri'])
+    this.router.navigate(['/satinalma/satinalma-indirimleri'])
   }
 
   nextPage() {
@@ -120,7 +127,7 @@ export class SatinalmaIndirimleriComponent implements OnInit {
           this.response = resp
           console.log(this.response)
           this.dataSet = this.response.items
-          this.router.navigate(['satinalma-indirimleri'])
+          this.router.navigate(['/satinalma/satinalma-indirimleri'])
           this.loaded = true
         },
         err => {
@@ -142,7 +149,7 @@ export class SatinalmaIndirimleriComponent implements OnInit {
           this.response = resp
           console.log(this.response)
           this.dataSet = this.response.items
-          this.router.navigate(['satinalma-indirimleri'])
+          this.router.navigate(['/satinalma/satinalma-indirimleri'])
           this.loaded = true
         },
         err => {
@@ -159,7 +166,7 @@ export class SatinalmaIndirimleriComponent implements OnInit {
     this.loaded = false
     this.currPage = 1
     this.getAllRecords(0)
-    this.router.navigate(['satinalma-indirimleri'])
+    this.router.navigate(['/satinalma/satinalma-indirimleri'])
   }
 
   lastPage() {
@@ -189,7 +196,7 @@ export class SatinalmaIndirimleriComponent implements OnInit {
       this.response = resp
       console.log(this.response)
       this.dataSet = this.response.items
-      this.router.navigate(['satinalma-indirimleri'])
+      this.router.navigate(['/satinalma/satinalma-indirimleri'])
       this.loaded = true
     },
       err => {

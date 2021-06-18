@@ -67,11 +67,17 @@ export class SatinalmaKampanyalariComponent implements OnInit {
   }
 
   add(){
-    this.dialog.open(Dialog_newPurchaseCampaignComponent,{width:"60vw",height:"65vh"})
+    this.dialog.open(Dialog_newPurchaseCampaignComponent).afterClosed().subscribe(q => {
+      this.getAllRecords(0)
+      this.currPage = 1
+    })
   }
 
   delete(id:number) {
-    this.dialog.open(Dialog_deletePurchaseCampaignComponent,{data:id})
+    this.dialog.open(Dialog_deletePurchaseCampaignComponent,{data:id}).afterClosed().subscribe(q => {
+      this.getAllRecords(0)
+      this.currPage = 1
+    })
   }
 
   edit_inspect(inspectMode:boolean){
@@ -83,6 +89,9 @@ export class SatinalmaKampanyalariComponent implements OnInit {
         data:data,
         width:"60vw",
         height:"65vh"
+      }).afterClosed().subscribe(q => {
+        this.getAllRecords(0)
+        this.currPage = 1
       })
     },err=>{
       this.toast.error(err.message,"Hata",{positionClass:"toast-top-center",timeOut:3000})

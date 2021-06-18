@@ -1,3 +1,119 @@
-<p>
-  Dialog_editInspectPurchaseCampaign works!
-</p>
+<div mat-dialog-content>
+  <div class="row">
+    <div class="col-7">
+      <mat-form-field [style.width.%]="50">
+        <input type="text" matInput autocomplete="off" placeholder="Kodu" [(ngModel)]="data.CODE" [disabled]="data.INSPECT!">
+      </mat-form-field>
+      <br>
+      <mat-form-field [style.width.%]="80">
+        <input type="text" matInput autocomplete="off" placeholder="Açıklaması" [(ngModel)]="data.NAME" [disabled]="data.INSPECT!">
+      </mat-form-field>
+      <br>
+      <mat-select label="Statüsü" [style.width.%]="30" [(value)]="data.RECORD_STATUS" [disabled]="data.INSPECT!">
+        <mat-option value=0>
+          Kullanımda
+        </mat-option>
+        <mat-option value=1>
+          Kullanım Dışı
+        </mat-option>
+      </mat-select>
+    </div>
+    <div class="col-4">
+      <mat-form-field [style.width.%]="80">
+        <input type="text" matInput autocomplete="off" placeholder="Özel Kod" [(ngModel)]="data.AUXIL_CODE" [disabled]="data.INSPECT!">
+      </mat-form-field>
+      <br>
+      <mat-form-field [style.width.%]="80">
+        <input type="text" matInput autocomplete="off" placeholder="Yetki Kodu" [(ngModel)]="data.AUTH_CODE" [disabled]="data.INSPECT!">
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row mt-1">
+    <div class="col-4">
+      <mat-form-field [style.width.%]="100">
+        <input type="date" matInput autocomplete="off" placeholder="Başlangıç Tarihi" [(ngModel)]="data.BEG_DATE" [disabled]="data.INSPECT!">
+      </mat-form-field>
+      <br>
+      <mat-form-field [style.width.%]="100">
+        <input type="date" matInput autocomplete="off" placeholder="Bitiş Tarihi" [(ngModel)]="data.END_DATE" [disabled]="data.INSPECT!">
+      </mat-form-field>
+      <br>
+      <mat-form-field [style.width.%]="100">
+        <input type="text" matInput autocomplete="off" placeholder="Öncelik Grubu" [(ngModel)]="data.PP_GROUP_CODE" [disabled]="data.INSPECT!">
+      </mat-form-field>
+      <br>
+      <mat-form-field [style.width.%]="100">
+        <input type="text" matInput autocomplete="off" placeholder="Öncelik Sırası" [(ngModel)]="data.PRIORITY" [disabled]="data.INSPECT!">
+      </mat-form-field>
+    </div>
+    <div class="col-4">
+      <mat-form-field [style.width.%]="100">
+        <input type="text" matInput autocomplete="off" placeholder="Cari Hesap Kodu" [(ngModel)]="data.CLIENT_CODE" [disabled]="data.INSPECT!">
+      </mat-form-field>
+      <br>
+      <mat-form-field [style.width.%]="100">
+        <input type="text" matInput autocomplete="off" placeholder="Cari Hesap Yetki Kodu" [(ngModel)]="data.CL_AUTH_CODE" [disabled]="data.INSPECT!">
+      </mat-form-field>
+      <br>
+      <mat-form-field [style.width.%]="100">
+        <input type="text" matInput autocomplete="off" placeholder="Ödeme planı Kodu" [(ngModel)]="data.PAY_PLAN_CODE" [disabled]="data.INSPECT!">
+      </mat-form-field>
+    </div>
+    <div class="col-4">
+      <mat-form-field [style.width.%]="100">
+        <input type="text" matInput autocomplete="off" placeholder="Ticari İşlem Grubu" [(ngModel)]="data.TRADING_GRP" [disabled]="data.INSPECT!">
+      </mat-form-field>
+      <br>
+      <mat-form-field [style.width.%]="100">
+        <input type="text" matInput autocomplete="off" placeholder="İl" [(ngModel)]="data.CITY_CODE" [disabled]="data.INSPECT!">
+      </mat-form-field>
+      <br>
+      <mat-form-field [style.width.%]="100">
+        <input type="text" matInput autocomplete="off" placeholder="İlçe" [(ngModel)]="data.TOWN_CODE" [disabled]="data.INSPECT!">
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="row">
+        <h3 style="font-weight: bold;">Değişkenler</h3>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          V1
+          <mat-form-field [style.width.%]="80">
+            <input matInput type="text" autocomplete="off" [(ngModel)]="data.VARIABLE_DEFS1" [disabled]="data.INSPECT!">
+          </mat-form-field>
+        </div>
+        <div class="col-6">
+          V2
+          <mat-form-field [style.width.%]="80">
+            <input matInput type="text" autocomplete="off" [(ngModel)]="data.VARIABLE_DEFS2" [disabled]="data.INSPECT!">
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          V3
+          <mat-form-field [style.width.%]="80">
+            <input matInput type="text" autocomplete="off" [(ngModel)]="data.VARIABLE_DEFS3" [disabled]="data.INSPECT!"> 
+          </mat-form-field>
+        </div>
+        <div class="col-6">
+          V4
+          <mat-form-field [style.width.%]="80">
+            <input matInput type="text" autocomplete="off" [(ngModel)]="data.VARIABLE_DEFS4" [disabled]="data.INSPECT!">
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-stroked-button cdkFocusInitial [disabled]="data.INSPECT!" (click)="update()">
+    Güncelle
+  </button>
+  <button mat-stroked-button [matDialogClose]>
+    Vazgeç
+  </button>
+</div>
