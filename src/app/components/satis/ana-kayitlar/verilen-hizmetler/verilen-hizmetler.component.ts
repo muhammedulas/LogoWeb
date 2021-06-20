@@ -67,11 +67,17 @@ export class VerilenHizmetlerComponent implements OnInit {
   }
 
   add(){
-    this.dialog.open(Dialog_newSoldServiceComponent)
+    this.dialog.open(Dialog_newSoldServiceComponent).afterClosed().subscribe(q => {
+      this.getAllRecords(0)
+      this.currPage = 1
+    })
   }
 
   delete(id:number) {
-    this.dialog.open(Dialog_deleteSoldServiceComponent,{data:id})
+    this.dialog.open(Dialog_deleteSoldServiceComponent,{data:id}).afterClosed().subscribe(q => {
+      this.getAllRecords(0)
+      this.currPage = 1
+    })
   }
 
   edit_inspect(inspectMode:boolean){
@@ -81,6 +87,9 @@ export class VerilenHizmetlerComponent implements OnInit {
       data.INSPECT = inspectMode
       this.dialog.open(Dialog_editInspectSoldServiceComponent,{
         data:data
+      }).afterClosed().subscribe(q => {
+        this.getAllRecords(0)
+        this.currPage = 1
       })
     },err=>{
       this.toast.error(err.message,"Hata",{positionClass:"toast-top-center",timeOut:3000})
@@ -105,7 +114,7 @@ export class VerilenHizmetlerComponent implements OnInit {
     this.loaded = false
     this.getAllRecords(0)
     this.pageCount = Math.floor(this.itemCount / this.recLimit)
-    this.router.navigate(['verilen-hizmetler'])
+    this.router.navigate(['/satis/verilen-hizmetler'])
   }
 
   nextPage() {
@@ -117,7 +126,7 @@ export class VerilenHizmetlerComponent implements OnInit {
           this.response = resp
           console.log(this.response)
           this.dataSet = this.response.items
-          this.router.navigate(['verilen-hizmetler'])
+          this.router.navigate(['/satis/verilen-hizmetler'])
           this.loaded = true
         },
         err => {
@@ -139,7 +148,7 @@ export class VerilenHizmetlerComponent implements OnInit {
           this.response = resp
           console.log(this.response)
           this.dataSet = this.response.items
-          this.router.navigate(['verilen-hizmetler'])
+          this.router.navigate(['/satis/verilen-hizmetler'])
           this.loaded = true
         },
         err => {
@@ -156,7 +165,7 @@ export class VerilenHizmetlerComponent implements OnInit {
     this.loaded = false
     this.currPage = 1
     this.getAllRecords(0)
-    this.router.navigate(['verilen-hizmetler'])
+    this.router.navigate(['/satis/verilen-hizmetler'])
   }
 
   lastPage() {
@@ -186,7 +195,7 @@ export class VerilenHizmetlerComponent implements OnInit {
       this.response = resp
       console.log(this.response)
       this.dataSet = this.response.items
-      this.router.navigate(['verilen-hizmetler'])
+      this.router.navigate(['/satis/verilen-hizmetler'])
       this.loaded = true
     },
       err => {

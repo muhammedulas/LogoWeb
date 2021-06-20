@@ -67,10 +67,10 @@
   </div>
 </div>
 <div mat-dialog-actions align="end">
-  <button mat-stroked-button [mat-dialog-close]>
-    Vazgeç
-  </button>
   <button mat-stroked-button (click)="update()" [disabled]="data.INSPECT!">
     Güncelle
+  </button>
+  <button mat-stroked-button [mat-dialog-close]>
+    Vazgeç
   </button>
 </div>

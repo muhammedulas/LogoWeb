@@ -107,7 +107,7 @@ export class BankaFisleriComponent implements OnInit {
     this.loaded = false
     this.getAllRecords(0)
     this.pageCount = Math.floor(this.itemCount / this.recLimit)
-    this.router.navigate(['banka-fisleri'])
+    this.router.navigate(['/finans/banka-fisleri'])
   }
 
   nextPage() {
@@ -119,7 +119,7 @@ export class BankaFisleriComponent implements OnInit {
           this.response = resp
           console.log(this.response)
           this.dataSet = this.response.items
-          this.router.navigate(['banka-fisleri'])
+          this.router.navigate(['/finans/banka-fisleri'])
           this.loaded = true
         },
         err => {
@@ -141,7 +141,7 @@ export class BankaFisleriComponent implements OnInit {
           this.response = resp
           console.log(this.response)
           this.dataSet = this.response.items
-          this.router.navigate(['banka-fisleri'])
+          this.router.navigate(['/finans/banka-fisleri'])
           this.loaded = true
         },
         err => {
@@ -158,7 +158,7 @@ export class BankaFisleriComponent implements OnInit {
     this.loaded = false
     this.currPage = 1
     this.getAllRecords(0)
-    this.router.navigate(['banka-fisleri'])
+    this.router.navigate(['/finans/banka-fisleri'])
   }
 
   lastPage() {
@@ -188,7 +188,7 @@ export class BankaFisleriComponent implements OnInit {
       this.response = resp
       console.log(this.response)
       this.dataSet = this.response.items
-      this.router.navigate(['banka-fisleri'])
+      this.router.navigate(['/finans/banka-fisleri'])
       this.loaded = true
     },
       err => {

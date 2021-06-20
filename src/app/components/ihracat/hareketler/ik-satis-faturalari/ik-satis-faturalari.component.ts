@@ -105,7 +105,7 @@ export class IkSatisFaturalariComponent implements OnInit {
     this.loaded = false
     this.getAllRecords(0)
     this.pageCount = Math.floor(this.itemCount / this.recLimit)
-    this.router.navigate(['ik-satis-faturalari'])
+    this.router.navigate(['/ihracat/ik-satis-faturalari'])
   }
 
   nextPage() {
@@ -117,7 +117,7 @@ export class IkSatisFaturalariComponent implements OnInit {
           this.response = resp
           console.log(this.response)
           this.dataSet = this.response.items
-          this.router.navigate(['ik-satis-faturalari'])
+          this.router.navigate(['/ihracat/ik-satis-faturalari'])
           this.loaded = true
         },
         err => {
@@ -139,7 +139,7 @@ export class IkSatisFaturalariComponent implements OnInit {
           this.response = resp
           console.log(this.response)
           this.dataSet = this.response.items
-          this.router.navigate(['ik-satis-faturalari'])
+          this.router.navigate(['/ihracat/ik-satis-faturalari'])
           this.loaded = true
         },
         err => {
@@ -156,7 +156,7 @@ export class IkSatisFaturalariComponent implements OnInit {
     this.loaded = false
     this.currPage = 1
     this.getAllRecords(0)
-    this.router.navigate(['ik-satis-faturalari'])
+    this.router.navigate(['/ihracat/ik-satis-faturalari'])
   }
 
   lastPage() {
@@ -186,7 +186,7 @@ export class IkSatisFaturalariComponent implements OnInit {
       this.response = resp
       console.log(this.response)
       this.dataSet = this.response.items
-      this.router.navigate(['ik-satis-faturalari'])
+      this.router.navigate(['/ihracat/ik-satis-faturalari'])
       this.loaded = true
     },
       err => {

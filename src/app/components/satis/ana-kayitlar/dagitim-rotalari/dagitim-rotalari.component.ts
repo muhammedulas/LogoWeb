@@ -67,11 +67,17 @@ export class DagitimRotalariComponent implements OnInit {
   }
 
   add(){
-    this.dialog.open(Dialog_newDistRouteComponent,{width:"60vw",height:"65vh"})
+    this.dialog.open(Dialog_newDistRouteComponent).afterClosed().subscribe(q => {
+      this.getAllRecords(0)
+      this.currPage = 1
+    })
   }
 
   delete(id:number) {
-    this.dialog.open(Dialog_deleteDistRouteComponent,{data:id})
+    this.dialog.open(Dialog_deleteDistRouteComponent,{data:id}).afterClosed().subscribe(q => {
+      this.getAllRecords(0)
+      this.currPage = 1
+    })
   }
 
   edit_inspect(inspectMode:boolean){
@@ -80,9 +86,10 @@ export class DagitimRotalariComponent implements OnInit {
       data = res
       data.INSPECT = inspectMode
       this.dialog.open(Dialog_editInspectDistRouteComponent,{
-        data:data,
-        width:"60vw",
-        height:"65vh"
+        data:data
+      }).afterClosed().subscribe(q => {
+        this.getAllRecords(0)
+        this.currPage = 1
       })
     },err=>{
       this.toast.error(err.message,"Hata",{positionClass:"toast-top-center",timeOut:3000})
@@ -107,7 +114,7 @@ export class DagitimRotalariComponent implements OnInit {
     this.loaded = false
     this.getAllRecords(0)
     this.pageCount = Math.floor(this.itemCount / this.recLimit)
-    this.router.navigate(['dagitim-rotalari'])
+    this.router.navigate(['/satis/dagitim-rotalari'])
   }
 
   nextPage() {
@@ -119,7 +126,7 @@ export class DagitimRotalariComponent implements OnInit {
           this.response = resp
           console.log(this.response)
           this.dataSet = this.response.items
-          this.router.navigate(['dagitim-rotalari'])
+          this.router.navigate(['/satis/dagitim-rotalari'])
           this.loaded = true
         },
         err => {
@@ -141,7 +148,7 @@ export class DagitimRotalariComponent implements OnInit {
           this.response = resp
           console.log(this.response)
           this.dataSet = this.response.items
-          this.router.navigate(['dagitim-rotalari'])
+          this.router.navigate(['/satis/dagitim-rotalari'])
           this.loaded = true
         },
         err => {
@@ -158,7 +165,7 @@ export class DagitimRotalariComponent implements OnInit {
     this.loaded = false
     this.currPage = 1
     this.getAllRecords(0)
-    this.router.navigate(['dagitim-rotalari'])
+    this.router.navigate(['/satis/dagitim-rotalari'])
   }
 
   lastPage() {
@@ -188,7 +195,7 @@ export class DagitimRotalariComponent implements OnInit {
       this.response = resp
       console.log(this.response)
       this.dataSet = this.response.items
-      this.router.navigate(['dagitim-rotalari'])
+      this.router.navigate(['/satis/dagitim-rotalari'])
       this.loaded = true
     },
       err => {

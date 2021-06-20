@@ -106,7 +106,7 @@ export class MaliyetDagitimFisleriComponent implements OnInit {
     this.loaded = false
     this.getAllRecords(0)
     this.pageCount = Math.floor(this.itemCount / this.recLimit)
-    this.router.navigate(['maliyet-dagitim-fisleri'])
+    this.router.navigate(['/malzeme-yonetimi/maliyet-dagitim-fisleri'])
   }
 
   nextPage() {
@@ -118,7 +118,7 @@ export class MaliyetDagitimFisleriComponent implements OnInit {
           this.response = resp
           console.log(this.response)
           this.dataSet = this.response.items
-          this.router.navigate(['maliyet-dagitim-fisleri'])
+          this.router.navigate(['/malzeme-yonetimi/maliyet-dagitim-fisleri'])
           this.loaded = true
         },
         err => {
@@ -140,7 +140,7 @@ export class MaliyetDagitimFisleriComponent implements OnInit {
           this.response = resp
           console.log(this.response)
           this.dataSet = this.response.items
-          this.router.navigate(['maliyet-dagitim-fisleri'])
+          this.router.navigate(['/malzeme-yonetimi/maliyet-dagitim-fisleri'])
           this.loaded = true
         },
         err => {
@@ -157,7 +157,7 @@ export class MaliyetDagitimFisleriComponent implements OnInit {
     this.loaded = false
     this.currPage = 1
     this.getAllRecords(0)
-    this.router.navigate(['maliyet-dagitim-fisleri'])
+    this.router.navigate(['/malzeme-yonetimi/maliyet-dagitim-fisleri'])
   }
 
   lastPage() {
@@ -187,7 +187,7 @@ export class MaliyetDagitimFisleriComponent implements OnInit {
       this.response = resp
       console.log(this.response)
       this.dataSet = this.response.items
-      this.router.navigate(['maliyet-dagitim-fisleri'])
+      this.router.navigate(['/malzeme-yonetimi/maliyet-dagitim-fisleri'])
       this.loaded = true
     },
       err => {

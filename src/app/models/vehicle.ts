@@ -1,5 +1,5 @@
 export class vehicle {
-    "INSPECT": boolean;
+    "INSPECT"?: boolean;
     "INTERNAL_REFERENCE": number;
     "CODE": string;
     "DEFINITION": string;

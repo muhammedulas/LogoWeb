@@ -67,7 +67,7 @@ export class MalzemeOzellikleriComponent implements OnInit {
   }
 
   addItemChar() {
-    let ref = this.dialog.open(Dialog_newItemCharComponent, { width: "60vw", height: "65vh" })
+    let ref = this.dialog.open(Dialog_newItemCharComponent)
     ref.afterClosed().subscribe(q => {
       this.getItemChars(0)
     })
@@ -86,9 +86,7 @@ export class MalzemeOzellikleriComponent implements OnInit {
       itemChar = res
       itemChar.INSPECT = inspectMode
       let ref = this.dialog.open(Dialog_editInspectItemCharComponent, {
-        data: itemChar,
-        width: "60vw",
-        height: "65vh"
+        data: itemChar
       })
       ref.afterClosed().subscribe(q=>{
         this.getItemChars(0)
@@ -117,7 +115,7 @@ export class MalzemeOzellikleriComponent implements OnInit {
     this.loaded = false
     this.getItemChars(0)
     this.pageCount = Math.floor(this.itemCount / this.recLimit)
-    this.router.navigate(['malzeme-ozellikleri'])
+    this.router.navigate(['/malzeme-yonetimi/malzeme-ozellikeri'])
   }
 
   nextPage() {
@@ -129,7 +127,7 @@ export class MalzemeOzellikleriComponent implements OnInit {
           this.response = resp
           console.log(this.response)
           this.itemChars = this.response.items
-          this.router.navigate(['malzeme-ozellikleri'])
+          this.router.navigate(['/malzeme-yonetimi/malzeme-ozellikeri'])
           this.loaded = true
         },
         err => {
@@ -151,7 +149,7 @@ export class MalzemeOzellikleriComponent implements OnInit {
           this.response = resp
           console.log(this.response)
           this.itemChars = this.response.items
-          this.router.navigate(['malzeme-ozellikleri'])
+          this.router.navigate(['/malzeme-yonetimi/malzeme-ozellikeri'])
           this.loaded = true
         },
         err => {
@@ -168,7 +166,7 @@ export class MalzemeOzellikleriComponent implements OnInit {
     this.loaded = false
     this.currPage = 1
     this.getItemChars(0)
-    this.router.navigate(['malzeme-ozellikleri'])
+    this.router.navigate(['/malzeme-yonetimi/malzeme-ozellikeri'])
   }
 
   lastPage() {
@@ -198,7 +196,7 @@ export class MalzemeOzellikleriComponent implements OnInit {
       this.response = resp
       console.log(this.response)
       this.itemChars = this.response.items
-      this.router.navigate(['malzeme-ozellikleri'])
+      this.router.navigate(['/malzeme-yonetimi/malzeme-ozellikeri'])
       this.loaded = true
     },
       err => {

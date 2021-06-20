@@ -1,3 +1,142 @@
-<p>
-  Dialog_editInspectVehicle works!
-</p>
+<div mat-dialog-content>
+  <div class="row">
+    <div class="col-12">
+      <mat-form-field [style.width.%]="50">
+        <input type="text" matInput [disabled]="data.INSPECT!" autocomplete="off" placeholder="Kodu" [(ngModel)]="data.CODE">
+      </mat-form-field>
+      <br>
+      <mat-form-field [style.width.%]="70">
+        <input type="text" matInput [disabled]="data.INSPECT!" autocomplete="off" placeholder="Açıklaması" [(ngModel)]="data.DEFINITION">
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row mt-1">
+    <div class="col-12">
+      <mat-form-field [style.width.%]="30">
+        <input type="text" matInput [disabled]="data.INSPECT!" autocomplete="off" placeholder="Özel Kod" [(ngModel)]="data.AUXIL_CODE">
+      </mat-form-field>
+      &nbsp;
+      <mat-form-field [style.width.%]="30">
+        <mat-label>Statüsü</mat-label>
+        <mat-select [(value)]="data.ACTIVE" [disabled]="data.INSPECT!">
+          <mat-option value=0>
+            Kullanımda
+          </mat-option>
+          <mat-option value=1>
+            Kullanım Dışı
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
+      <mat-form-field [style.width.%]="30">
+        <input type="text" matInput [disabled]="data.INSPECT!" autocomplete="off" placeholder="Yetki Kodu" [(ngModel)]="data.AUTH_CODE">
+      </mat-form-field>
+      &nbsp;
+      <mat-form-field [style.width.%]="30">
+        <input type="text" matInput [disabled]="data.INSPECT!" autocomplete="off" placeholder="Plaka" [(ngModel)]="data.PLAQUE">
+      </mat-form-field>
+      &nbsp;
+      <mat-form-field [style.width.%]="30">
+        <input type="text" matInput [disabled]="data.INSPECT!" autocomplete="off" placeholder="Puan" [(ngModel)]="data.SCORE">
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row mt-1">
+    <div class="col-6">
+      <mat-form-field>
+        <input type="text" matInput [disabled]="data.INSPECT!" autocomplete="off" placeholder="En" [(ngModel)]="data.WIDTH">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input type="text" matInput [disabled]="data.INSPECT!" autocomplete="off" placeholder="Boy" [(ngModel)]="data.LENGTH">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input type="text" matInput [disabled]="data.INSPECT!" autocomplete="off" placeholder="Yükseklik" [(ngModel)]="data.HEIGHT">
+      </mat-form-field>
+    </div>
+    <div class="col-6">
+      <mat-form-field>
+        <input type="text" matInput [disabled]="data.INSPECT!" autocomplete="off" placeholder="Alan" [(ngModel)]="data.AREA">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input type="text" matInput [disabled]="data.INSPECT!" autocomplete="off" placeholder="Hacim" [(ngModel)]="data.VOLUME">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input type="text" matInput [disabled]="data.INSPECT!" autocomplete="off" placeholder="Ağırlık" [(ngModel)]="data.WEIGHT">
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row mt-1">
+    <div class="col-8">
+      <mat-form-field [style.width.%]="45">
+        <input type="text" matInput [disabled]="data.INSPECT!" autocomplete="off" placeholder="Sürücü 1" [(ngModel)]="data.USER1">
+      </mat-form-field>
+      &nbsp;
+      <mat-form-field [style.width.%]="45">
+        <input type="text" matInput [disabled]="data.INSPECT!" autocomplete="off" placeholder="Sürücü 2" [(ngModel)]="data.USER2">
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row mt-1">
+    <div class="col-6">
+      <mat-form-field>
+        <input type="text" matInput [disabled]="data.INSPECT!" autocomplete="off" placeholder="Duruş Ücreti" [(ngModel)]="data.WAITING_PROCE">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input type="text" matInput [disabled]="data.INSPECT!" autocomplete="off" placeholder="Sabit Ücret" [(ngModel)]="data.FIXED_PRICE">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input type="text" matInput [disabled]="data.INSPECT!" autocomplete="off" placeholder="Minimum Ücret"
+          [(ngModel)]="data.MINIMAL_PRICE">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input type="text" matInput [disabled]="data.INSPECT!" autocomplete="off" placeholder="Birim Maliyet" [(ngModel)]="data.UNIT_COST">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input type="text" matInput [disabled]="data.INSPECT!" autocomplete="off" placeholder="Birim Maliyet Birimi"
+          [(ngModel)]="data.UNIT_COST_CODE">
+      </mat-form-field>
+    </div>
+    <div class="col-6">
+      <mat-form-field>
+        <input type="text" matInput [disabled]="data.INSPECT!" autocomplete="off" placeholder="Malzeme Özel Kodu"
+          [(ngModel)]="data.ITEM_AUXIL_CODE1">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input type="text" matInput [disabled]="data.INSPECT!" autocomplete="off" placeholder="Malzeme Özel Kodu 2"
+          [(ngModel)]="data.ITEM_AUXIL_CODE2">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input type="text" matInput [disabled]="data.INSPECT!" autocomplete="off" placeholder="Malzeme Özel Kodu 3"
+          [(ngModel)]="data.ITEM_AUXIL_CODE3">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input type="text" matInput [disabled]="data.INSPECT!" autocomplete="off" placeholder="Malzeme Özel Kodu 4"
+          [(ngModel)]="data.ITEM_AUXIL_CODE4">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input type="text" matInput [disabled]="data.INSPECT!" autocomplete="off" placeholder="Malzeme Özel Kodu 5"
+          [(ngModel)]="data.ITEM_AUXIL_CODE5">
+      </mat-form-field>
+    </div>
+  </div>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-stroked-button cdkFocusInitial (click)="update()" [disabled]="data.INSPECT!">
+    Güncelle
+  </button>
+  <button mat-stroked-button [mat-dialog-close]>
+    Vazgeç
+  </button>
+</div>

@@ -1,7 +1,7 @@
 import { distRouteLine } from "./distRouteLine"
 
 export class distRoute {
-    "INSPECT": boolean;
+    "INSPECT"?: boolean;
     "INTERNAL_REFERENCE": number;
     "CODE": string;
     "NAME": string;

@@ -107,7 +107,7 @@ export class BirimSetleriComponent implements OnInit {
     this.loaded = false
     this.getUnitSets(0)
     this.pageCount = Math.floor(this.itemCount / this.recLimit)
-    this.router.navigate(['birim-setleri'])
+    this.router.navigate(['/malzeme-yonetimi/birim-setleri'])
   }
 
   nextPage() {
@@ -120,7 +120,7 @@ export class BirimSetleriComponent implements OnInit {
           this.response = resp
           console.log(this.response)
           this.unitSets = this.response.items
-          this.router.navigate(['birim-setleri'])
+          this.router.navigate(['/malzeme-yonetimi/birim-setleri'])
           this.loaded = true
         },
         err => {
@@ -142,7 +142,7 @@ export class BirimSetleriComponent implements OnInit {
           this.response = resp
           console.log(this.response)
           this.unitSets = this.response.items
-          this.router.navigate(['birim-setleri'])
+          this.router.navigate(['/malzeme-yonetimi/birim-setleri'])
           this.loaded = true
         },
         err => {
@@ -159,7 +159,7 @@ export class BirimSetleriComponent implements OnInit {
     this.loaded = false
     this.currPage = 1
     this.getUnitSets(0)
-    this.router.navigate(['birim-setleri'])
+    this.router.navigate(['/malzeme-yonetimi/birim-setleri'])
   }
 
   lastPage() {
@@ -189,7 +189,7 @@ export class BirimSetleriComponent implements OnInit {
       this.response = resp
       console.log(this.response)
       this.unitSets = this.response.items
-      this.router.navigate(['birim-setleri'])
+      this.router.navigate(['/malzeme-yonetimi/birim-setleri'])
       this.loaded = true
     },
       err => {

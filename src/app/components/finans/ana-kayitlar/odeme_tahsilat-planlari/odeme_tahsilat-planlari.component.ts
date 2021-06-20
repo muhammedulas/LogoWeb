@@ -67,7 +67,7 @@ export class Odeme_tahsilatPlanlariComponent implements OnInit {
   }
 
   addPP(){
-    this.dialog.open(Dialog_newPaymentPlanComponent).afterClosed().subscribe(q=>{
+    this.dialog.open(Dialog_newPaymentPlanComponent, {width:"60vw", height:"60vh"}).afterClosed().subscribe(q=>{
       this.getPPs(0)
     })
   }
@@ -84,7 +84,9 @@ export class Odeme_tahsilatPlanlariComponent implements OnInit {
       plan = res
       plan.INSPECT = inspectMode
       this.dialog.open(Dialog_editInspectPaymentPlanComponent,{
-        data:plan
+        data:plan,
+        width:"60vw",
+        height:"60vh"
       }).afterClosed().subscribe(q=>{
         this.getPPs(0)
       })
@@ -111,7 +113,7 @@ export class Odeme_tahsilatPlanlariComponent implements OnInit {
     this.loaded = false
     this.getPPs(0)
     this.pageCount = Math.floor(this.itemCount / this.recLimit)
-    this.router.navigate(['odeme-tahsilat-planlari'])
+    this.router.navigate(['/finans/odeme-tahsilat-planlari'])
   }
 
   nextPage() {
@@ -123,7 +125,7 @@ export class Odeme_tahsilatPlanlariComponent implements OnInit {
           this.response = resp
           console.log(this.response)
           this.paymentPlans = this.response.items
-          this.router.navigate(['odeme-tahsilat-planlari'])
+          this.router.navigate(['/finans/odeme-tahsilat-planlari'])
           this.loaded = true
         },
         err => {
@@ -145,7 +147,7 @@ export class Odeme_tahsilatPlanlariComponent implements OnInit {
           this.response = resp
           console.log(this.response)
           this.paymentPlans = this.response.items
-          this.router.navigate(['odeme-tahsilat-planlari'])
+          this.router.navigate(['/finans/odeme-tahsilat-planlari'])
           this.loaded = true
         },
         err => {
@@ -162,7 +164,7 @@ export class Odeme_tahsilatPlanlariComponent implements OnInit {
     this.loaded = false
     this.currPage = 1
     this.getPPs(0)
-    this.router.navigate(['odeme-tahsilat-planlari'])
+    this.router.navigate(['/finans/odeme-tahsilat-planlari'])
   }
 
   lastPage() {
@@ -192,7 +194,7 @@ export class Odeme_tahsilatPlanlariComponent implements OnInit {
       this.response = resp
       console.log(this.response)
       this.paymentPlans = this.response.items
-      this.router.navigate(['odeme-tahsilat-planlari'])
+      this.router.navigate(['/finans/odeme-tahsilat-planlari'])
       this.loaded = true
     },
       err => {

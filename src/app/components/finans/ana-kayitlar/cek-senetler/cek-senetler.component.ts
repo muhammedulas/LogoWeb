@@ -103,7 +103,7 @@ export class CekSenetlerComponent implements OnInit {
     this.loaded = false
     this.getCPs(0)
     this.pageCount = Math.floor(this.itemCount / this.recLimit)
-    this.router.navigate(['cek-senetler'])
+    this.router.navigate(['/finans/cek-senetler'])
   }
 
   nextPage() {
@@ -115,7 +115,7 @@ export class CekSenetlerComponent implements OnInit {
           this.response = resp
           console.log(this.response)
           this.CPs = this.response.items
-          this.router.navigate(['cek-senetler'])
+          this.router.navigate(['/finans/cek-senetler'])
           this.loaded = true
         },
         err => {
@@ -137,7 +137,7 @@ export class CekSenetlerComponent implements OnInit {
           this.response = resp
           console.log(this.response)
           this.CPs = this.response.items
-          this.router.navigate(['cek-senetler'])
+          this.router.navigate(['/finans/cek-senetler'])
           this.loaded = true
         },
         err => {
@@ -154,7 +154,7 @@ export class CekSenetlerComponent implements OnInit {
     this.loaded = false
     this.currPage = 1
     this.getCPs(0)
-    this.router.navigate(['cek-senetler'])
+    this.router.navigate(['/finans/cek-senetler'])
   }
 
   lastPage() {
@@ -184,7 +184,7 @@ export class CekSenetlerComponent implements OnInit {
       this.response = resp
       console.log(this.response)
       this.CPs = this.response.items
-      this.router.navigate(['cek-senetler'])
+      this.router.navigate(['/finans/cek-senetler'])
       this.loaded = true
     },
       err => {

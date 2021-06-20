@@ -150,6 +150,12 @@ import { Dialog_editInspectServiceSalePriceComponent } from './components/satis/
 import { Dialog_editInspectItemSalePriceComponent } from './components/satis/ana-kayitlar/malzeme-satis-fiyatlari/Dialog_editInspectItemSalePrice/Dialog_editInspectItemSalePrice.component';
 import { Dialog_newItemSalePriceComponent } from './components/satis/ana-kayitlar/malzeme-satis-fiyatlari/Dialog_newItemSalePrice/Dialog_newItemSalePrice.component';
 import { Dialog_newServiceSalePriceComponent } from './components/satis/ana-kayitlar/hizmet-satis-fiyatlari/Dialog_newServiceSalePrice/Dialog_newServiceSalePrice.component';
+import { Dialog_newDistRouteComponent } from './components/satis/ana-kayitlar/dagitim-rotalari/Dialog_newDistRoute/Dialog_newDistRoute.component';
+import { Dialog_editInspectDistRouteComponent } from './components/satis/ana-kayitlar/dagitim-rotalari/Dialog_editInspectDistRoute/Dialog_editInspectDistRoute.component';
+import { Dialog_deleteDistRouteComponent } from './components/satis/ana-kayitlar/dagitim-rotalari/Dialog_deleteDistRoute/Dialog_deleteDistRoute.component';
+import { Dialog_newVehicleComponent } from './components/satis/ana-kayitlar/dagitim-araclari/Dialog_newVehicle/Dialog_newVehicle.component';
+import { Dialog_editInspectVehicleComponent } from './components/satis/ana-kayitlar/dagitim-araclari/Dialog_editInspectVehicle/Dialog_editInspectVehicle.component';
+import { Dialog_deleteVehicleComponent } from './components/satis/ana-kayitlar/dagitim-araclari/Dialog_deleteVehicle/Dialog_deleteVehicle.component';
 
 
 
@@ -302,7 +308,13 @@ import { Dialog_newServiceSalePriceComponent } from './components/satis/ana-kayi
     Dialog_editInspectServiceSalePriceComponent,
     Dialog_deleteServiceSalePriceComponent,
     Dialog_newItemSalePriceComponent,
-    Dialog_newServiceSalePriceComponent
+    Dialog_newServiceSalePriceComponent,
+    Dialog_newDistRouteComponent,
+    Dialog_editInspectDistRouteComponent,
+    Dialog_deleteDistRouteComponent,
+    Dialog_newVehicleComponent,
+    Dialog_editInspectVehicleComponent,
+    Dialog_deleteVehicleComponent
 
 
   ],
@@ -357,7 +369,14 @@ import { Dialog_newServiceSalePriceComponent } from './components/satis/ana-kayi
     Dialog_editInspectServiceSalePriceComponent,
     Dialog_deleteServiceSalePriceComponent,
     Dialog_newItemSalePriceComponent,
-    Dialog_newServiceSalePriceComponent
+    Dialog_newServiceSalePriceComponent,
+    Dialog_newDistRouteComponent,
+    Dialog_editInspectDistRouteComponent,
+    Dialog_deleteDistRouteComponent,
+    Dialog_newVehicleComponent,
+    Dialog_editInspectVehicleComponent,
+    Dialog_deleteVehicleComponent
+
 
   ],
 

@@ -109,7 +109,7 @@ export class MalzemeYonetimFisleriComponent implements OnInit {
     this.loaded = false
     this.getAllRecords(0)
     this.pageCount = Math.floor(this.itemCount / this.recLimit)
-    this.router.navigate(['malzeme-yonetim-fisleri'])
+    this.router.navigate(['/malzeme-yonetimi/malzeme-yonetim-fisleri'])
   }
 
   nextPage() {
@@ -121,7 +121,7 @@ export class MalzemeYonetimFisleriComponent implements OnInit {
           this.response = resp
           console.log(this.response)
           this.dataSet = this.response.items
-          this.router.navigate(['malzeme-yonetim-fisleri'])
+          this.router.navigate(['/malzeme-yonetimi/malzeme-yonetim-fisleri'])
           this.loaded = true
         },
         err => {
@@ -143,7 +143,7 @@ export class MalzemeYonetimFisleriComponent implements OnInit {
           this.response = resp
           console.log(this.response)
           this.dataSet = this.response.items
-          this.router.navigate(['malzeme-yonetim-fisleri'])
+          this.router.navigate(['/malzeme-yonetimi/malzeme-yonetim-fisleri'])
           this.loaded = true
         },
         err => {
@@ -160,7 +160,7 @@ export class MalzemeYonetimFisleriComponent implements OnInit {
     this.loaded = false
     this.currPage = 1
     this.getAllRecords(0)
-    this.router.navigate(['malzeme-yonetim-fisleri'])
+    this.router.navigate(['/malzeme-yonetimi/malzeme-yonetim-fisleri'])
   }
 
   lastPage() {
@@ -190,7 +190,7 @@ export class MalzemeYonetimFisleriComponent implements OnInit {
       this.response = resp
       console.log(this.response)
       this.dataSet = this.response.items
-      this.router.navigate(['malzeme-yonetim-fisleri'])
+      this.router.navigate(['/malzeme-yonetimi/malzeme-yonetim-fisleri'])
       this.loaded = true
     },
       err => {

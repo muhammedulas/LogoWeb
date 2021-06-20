@@ -70,11 +70,17 @@ export class SatisMasraflariComponent implements OnInit {
   }
 
   add(){
-    this.dialog.open(Dialog_newSalesExpenseComponent)
+    this.dialog.open(Dialog_newSalesExpenseComponent).afterClosed().subscribe(q => {
+      this.getAllRecords(0)
+      this.currPage = 1
+    })
   }
 
   delete(id:number) {
-    this.dialog.open(Dialog_deleteSalesExpenseComponent,{data:id})
+    this.dialog.open(Dialog_deleteSalesExpenseComponent,{data:id}).afterClosed().subscribe(q => {
+      this.getAllRecords(0)
+      this.currPage = 1
+    })
   }
 
   edit_inspect(inspectMode:boolean){
@@ -84,6 +90,9 @@ export class SatisMasraflariComponent implements OnInit {
       data.INSPECT = inspectMode
       this.dialog.open(Dialog_editInspectSalesExpenseComponent,{
         data:data
+      }).afterClosed().subscribe(q => {
+        this.getAllRecords(0)
+        this.currPage = 1
       })
     },err=>{
       this.toast.error(err.message,"Hata",{positionClass:"toast-top-center",timeOut:3000})
@@ -108,7 +117,7 @@ export class SatisMasraflariComponent implements OnInit {
     this.loaded = false
     this.getAllRecords(0)
     this.pageCount = Math.floor(this.itemCount / this.recLimit)
-    this.router.navigate(['satis-masraflari'])
+    this.router.navigate(['/satis/satis-masraflari'])
   }
 
   nextPage() {
@@ -120,7 +129,7 @@ export class SatisMasraflariComponent implements OnInit {
           this.response = resp
           console.log(this.response)
           this.dataSet = this.response.items
-          this.router.navigate(['satis-masraflari'])
+          this.router.navigate(['/satis/satis-masraflari'])
           this.loaded = true
         },
         err => {
@@ -142,7 +151,7 @@ export class SatisMasraflariComponent implements OnInit {
           this.response = resp
           console.log(this.response)
           this.dataSet = this.response.items
-          this.router.navigate(['satis-masraflari'])
+          this.router.navigate(['/satis/satis-masraflari'])
           this.loaded = true
         },
         err => {
@@ -159,7 +168,7 @@ export class SatisMasraflariComponent implements OnInit {
     this.loaded = false
     this.currPage = 1
     this.getAllRecords(0)
-    this.router.navigate(['satis-masraflari'])
+    this.router.navigate(['/satis/satis-masraflari'])
   }
 
   lastPage() {
@@ -189,7 +198,7 @@ export class SatisMasraflariComponent implements OnInit {
       this.response = resp
       console.log(this.response)
       this.dataSet = this.response.items
-      this.router.navigate(['satis-masraflari'])
+      this.router.navigate(['/satis/satis-masraflari'])
       this.loaded = true
     },
       err => {
