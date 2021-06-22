@@ -1,4 +1,5 @@
 import { intelList } from "./intelList";
+import { invoiceTrans } from "./invoiceTrans";
 import { OKCInfo } from "./OKCInfo";
 import { paymentList } from "./paymentList";
 import { purchaseDispatch } from "./purchaseDispatch";
@@ -12,7 +13,7 @@ export class purchaseInvoice {
     "NUMBER": string
     "DOC_TRACK_NR": string;
     "DATE": string;
-    "TIME": string;
+    "TIME": number;
     "DOC_NUMBER": string;
     "AUXIL_CODE": string;
     "AUTH_CODE": string;
@@ -36,7 +37,7 @@ export class purchaseInvoice {
     "VAT_RATE": number;
     "ADD_DISCOUNTS": number;
     "TOTAL_DISCOUNTS": number;
-    "TOTAL_DISCOUNTED": string;
+    "TOTAL_DISCOUNTED": number;
     "ADD_EXPENSES": number;
     "TOTAL_EXPENSES": number;
     "EXPENSE_DISTRB": number;
@@ -44,8 +45,8 @@ export class purchaseInvoice {
     "TOTAL_PROMOTIONS": number;
     "TOTAL_GROSSVINC": number;
     "TOTAL_VAT": number;
-    "TOTAL_GROSS": string;
-    "TOTAL_NET": string;
+    "TOTAL_GROSS": number;
+    "TOTAL_NET": number;
     "NOTES1": string;
     "NOTES2": string;
     "NOTES3": string;
@@ -55,7 +56,7 @@ export class purchaseInvoice {
     "INTEREST_ACCRD": number;
     "CURR_INVOICE": number;
     "TC_XRATE": number;
-    "TC_NET": string;
+    "TC_NET": number;
     "RC_XRATE": number;
     "RC_NET": number;
     "SINGLE_PAYMENT": number;
@@ -96,9 +97,11 @@ export class purchaseInvoice {
     "FACTORY": number;
     "DISPATCH_DATE": number;
     "DISP_NUMBER": string;
-    "DISPATCHES": purchaseDispatch[];
+    "DISPATCHES": {
+        items: purchaseDispatch[];
+    }
     "TRANSACTIONS": {
-        "items": transaction[]
+        "items": invoiceTrans[]
     }
     "PAYMENT_LIST": {
         "items": paymentList[]

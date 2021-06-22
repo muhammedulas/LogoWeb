@@ -1,3 +1,150 @@
-<p>
-  dialog_newSalesInvoice works!
-</p>
+<h2 mat-dialog-title style="text-align: center;">Yeni Satış Faturası</h2>
+<div mat-dialog-content>
+  <div class="row">
+    <div class="col-12">
+      <mat-form-field>
+        <input type="text" matInput autocomplete="off" placeholder="Fiş No." [(ngModel)]="newRecord.NUMBER">
+      </mat-form-field>
+      &nbsp;
+      <mat-form-field>
+        <input type="text" matInput autocomplete="off" placeholder="Cari Hesap Kodu" [(ngModel)]="newRecord.ARP_CODE">
+      </mat-form-field>
+      &nbsp;
+      <mat-form-field>
+        <input type="text" matInput autocomplete="off" placeholder="Özel Kod" [(ngModel)]="newRecord.AUXIL_CODE">
+      </mat-form-field>
+      &nbsp;
+      <mat-form-field>
+        <input type="text" matInput autocomplete="off" placeholder="Satış Elemanı Kodu"
+          [(ngModel)]="newRecord.SALESMAN_CODE">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input type="datetime-local" matInput autocomplete="off" placeholder="Tarih" [(ngModel)]="newRecord.DATE">
+      </mat-form-field>
+      &nbsp;
+      <mat-form-field>
+        <input type="text" matInput autocomplete="off" placeholder="Ödeme Planı Kodu"
+          [(ngModel)]="newRecord.PAYMENT_CODE">
+      </mat-form-field>
+      &nbsp;
+      <mat-form-field>
+        <input type="text" matInput autocomplete="off" placeholder="Yetki Kodu" [(ngModel)]="newRecord.AUTH_CODE">
+      </mat-form-field>
+      &nbsp;
+      <mat-form-field>
+        <input type="text" matInput autocomplete="off" placeholder="Proje Kodu" [(ngModel)]="newRecord.PROJECT_CODE">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input type="text" matInput autocomplete="off" placeholder="Belge No." [(ngModel)]="newRecord.DOC_NUMBER">
+      </mat-form-field>
+      &nbsp;
+      <mat-form-field>
+        <input type="text" matInput autocomplete="off" placeholder="Ticari İşlem Grubu"
+          [(ngModel)]="newRecord.TRADING_GRP">
+      </mat-form-field>
+      &nbsp;
+      <mat-form-field>
+        <input type="text" matInput autocomplete="off" placeholder="İrsaliye Numarası"
+          [(ngModel)]="newRecord.DISP_NUMBER">
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <table class="table table-hover table-bordered" #table>
+        <thead>
+          <tr>
+            <th class="w-20">Türü</th>
+            <th class="w-25">Kodu</th>
+            <th class="w-25">Miktar</th>
+            <th class="w-20">Birim Fiyat</th>
+            <th class="w-5">KDV %</th>
+            <th class="w-5">İndirim %</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="height: 25px;" *ngFor="let trans of newRecord.TRANSACTIONS.items">
+            <td>
+              <mat-form-field [style.width.%]="100">
+                <mat-select [(value)]="trans.TYPE">
+                  <mat-option value=0>Malzeme</mat-option>
+                  <mat-option value=1>Hizmet</mat-option>
+                  <mat-option value=2>Karma Koli</mat-option>
+                  <mat-option value=3>Malzeme Sınıfı</mat-option>
+                  <mat-option value=4>Promosyon</mat-option>
+                  <mat-option value=5>Ek Malzeme</mat-option>
+                  <mat-option value=7>Masraf</mat-option>
+                </mat-select>
+              </mat-form-field>
+            <td>
+              <mat-form-field [style.width.%]="100">
+                <input type="text" matInput [(ngModel)]="trans.MASTER_CODE">
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field [style.width.%]="100">
+                <input type="number" matInput [(ngModel)]="trans.QUANTITY" (focusout)="calculate()">
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field [style.width.%]="100">
+                <input type="number" matInput [(ngModel)]="trans.PRICE" (focusout)="calculate()">
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field [style.width.%]="100">
+                <input type="number" matInput [(ngModel)]="trans.VAT_RATE" (focusout)="calculate()">
+              </mat-form-field>
+            </td>
+            <td style="width: 50px; max-width: 50px;">
+              <mat-form-field [style.width.%]="55">
+                <input type="number" min="0" max="100" matInput [(ngModel)]="trans.DISCOUNT_RATE"
+                  (focusout)="calculate()">
+              </mat-form-field>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <button mat-icon-button (click)="newLine()">
+        <mat-icon>
+          add
+        </mat-icon>
+      </button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="spacer"></div>
+    <div class="col-3 d-flex justify-content-end">
+      <table class="table table-hover">
+        <tbody>
+          <tr>
+            <td>Toplam İndirim:</td>
+            <td>{{newRecord.TOTAL_DISCOUNTED}} &#8378;</td>
+          </tr>
+          <tr>
+            <td>Toplam Tutar:</td>
+            <td> {{newRecord.TOTAL_GROSS}} &#8378;</td>
+          </tr>
+          <tr>
+            <td>Toplam KDV:</td>
+            <td> {{newRecord.TOTAL_VAT}} &#8378;</td>
+          </tr>
+          <tr>
+            <td>Net Tutar:</td>
+            <td> {{newRecord.TOTAL_NET}} &#8378;</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-stroked-button cdkFocusInitial (click)="create()">
+    Tamam
+  </button>
+  <button mat-stroked-button [mat-dialog-close]>
+    Vazgeç
+  </button>
+</div>

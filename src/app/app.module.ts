@@ -167,6 +167,12 @@ import { Dialog_deleteSalesDispatchComponent } from './components/satis/hareketl
 import { Dialog_newPurchaseDispatchComponent } from './components/satinalma/hareketler/satinalma-irsaliyeleri/dialog_newPurchaseDispatch/dialog_newPurchaseDispatch.component';
 import { Dialog_editInspectPurchaseDispatchComponent } from './components/satinalma/hareketler/satinalma-irsaliyeleri/dialog_editInspectPurchaseDispatch/dialog_editInspectPurchaseDispatch.component';
 import { Dialog_deletePurchaseDispatchComponent } from './components/satinalma/hareketler/satinalma-irsaliyeleri/dialog_deletePurchaseDispatch/dialog_deletePurchaseDispatch.component';
+import { Dialog_newSalesInvoiceComponent } from './components/satis/hareketler/satis-faturalari/dialog_newSalesInvoice/dialog_newSalesInvoice.component';
+import { Dialog_editInspectSalesInvoiceComponent } from './components/satis/hareketler/satis-faturalari/dialog_editInspectSalesInvoice/dialog_editInspectSalesInvoice.component';
+import { Dialog_deleteSalesInvoiceComponent } from './components/satis/hareketler/satis-faturalari/dialog_deleteSalesInvoice/dialog_deleteSalesInvoice.component';
+import { Dialog_newPurchaseInvoiceComponent } from './components/satinalma/hareketler/satinalma-faturalari/dialog_newPurchaseInvoice/dialog_newPurchaseInvoice.component';
+import { Dialog_editInspectPurchaseInvoiceComponent } from './components/satinalma/hareketler/satinalma-faturalari/dialog_editInspectPurchaseInvoice/dialog_editInspectPurchaseInvoice.component';
+import { Dialog_deletePurchaseInvoiceComponent } from './components/satinalma/hareketler/satinalma-faturalari/dialog_deletePurchaseInvoice/dialog_deletePurchaseInvoice.component';
 
 
 
@@ -336,7 +342,14 @@ import { Dialog_deletePurchaseDispatchComponent } from './components/satinalma/h
     Dialog_deleteSalesDispatchComponent,
     Dialog_newPurchaseDispatchComponent,
     Dialog_editInspectPurchaseDispatchComponent,
-    Dialog_deletePurchaseDispatchComponent
+    Dialog_deletePurchaseDispatchComponent,
+    Dialog_newSalesInvoiceComponent,
+    Dialog_editInspectSalesInvoiceComponent,
+    Dialog_deleteSalesInvoiceComponent,
+    Dialog_newPurchaseInvoiceComponent,
+    Dialog_editInspectPurchaseInvoiceComponent,
+    Dialog_deletePurchaseInvoiceComponent
+
 
 
 
@@ -409,7 +422,13 @@ import { Dialog_deletePurchaseDispatchComponent } from './components/satinalma/h
     Dialog_deleteSalesDispatchComponent,
     Dialog_newPurchaseDispatchComponent,
     Dialog_editInspectPurchaseDispatchComponent,
-    Dialog_deletePurchaseDispatchComponent
+    Dialog_deletePurchaseDispatchComponent,
+    Dialog_newSalesInvoiceComponent,
+    Dialog_editInspectSalesInvoiceComponent,
+    Dialog_deleteSalesInvoiceComponent,
+    Dialog_newPurchaseInvoiceComponent,
+    Dialog_editInspectPurchaseInvoiceComponent,
+    Dialog_deletePurchaseInvoiceComponent
 
 
 

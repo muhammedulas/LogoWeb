@@ -616,11 +616,13 @@ export class Dialog_newPurchaseOrderComponent implements OnInit {
 
   newLine() {
     let line = new transaction();
-    line.DISCOUNT_RATE = 0
-    line.EXCLINE_NET_DISC_AMOUNT = 0
-    line.TOTAL = 0
-    line.VAT_RATE = 0
-    line.TOTAL_NET = 0
+    line.QUANTITY = 0;
+    line.PRICE = 0;
+    line.DISCOUNT_RATE = 0;
+    line.EXCLINE_NET_DISC_AMOUNT = 0;
+    line.TOTAL = 0;
+    line.VAT_RATE = 0;
+    line.TOTAL_NET = 0;
     line.LINENO = this.newRecord.TRANSACTIONS.items[this.newRecord.TRANSACTIONS.items.length - 1].LINENO + 1
     let temp = this.newRecord.TRANSACTIONS.items
     temp.push(line)

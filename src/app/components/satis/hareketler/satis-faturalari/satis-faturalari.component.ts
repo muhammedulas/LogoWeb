@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Dialog_deleteComponent } from 'src/app/components/shared/dialogs/dialog_delete/dialog_delete.component';
 import { salesInvoice } from 'src/app/models/salesInvoice';
 import { SalesInvoicesService } from 'src/app/services/salesInvoices.service';
+import { Dialog_deleteSalesInvoiceComponent } from './dialog_deleteSalesInvoice/dialog_deleteSalesInvoice.component';
 import { Dialog_editInspectSalesInvoiceComponent } from './dialog_editInspectSalesInvoice/dialog_editInspectSalesInvoice.component';
 import { Dialog_newSalesInvoiceComponent } from './dialog_newSalesInvoice/dialog_newSalesInvoice.component';
 
@@ -67,11 +68,17 @@ export class SatisFaturalariComponent implements OnInit {
   }
 
   add() {
-    this.dialog.open(Dialog_newSalesInvoiceComponent, { width: "60vw", height: "65vh" })
+    this.dialog.open(Dialog_newSalesInvoiceComponent, { width: "60vw"}).afterClosed().subscribe(q => {
+      this.getAllRecords(0)
+      this.currPage = 1
+    })
   }
 
   delete(id: number) {
-    this.dialog.open(Dialog_deleteComponent, { data: id })
+    this.dialog.open(Dialog_deleteSalesInvoiceComponent, { data: id }).afterClosed().subscribe(q => {
+      this.getAllRecords(0)
+      this.currPage = 1
+    })
   }
 
   edit_inspect(inspectMode: boolean) {
@@ -81,8 +88,10 @@ export class SatisFaturalariComponent implements OnInit {
       data.INSPECT = inspectMode
       this.dialog.open(Dialog_editInspectSalesInvoiceComponent, {
         data: data,
-        width: "60vw",
-        height: "65vh"
+        width: "60vw"
+      }).afterClosed().subscribe(q => {
+        this.getAllRecords(0)
+        this.currPage = 1
       })
     }, err => {
       this.toast.error(err.message, "Hata", { positionClass: "toast-top-center", timeOut: 3000 })

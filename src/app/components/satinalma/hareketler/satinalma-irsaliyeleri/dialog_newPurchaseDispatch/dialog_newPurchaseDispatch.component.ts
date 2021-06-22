@@ -75,6 +75,8 @@ export class Dialog_newPurchaseDispatchComponent implements OnInit {
 
   newLine() {
     let line = new dispatchTrans();
+    line.QUANTITY = 0;
+    line.PRICE = 0;
     line.EXCLINE_NET_DISC_AMOUNT = 0
     line.TOTAL = 0
     line.VAT_RATE = 18

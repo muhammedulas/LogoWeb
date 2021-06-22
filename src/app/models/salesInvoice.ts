@@ -1,10 +1,11 @@
 import { intelList } from "./intelList"
+import { invoiceTrans } from "./invoiceTrans";
 import { OKCInfo } from "./OKCInfo"
 import { paymentList } from "./paymentList"
 import { salesDispatch } from "./salesDispatch"
 
 export class salesInvoice {
-    "INSPECT":boolean;
+    "INSPECT": boolean;
     "INTERNAL_REFERENCE": number;
     "GRPCODE": number;
     "TYPE": number;
@@ -99,7 +100,7 @@ export class salesInvoice {
         "items": salesDispatch[]
     }
     "TRANSACTIONS": {
-        "items": []
+        "items": invoiceTrans[]
     }
     "PAYMENT_LIST": {
         "items": paymentList[]

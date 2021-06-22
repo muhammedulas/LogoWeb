@@ -70,12 +70,14 @@ export class Dialog_editInspectPurchaseDispatchComponent implements OnInit {
 
   newLine() {
     let line = new dispatchTrans();
-    line.EXCLINE_NET_DISC_AMOUNT = 0
-    line.TOTAL = 0
-    line.VAT_RATE = 0
-    line.TOTAL_NET = 0
+    line.QUANTITY = 0;
+    line.PRICE = 0;
+    line.EXCLINE_NET_DISC_AMOUNT = 0;
+    line.TOTAL = 0;
+    line.VAT_RATE = 0;
+    line.TOTAL_NET = 0;
     line.LINENO = this.data.TRANSACTIONS.items[this.data.TRANSACTIONS.items.length - 1].LINENO + 1
-    line.DISCOUNT_RATE = 0
+    line.DISCOUNT_RATE = 0;
     let temp = this.data.TRANSACTIONS.items
     temp.push(line)
     this.oTransLines.next(temp)

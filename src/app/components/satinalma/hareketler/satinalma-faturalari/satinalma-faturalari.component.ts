@@ -33,7 +33,7 @@ export class SatinalmaFaturalariComponent implements OnInit {
   private errorMsg: string = "";
   private errorCode: string = "";
   public loaded: boolean = false;
-  public displayedColumns: string[] = [  "Date", "FicheNo", "DocNum", "Type", "ARPCode", "Amount"]
+  public displayedColumns: string[] = ["Date", "FicheNo", "DocNum", "Type", "ARPCode", "Amount"]
 
 
 
@@ -67,11 +67,17 @@ export class SatinalmaFaturalariComponent implements OnInit {
   }
 
   add() {
-    this.dialog.open(Dialog_newPurchaseInvoiceComponent, { width: "60vw", height: "65vh" })
+    this.dialog.open(Dialog_newPurchaseInvoiceComponent, { width: "60vw" }).afterClosed().subscribe(q => {
+      this.getAllRecords(0)
+      this.currPage = 1
+    })
   }
 
   delete(id: number) {
-    this.dialog.open(Dialog_deleteComponent, { data: id })
+    this.dialog.open(Dialog_deleteComponent, { data: id }).afterClosed().subscribe(q => {
+      this.getAllRecords(0)
+      this.currPage = 1
+    })
   }
 
   edit_inspect(inspectMode: boolean) {
@@ -81,8 +87,10 @@ export class SatinalmaFaturalariComponent implements OnInit {
       data.INSPECT = inspectMode
       this.dialog.open(Dialog_editInspectPurchaseInvoiceComponent, {
         data: data,
-        width: "60vw",
-        height: "65vh"
+        width: "60vw"
+      }).afterClosed().subscribe(q => {
+        this.getAllRecords(0)
+        this.currPage = 1
       })
     }, err => {
       this.toast.error(err.message, "Hata", { positionClass: "toast-top-center", timeOut: 3000 })
