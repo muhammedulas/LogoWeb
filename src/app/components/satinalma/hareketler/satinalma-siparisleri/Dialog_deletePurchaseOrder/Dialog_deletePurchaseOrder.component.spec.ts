@@ -3,21 +3,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { Dialog_arpBrowserComponent } from './dialog_arpBrowser.component';
+import { Dialog_deletePurchaseOrderComponent } from './Dialog_deletePurchaseOrder.component';
 
-describe('Dialog_arpBrowserComponent', () => {
-  let component: Dialog_arpBrowserComponent;
-  let fixture: ComponentFixture<Dialog_arpBrowserComponent>;
+describe('Dialog_deletePurchaseOrderComponent', () => {
+  let component: Dialog_deletePurchaseOrderComponent;
+  let fixture: ComponentFixture<Dialog_deletePurchaseOrderComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ Dialog_arpBrowserComponent ]
+      declarations: [ Dialog_deletePurchaseOrderComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(Dialog_arpBrowserComponent);
+    fixture = TestBed.createComponent(Dialog_deletePurchaseOrderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

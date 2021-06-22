@@ -24,7 +24,24 @@ export interface stockData {
 }
 
 export interface itemFormData extends item {
-
+  NAME2: string;
+  NAME3: string;
+  AUXIL_CODE: string;
+  AUTH_CODE: string;
+  GROUP_CODE: string;
+  PRODUCER_CODE: string;
+  AUXIL_CODE2: string;
+  AUXIL_CODE3: string;
+  AUXIL_CODE4: string;
+  AUXIL_CODE5: string;
+  PAYMENT_CODE: string;
+  ADD_TAX_CODE: string;
+  DEMAND_MEET_SORT_FLD1: string;
+  DEMAND_MEET_SORT_FLD2: string;
+  DEMAND_MEET_SORT_FLD3: string;
+  DEMAND_MEET_SORT_FLD4: string;
+  DEMAND_MEET_SORT_FLD5: string;
+  GTIPCODE: string;
 }
 
 @Component({
@@ -119,10 +136,10 @@ export class MalzemelerComponent implements OnInit {
     })
   }
 
-  addItem(itemType:number) {
+  addItem(itemType: number) {
     var newItem: detailedItemModel = new detailedItemModel
     this.dialog.open(Dialog_newItemComponent, {
-      data:itemType,
+      data: itemType,
       width: '90vw',
       height: '90vh'
     })
@@ -154,7 +171,7 @@ export class MalzemelerComponent implements OnInit {
     }
   }
 
-  cancelSearch(){
+  cancelSearch() {
     this.searchButtonActive = false;
     this.getItems(1);
   }
@@ -227,7 +244,7 @@ export class MalzemelerComponent implements OnInit {
   }
 
   lastPage() {
-    if(this.currPage >= this.pageCount) return
+    if (this.currPage >= this.pageCount) return
     this.loaded = false
     this.currPage = this.pageCount
     var offset = this.itemCount - this.recLimit

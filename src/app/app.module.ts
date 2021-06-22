@@ -105,7 +105,6 @@ import { PurchaseInvoiceTypePipe } from './components/satinalma/hareketler/satin
 import { SalesDispatchTypePipe } from './components/satis/hareketler/satis-irsaliyeleri/salesDispatchType.pipe';
 import { SalesInvoiceTypePipe } from './components/satis/hareketler/satis-faturalari/salesInvoiceType.pipe';
 import { SafeDepositSlipTypePipe } from './components/finans/hareketler/kasa-fisleri/safeDepositSlipType.pipe';
-import { Dialog_orderComponent } from './commonDialogs/dialog_order/dialog_order.component';
 import { Dialog_editInspectItemCharComponent } from './components/malzeme-yonetimi/ana-kayitlar/malzeme-ozellikleri/Dialog_edit-inspectItemChar/Dialog_edit-inspectItemChar.component';
 import { Dialog_newItemCharComponent } from './components/malzeme-yonetimi/ana-kayitlar/malzeme-ozellikleri/Dialog_newItemChar/Dialog_newItemChar.component';
 import { Dialog_deleteItemCharComponent } from './components/malzeme-yonetimi/ana-kayitlar/malzeme-ozellikleri/Dialog_deleteItemChar/Dialog_deleteItemChar.component';
@@ -156,6 +155,18 @@ import { Dialog_deleteDistRouteComponent } from './components/satis/ana-kayitlar
 import { Dialog_newVehicleComponent } from './components/satis/ana-kayitlar/dagitim-araclari/Dialog_newVehicle/Dialog_newVehicle.component';
 import { Dialog_editInspectVehicleComponent } from './components/satis/ana-kayitlar/dagitim-araclari/Dialog_editInspectVehicle/Dialog_editInspectVehicle.component';
 import { Dialog_deleteVehicleComponent } from './components/satis/ana-kayitlar/dagitim-araclari/Dialog_deleteVehicle/Dialog_deleteVehicle.component';
+import { Dialog_newPurchaseOrderComponent } from './components/satinalma/hareketler/satinalma-siparisleri/dialog_newPurchaseOrder/dialog_newPurchaseOrder.component';
+import { Dialog_editInspectPurchaseOrderComponent } from './components/satinalma/hareketler/satinalma-siparisleri/dialog_editInspectPurchaseOrder/dialog_editInspectPurchaseOrder.component';
+import { Dialog_deletePurchaseOrderComponent } from './components/satinalma/hareketler/satinalma-siparisleri/Dialog_deletePurchaseOrder/Dialog_deletePurchaseOrder.component';
+import { Dialog_newSalesOrderComponent } from './components/satis/hareketler/satis-siparisleri/dialog_newSalesOrder/dialog_newSalesOrder.component';
+import { Dialog_newSalesDispatchComponent } from './components/satis/hareketler/satis-irsaliyeleri/dialog_newSalesDispatch/dialog_newSalesDispatch.component';
+import { Dialog_editInspectSalesDispatchComponent } from './components/satis/hareketler/satis-irsaliyeleri/dialog_editInspectSalesDispatch/dialog_editInspectSalesDispatch.component';
+import { Dialog_deleteSalesOrderComponent } from './components/satis/hareketler/satis-siparisleri/dialog_deleteSalesOrder/dialog_deleteSalesOrder.component';
+import { Dialog_editInspectSalesOrderComponent } from './components/satis/hareketler/satis-siparisleri/dialog_editInspectSalesOrder/dialog_editInspectSalesOrder.component';
+import { Dialog_deleteSalesDispatchComponent } from './components/satis/hareketler/satis-irsaliyeleri/dialog_deleteSalesDispatch/dialog_deleteSalesDispatch.component';
+import { Dialog_newPurchaseDispatchComponent } from './components/satinalma/hareketler/satinalma-irsaliyeleri/dialog_newPurchaseDispatch/dialog_newPurchaseDispatch.component';
+import { Dialog_editInspectPurchaseDispatchComponent } from './components/satinalma/hareketler/satinalma-irsaliyeleri/dialog_editInspectPurchaseDispatch/dialog_editInspectPurchaseDispatch.component';
+import { Dialog_deletePurchaseDispatchComponent } from './components/satinalma/hareketler/satinalma-irsaliyeleri/dialog_deletePurchaseDispatch/dialog_deletePurchaseDispatch.component';
 
 
 
@@ -264,7 +275,6 @@ import { Dialog_deleteVehicleComponent } from './components/satis/ana-kayitlar/d
     Dialog_deleteUSComponent,
     Dialog_editInspectUSComponent,
     Dialog_newUSComponent,
-    Dialog_orderComponent,
     Dialog_editInspectItemCharComponent,
     Dialog_newItemCharComponent,
     Dialog_deleteItemCharComponent,
@@ -314,7 +324,20 @@ import { Dialog_deleteVehicleComponent } from './components/satis/ana-kayitlar/d
     Dialog_deleteDistRouteComponent,
     Dialog_newVehicleComponent,
     Dialog_editInspectVehicleComponent,
-    Dialog_deleteVehicleComponent
+    Dialog_deleteVehicleComponent,
+    Dialog_newPurchaseOrderComponent,
+    Dialog_editInspectPurchaseOrderComponent,
+    Dialog_deletePurchaseOrderComponent,
+    Dialog_newSalesOrderComponent,
+    Dialog_editInspectSalesOrderComponent,
+    Dialog_deleteSalesOrderComponent,
+    Dialog_newSalesDispatchComponent,
+    Dialog_editInspectSalesDispatchComponent,
+    Dialog_deleteSalesDispatchComponent,
+    Dialog_newPurchaseDispatchComponent,
+    Dialog_editInspectPurchaseDispatchComponent,
+    Dialog_deletePurchaseDispatchComponent
+
 
 
   ],
@@ -326,7 +349,6 @@ import { Dialog_deleteVehicleComponent } from './components/satis/ana-kayitlar/d
     Dialog_deleteUSComponent,
     Dialog_newUSComponent,
     Dialog_editInspectUSComponent,
-    Dialog_orderComponent,
     Dialog_editInspectItemCharComponent,
     Dialog_newItemCharComponent,
     Dialog_deleteItemCharComponent,
@@ -375,7 +397,20 @@ import { Dialog_deleteVehicleComponent } from './components/satis/ana-kayitlar/d
     Dialog_deleteDistRouteComponent,
     Dialog_newVehicleComponent,
     Dialog_editInspectVehicleComponent,
-    Dialog_deleteVehicleComponent
+    Dialog_deleteVehicleComponent,
+    Dialog_newPurchaseOrderComponent,
+    Dialog_editInspectPurchaseOrderComponent,
+    Dialog_deletePurchaseOrderComponent,
+    Dialog_newSalesOrderComponent,
+    Dialog_editInspectSalesOrderComponent,
+    Dialog_deleteSalesOrderComponent,
+    Dialog_newSalesDispatchComponent,
+    Dialog_editInspectSalesDispatchComponent,
+    Dialog_deleteSalesDispatchComponent,
+    Dialog_newPurchaseDispatchComponent,
+    Dialog_editInspectPurchaseDispatchComponent,
+    Dialog_deletePurchaseDispatchComponent
+
 
 
   ],

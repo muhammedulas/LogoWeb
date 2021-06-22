@@ -1,3 +1,4 @@
+import { dispatchTrans } from "./dispatchTrans";
 import { transaction } from "./transaction"
 
 export class salesDispatch{
@@ -105,7 +106,7 @@ export class salesDispatch{
     "DATA_REFERENCE": number;
     "ORIG_NUMBER": string;
     "TRANSACTIONS": {
-        "items": transaction[]
+        "items": dispatchTrans[]
     }
     "ACCLIST": string;
     "XBUFS": string;

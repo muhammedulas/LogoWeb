@@ -67,11 +67,17 @@ export class SatinalmaIrsaliyeleriComponent implements OnInit {
   }
 
   add() {
-    this.dialog.open(Dialog_newPurchaseDispatchComponent, { width: "60vw", height: "65vh" })
+    this.dialog.open(Dialog_newPurchaseDispatchComponent, { width: "60vw"}).afterClosed().subscribe(q => {
+      this.getAllRecords(0)
+      this.currPage = 1
+    })
   }
 
   delete(id: number) {
-    this.dialog.open(Dialog_deleteComponent, { data: id })
+    this.dialog.open(Dialog_deleteComponent, { data: id }).afterClosed().subscribe(q => {
+      this.getAllRecords(0)
+      this.currPage = 1
+    })
   }
 
   edit_inspect(inspectMode: boolean) {
@@ -81,8 +87,10 @@ export class SatinalmaIrsaliyeleriComponent implements OnInit {
       data.INSPECT = inspectMode
       this.dialog.open(Dialog_editInspectPurchaseDispatchComponent, {
         data: data,
-        width: "60vw",
-        height: "65vh"
+        width: "60vw"
+      }).afterClosed().subscribe(q => {
+        this.getAllRecords(0)
+        this.currPage = 1
       })
     }, err => {
       this.toast.error(err.message, "Hata", { positionClass: "toast-top-center", timeOut: 3000 })

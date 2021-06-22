@@ -30,7 +30,7 @@ export class item {
     "DOMINANTREFS10": number;
     "DOMINANTREFS11": number;
     "DOMINANTREFS12": number;
-    "IMAGEINC": number;
+    "IMAGEINC"?: number;
     "TEXTINC": number;
     "DEPREC_TYPE": number;
     "DEPREC_RATE": number;
@@ -195,7 +195,7 @@ export class item {
     "QPRODSUB_DEPARTMENT": number;
     "TEXTINCENG": number;
     "LOSTFACTOR": number;
-    "GENIUSFLDSLIST": {
+    "GENIUSFLDSLIST"?: {
         "Meta": {
             "href": string;
             "mediaType": string;
@@ -203,7 +203,7 @@ export class item {
         }
     };
     "ADD_COST": number;
-    "DEFNFLDSLIST": {
+    "DEFNFLDSLIST"?: {
         "Meta": {
             "href": string;
             "mediaType": string;

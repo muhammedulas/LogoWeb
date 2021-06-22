@@ -1,0 +1,19 @@
+.spacer {
+    flex: 1 1 auto;
+}
+tr {
+    line-height: 10px;
+    max-height: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    user-select: none;
+}
+
+td{
+    max-width: 150px;
+}
+
+table{
+    max-height: 240px;
+    overflow: auto;
+}

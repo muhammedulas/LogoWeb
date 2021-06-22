@@ -1,3 +1,4 @@
+import { dispatchTrans } from "./dispatchTrans";
 import { transaction } from "./transaction";
 
 export class purchaseDispatch{
@@ -6,7 +7,7 @@ export class purchaseDispatch{
     "GRPCODE": number;
     "TYPE": number;
     "IOCODE": number;
-    "number;": string;
+    "NUMBER": string;
     "DOC_TRACK_NR": string;
     "PRINTED_DESP_NUMBER": string;
     "DATE": string;
@@ -105,7 +106,7 @@ export class purchaseDispatch{
     "DATA_REFERENCE": number;
     "ORIG_NUMBER": string;
     "TRANSACTIONS": {
-        "items": transaction[]
+        "items": dispatchTrans[]
     }
     "ACCLIST": string;
     "XBUFS": string;

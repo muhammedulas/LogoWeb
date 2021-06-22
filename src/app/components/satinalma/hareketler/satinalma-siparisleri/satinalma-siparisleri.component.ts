@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Dialog_orderComponent } from 'src/app/commonDialogs/dialog_order/dialog_order.component';
 import { Dialog_deleteComponent } from 'src/app/components/shared/dialogs/dialog_delete/dialog_delete.component';
 import { purchaseOrder } from 'src/app/models/purchaseOrder';
 import { PurchaseOrdersService } from 'src/app/services/purchaseOrders.service';
+import { Dialog_deletePurchaseOrderComponent } from './Dialog_deletePurchaseOrder/Dialog_deletePurchaseOrder.component';
 import { Dialog_editInspectPurchaseOrderComponent } from './dialog_editInspectPurchaseOrder/dialog_editInspectPurchaseOrder.component';
 import { Dialog_newPurchaseOrderComponent } from './dialog_newPurchaseOrder/dialog_newPurchaseOrder.component';
 
@@ -68,11 +68,17 @@ export class SatinalmaSiparisleriComponent implements OnInit {
   }
 
   add() {
-    this.dialog.open(Dialog_newPurchaseOrderComponent, { width: "60vw", height: "65vh" })
+    this.dialog.open(Dialog_newPurchaseOrderComponent).afterClosed().subscribe(q => {
+      this.getAllRecords(0)
+      this.currPage = 1
+    })
   }
 
   delete(id: number) {
-    this.dialog.open(Dialog_deleteComponent, { data: id })
+    this.dialog.open(Dialog_deletePurchaseOrderComponent, { data: id }).afterClosed().subscribe(q => {
+      this.getAllRecords(0)
+      this.currPage = 1
+    })
   }
 
   edit_inspect(inspectMode: boolean) {
@@ -81,9 +87,10 @@ export class SatinalmaSiparisleriComponent implements OnInit {
       data = res
       data.INSPECT = inspectMode
       this.dialog.open(Dialog_editInspectPurchaseOrderComponent, {
-        data: data,
-        width: "60vw",
-        height: "65vh"
+        data: data
+      }).afterClosed().subscribe(q => {
+        this.getAllRecords(0)
+        this.currPage = 1
       })
     }, err => {
       this.toast.error(err.message, "Hata", { positionClass: "toast-top-center", timeOut: 3000 })
@@ -100,12 +107,6 @@ export class SatinalmaSiparisleriComponent implements OnInit {
     this.getAllRecords(0);
   }
 
-  test(){
-    this.dialog.open(Dialog_orderComponent,{
-      height:"70vh",
-      width:"70vw"
-    })
-  }
 
   //Pagination
 

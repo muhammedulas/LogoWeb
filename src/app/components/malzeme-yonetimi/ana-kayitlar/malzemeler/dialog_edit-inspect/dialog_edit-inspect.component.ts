@@ -80,7 +80,7 @@ export class Dialog_editInspectComponent implements OnInit {
   }
 
   save() {
-    delete this.itemData.IMAGE
+    delete this.itemData.IMAGEINC
     delete this.itemData.DEFNFLDSLIST
     delete this.itemData.GENIUSFLDSLIST
 /*     this.itemsSvc.updateItem(this.itemData).subscribe(res => {
