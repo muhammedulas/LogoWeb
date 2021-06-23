@@ -108,7 +108,7 @@
                             <mat-label>Statüsü</mat-label>
                             <mat-select [value]="newItem.RECORD_STATUS.toLocaleString()"  >
                                 <mat-option value="0" (click)="newItem.RECORD_STATUS = 0">Kullanımda</mat-option>
-                                <mat-option value="1" (click)="newItem.RECORD_STATUS = 0">Kullanım Dışı</mat-option>
+                                <mat-option value="1" (click)="newItem.RECORD_STATUS = 1">Kullanım Dışı</mat-option>
                             </mat-select>
                         </mat-form-field>
                     </div>

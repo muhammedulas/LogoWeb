@@ -75,7 +75,7 @@ export class BirimSetleriComponent implements OnInit {
   }
 
   addUnitSet(){
-    this.dialog.open(Dialog_newUSComponent,{width:"60vw",height:"65vh"})
+    this.dialog.open(Dialog_newUSComponent)
   }
 
   deleteUnitSet(id:number) {
@@ -88,9 +88,7 @@ export class BirimSetleriComponent implements OnInit {
       detailedUS = res
       detailedUS.INSPECT = inspectMode
       this.dialog.open(Dialog_editInspectUSComponent,{
-        data:detailedUS,
-        width:"60vw",
-        height:"65vh"
+        data:detailedUS
       })
     },err=>{
       this.toast.error(err.message,"Hata",{positionClass:"toast-top-center",timeOut:3000})

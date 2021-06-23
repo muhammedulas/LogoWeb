@@ -139,9 +139,7 @@ export class MalzemelerComponent implements OnInit {
   addItem(itemType: number) {
     var newItem: detailedItemModel = new detailedItemModel
     this.dialog.open(Dialog_newItemComponent, {
-      data: itemType,
-      width: '90vw',
-      height: '90vh'
+      data: itemType
     })
   }
 
@@ -157,9 +155,7 @@ export class MalzemelerComponent implements OnInit {
       this.tempItem = resp
       this.tempItem.INSPECT = inspect
       this.dialog.open(Dialog_editInspectComponent, {
-        data: this.tempItem,
-        width: '90vw',
-        height: '90vh'
+        data: this.tempItem
       })
     })
 
