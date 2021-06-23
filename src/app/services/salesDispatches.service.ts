@@ -19,7 +19,7 @@ export class SalesDispatchesService {
       return this.http.get<salesDispatchResp>(this.rootUrl + "/api/v1/salesDispatches?offset=" + offset + "&limit=" + lim + "&withCount=true", { headers })
     }
 
-    else return this.http.get<salesDispatchResp>(this.rootUrl + "/api/v1/salesDispatches?offset=" + offset + "&limit=" + lim + "&q=(NUMBER like '*" + q + "*' or INVOICE_NUMBER like '*" + q + "* 'or ARP_CODE like '*" + q + "*')" + "&withCount=true", { headers })
+    else return this.http.get<salesDispatchResp>(this.rootUrl + "/api/v1/salesDispatches?offset=" + offset + "&limit=" + lim + "&q=(NUMBER like '*" + q + "*' or INVOICE_NUMBER like '*" + q + "* 'or ARP_CODE like '*" + q + "*' or DOC_NUMBER like '*" + q + "* ')" + "&withCount=true", { headers })
   }
 
 

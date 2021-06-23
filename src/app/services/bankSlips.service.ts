@@ -20,7 +20,7 @@ export class BankSlipsService {
       return this.http.get<bankSlipResp>(this.rootUrl + "/api/v1/bankSlips?offset=" + offset + "&limit=" + lim + "&withCount=true", { headers })
     }
 
-    else return this.http.get<bankSlipResp>(this.rootUrl + "/api/v1/bankSlips?offset=" + offset + "&limit=" + lim + "&q=(NUMBER like '*" + q + "*' or AUXIL_CODE like '*" + q + "* 'or DIVISION like '*" + q + "*')" + "&withCount=true", { headers })
+    else return this.http.get<bankSlipResp>(this.rootUrl + "/api/v1/bankSlips?offset=" + offset + "&limit=" + lim + "&q=(NUMBER like '*" + q + "*' or AUXIL_CODE like '*" + q + "* 'or DOC_NUMBER like '*" + q + "*' or DESCRIPTION like '*" + q + "*')" + "&withCount=true", { headers })
   }
 
 

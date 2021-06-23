@@ -20,7 +20,7 @@ export class PaymentPlansService {
       return this.http.get<paymentPlanResp>(this.rootUrl + "/api/v1/paymentPlans?offset=" + offset + "&limit=" + lim + "&withCount=true", { headers })
     }
     
-    else return this.http.get<paymentPlanResp>(this.rootUrl + "/api/v1/paymentPlans?offset=" + offset + "&limit=" + lim + "&q=(CODE like '*" + q + "*' or DESCRIPTION like '*" + q + "*')" + "&withCount=true", { headers }) 
+    else return this.http.get<paymentPlanResp>(this.rootUrl + "/api/v1/paymentPlans?offset=" + offset + "&limit=" + lim + "&q=(CODE like '*" + q + "*' or DESCRIPTION like '*" + q + "*' or AUXIL_CODE like '*" + q + "*')" + "&withCount=true", { headers }) 
   }
   
   

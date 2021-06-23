@@ -20,7 +20,7 @@ export class PurchaseExpensesService {
       return this.http.get<purchaseExpenseResp>(this.rootUrl + "/api/v1/purchaseExpenses?offset=" + offset + "&limit=" + lim + "&withCount=true&expandLevel=full", { headers })
     }
     
-    else return this.http.get<purchaseExpenseResp>(this.rootUrl + "/api/v1/purchaseExpenses?offset=" + offset + "&limit=" + lim + "&q=(CODE like '*" + q + "*' or DESCRIPTION like '*" + q + "*' and CardType = 3)" + "&withCount=true", { headers }) 
+    else return this.http.get<purchaseExpenseResp>(this.rootUrl + "/api/v1/purchaseExpenses?offset=" + offset + "&limit=" + lim + "&q=(CODE like '*" + q + "*' or DESCRIPTION like '*" + q + "*' or VAT_PERC like '*" + q + "*' and CardType = 3)" + "&withCount=true", { headers }) 
   }
   
   

@@ -20,7 +20,7 @@ export class InwardProcessingPermitsService {
       return this.http.get<inwardProcessingPermitResp>(this.rootUrl + "/api/v1/inwardProcessingPermits?offset=" + offset + "&limit=" + lim + "&withCount=true", { headers })
     }
 
-    else return this.http.get<inwardProcessingPermitResp>(this.rootUrl + "/api/v1/inwardProcessingPermits?offset=" + offset + "&limit=" + lim + "&q=(NUMBER like '*" + q + "*' or ARP_CODE like '*" + q + "* 'or DIVISION like '*" + q + "*')" + "&withCount=true", { headers })
+    else return this.http.get<inwardProcessingPermitResp>(this.rootUrl + "/api/v1/inwardProcessingPermits?offset=" + offset + "&limit=" + lim + "&q=(FICHENO like '*" + q + "*' or DOCODE like '*" + q + "* 'or BEGDATE like '*" + q + "*' or ENDDATE like '*" + q + "*')" + "&withCount=true", { headers })
   }
 
   getRecordByID(id: number) {

@@ -20,7 +20,7 @@ export class ArpSlipsService {
       return this.http.get<arpSlipResp>(this.rootUrl + "/api/v1/ArpSlips?offset=" + offset + "&limit=" + lim + "&withCount=true", { headers })
     }
 
-    else return this.http.get<arpSlipResp>(this.rootUrl + "/api/v1/ArpSlips?offset=" + offset + "&limit=" + lim + "&q=(NUMBER like '*" + q + "*' or ARP_CODE like '*" + q + "* 'or DOC_TRACK_NR like '*" + q + "*')" + "&withCount=true", { headers })
+    else return this.http.get<arpSlipResp>(this.rootUrl + "/api/v1/ArpSlips?offset=" + offset + "&limit=" + lim + "&q=(NUMBER like '*" + q + "*' or DOC_NUMBER like '*" + q + "* 'or DOC_TRACK_NR like '*" + q + "*')" + "&withCount=true", { headers })
   }
 
 

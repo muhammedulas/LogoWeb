@@ -21,7 +21,7 @@ export class PurchaseOrdersService {
       return this.http.get<purchaseOrderResp>(this.rootUrl + "/api/v1/purchaseOrders?offset=" + offset + "&limit=" + lim + "&withCount=true", { headers })
     }
 
-    else return this.http.get<purchaseOrderResp>(this.rootUrl + "/api/v1/purchaseOrders?offset=" + offset + "&limit=" + lim + "&q=(NUMBER like '*" + q + "*' or ARP_CODE like '*" + q + "* 'or DIVISION like '*" + q + "*')" + "&withCount=true", { headers })
+    else return this.http.get<purchaseOrderResp>(this.rootUrl + "/api/v1/purchaseOrders?offset=" + offset + "&limit=" + lim + "&q=(NUMBER like '*" + q + "*' or ARP_CODE like '*" + q + "* 'or DIVISION like '*" + q + "*' or DOC_NUMBER like '*" + q + "*')" + "&withCount=true", { headers })
   }
 
 

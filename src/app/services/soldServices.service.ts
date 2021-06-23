@@ -20,7 +20,7 @@ export class SoldServicesService {
       return this.http.get<soldServiceResp>(this.rootUrl + "/api/v1/soldServices?offset=" + offset + "&limit=" + lim + "&withCount=true", { headers })
     }
     
-    else return this.http.get<soldServiceResp>(this.rootUrl + "/api/v1/soldServices?offset=" + offset + "&limit=" + lim + "&q=(CODE like '*" + q + "*' or DESCRIPTION2 like '*" + q + "*'  or DESCRIPTION like '*" + q + "*' and CARD_TYPE = 2)" + "&withCount=true", { headers })
+    else return this.http.get<soldServiceResp>(this.rootUrl + "/api/v1/soldServices?offset=" + offset + "&limit=" + lim + "&q=(CODE like '*" + q + "*' or DESCRIPTION2 like '*" + q + "*'  or DESCRIPTION like '*" + q + "*'  or VAT_PERC like '*" + q + "*' and CARD_TYPE = 2)" + "&withCount=true", { headers })
   }
 
 

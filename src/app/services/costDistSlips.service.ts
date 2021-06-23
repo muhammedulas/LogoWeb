@@ -19,7 +19,7 @@ export class CostDistSlipsService {
       return this.http.get<costDistributionSlipResp>(this.rootUrl + "/api/v1/costDistributionSlips?offset=" + offset + "&limit=" + lim + "&withCount=true", { headers })
     }
 
-    else return this.http.get<costDistributionSlipResp>(this.rootUrl + "/api/v1/costDistributionSlips?offset=" + offset + "&limit=" + lim + "&q=(FICHENO like '*" + q + "*' or PROJECT_CODE like '*" + q + "* 'or CYPHCODE like '*" + q + "*')" + "&withCount=true", { headers })
+    else return this.http.get<costDistributionSlipResp>(this.rootUrl + "/api/v1/costDistributionSlips?offset=" + offset + "&limit=" + lim + "&q=(FICHENO like '*" + q + "*' or PROJECT_CODE like '*" + q + "* 'or CYPHCODE like '*" + q + "*' or DOCODE like '*" + q + "*')" + "&withCount=true", { headers })
   }
 
 

@@ -20,7 +20,7 @@ export class SalesExpensesService {
       return this.http.get<salesExpenseResp>(this.rootUrl + "/api/v1/salesExpenses?offset=" + offset + "&limit=" + lim + "&withCount=true", { headers })
     }
 
-    else return this.http.get<salesExpenseResp>(this.rootUrl + "/api/v1/salesExpenses?offset=" + offset + "&limit=" + lim + "&q=(CODE like '*" + q + "*' or DESCRIPTION like '*" + q + "*' and CARD_TYPE = 4)" + "&withCount=true", { headers })
+    else return this.http.get<salesExpenseResp>(this.rootUrl + "/api/v1/salesExpenses?offset=" + offset + "&limit=" + lim + "&q=(CODE like '*" + q + "*' or DESCRIPTION like '*" + q + "*' or VAT_PERC like '*" + q + "*' and CARD_TYPE = 4)" + "&withCount=true", { headers })
   }
 
 

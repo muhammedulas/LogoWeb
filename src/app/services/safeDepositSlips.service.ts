@@ -20,7 +20,7 @@ export class SafeDepositSlipsService {
       return this.http.get<safeDepositSlipResp>(this.rootUrl + "/api/v1/safeDepositSlips?offset=" + offset + "&limit=" + lim + "&withCount=true", { headers })
     }
 
-    else return this.http.get<safeDepositSlipResp>(this.rootUrl + "/api/v1/safeDepositSlips?offset=" + offset + "&limit=" + lim + "&q=(NUMBER like '*" + q + "*' or MASTER_TITLE like '*" + q + "* 'or DIVISION like '*" + q + "*')" + "&withCount=true", { headers })
+    else return this.http.get<safeDepositSlipResp>(this.rootUrl + "/api/v1/safeDepositSlips?offset=" + offset + "&limit=" + lim + "&q=(NUMBER like '*" + q + "*' or MASTER_TITLE like '*" + q + "* 'or DIVISION like '*" + q + "*' or DESCRIPTION like '*" + q + "*')" + "&withCount=true", { headers })
   }
 
 

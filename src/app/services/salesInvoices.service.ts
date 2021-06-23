@@ -20,7 +20,7 @@ export class SalesInvoicesService {
       return this.http.get<salesInvoiceResp>(this.rootUrl + "/api/v1/salesInvoices?offset=" + offset + "&limit=" + lim + "&withCount=true", { headers })
     }
 
-    else return this.http.get<salesInvoiceResp>(this.rootUrl + "/api/v1/salesInvoices?offset=" + offset + "&limit=" + lim + "&q=(NUMBER like '*" + q + "*' or INVOICE_NUMBER like '*" + q + "* 'or ARP_CODE like '*" + q + "*')" + "&withCount=true", { headers })
+    else return this.http.get<salesInvoiceResp>(this.rootUrl + "/api/v1/salesInvoices?offset=" + offset + "&limit=" + lim + "&q=(NUMBER like '*" + q + "*' or DOC_NUMBER like '*" + q + "* 'or ARP_CODE like '*" + q + "*')" + "&withCount=true", { headers })
   }
 
 

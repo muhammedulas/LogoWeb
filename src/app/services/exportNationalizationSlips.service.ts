@@ -20,7 +20,7 @@ export class ExportNationalizationSlipsService {
       return this.http.get<exportNationalizationSlipResp>(this.rootUrl + "/api/v1/exportNationalizationSlips?offset=" + offset + "&limit=" + lim + "&withCount=true", { headers })
     }
 
-    else return this.http.get<exportNationalizationSlipResp>(this.rootUrl + "/api/v1/exportNationalizationSlips?offset=" + offset + "&limit=" + lim + "&q=(NUMBER like '*" + q + "*' or ARP_CODE like '*" + q + "* 'or DIVISION like '*" + q + "*')" + "&withCount=true", { headers })
+    else return this.http.get<exportNationalizationSlipResp>(this.rootUrl + "/api/v1/exportNationalizationSlips?offset=" + offset + "&limit=" + lim + "&q=(FICHENO like '*" + q + "*' or EXIMFILECODE like '*" + q + "* 'or EXIMFILELNNR like '*" + q + "*')" + "&withCount=true", { headers })
   }
 
   getRecordByID(id: number) {

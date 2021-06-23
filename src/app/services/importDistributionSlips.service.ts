@@ -20,7 +20,7 @@ export class ImportDistributionSlipsService {
       return this.http.get<importDistributionSlipResp>(this.rootUrl + "/api/v1/importDistributionSlips?offset=" + offset + "&limit=" + lim + "&withCount=true", { headers })
     }
 
-    else return this.http.get<importDistributionSlipResp>(this.rootUrl + "/api/v1/importDistributionSlips?offset=" + offset + "&limit=" + lim + "&q=(NUMBER like '*" + q + "*' or ARP_CODE like '*" + q + "* 'or DIVISION like '*" + q + "*')" + "&withCount=true", { headers })
+    else return this.http.get<importDistributionSlipResp>(this.rootUrl + "/api/v1/importDistributionSlips?offset=" + offset + "&limit=" + lim + "&q=(FICHENO like '*" + q + "*' or EXIMINFO_FILECODE like '*" + q + "* 'or PROCESSNR like '*" + q + "*')" + "&withCount=true", { headers })
   }
 
 

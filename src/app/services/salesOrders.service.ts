@@ -19,7 +19,7 @@ export class SalesOrdersService {
       return this.http.get<salesOrderResp>(this.rootUrl + "/api/v1/salesOrders?offset=" + offset + "&limit=" + lim + "&withCount=true&expandLevel=full", { headers })
     }
 
-    else return this.http.get<salesOrderResp>(this.rootUrl + "/api/v1/salesOrders?offset=" + offset + "&limit=" + lim + "&q=(NUMBER like '*" + q + "*' or ARP_CODE like '*" + q + "* 'or DIVISION like '*" + q + "*')" + "&withCount=true", { headers })
+    else return this.http.get<salesOrderResp>(this.rootUrl + "/api/v1/salesOrders?offset=" + offset + "&limit=" + lim + "&q=(NUMBER like '*" + q + "*' or ARP_CODE like '*" + q + "* 'or DIVISION like '*" + q + "*' or DOC_NUMBER like '*" + q + "*' or TOTAL_NET like '*" + q + "*')" + "&withCount=true", { headers })
   }
 
 

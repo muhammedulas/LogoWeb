@@ -20,7 +20,7 @@ export class ExportTypedSalesInvoiceService {
       return this.http.get<exportTypedSalesInvoiceResp>(this.rootUrl + "/api/v1/exportTypedSalesInvoices?offset=" + offset + "&limit=" + lim + "&withCount=true&q=EXIM_FICHE_TYPE eq 5", { headers })
     }
 
-    else return this.http.get<exportTypedSalesInvoiceResp>(this.rootUrl + "/api/v1/exportTypedSalesInvoices?offset=" + offset + "&limit=" + lim + "&q=(NUMBER like '*" + q + "*' or ARP_CODE like '*" + q + "* 'or DIVISION like '*" + q + "*')" + "&withCount=true", { headers })
+    else return this.http.get<exportTypedSalesInvoiceResp>(this.rootUrl + "/api/v1/exportTypedSalesInvoices?offset=" + offset + "&limit=" + lim + "&q=(NUMBER like '*" + q + "*' or ARP_CODE like '*" + q + "* 'or DOC_NUMBER like '*" + q + "*' or TOTAL_NET like '*" + q + "*')" + "&withCount=true", { headers })
   }
 
 

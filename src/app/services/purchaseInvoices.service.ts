@@ -19,7 +19,7 @@ export class PurchaseInvoicesService {
       return this.http.get<purchaseInvoiceResp>(this.rootUrl + "/api/v1/purchaseInvoices?offset=" + offset + "&limit=" + lim + "&withCount=true", { headers })
     }
 
-    else return this.http.get<purchaseInvoiceResp>(this.rootUrl + "/api/v1/purchaseInvoices?offset=" + offset + "&limit=" + lim + "&q=(NUMBER like '*" + q + "*' or ARP_CODE like '*" + q + "* 'or DIVISION like '*" + q + "*')" + "&withCount=true", { headers })
+    else return this.http.get<purchaseInvoiceResp>(this.rootUrl + "/api/v1/purchaseInvoices?offset=" + offset + "&limit=" + lim + "&q=(NUMBER like '*" + q + "*' or ARP_CODE like '*" + q + "* 'or DIVISION like '*" + q + "*' or DOC_NUMBER like '*" + q + "*' )" + "&withCount=true", { headers })
   }
 
 

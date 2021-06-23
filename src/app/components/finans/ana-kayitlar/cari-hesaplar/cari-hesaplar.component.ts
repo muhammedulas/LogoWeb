@@ -7,7 +7,7 @@ import { ArpService } from 'src/app/services/arp.service';
 import { Dialog_deleteARPComponent } from './Dialog_deleteARP/Dialog_deleteARP.component';
 import { Dialog_editInspectARPComponent } from './Dialog_editInspectARP/Dialog_editInspectARP.component';
 import { Dialog_newARPComponent } from './Dialog_newARP/Dialog_newARP.component';
-import { ARPTypePipe } from './ARPType.pipe';
+import { ARPTypePipe } from '../../../../pipes/ARPType.pipe';
 
 @Component({
   selector: 'app-cari-hesaplar',

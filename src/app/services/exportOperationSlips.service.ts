@@ -22,7 +22,7 @@ export class ExportOperationSlipsService {
       return this.http.get<exportOperationSlipResp>(this.rootUrl + "/api/v1/exportOperationSlips?offset=" + offset + "&limit=" + lim + "&withCount=true&q=TYPE eq 8 and (EXIM_FICHE_TYPE  eq 3) or (EXIM_FICHE_TYPE  eq 2)", { headers })
     }
 
-    else return this.http.get<exportOperationSlipResp>(this.rootUrl + "/api/v1/exportOperationSlips?offset=" + offset + "&limit=" + lim + "&q=(NUMBER like '*" + q + "*' or ARP_CODE like '*" + q + "* 'or DIVISION like '*" + q + "*')" + "&withCount=true", { headers })
+    else return this.http.get<exportOperationSlipResp>(this.rootUrl + "/api/v1/exportOperationSlips?offset=" + offset + "&limit=" + lim + "&q=(NUMBER like '*" + q + "*' or ARP_CODE like '*" + q + "* 'or DOC_NUMBER like '*" + q + "*' or TOTAL_NET like '*" + q + "*')" + "&withCount=true", { headers })
   }
 
   getRecordByID(id: number) {

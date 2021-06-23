@@ -29,6 +29,7 @@ export class MainComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.mainMenuActive = true;
     this.globalvars.getToggleInfo().subscribe(info => {
       this.sidenavActive = info
     })
