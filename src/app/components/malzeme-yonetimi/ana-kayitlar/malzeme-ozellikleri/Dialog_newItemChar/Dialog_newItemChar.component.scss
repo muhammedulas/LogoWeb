@@ -1,0 +1,25 @@
+.table-content {
+    width: 100%;
+    height: 200px;
+    max-height: 400px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    user-select: none;
+    text-align: center;
+    display: inline-block;
+}
+
+mat-dialog-content{
+    width: auto;
+    height: auto;
+    overflow: hidden;
+}
+.trend-dialog .mat-dialog-container{
+    overflow-y: hidden !important;
+}
+
+.container{
+    width: 100%;
+    height: 85%;
+    overflow: hidden;
+}
