@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDivider } from '@angular/material/divider';
 import { Router, RoutesRecognized } from '@angular/router';
+import { RoutingServiceService } from 'src/app/services/routingService.service';
 
 @Component({
   selector: 'app-satinalma',
@@ -9,7 +10,7 @@ import { Router, RoutesRecognized } from '@angular/router';
 })
 export class SatinalmaComponent implements OnInit {
   public menuActive = false;
-  constructor(private router: Router) { }
+  constructor(private router: Router, private routeSvc: RoutingServiceService) { }
 
   ngOnInit() {
     if(this.router.url == "/satinalma") this.menuActive = true
@@ -22,6 +23,10 @@ export class SatinalmaComponent implements OnInit {
         else this.menuActive = false
       }
     })
+  }
+
+  route(moduleNr: number, route: string) {
+    this.routeSvc.route(moduleNr, route)
   }
 
 }

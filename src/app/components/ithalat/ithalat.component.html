@@ -10,10 +10,10 @@
     </div>
     <mat-divider></mat-divider>
     <div class="row m-3 p-3">
-      <button class="menu-item" mat-raised-button color="primary" routerLink="ithalat-operasyon-fisleri">İthalat Operasyon Fişleri</button>
+      <button class="menu-item" mat-raised-button color="primary" (click)="route(501,'/ithalat/ithalat-operasyon-fisleri')">İthalat Operasyon Fişleri</button>
       <button class="menu-item" mat-raised-button color="primary">Malzeme Dolaşım Fişleri (İptal)</button>
-      <button class="menu-item" mat-raised-button color="primary" routerLink="dagitim-fisleri">Dağıtım Fişleri</button>
-      <button class="menu-item" mat-raised-button color="primary">Millileştirme Fişleri (İptal)</button>
+      <button class="menu-item" mat-raised-button color="primary" (click)="route(504,'/ithalat/dagitim-fisleri')">Dağıtım Fişleri</button>
+      <button class="menu-item" mat-raised-button color="primary" >Millileştirme Fişleri (İptal)</button>
     </div>
   </div>
 </div>

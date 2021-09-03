@@ -8,26 +8,44 @@ import { itemCount } from '../models/count';
 import { itmSearchValue } from '../models/responseModels/itmSearchResp';
 import { detailedItemModel } from '../models/detailedItemModel';
 import { unitSetsResp } from '../models/responseModels/unitSetsResp';
+import { LoginServiceService } from './loginService.service';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class ItemsService {
-  constructor(private http: HttpClient, private loginComp: LoginComponent) { }
+  constructor(private http: HttpClient, private loginComp: LoginComponent, private loginSvc: LoginServiceService) { }
   private token = localStorage.getItem('Token')!
   private rootUrl = localStorage.getItem('rootUrl');
 
 
-  getItems(offset: number, lim: number, q?:string) {
-    // let url :string = localStorage.getItem('rootUrl');
-    let auth = "Bearer " + this.token;
-    let headers = new HttpHeaders().set('Authorization', auth).set('Accept', 'application/json')
-    if(q==null){
-      return this.http.get<itemResp>(this.rootUrl + "/api/v1/items?offset=" + offset + "&limit=" + lim+"&fields=INTERNAL_REFERENCE,CODE,NAME,CARD_TYPE,SELVAT,SHELF_LIFE,SHELF_DATE&withCount=true", { headers })
-     // return this.http.get<itemResp>(this.rootUrl + "/api/v1/items?offset=" + offset + "&limit=" + lim+"&q=(CODE like '*"+ q+"*' or NAME like '*"+q+"*')"+"&fields=INTERNAL_REFERENCE,CODE,NAME,CARD_TYPE,SELVAT,SHELF_LIFE,SHELF_DATE", { headers })
+  getItems(offset: number, lim: number, q?: string) {
+/*     let queryString = "";
+
+    if (q != null) {
+      
     }
-    else    return this.http.get<itemResp>(this.rootUrl + "/api/v1/items?offset=" + offset + "&limit=" + lim+"&q=(CODE like '*"+ q+"*' or NAME like '*"+q+"*')"+"&fields=INTERNAL_REFERENCE,CODE,NAME,CARD_TYPE,SELVAT,SHELF_LIFE,SHELF_DATE&withCount=true", { headers })
+ */
+
+        let queryString = "&fields=INTERNAL_REFERENCE,CODE,NAME,CARD_TYPE,SELVAT,SHELF_LIFE,SHELF_DATE&withCount=true&q="
+        if (this.loginSvc.authCodes.length > 0) {
+          var authCodes = this.loginSvc.authCodes
+          console.log(authCodes)
+          queryString += "AUTH_CODE eq '" + authCodes[0].ACSKEY + "'"
+          if (authCodes.length > 1) {
+            for (let i = 1; authCodes.length - 1; i++) {
+              queryString += "or AUTH_CODE eq '" + authCodes[i].ACSKEY + "'"
+            }
+          }
+          console.log(queryString)
+        }
+        let auth = "Bearer " + this.token;
+        let headers = new HttpHeaders().set('Authorization', auth).set('Accept', 'application/json')
+        if (q == null) {
+          return this.http.get<itemResp>(this.rootUrl + "/api/v1/items?offset=" + offset + "&limit=" + lim + queryString, { headers })
+        }
+        else return this.http.get<itemResp>(this.rootUrl + "/api/v1/items?offset=" + offset + "&limit=" + lim + "&q=(CODE like '*" + q + "*' or NAME like '*" + q + "*')" + "&fields=INTERNAL_REFERENCE,CODE,NAME,CARD_TYPE,SELVAT,SHELF_LIFE,SHELF_DATE&withCount=true", { headers })
 
   }
 
@@ -44,17 +62,17 @@ export class ItemsService {
   }
 
   getStock(ref: string) {
-    let firmNr = "0".repeat(3-this.loginComp.frmNr.length) + this.loginComp.frmNr
+    let firmNr = "0".repeat(3 - this.loginComp.frmNr.length) + this.loginComp.frmNr
     let periodNr = "0".repeat(2 - this.loginComp.perNr.length) + this.loginComp.perNr
     let tableName = "LV_" + firmNr + "_" + periodNr + "_GNTOTST"
     let auth = "Bearer " + this.token;
     let headers = new HttpHeaders().set('Authorization', auth).set('Accept', 'application/json').set('Content-Type', 'application/json')
     let queryString = "\"DECLARE  @STOCKREF AS INT = " + ref + ", @RECORDCOUNT AS INT " +
-    "SET @RECORDCOUNT = (SELECT COUNT(STOCKREF) AS RECORDCOUNT FROM " + tableName + " WHERE STOCKREF = @STOCKREF) "+
-    "IF (@RECORDCOUNT < 1) BEGIN "+
-    "SELECT 0 AS ONHAND, 0 AS ACTSORDER, 0 AS PURAMNT END ELSE BEGIN "+
-    "SELECT ONHAND, ACTSORDER, PURAMNT FROM " + tableName + " WHERE INVENNO = -1 AND STOCKREF = @STOCKREF END \""
-    return this.http.post<itemStock>(this.rootUrl + "/api/v1/queries/unsafe" , queryString, {headers})
+      "SET @RECORDCOUNT = (SELECT COUNT(STOCKREF) AS RECORDCOUNT FROM " + tableName + " WHERE STOCKREF = @STOCKREF) " +
+      "IF (@RECORDCOUNT < 1) BEGIN " +
+      "SELECT 0 AS ONHAND, 0 AS ACTSORDER, 0 AS PURAMNT END ELSE BEGIN " +
+      "SELECT ONHAND, ACTSORDER, PURAMNT FROM " + tableName + " WHERE INVENNO = -1 AND STOCKREF = @STOCKREF END \""
+    return this.http.post<itemStock>(this.rootUrl + "/api/v1/queries/unsafe", queryString, { headers })
   }
 
 
@@ -74,19 +92,19 @@ export class ItemsService {
     return this.http.post(this.rootUrl + '/api/v1/items', body, { headers })
   }
 
-  deleteItem(id:number){
+  deleteItem(id: number) {
     let auth = "Bearer " + this.token
     let headers = new HttpHeaders().set('Authorization', auth).set('Accept', 'application/json').set('Content-Type', 'application/json')
-    return this.http.delete(this.rootUrl + '/api/v1/items/' + id , {headers})
+    return this.http.delete(this.rootUrl + '/api/v1/items/' + id, { headers })
   }
 
-  itemCount(q?:string) {
+  itemCount(q?: string) {
     let auth = "Bearer " + this.token
     let headers = new HttpHeaders().set('Authorization', auth).set('Accept', 'application/json').set('Content-Type', 'application/json')
-    if(q==null){
+    if (q == null) {
       return this.http.get<itemCount>(this.rootUrl + "/api/v1/queries?tsql=SELECT COUNT(1) as recordCount FROM LG_00" + this.loginComp.frmNr + "_ITEMS", { headers })
     }
-    else   return this.http.get<itemCount>(this.rootUrl + "/api/v1/queries?tsql=SELECT COUNT(1) WHERE CODE like '%"+q+"%' or NAME like '%"+q+"%' as recordCount FROM LG_00" + this.loginComp.frmNr + "_ITEMS", { headers })
+    else return this.http.get<itemCount>(this.rootUrl + "/api/v1/queries?tsql=SELECT COUNT(1) WHERE CODE like '%" + q + "%' or NAME like '%" + q + "%' as recordCount FROM LG_00" + this.loginComp.frmNr + "_ITEMS", { headers })
 
   }
 

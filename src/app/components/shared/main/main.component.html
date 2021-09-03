@@ -4,22 +4,22 @@
       <img src="https://hisselog.com/assets/companies/logo-yazilim-sanayi-ve-ticaret-a-s-logo-thumb.png"  >
     </div>
     <mat-nav-list role="list">
-      <a [routerLink]="['malzeme-yonetimi']" routerLinkActive="active" (click)="toggle()">
+      <a (click)="route(100,'/malzeme-yonetimi')" routerLinkActive="active" (click)="toggle()">
         <mat-list-item>Malzeme Yönetimi</mat-list-item>
       </a>
-      <a [routerLink]="['finans']" routerLinkActive="active" (click)="toggle()">
+      <a (click)="route(200,'/finans')" routerLinkActive="active" (click)="toggle()">
         <mat-list-item>Finans</mat-list-item>
       </a>
-      <a [routerLink]="['satinalma']" routerLinkActive="active" (click)="toggle()">
+      <a (click)="route(300,'/satinalma')" routerLinkActive="active" (click)="toggle()">
         <mat-list-item>Satınalma</mat-list-item>
       </a>
-      <a [routerLink]="['satis']" routerLinkActive="active" (click)="toggle()">
+      <a (click)="route(400,'/satis')" routerLinkActive="active" (click)="toggle()">
         <mat-list-item>Satış ve Dağıtım</mat-list-item>
       </a>
-      <a [routerLink]="['ithalat']" routerLinkActive="active" (click)="toggle()">
+      <a (click)="route(500,'/ithalat')" routerLinkActive="active" (click)="toggle()">
         <mat-list-item>İthalat</mat-list-item>
       </a>
-      <a [routerLink]="['ihracat']" routerLinkActive="active" (click)="toggle()">
+      <a (click)="route(600,'/ihracat')" routerLinkActive="active" (click)="toggle()">
         <mat-list-item>İhracat</mat-list-item>
       </a>
     </mat-nav-list>
@@ -39,24 +39,24 @@
             <mat-divider></mat-divider>
             <div class="row mb-4">
               <div class="col-md-4">
-                <button class="menu-item" mat-raised-button color="primary" routerLink="/malzeme-yonetimi">Malzeme Yönetimi</button>
+                <button class="menu-item" mat-raised-button color="primary" (click)="route(100, '/malzeme-yonetimi')">Malzeme Yönetimi</button>
               </div>
               <div class="col-md-4">
-                <button class="menu-item" mat-raised-button color="primary" routerLink="/finans">Finans</button>
+                <button class="menu-item" mat-raised-button color="primary" (click)="route(200, '/finans')">Finans</button>
               </div>
               <div class="col-md-4">
-                <button class="menu-item" mat-raised-button color="primary" routerLink="/satinalma">Satınalma</button>
+                <button class="menu-item" mat-raised-button color="primary" (click)="route(300, '/satinalma')">Satınalma</button>
               </div>
             </div>
             <div class="row mt-4">
               <div class="col-md-4">
-                <button class="menu-item" mat-raised-button color="primary" routerLink="/satis">Satış ve Dağıtım</button>
+                <button class="menu-item" mat-raised-button color="primary" (click)="route(400, '/satis')">Satış ve Dağıtım</button>
               </div>
               <div class="col-md-4">
-                <button class="menu-item" mat-raised-button color="primary" routerLink="/ithalat">İthalat</button>
+                <button class="menu-item" mat-raised-button color="primary" (click)="route(500, '/ithalat')">İthalat</button>
               </div>
               <div class="col-md-4">
-                <button class="menu-item" mat-raised-button color="primary" routerLink="/ihracat">İhracat</button>
+                <button class="menu-item" mat-raised-button color="primary" (click)="route(600, '/ihracat')">İhracat</button>
               </div>
             </div>
           </div>

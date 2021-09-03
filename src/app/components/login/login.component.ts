@@ -37,6 +37,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/']);
         console.log(resp)
         this.toast.success('Giriş Başarılı', "", { positionClass: "toast-top-center", timeOut: 3000 })
+        this.loginSvc.afterLoginProcedure(this.usr);
         this.global.startTimer()
       },
       err => {

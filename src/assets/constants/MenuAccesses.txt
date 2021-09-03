@@ -1,0 +1,8 @@
+ModuleNr	Definition
+
+1		Malzeme Yönetimi
+2		Finans
+3		Satınalma
+4		Satış ve Dağıtım
+5		İthalat
+6		İhracat

@@ -11,18 +11,18 @@
       </div>
       <mat-divider></mat-divider>
       <div class="row m-3 p-3">
-        <button class="menu-item" mat-raised-button color="primary" [routerLink]="['malzemeler']">Malzemeler</button>
-        <button class="menu-item" mat-raised-button color="primary" [routerLink]="['birim-setleri']">Birim Setleri</button>
-        <button class="menu-item" mat-raised-button color="primary" [routerLink]="['malzeme-ozellikleri']">Malzeme Özellikleri</button>
+        <button class="menu-item" mat-raised-button color="primary" (click)="route(101, '/malzeme-yonetimi/malzemeler')">Malzemeler</button>
+        <button class="menu-item" mat-raised-button color="primary" (click)="route(102, '/malzeme-yonetimi/birim-setleri')">Birim Setleri</button>
+        <button class="menu-item" mat-raised-button color="primary" (click)="route(103, '/malzeme-yonetimi/malzeme-ozellikleri')">Malzeme Özellikleri</button>
       </div>
       <div class="row ml-3 mb-1">
         <h2>Hareketler</h2>
       </div>
       <mat-divider></mat-divider>
       <div class="row m-3 p-3">
-        <button class="menu-item" mat-raised-button color="primary" [routerLink]="['malzeme-yonetim-fisleri']">Malzeme Yönetim Fişleri</button>
-        <button class="menu-item" mat-raised-button color="primary" [routerLink]="['maliyet-dagitim-fisleri']">Maliyet Dağıtım Fişleri</button>
-        <button class="menu-item" mat-raised-button color="primary" [routerLink]="['hizli-uretim-fisleri']">Hızlı Üretim Fişleri</button>
+        <button class="menu-item" mat-raised-button color="primary" (click)="route(104, '/malzeme-yonetimi/malzeme-yonetim-fisleri')">Malzeme Yönetim Fişleri</button>
+        <button class="menu-item" mat-raised-button color="primary" (click)="route(105, '/malzeme-yonetimi/maliyet-dagitim-fisleri')">Maliyet Dağıtım Fişleri</button>
+        <button class="menu-item" mat-raised-button color="primary" (click)="route(106, '/malzeme-yonetimi/hizli-uretim-fisleri')">Hızlı Üretim Fişleri</button>
       </div>
     </div>
   </div>

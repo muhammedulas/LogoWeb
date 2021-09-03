@@ -6,12 +6,23 @@ import { Observable, observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
+import { authCode } from '../models/authCode';
+import { authCodeResp } from '../models/responseModels/authCodesResp';
+import { userResp } from '../models/responseModels/userResp';
+import { menuAcces } from '../models/menuAccess';
+import { menuAccessResp } from '../models/responseModels/menuAccessResp';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginServiceService {
 
+  public userName: string = "";
+  public userNr: number = 0;
+  public frmNo: string = "";
+  public perNo: string = "";
+  public authCodes: authCode[] = [];
+  public menuAccess: menuAcces[] = [];
   public loggedIn: boolean = false;
   private rootUrl = localStorage.getItem('rootUrl');
   private clientID = localStorage.getItem('ClientID');
@@ -24,6 +35,8 @@ export class LoginServiceService {
   }
 
   login(usr: string, pw: string, frmNo: string, perNo: string) {
+    this.frmNo = frmNo;
+    this.perNo = perNo;
     let reqString = btoa(this.clientID + ":" + this.clientSecret)
     let headers = new HttpHeaders().set('Authorization', 'Basic').set('Content-Type', 'application/json').set('Accept', 'application/json');
     const body: string = "grant_type=password&username=" + usr + "&firmno=" + frmNo + "&password=" + pw
@@ -40,5 +53,42 @@ export class LoginServiceService {
 
   changeLoggedInState() {
     this.loggedIn = true
+  }
+
+  getUserNr(userName: string) {
+    this.userName = userName
+    let auth = "Bearer " + localStorage.getItem('Token')
+    let headers = new HttpHeaders().set('Authorization', auth).set('Content-Type', 'application/json').set('Accept', 'application/json');
+    return this.http.get<userResp>(this.rootUrl + "/api/v1/queries?tsql=SELECT * FROM L_CAPIUSER WHERE NAME = '" + userName + "'", { headers })
+  }
+
+  getAuthCodes(uid: number) {
+    let auth = "Bearer " + localStorage.getItem('Token')
+    let headers = new HttpHeaders().set('Authorization', auth).set('Content-Type', 'application/json').set('Accept', 'application/json');
+    let queryString = "\"SELECT * FROM L_CAPIDRIGHT WHERE ID = '" + this.userNr + "'\""
+    return this.http.post<authCodeResp>(this.rootUrl + "/api/v1/queries/unsafe", queryString, { headers })
+  }
+
+  getMenuAccesses(){
+    let auth = "Bearer " + localStorage.getItem('Token')
+    let headers = new HttpHeaders().set('Authorization', auth).set('Content-Type', 'application/json').set('Accept', 'application/json');
+    let queryString = "\"SELECT * FROM MOB_MENU_ACCESS WHERE USERNR = '" + this.userNr + "'\""
+    return this.http.post<menuAccessResp>(this.rootUrl + "/api/v1/queries/unsafe", queryString, { headers })
+  }
+
+  afterLoginProcedure(username: string) {
+    this.getUserNr(username).subscribe(res => {
+      console.log(res)
+      this.userNr = res.items[0].NR;
+      this.getMenuAccesses().subscribe(res=>{
+        this.menuAccess = res.items
+        console.log(res.items)
+      })
+      this.getAuthCodes(this.userNr).subscribe(res => {
+        this.authCodes = res.items;
+        console.log(this.authCodes)
+      })
+      console.log('nr: ' + this.userNr)
+    })
   }
 }

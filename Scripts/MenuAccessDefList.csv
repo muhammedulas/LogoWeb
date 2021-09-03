@@ -1,0 +1,46 @@
+﻿ID;NR;DEFINITION
+1;100;Malzeme Yönetimi
+2;101;Malzemeler
+5;102;Birim Setleri
+6;103;Malzeme Özellikleri
+7;104;Malzeme Yönetim Fişleri
+8;105;Maliyet Dağıtım Fişleri
+9;106;Hızlı Üretim Fişleri
+10;200;Finans
+11;201;Cari Hesaplar
+12;202;Ödeme-Tahsilat Planları
+13;203;Çek-Senetler
+14;204;Bankalar
+15;205;Kasalar
+16;206;Cari Hesap Fişleri
+17;207;Banka Fişleri
+18;208;Kasa İşlemleri
+19;300;Satınalma
+20;301;Alınan Hizmetler
+21;302;Satınalma İndirimleri
+22;303;Satınalma Masrafları
+23;304;Hizmet Alım Fiyatları
+24;305;Satınalma Kampanyaları
+25;306;Satınalma Siparişleri
+26;307;Satınalma İrsaliyeleri
+27;308;Satınalma Faturaları
+28;400;Satış ve Dağıtım
+29;401;Verilen Hizmetler
+30;402;Satış İndirimleri
+31;403;Satış Masraflar
+32;404;Malzeme Satış Fiyatları
+33;405;Hizmet Satış Fiyatları
+34;406;Dağıtım Araçları
+35;407;Dağıtım Rotaları
+36;408;Satış Siparişleri
+37;409;Satış İrsaliyeleri
+38;500;İthalat
+40;501;İthalat Operasyon Fişleri
+41;502;Malzeme Dolaşım Fişleri
+42;503;Dağıtım Fişleri
+43;504;Millileştirme Fişleri
+44;600;İhracat
+45;601;İhracat Operasyon Fişleri
+46;602;Dahilde İşleme İzin Belgeleri
+47;603;İhraç Kayıtlı Satınalma Faturaları
+48;604;İhraç Kayıtlı Satış Faturaları

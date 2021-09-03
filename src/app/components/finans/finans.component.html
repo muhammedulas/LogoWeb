@@ -10,21 +10,21 @@
     </div>
     <mat-divider></mat-divider>
     <div class="row m-3 p-3">
-      <button class="menu-item" mat-raised-button color="primary" routerLink="cari-hesaplar">Cari Hesaplar</button>
-      <button class="menu-item" mat-raised-button color="primary" routerLink="odeme-tahsilat-planlari">Ödeme-Tahsilat Planları</button>
-      <button class="menu-item" mat-raised-button color="primary" routerLink="cek-senetler">Çek-Senetler</button>
-      <button class="menu-item" mat-raised-button color="primary" routerLink="banka">Bankalar</button>
-      <button class="menu-item" mat-raised-button color="primary" routerLink="kasa">Kasalar</button>
+      <button class="menu-item" mat-raised-button color="primary" (click)="route(201, '/finans/cari-hesaplar')">Cari Hesaplar</button>
+      <button class="menu-item" mat-raised-button color="primary" (click)="route(202, '/finans/odeme-tahsilat-planlari')">Ödeme-Tahsilat Planları</button>
+      <button class="menu-item" mat-raised-button color="primary" (click)="route(203, '/finans/cek-senetler')">Çek-Senetler</button>
+      <button class="menu-item" mat-raised-button color="primary" (click)="route(204, '/finans/banka')">Bankalar</button>
+      <button class="menu-item" mat-raised-button color="primary" (click)="route(205, '/finans/kasa')">Kasalar</button>
     </div>
     <div class="row ml-3 mb-1">
       <h2>Hareketler</h2>
     </div>
     <mat-divider></mat-divider>
     <div class="row m-3 p-3">
-      <button class="menu-item" mat-raised-button color="primary" routerLink="cari-hesap-fisleri">Cari Hesap Fişleri</button>
-      <button class="menu-item" mat-raised-button color="primary" routerLink="cek-senet-bordrolari">Çek-Senet Bordroları</button>
-      <button class="menu-item" mat-raised-button color="primary" routerLink="banka-fisleri">Banka Fişleri </button>
-      <button class="menu-item" mat-raised-button color="primary" routerLink="kasa-islemleri">Kasa İşlemleri </button>
+      <button class="menu-item" mat-raised-button color="primary" (click)="route(206, '/finans/cari-hesap-fisleri')">Cari Hesap Fişleri</button>
+      <button class="menu-item" mat-raised-button color="primary" (click)="route(207, '/finans/cek-senet-bordrolari')">Çek-Senet Bordroları</button>
+      <button class="menu-item" mat-raised-button color="primary" (click)="route(208, '/finans/banka-fisleri')">Banka Fişleri </button>
+      <button class="menu-item" mat-raised-button color="primary" (click)="route(209, '/finans/kasa-islemleri')">Kasa İşlemleri </button>
     </div>
   </div>
 </div>

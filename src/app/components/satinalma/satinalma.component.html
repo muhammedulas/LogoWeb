@@ -10,21 +10,21 @@
     </div>
     <mat-divider></mat-divider>
     <div class="row m-3 p-3">
-      <button class="menu-item" mat-raised-button color="primary" routerLink="alinan-hizmetler">Alınan Hizmetler</button>
-      <button class="menu-item" mat-raised-button color="primary" routerLink="odeme-tahsilat-planlari">Ödeme-Tahsilat Planları</button>
-      <button class="menu-item" mat-raised-button color="primary" routerLink="satinalma-indirimleri">Satınalma İndirimleri</button>
-      <button class="menu-item" mat-raised-button color="primary" routerLink="satinalma-masraflari">Satınalma Masrafları</button>
-      <button class="menu-item" mat-raised-button color="primary" routerLink="hizmet-alim-fiyatlari">Hizmet Alım Fiyatları</button>
-      <button class="menu-item" mat-raised-button color="primary" routerLink="satinalma-kampanyalari">Satınalma Kampanyaları</button>
+      <button class="menu-item" mat-raised-button color="primary" (click)="route(301, '/satinalma/alinan-hizmetler')">Alınan Hizmetler</button>
+      <button class="menu-item" mat-raised-button color="primary" (click)="route(302, '/satinalma/odeme-tahsilat-planlari')">Ödeme-Tahsilat Planları</button>
+      <button class="menu-item" mat-raised-button color="primary" (click)="route(303, '/satinalma/satinalma-indirimleri')">Satınalma İndirimleri</button>
+      <button class="menu-item" mat-raised-button color="primary" (click)="route(304, '/satinalma/satinalma-masraflari')">Satınalma Masrafları</button>
+      <button class="menu-item" mat-raised-button color="primary" (click)="route(305, '/satinalma/hizmet-alim-fiyatlari')">Hizmet Alım Fiyatları</button>
+      <button class="menu-item" mat-raised-button color="primary" (click)="route(306, '/satinalma/satinalma-kampanyalari')">Satınalma Kampanyaları</button>
     </div>
     <div class="row ml-3 mb-1">
       <h2>Hareketler</h2>
     </div>
     <mat-divider></mat-divider>
     <div class="row m-3 p-3">
-      <button class="menu-item" mat-raised-button color="primary" routerLink="satinalma-siparisleri">Satınalma Siparişleri</button>
-      <button class="menu-item" mat-raised-button color="primary" routerLink="satinalma-irsaliyeleri">Satınalma İrsaliyeleri</button>
-      <button class="menu-item" mat-raised-button color="primary" routerLink="satinalma-faturalari">Satınalma Faturaları</button>
+      <button class="menu-item" mat-raised-button color="primary" (click)="route(307, '/satinalma/satinalma-siparisleri')">Satınalma Siparişleri</button>
+      <button class="menu-item" mat-raised-button color="primary" (click)="route(308, '/satinalma/satinalma-irsaliyeleri')">Satınalma İrsaliyeleri</button>
+      <button class="menu-item" mat-raised-button color="primary" (click)="route(309, '/satinalma/satinalma-faturalari')">Satınalma Faturaları</button>
     </div>
   </div>
 </div>
