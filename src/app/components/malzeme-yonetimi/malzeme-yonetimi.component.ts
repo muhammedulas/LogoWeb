@@ -26,7 +26,6 @@ export class MalzemeYonetimiComponent implements OnInit {
       }
     })
   }
-  
   route(moduleNr: number, route: string) {
     this.routeSvc.route(moduleNr, route)
   }

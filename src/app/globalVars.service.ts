@@ -11,6 +11,7 @@ import { timer } from 'rxjs';
 export class GlobalVarsService {
   public routeSnapshot: string = "";
   private idleTimer: any;
+  public reloadNeeded: boolean = false
   private sidenavToggle = new Subject<boolean>();
   constructor(
     private loginSvc: LoginServiceService,

@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Dialog_deleteComponent } from 'src/app/components/shared/dialogs/dialog_delete/dialog_delete.component';
 import { purchaseInvoice } from 'src/app/models/purchaseInvoıce';
 import { PurchaseInvoicesService } from 'src/app/services/purchaseInvoices.service';
+import { RightsService } from 'src/app/services/rights.service';
 import { Dialog_editInspectPurchaseInvoiceComponent } from './dialog_editInspectPurchaseInvoice/dialog_editInspectPurchaseInvoice.component';
 import { Dialog_newPurchaseInvoiceComponent } from './dialog_newPurchaseInvoice/dialog_newPurchaseInvoice.component';
 
@@ -19,7 +20,8 @@ export class SatinalmaFaturalariComponent implements OnInit {
     private toast: ToastrService,
     private router: Router,
     private service: PurchaseInvoicesService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private rightsService: RightsService
 
   ) { }
   public searchButtonActive: boolean = false;
@@ -67,6 +69,10 @@ export class SatinalmaFaturalariComponent implements OnInit {
   }
 
   add() {
+    if(this.rightsService.checkRight(3081) == false){
+      this.tstUnAuthorized2()
+      return
+    }
     this.dialog.open(Dialog_newPurchaseInvoiceComponent, { width: "60vw" }).afterClosed().subscribe(q => {
       this.getAllRecords(0)
       this.currPage = 1
@@ -74,6 +80,10 @@ export class SatinalmaFaturalariComponent implements OnInit {
   }
 
   delete(id: number) {
+    if(this.rightsService.checkRight(3083) == false){
+      this.tstUnAuthorized2()
+      return
+    }
     this.dialog.open(Dialog_deleteComponent, { data: id }).afterClosed().subscribe(q => {
       this.getAllRecords(0)
       this.currPage = 1
@@ -81,6 +91,18 @@ export class SatinalmaFaturalariComponent implements OnInit {
   }
 
   edit_inspect(inspectMode: boolean) {
+    if(inspectMode){
+      if(this.rightsService.checkRight(3084) == false){
+        this.tstUnAuthorized2()
+        return
+      }
+    }
+    else {
+      if(this.rightsService.checkRight(3082) == false){
+        this.tstUnAuthorized2()
+        return
+      }
+    }
     var data
     this.service.getRecordByID(this.selectedRecord.INTERNAL_REFERENCE).subscribe(res => {
       data = res
@@ -213,5 +235,8 @@ export class SatinalmaFaturalariComponent implements OnInit {
     this.toast.error('Tekrar Giriş Yapmak İçin Sayfayı Yenileyin', 'Bu işlem İçin Yetkiniz Yok', { positionClass: 'toast-top-center', timeOut: 300000 })
   }
 
+  tstUnAuthorized2(){
+    this.toast.error('Bu işlem için yetkiniz yok',"", {positionClass:"toast-top-center"})
+  }
   //
 }

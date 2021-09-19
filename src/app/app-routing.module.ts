@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AdminComponent } from './components/admin/admin.component';
 import { ConfigureComponent } from './components/configure/configure.component';
 import { BankaComponent } from './components/finans/ana-kayitlar/banka/banka.component';
 import { CariHesaplarComponent } from './components/finans/ana-kayitlar/cari-hesaplar/cari-hesaplar.component';
@@ -55,6 +56,7 @@ import { AuthGuardService } from './services/authGuard.service';
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'configure', component: ConfigureComponent },
+  { path: 'admin', component: AdminComponent },
   {
     path: '', component: MainComponent, children: [
       {

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { itemCharasteristics } from 'src/app/models/itemCharasteristics';
 import { ItemCharsService } from 'src/app/services/itemChars.service';
+import { RightsService } from 'src/app/services/rights.service';
 import { Dialog_deleteItemCharComponent } from './Dialog_deleteItemChar/Dialog_deleteItemChar.component';
 import { Dialog_editInspectItemCharComponent } from './Dialog_edit-inspectItemChar/Dialog_edit-inspectItemChar.component';
 import { Dialog_newItemCharComponent } from './Dialog_newItemChar/Dialog_newItemChar.component';
@@ -19,7 +20,8 @@ export class MalzemeOzellikleriComponent implements OnInit {
     private toast: ToastrService,
     private router: Router,
     private ICService: ItemCharsService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private rightsService: RightsService
 
   ) { }
   public searchButtonActive: boolean = false;
@@ -40,7 +42,6 @@ export class MalzemeOzellikleriComponent implements OnInit {
   ngOnInit() {
     this.getItemChars(0)
   }
-
   select(itemChar: itemCharasteristics) {
     this.selectedItemChar = itemChar;
     console.log('s', this.selectedItemChar)
@@ -67,6 +68,10 @@ export class MalzemeOzellikleriComponent implements OnInit {
   }
 
   addItemChar() {
+    if(this.rightsService.checkRight(1031) == false){
+      this.tstUnAuthorized2()
+      return
+    }
     let ref = this.dialog.open(Dialog_newItemCharComponent)
     ref.afterClosed().subscribe(q => {
       this.getItemChars(0)
@@ -74,6 +79,10 @@ export class MalzemeOzellikleriComponent implements OnInit {
   }
 
   deleteItemChar(id: number) {
+    if(this.rightsService.checkRight(1033) == false){
+      this.tstUnAuthorized2()
+      return
+    }
     let ref = this.dialog.open(Dialog_deleteItemCharComponent, { data: id })
     ref.afterClosed().subscribe(q => {
       this.getItemChars(0)
@@ -81,6 +90,18 @@ export class MalzemeOzellikleriComponent implements OnInit {
   }
 
   edit_inspectItemChar(inspectMode: boolean) {
+    if(inspectMode){
+      if(this.rightsService.checkRight(1034) == false){
+        this.tstUnAuthorized2()
+        return
+      }
+    }
+    else {
+      if(this.rightsService.checkRight(1032) == false){
+        this.tstUnAuthorized2()
+        return
+      }
+    }
     var itemChar
     this.ICService.getItemCharByID(this.selectedItemChar.INTERNAL_REFERENCE).subscribe(res => {
       itemChar = res
@@ -88,7 +109,7 @@ export class MalzemeOzellikleriComponent implements OnInit {
       let ref = this.dialog.open(Dialog_editInspectItemCharComponent, {
         data: itemChar
       })
-      ref.afterClosed().subscribe(q=>{
+      ref.afterClosed().subscribe(q => {
         this.getItemChars(0)
       })
     }, err => {
@@ -211,6 +232,10 @@ export class MalzemeOzellikleriComponent implements OnInit {
   //Toasts
   tstUnauthorized() {
     this.toast.error('Tekrar Giriş Yapmak İçin Sayfayı Yenileyin', 'Bu işlem İçin Yetkiniz Yok', { positionClass: 'toast-top-center', timeOut: 300000 })
+  }
+
+  tstUnAuthorized2(){
+    this.toast.error('Bu işlem için yetkiniz yok',"", {positionClass:"toast-top-center"})
   }
 
   //

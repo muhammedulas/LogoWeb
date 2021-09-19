@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LoginServiceService } from '../../services/loginService.service';
 import { FormsModule } from '@angular/forms';
 import { httpError } from 'src/app/models/httpErrModel';
-import { Router } from '@angular/router';
+import { NavigationStart, Router, RoutesRecognized } from '@angular/router';
 import { tokenResp } from 'src/app/models/responseModels/tokenResp';
 import { ToastrService } from 'node_modules/ngx-toastr';
 import { GlobalVarsService } from 'src/app/globalVars.service';

@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { vehicle } from 'src/app/models/vehicle';
+import { RightsService } from 'src/app/services/rights.service';
 import { VehiclesService } from 'src/app/services/vehicles.service';
 import { Dialog_deleteVehicleComponent } from './Dialog_deleteVehicle/Dialog_deleteVehicle.component';
 import { Dialog_editInspectVehicleComponent } from './Dialog_editInspectVehicle/Dialog_editInspectVehicle.component';
@@ -19,7 +20,8 @@ export class DagitimAraclariComponent implements OnInit {
     private toast:ToastrService,
     private router:Router,
     private service:VehiclesService,
-    private dialog:MatDialog
+    private dialog:MatDialog,
+    private rightsService: RightsService
 
   ) { }
   public searchButtonActive: boolean = false;
@@ -67,6 +69,10 @@ export class DagitimAraclariComponent implements OnInit {
   }
 
   add(){
+    if(this.rightsService.checkRight(4061) == false){
+      this.tstUnAuthorized2()
+      return
+    }
     this.dialog.open(Dialog_newVehicleComponent).afterClosed().subscribe(q => {
       this.getAllRecords(0)
       this.currPage = 1
@@ -74,6 +80,10 @@ export class DagitimAraclariComponent implements OnInit {
   }
 
   delete(id:number) {
+    if(this.rightsService.checkRight(4063) == false){
+      this.tstUnAuthorized2()
+      return
+    }
     this.dialog.open(Dialog_deleteVehicleComponent,{data:id}).afterClosed().subscribe(q => {
       this.getAllRecords(0)
       this.currPage = 1
@@ -81,6 +91,18 @@ export class DagitimAraclariComponent implements OnInit {
   }
 
   edit_inspect(inspectMode:boolean){
+    if(inspectMode){
+      if(this.rightsService.checkRight(4064) == false){
+        this.tstUnAuthorized2()
+        return
+      }
+    }
+    else {
+      if(this.rightsService.checkRight(4062) == false){
+        this.tstUnAuthorized2()
+        return
+      }
+    }
     var data
     this.service.getRecordByID(this.selectedRecord.INTERNAL_REFERENCE).subscribe(res=>{
       data = res
@@ -212,6 +234,9 @@ export class DagitimAraclariComponent implements OnInit {
     this.toast.error('Tekrar Giriş Yapmak İçin Sayfayı Yenileyin', 'Bu işlem İçin Yetkiniz Yok', { positionClass: 'toast-top-center', timeOut: 300000 })
   }
 
+  tstUnAuthorized2(){
+    this.toast.error('Bu işlem için yetkiniz yok',"", {positionClass:"toast-top-center"})
+  }
   //
 
 }

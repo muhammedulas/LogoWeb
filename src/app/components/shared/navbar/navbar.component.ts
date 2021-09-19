@@ -3,6 +3,7 @@ import { MatIcon } from '@angular/material/icon';
 import { MatToolbar } from '@angular/material/toolbar';
 import { GlobalVarsService } from 'src/app/globalVars.service';
 import { LoginServiceService } from 'src/app/services/loginService.service';
+import { MatTooltip } from '@angular/material/tooltip';
 
 
 @Component({
@@ -11,6 +12,8 @@ import { LoginServiceService } from 'src/app/services/loginService.service';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
+  public tooltip: string = "";
+  public username: string = "Geçersiz Kullanıcı";
   public sidenavToggle!: boolean;
   constructor(private globalvars: GlobalVarsService, private loginSvc: LoginServiceService) { }
 
@@ -18,6 +21,8 @@ export class NavbarComponent implements OnInit {
     this.globalvars.getToggleInfo().subscribe(info => {
       this.sidenavToggle = info
     })
+    this.username = this.loginSvc.userName
+    this.tooltip = "Firma No: " + this.loginSvc.frmNo + "\r\nDönem No: " + this.loginSvc.perNo
   }
 
   toggle() {
@@ -30,7 +35,7 @@ export class NavbarComponent implements OnInit {
   }
 
   stopIdleness() {
-    
+
   }
 
 }

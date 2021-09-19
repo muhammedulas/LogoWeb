@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { soldDiscount } from 'src/app/models/soldDiscount';
+import { RightsService } from 'src/app/services/rights.service';
 import { SoldDiscountService } from 'src/app/services/soldDiscount.service';
 import { Dialog_deleteSoldDiscountComponent } from './Dialog_deleteSoldDiscount/Dialog_deleteSoldDiscount.component';
 import { Dialog_editInspectSoldDiscountComponent } from './Dialog_editInspectSoldDiscount/Dialog_editInspectSoldDiscount.component';
@@ -19,7 +20,8 @@ export class SatisIndirimleriComponent implements OnInit {
     private toast:ToastrService,
     private router:Router,
     private service:SoldDiscountService,
-    private dialog:MatDialog
+    private dialog:MatDialog,
+    private rightsService: RightsService
 
   ) { }
   public searchButtonActive: boolean = false;
@@ -67,6 +69,10 @@ export class SatisIndirimleriComponent implements OnInit {
   }
 
   add(){
+    if(this.rightsService.checkRight(4021) == false){
+      this.tstUnAuthorized2()
+      return
+    }
     this.dialog.open(Dialog_newSoldDiscountComponent).afterClosed().subscribe(q => {
       this.getAllRecords(0)
       this.currPage = 1
@@ -74,6 +80,10 @@ export class SatisIndirimleriComponent implements OnInit {
   }
 
   delete(id:number) {
+    if(this.rightsService.checkRight(4023) == false){
+      this.tstUnAuthorized2()
+      return
+    }
     this.dialog.open(Dialog_deleteSoldDiscountComponent,{data:id}).afterClosed().subscribe(q => {
       this.getAllRecords(0)
       this.currPage = 1
@@ -81,6 +91,18 @@ export class SatisIndirimleriComponent implements OnInit {
   }
 
   edit_inspect(inspectMode:boolean){
+    if(inspectMode){
+      if(this.rightsService.checkRight(4024) == false){
+        this.tstUnAuthorized2()
+        return
+      }
+    }
+    else {
+      if(this.rightsService.checkRight(4022) == false){
+        this.tstUnAuthorized2()
+        return
+      }
+    }
     var data
     this.service.getRecordByID(this.selectedRecord.INTERNAL_REFERENCE).subscribe(res=>{
       data = res
@@ -212,6 +234,9 @@ export class SatisIndirimleriComponent implements OnInit {
     this.toast.error('Tekrar Giriş Yapmak İçin Sayfayı Yenileyin', 'Bu işlem İçin Yetkiniz Yok', { positionClass: 'toast-top-center', timeOut: 300000 })
   }
 
+  tstUnAuthorized2(){
+    this.toast.error('Bu işlem için yetkiniz yok',"", {positionClass:"toast-top-center"})
+  }
   //
 
 }

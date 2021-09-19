@@ -40,6 +40,7 @@ export class LoginServiceService {
     let reqString = btoa(this.clientID + ":" + this.clientSecret)
     let headers = new HttpHeaders().set('Authorization', 'Basic').set('Content-Type', 'application/json').set('Accept', 'application/json');
     const body: string = "grant_type=password&username=" + usr + "&firmno=" + frmNo + "&password=" + pw
+    console.log(this.rootUrl)
     return this.http.post<tokenResp>(this.rootUrl + '/api/v1/token', body, { headers });
 
   }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { filter } from 'rxjs/internal/operators/filter';
-import { Router, RoutesRecognized } from '@angular/router';
+import { NavigationStart, RouteConfigLoadStart, Router, RoutesRecognized } from '@angular/router';
 import { GlobalVarsService } from 'src/app/globalVars.service';
 import { LoginServiceService } from 'src/app/services/loginService.service';
 import { menuAcces } from 'src/app/models/menuAccess';
@@ -27,6 +27,9 @@ export class MainComponent implements OnInit {
           this.mainMenuActive = false;
           console.log(event)
           if (event.urlAfterRedirects == "/") this.mainMenuActive = true;
+          if(event.urlAfterRedirects == "/login" || this.globalvars.reloadNeeded == true){
+            
+          }
         }
       });
   }

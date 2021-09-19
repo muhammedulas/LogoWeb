@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { bank } from 'src/app/models/bank';
 import { BankService } from 'src/app/services/bank.service';
+import { RightsService } from 'src/app/services/rights.service';
 import { Dialog_deleteBankComponent } from './Dialog_deleteBank/Dialog_deleteBank.component';
 import { Dialog_editInspectBankComponent } from './Dialog_editInspectBank/Dialog_editInspectBank.component';
 import { Dialog_newBankComponent } from './Dialog_newBank/Dialog_newBank.component';
@@ -19,7 +20,8 @@ export class BankaComponent implements OnInit {
     private toast:ToastrService,
     private router:Router,
     private bankService:BankService,
-    private dialog:MatDialog
+    private dialog:MatDialog,
+    private rightsService: RightsService
 
   ) { }
   public searchButtonActive: boolean = false;
@@ -67,14 +69,34 @@ export class BankaComponent implements OnInit {
   }
 
   addBank(){
+    if(this.rightsService.checkRight(2041) == false){
+      this.tstUnAuthorized2()
+      return
+    }
     this.dialog.open(Dialog_newBankComponent,{width:"60vw",height:"65vh"})
   }
 
   deleteBank(id:number) {
+    if(this.rightsService.checkRight(2043) == false){
+      this.tstUnAuthorized2()
+      return
+    }
     this.dialog.open(Dialog_deleteBankComponent,{data:id})
   }
 
   edit_inspectBank(inspectMode:boolean){
+    if(inspectMode){
+      if(this.rightsService.checkRight(2044) == false){
+        this.tstUnAuthorized2()
+        return
+      }
+    }
+    else {
+      if(this.rightsService.checkRight(2042) == false){
+        this.tstUnAuthorized2()
+        return
+      }
+    }
     var bank
     this.bankService.getBankByID(this.selectedBank.INTERNAL_REFERENCE).subscribe(res=>{
       bank = res
@@ -204,6 +226,9 @@ export class BankaComponent implements OnInit {
   tstUnauthorized() {
     this.toast.error('Tekrar Giriş Yapmak İçin Sayfayı Yenileyin', 'Bu işlem İçin Yetkiniz Yok', { positionClass: 'toast-top-center', timeOut: 300000 })
   }
-
+  
+  tstUnAuthorized2(){
+    this.toast.error('Bu işlem için yetkiniz yok',"", {positionClass:"toast-top-center"})
+  }
   //
 }

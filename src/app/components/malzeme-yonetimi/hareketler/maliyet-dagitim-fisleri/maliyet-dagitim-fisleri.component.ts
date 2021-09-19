@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Dialog_deleteComponent } from 'src/app/components/shared/dialogs/dialog_delete/dialog_delete.component';
 import { costDistributionSlip } from 'src/app/models/costDistributionSlip';
 import { CostDistSlipsService } from 'src/app/services/costDistSlips.service';
+import { RightsService } from 'src/app/services/rights.service';
 import { Dialog_editInspectCostDistSlipComponent } from './dialog_editInspectCostDistSlip/dialog_editInspectCostDistSlip.component';
 import { Dialog_newCostDistSlipComponent } from './dialog_newCostDistSlip/dialog_newCostDistSlip.component';
 
@@ -18,7 +19,8 @@ export class MaliyetDagitimFisleriComponent implements OnInit {
     private toast: ToastrService,
     private router: Router,
     private service: CostDistSlipsService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private rightsService: RightsService
 
   ) { }
   public searchButtonActive: boolean = false;
@@ -66,14 +68,34 @@ export class MaliyetDagitimFisleriComponent implements OnInit {
   }
 
   add() {
+    if(this.rightsService.checkRight(1051) == false){
+      this.tstUnAuthorized2()
+      return
+    }
     this.dialog.open(Dialog_newCostDistSlipComponent, { width: "60vw", height: "65vh" })
   }
 
   delete(id: number) {
+    if(this.rightsService.checkRight(1053) == false){
+      this.tstUnAuthorized2()
+      return
+    }
     this.dialog.open(Dialog_deleteComponent, { data: id })
   }
 
   edit_inspect(inspectMode: boolean) {
+    if(inspectMode){
+      if(this.rightsService.checkRight(1054) == false){
+        this.tstUnAuthorized2()
+        return
+      }
+    }
+    else {
+      if(this.rightsService.checkRight(1052) == false){
+        this.tstUnAuthorized2()
+        return
+      }
+    }
     var data
     this.service.getRecordByID(this.selectedRecord.INTERNAL_REFERENCE).subscribe(res => {
       data = res
@@ -204,5 +226,8 @@ export class MaliyetDagitimFisleriComponent implements OnInit {
     this.toast.error('Tekrar Giriş Yapmak İçin Sayfayı Yenileyin', 'Bu işlem İçin Yetkiniz Yok', { positionClass: 'toast-top-center', timeOut: 300000 })
   }
 
+  tstUnAuthorized2(){
+    this.toast.error('Bu işlem için yetkiniz yok',"", {positionClass:"toast-top-center"})
+  }
   //
 }

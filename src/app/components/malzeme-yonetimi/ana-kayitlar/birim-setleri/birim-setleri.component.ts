@@ -8,6 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Dialog_deleteUSComponent } from './dialog_deleteUS/dialog_deleteUS.component';
 import { Dialog_newUSComponent } from './dialog_newUS/dialog_newUS.component';
 import { Dialog_editInspectUSComponent } from './dialog_edit-inspectUS/dialog_edit-inspectUS.component';
+import { RightsService } from 'src/app/services/rights.service';
 
 @Component({
   selector: 'app-birim-setleri',
@@ -20,7 +21,8 @@ export class BirimSetleriComponent implements OnInit {
     private USService: UnitSetsService,
     private toast: ToastrService,
     private router: Router,
-    private dialog:MatDialog
+    private dialog:MatDialog,
+    private rightsService:RightsService
     ) { }
   public searchButtonActive: boolean = false;
   public pageCount: number = 0;
@@ -75,14 +77,34 @@ export class BirimSetleriComponent implements OnInit {
   }
 
   addUnitSet(){
+    if(this.rightsService.checkRight(1021) == false){
+      this.tstUnAuthorized2()
+      return
+    }
     this.dialog.open(Dialog_newUSComponent)
   }
 
   deleteUnitSet(id:number) {
+    if(this.rightsService.checkRight(1023) == false){
+      this.tstUnAuthorized2()
+      return
+    }
     this.dialog.open(Dialog_deleteUSComponent,{data:id})
   }
 
   edit_inspectUnitSet(inspectMode:boolean){
+    if(inspectMode){
+      if(this.rightsService.checkRight(1024) == false){
+        this.tstUnAuthorized2()
+        return
+      }
+    }
+    else {
+      if(this.rightsService.checkRight(1022) == false){
+        this.tstUnAuthorized2()
+        return
+      }
+    }
     var detailedUS
     this.USService.getUnitSetByID(this.selectedUS.INTERNAL_REFERENCE).subscribe(res=>{
       detailedUS = res
@@ -202,6 +224,10 @@ export class BirimSetleriComponent implements OnInit {
   //Toasts
   tstUnauthorized() {
     this.toast.error('Tekrar Giriş Yapmak İçin Sayfayı Yenileyin', 'Bu işlem İçin Yetkiniz Yok', { positionClass: 'toast-top-center', timeOut: 300000 })
+  }
+
+  tstUnAuthorized2(){
+    this.toast.error('Bu işlem için yetkiniz yok',"", {positionClass:"toast-top-center"})
   }
 
   //

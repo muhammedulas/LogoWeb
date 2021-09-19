@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Dialog_deleteComponent } from 'src/app/components/shared/dialogs/dialog_delete/dialog_delete.component';
 import { arpSlips } from 'src/app/models/arpSlips';
 import { ArpSlipsService } from 'src/app/services/arpSlips.service';
+import { RightsService } from 'src/app/services/rights.service';
 import { Dialog_editInspectArpSlipComponent } from './dialog_editInspectArpSlip/dialog_editInspectArpSlip.component';
 import { Dialog_newArpSlipComponent } from './dialog_newArpSlip/dialog_newArpSlip.component';
 
@@ -19,7 +20,8 @@ export class CariHesapFisleriComponent implements OnInit {
     private toast: ToastrService,
     private router: Router,
     private service: ArpSlipsService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private rightsService: RightsService
 
   ) { }
   public searchButtonActive: boolean = false;
@@ -33,7 +35,7 @@ export class CariHesapFisleriComponent implements OnInit {
   private errorMsg: string = "";
   private errorCode: string = "";
   public loaded: boolean = false;
-  public displayedColumns: string[] = ["HyerarchyCode",  "Date", "Type", "FicheNo", "Debit", "Credit", "Notes"]
+  public displayedColumns: string[] = ["HyerarchyCode", "Date", "Type", "FicheNo", "Debit", "Credit", "Notes"]
 
 
 
@@ -67,14 +69,34 @@ export class CariHesapFisleriComponent implements OnInit {
   }
 
   add() {
+    if (this.rightsService.checkRight(2061) == false) {
+      this.tstUnAuthorized2()
+      return
+    }
     this.dialog.open(Dialog_newArpSlipComponent, { width: "60vw", height: "65vh" })
   }
 
   delete(id: number) {
+    if (this.rightsService.checkRight(2063) == false) {
+      this.tstUnAuthorized2()
+      return
+    }
     this.dialog.open(Dialog_deleteComponent, { data: id })
   }
 
   edit_inspect(inspectMode: boolean) {
+    if (inspectMode) {
+      if (this.rightsService.checkRight(2064) == false) {
+        this.tstUnAuthorized2()
+        return
+      }
+    }
+    else {
+      if (this.rightsService.checkRight(2062) == false) {
+        this.tstUnAuthorized2()
+        return
+      }
+    }
     var data
     this.service.getRecordByID(this.selectedRecord.INTERNAL_REFERENCE).subscribe(res => {
       data = res
@@ -205,5 +227,8 @@ export class CariHesapFisleriComponent implements OnInit {
     this.toast.error('Tekrar Giriş Yapmak İçin Sayfayı Yenileyin', 'Bu işlem İçin Yetkiniz Yok', { positionClass: 'toast-top-center', timeOut: 300000 })
   }
 
+  tstUnAuthorized2() {
+    this.toast.error('Bu işlem için yetkiniz yok', "", { positionClass: "toast-top-center" })
+  }
   //
 }

@@ -1,0 +1,28 @@
+.container{
+    width: 100%;
+    height: 33%;
+    margin-top: 33%;
+    border: black;
+    border-radius: 5rem;
+}
+
+h2{
+    width: 40%;
+    margin: auto;
+}
+
+mat-form-field{
+    width: 80%;
+    margin: auto;
+}
+
+mat-card-footer{
+    padding-left: 30%;
+    padding-right: 30%;
+    margin: auto;
+}
+.wrapper{
+    height: 100%;
+    width: 100%;
+    background-image: url('../../assets/default.jpg');
+}

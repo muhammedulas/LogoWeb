@@ -20,15 +20,15 @@ export class ItemsService {
   private rootUrl = localStorage.getItem('rootUrl');
 
 
-  getItems(offset: number, lim: number, q?: string) {
-/*     let queryString = "";
+/*   getItems(offset: number, lim: number, q?: string) {
+  let queryString = "";
 
     if (q != null) {
       
     }
- */
 
-        let queryString = "&fields=INTERNAL_REFERENCE,CODE,NAME,CARD_TYPE,SELVAT,SHELF_LIFE,SHELF_DATE&withCount=true&q="
+
+        let queryString = "&fields=INTERNAL_REFERENCE,CODE,NAME,CARD_TYPE,SELVAT,SHELF_LIFE,SHELF_DATE&withCount=true"
         if (this.loginSvc.authCodes.length > 0) {
           var authCodes = this.loginSvc.authCodes
           console.log(authCodes)
@@ -46,6 +46,18 @@ export class ItemsService {
           return this.http.get<itemResp>(this.rootUrl + "/api/v1/items?offset=" + offset + "&limit=" + lim + queryString, { headers })
         }
         else return this.http.get<itemResp>(this.rootUrl + "/api/v1/items?offset=" + offset + "&limit=" + lim + "&q=(CODE like '*" + q + "*' or NAME like '*" + q + "*')" + "&fields=INTERNAL_REFERENCE,CODE,NAME,CARD_TYPE,SELVAT,SHELF_LIFE,SHELF_DATE&withCount=true", { headers })
+
+  } */
+
+  getItems(offset: number, lim: number, q?:string) {
+    // let url :string = localStorage.getItem('rootUrl');
+    let auth = "Bearer " + this.token;
+    let headers = new HttpHeaders().set('Authorization', auth).set('Accept', 'application/json')
+    if(q==null){
+      return this.http.get<itemResp>(this.rootUrl + "/api/v1/items?offset=" + offset + "&limit=" + lim+"&fields=INTERNAL_REFERENCE,CODE,NAME,CARD_TYPE,SELVAT,SHELF_LIFE,SHELF_DATE&withCount=true", { headers })
+     // return this.http.get<itemResp>(this.rootUrl + "/api/v1/items?offset=" + offset + "&limit=" + lim+"&q=(CODE like '*"+ q+"*' or NAME like '*"+q+"*')"+"&fields=INTERNAL_REFERENCE,CODE,NAME,CARD_TYPE,SELVAT,SHELF_LIFE,SHELF_DATE", { headers })
+    }
+    else    return this.http.get<itemResp>(this.rootUrl + "/api/v1/items?offset=" + offset + "&limit=" + lim+"&q=(CODE like '*"+ q+"*' or NAME like '*"+q+"*')"+"&fields=INTERNAL_REFERENCE,CODE,NAME,CARD_TYPE,SELVAT,SHELF_LIFE,SHELF_DATE&withCount=true", { headers })
 
   }
 

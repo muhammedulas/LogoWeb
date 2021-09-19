@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { item } from '../../../../models/itemModel';
 import { itemResp } from '../../../../models/responseModels/itemResp';
 import { ItemsService } from '../../../../services/items.service';
@@ -13,6 +13,10 @@ import { MatMenu } from '@angular/material/menu';
 import { Router } from '@angular/router';
 import { detailedItemModel } from '../../../../models/detailedItemModel';
 import { Dialog_deleteItemComponent } from './dialog_deleteItem/dialog_deleteItem.component';
+import html2canvas from 'html2canvas';
+import { jsPDF } from 'jspdf';
+import { element } from 'protractor';
+import { RightsService } from 'src/app/services/rights.service';
 
 
 export interface stockData {
@@ -49,7 +53,9 @@ export interface itemFormData extends item {
   templateUrl: './malzemeler.component.html',
   styleUrls: ['./malzemeler.component.scss']
 })
+
 export class MalzemelerComponent implements OnInit {
+  @ViewChild("dataTable") dataTable: HTMLElement;
   public stockInfo: stockData = {
     code: "",
     name: "",
@@ -71,12 +77,35 @@ export class MalzemelerComponent implements OnInit {
   private errorCode: string = "";
   public loaded: boolean = false;
   public displayedColumns: string[] = ["CardType", "Code", "Name", "MainUnit", "Vat", "ShelfLife", "ShelfDate", "Stock"]
-  constructor(private itemsSvc: ItemsService, private toast: ToastrService, public dialog: MatDialog, private router: Router) {
+  constructor(private itemsSvc: ItemsService, private toast: ToastrService, public dialog: MatDialog, private router: Router, private rightsService: RightsService) {
   }
 
   ngOnInit() {
     /*     this.getItemCount() */
     this.getItems(1)
+  }
+
+  test() {
+    let PDF = new jsPDF();
+    PDF.text("test", 10, 10)
+    PDF.save();
+  }
+
+  public downloadPDF(): void {
+
+    html2canvas(document.querySelector("#dataTable")).then(canvas => {
+      console.log("test")
+      let fileWidth = 208;
+      let fileHeight = canvas.height * fileWidth / canvas.width;
+
+      const FILEURI = canvas.toDataURL('image/png')
+      let PDF = new jsPDF();
+      let position = 0;
+      PDF.text("Başlık", 10, 10)
+      PDF.addImage(FILEURI, 'PNG', 0, position, fileWidth, fileHeight)
+      PDF.save();
+
+    });
   }
 
   getItems(offset: number, q?: string) {
@@ -137,6 +166,10 @@ export class MalzemelerComponent implements OnInit {
   }
 
   addItem(itemType: number) {
+    if(this.rightsService.checkRight(1011) == false){
+      this.tstUnAuthorized2()
+      return
+    }
     var newItem: detailedItemModel = new detailedItemModel
     this.dialog.open(Dialog_newItemComponent, {
       data: itemType
@@ -144,13 +177,28 @@ export class MalzemelerComponent implements OnInit {
   }
 
   deleteItem(id: number) {
+    if(this.rightsService.checkRight(1023) == false){
+      this.tstUnAuthorized2()
+      return
+    }
     this.dialog.open(Dialog_deleteItemComponent, {
       data: this.selectedItem.INTERNAL_REFERENCE
     })
   }
 
   editItem(inspect: boolean) {
-
+    if(inspect){
+      if(this.rightsService.checkRight(1014) == false){
+        this.tstUnAuthorized2()
+        return
+      }
+    }
+    else {
+      if(this.rightsService.checkRight(1012) == false){
+        this.tstUnAuthorized2()
+        return
+      }
+    }
     var editDialog = this.itemsSvc.getItemByID(this.selectedItem.INTERNAL_REFERENCE).subscribe(resp => {
       this.tempItem = resp
       this.tempItem.INSPECT = inspect
@@ -284,6 +332,9 @@ export class MalzemelerComponent implements OnInit {
     this.toast.error('Tekrar Giriş Yapmak İçin Sayfayı Yenileyin', 'Bu işlem İçin Yetkiniz Yok', { positionClass: 'toast-top-center', timeOut: 300000 })
   }
 
+  tstUnAuthorized2(){
+    this.toast.error('Bu işlem için yetkiniz yok',"", {positionClass:"toast-top-center"})
+  }
   //
 
 }

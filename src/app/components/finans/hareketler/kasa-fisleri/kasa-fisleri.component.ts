@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Dialog_deleteComponent } from 'src/app/components/shared/dialogs/dialog_delete/dialog_delete.component';
 import { safeDepositSlip } from 'src/app/models/safeDepositSlip';
+import { RightsService } from 'src/app/services/rights.service';
 import { SafeDepositSlipsService } from 'src/app/services/safeDepositSlips.service';
 import { Dialog_editInspectSafeDepositSlipComponent } from './dialog_editInspectSafeDepositSlip/dialog_editInspectSafeDepositSlip.component';
 import { Dialog_newSafeDepositSlipComponent } from './dialog_newSafeDepositSlip/dialog_newSafeDepositSlip.component';
@@ -19,7 +20,8 @@ export class KasaFisleriComponent implements OnInit {
     private toast: ToastrService,
     private router: Router,
     private service: SafeDepositSlipsService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private rightsService: RightsService
 
   ) { }
   public searchButtonActive: boolean = false;
@@ -67,14 +69,34 @@ export class KasaFisleriComponent implements OnInit {
   }
 
   add() {
+    if (this.rightsService.checkRight(2081) == false) {
+      this.tstUnAuthorized2()
+      return
+    }
     this.dialog.open(Dialog_newSafeDepositSlipComponent, { width: "60vw", height: "65vh" })
   }
 
   delete(id: number) {
+    if (this.rightsService.checkRight(2083) == false) {
+      this.tstUnAuthorized2()
+      return
+    }
     this.dialog.open(Dialog_deleteComponent, { data: id })
   }
 
   edit_inspect(inspectMode: boolean) {
+    if (inspectMode) {
+      if (this.rightsService.checkRight(2084) == false) {
+        this.tstUnAuthorized2()
+        return
+      }
+    }
+    else {
+      if (this.rightsService.checkRight(2082) == false) {
+        this.tstUnAuthorized2()
+        return
+      }
+    }
     var data
     this.service.getRecordByID(this.selectedRecord.INTERNAL_REFERENCE).subscribe(res => {
       data = res
@@ -205,6 +227,9 @@ export class KasaFisleriComponent implements OnInit {
     this.toast.error('Tekrar Giriş Yapmak İçin Sayfayı Yenileyin', 'Bu işlem İçin Yetkiniz Yok', { positionClass: 'toast-top-center', timeOut: 300000 })
   }
 
+  tstUnAuthorized2() {
+    this.toast.error('Bu işlem için yetkiniz yok', "", { positionClass: "toast-top-center" })
+  }
   //
 
 }

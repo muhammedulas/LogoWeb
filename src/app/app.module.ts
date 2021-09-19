@@ -55,6 +55,7 @@ import { IthalatOperasyonFisleriComponent } from './components/ithalat/hareketle
 import { MalzemeDolasimFisleriComponent } from './components/ithalat/hareketler/malzeme-dolasim-fisleri/malzeme-dolasim-fisleri.component';
 import { MillilestirmeFisleriComponent } from './components/ithalat/hareketler/millilestirme-fisleri/millilestirme-fisleri.component';
 import { Odeme_tahsilatPlanlariComponent } from './components/finans/ana-kayitlar/odeme_tahsilat-planlari/odeme_tahsilat-planlari.component';
+import { AdminComponent } from './components/admin/admin.component';
 import { AuthGuardService } from './services/authGuard.service';
 
 
@@ -75,6 +76,8 @@ import { ARPTypePipe } from './pipes/ARPType.pipe';
 import { USTypesPipe } from './pipes/USTypes.pipe';
 
 
+import { jsPDF } from 'jspdf';
+import * as html2canvas from 'html2canvas';
 import { HttpClientModule } from '@angular/common/http';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -177,6 +180,7 @@ import { Dialog_deleteSalesInvoiceComponent } from './components/satis/hareketle
 import { Dialog_newPurchaseInvoiceComponent } from './components/satinalma/hareketler/satinalma-faturalari/dialog_newPurchaseInvoice/dialog_newPurchaseInvoice.component';
 import { Dialog_editInspectPurchaseInvoiceComponent } from './components/satinalma/hareketler/satinalma-faturalari/dialog_editInspectPurchaseInvoice/dialog_editInspectPurchaseInvoice.component';
 import { Dialog_deletePurchaseInvoiceComponent } from './components/satinalma/hareketler/satinalma-faturalari/dialog_deletePurchaseInvoice/dialog_deletePurchaseInvoice.component';
+import { LoginServiceService } from './services/loginService.service';
 
 
 
@@ -276,6 +280,10 @@ import { Dialog_deletePurchaseInvoiceComponent } from './components/satinalma/ha
     SalesDispatchTypePipe,
     SalesInvoiceTypePipe,
     SafeDepositSlipTypePipe,
+    //
+
+    //Administration
+    AdminComponent,
     //
 
     Dialog_StockComponent,
@@ -455,7 +463,7 @@ import { Dialog_deletePurchaseInvoiceComponent } from './components/satinalma/ha
     MatDividerModule,
     HttpClientModule,
     MatTableModule,
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({ maxOpened: 3, autoDismiss:true, preventDuplicates: true, resetTimeoutOnDuplicate: true, includeTitleDuplicates: true }),
     MatProgressSpinnerModule,
     MatDialogModule,
     MatTooltipModule,
@@ -465,10 +473,9 @@ import { Dialog_deletePurchaseInvoiceComponent } from './components/satinalma/ha
     MatRadioModule,
     MatAutocompleteModule,
     MatGridListModule,
-    MatCheckboxModule
-
+    MatCheckboxModule,
   ],
-  providers: [AuthGuardService, LoginComponent],
+  providers: [AuthGuardService, LoginComponent, LoginServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

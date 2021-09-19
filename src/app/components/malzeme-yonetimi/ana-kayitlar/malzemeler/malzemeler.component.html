@@ -1,10 +1,10 @@
-<div class="wrapper">
+<div  class="wrapper">
   <h1 style="text-align: center;">Malzemeler</h1>
   <mat-card class="container mt-2">
     <mat-spinner class="spinner" *ngIf="!loaded"></mat-spinner>
 
-    <div class="table-responsive">
-      <table mat-table [dataSource]="items" class="mat-elevation-z4 mat-table">
+    <div   class="table-responsive">
+      <table id="dataTable" mat-table [dataSource]="items" class="mat-elevation-z4 mat-table">
 
         <ng-container matColumnDef="CardType">
           <th mat-header-cell *matHeaderCellDef> Malzeme Türü </th>
@@ -131,6 +131,11 @@
             *ngIf="searchButtonActive">
             <mat-icon>
               close
+            </mat-icon>
+          </a>
+          <a class="iconBtns" matTooltip="PDF İndir" (click)="downloadPDF()">
+            <mat-icon>
+              download
             </mat-icon>
           </a>
           <mat-form-field *ngIf="searchButtonActive">

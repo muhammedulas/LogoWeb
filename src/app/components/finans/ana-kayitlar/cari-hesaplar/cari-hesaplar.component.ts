@@ -8,6 +8,7 @@ import { Dialog_deleteARPComponent } from './Dialog_deleteARP/Dialog_deleteARP.c
 import { Dialog_editInspectARPComponent } from './Dialog_editInspectARP/Dialog_editInspectARP.component';
 import { Dialog_newARPComponent } from './Dialog_newARP/Dialog_newARP.component';
 import { ARPTypePipe } from '../../../../pipes/ARPType.pipe';
+import { RightsService } from 'src/app/services/rights.service';
 
 @Component({
   selector: 'app-cari-hesaplar',
@@ -20,7 +21,8 @@ export class CariHesaplarComponent implements OnInit {
     private toast:ToastrService,
     private router:Router,
     private ARPService:ArpService,
-    private dialog:MatDialog
+    private dialog:MatDialog,
+    private rightsService: RightsService
 
   ) { }
   public searchButtonActive: boolean = false;
@@ -68,6 +70,10 @@ export class CariHesaplarComponent implements OnInit {
   }
 
   addARP(){
+    if(this.rightsService.checkRight(2061) == false){
+      this.tstUnAuthorized2()
+      return
+    }
     let ref = this.dialog.open(Dialog_newARPComponent,{width:"65vw",height:"70vh"})
     ref.afterClosed().subscribe(q=>{
       this.getARPs(1)
@@ -75,12 +81,28 @@ export class CariHesaplarComponent implements OnInit {
   }
 
   deleteARP(id:number) {
+    if(this.rightsService.checkRight(2063) == false){
+      this.tstUnAuthorized2()
+      return
+    }
     this.dialog.open(Dialog_deleteARPComponent,{data:id}).afterClosed().subscribe(q=>{
       this.getARPs(1)
     })
   }
 
   edit_inspectARP(inspectMode:boolean){
+    if(inspectMode){
+      if(this.rightsService.checkRight(2064) == false){
+        this.tstUnAuthorized2()
+        return
+      }
+    }
+    else {
+      if(this.rightsService.checkRight(2062) == false){
+        this.tstUnAuthorized2()
+        return
+      }
+    }
     var bank
     this.ARPService.getARPByID(this.selectedARP.INTERNAL_REFERENCE).subscribe(res=>{
       bank = res
@@ -212,6 +234,9 @@ export class CariHesaplarComponent implements OnInit {
   tstUnauthorized() {
     this.toast.error('Tekrar Giriş Yapmak İçin Sayfayı Yenileyin', 'Bu işlem İçin Yetkiniz Yok', { positionClass: 'toast-top-center', timeOut: 300000 })
   }
-
+  
+  tstUnAuthorized2(){
+    this.toast.error('Bu işlem için yetkiniz yok',"", {positionClass:"toast-top-center"})
+  }
   //
 }

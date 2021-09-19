@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { paymentPlan } from 'src/app/models/paymentPlans';
 import { PaymentPlansService } from 'src/app/services/paymentPlans.service';
+import { RightsService } from 'src/app/services/rights.service';
 import { Dialog_deletePaymentPlanComponent } from './Dialog_deletePaymentPlan/Dialog_deletePaymentPlan.component';
 import { Dialog_editInspectPaymentPlanComponent } from './Dialog_editInspectPaymentPlan/Dialog_editInspectPaymentPlan.component';
 import { Dialog_newPaymentPlanComponent } from './Dialog_newPaymentPlan/Dialog_newPaymentPlan.component';
@@ -19,7 +20,8 @@ export class Odeme_tahsilatPlanlariComponent implements OnInit {
     private toast:ToastrService,
     private router:Router,
     private PPService:PaymentPlansService,
-    private dialog:MatDialog
+    private dialog:MatDialog,
+    private rightsService: RightsService
 
   ) { }
   public searchButtonActive: boolean = false;
@@ -67,18 +69,38 @@ export class Odeme_tahsilatPlanlariComponent implements OnInit {
   }
 
   addPP(){
+    if(this.rightsService.checkRight(2021) == false){
+      this.tstUnAuthorized2()
+      return
+    }
     this.dialog.open(Dialog_newPaymentPlanComponent, {width:"60vw", height:"60vh"}).afterClosed().subscribe(q=>{
       this.getPPs(0)
     })
   }
 
   deletePP(id:number) {
+    if(this.rightsService.checkRight(2023) == false){
+      this.tstUnAuthorized2()
+      return
+    }
     this.dialog.open(Dialog_deletePaymentPlanComponent,{data:id}).afterClosed().subscribe(q=>{
       this.getPPs(0)
     })
   }
 
   edit_inspectPP(inspectMode:boolean){
+    if(inspectMode){
+      if(this.rightsService.checkRight(2024) == false){
+        this.tstUnAuthorized2()
+        return
+      }
+    }
+    else {
+      if(this.rightsService.checkRight(2022) == false){
+        this.tstUnAuthorized2()
+        return
+      }
+    }
     var plan
     this.PPService.getPaymentPlanByID(this.selectedPaymentPlan.INTERNAL_REFERENCE).subscribe(res=>{
       plan = res
@@ -210,6 +232,9 @@ export class Odeme_tahsilatPlanlariComponent implements OnInit {
   tstUnauthorized() {
     this.toast.error('Tekrar Giriş Yapmak İçin Sayfayı Yenileyin', 'Bu işlem İçin Yetkiniz Yok', { positionClass: 'toast-top-center', timeOut: 300000 })
   }
-
+  
+  tstUnAuthorized2(){
+    this.toast.error('Bu işlem için yetkiniz yok',"", {positionClass:"toast-top-center"})
+  }
   //
 }

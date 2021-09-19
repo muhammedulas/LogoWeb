@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { cheque_Pnote } from 'src/app/models/chequeAndPnote';
 import { ChequeAndPnotesService } from 'src/app/services/chequeAndPnotes.service';
+import { RightsService } from 'src/app/services/rights.service';
 import { Dialog_deleteCnPnoteComponent } from './Dialog_deleteCnPnote/Dialog_deleteCnPnote.component';
 import { Dialog_editInspectCnPnoteComponent } from './Dialog_editInspectCnPnote/Dialog_editInspectCnPnote.component';
 
@@ -18,7 +19,8 @@ export class CekSenetlerComponent implements OnInit {
     private toast:ToastrService,
     private router:Router,
     private CPService:ChequeAndPnotesService,
-    private dialog:MatDialog
+    private dialog:MatDialog,
+    private rightsService: RightsService
 
   ) { }
   public searchButtonActive: boolean = false;
@@ -67,10 +69,26 @@ export class CekSenetlerComponent implements OnInit {
 
 
   delete(id:number) {
+    if(this.rightsService.checkRight(2033) == false){
+      this.tstUnAuthorized2()
+      return
+    }
     this.dialog.open(Dialog_deleteCnPnoteComponent,{data:id})
   }
 
   edit_inspect(inspectMode:boolean){
+    if(inspectMode){
+      if(this.rightsService.checkRight(2034) == false){
+        this.tstUnAuthorized2()
+        return
+      }
+    }
+    else {
+      if(this.rightsService.checkRight(2032) == false){
+        this.tstUnAuthorized2()
+        return
+      }
+    }
     var CP
     this.CPService.getCPById(this.selectedCP.INTERNAL_REFERENCE).subscribe(res=>{
       CP = res
@@ -200,6 +218,9 @@ export class CekSenetlerComponent implements OnInit {
   tstUnauthorized() {
     this.toast.error('Tekrar Giriş Yapmak İçin Sayfayı Yenileyin', 'Bu işlem İçin Yetkiniz Yok', { positionClass: 'toast-top-center', timeOut: 300000 })
   }
-
+  
+  tstUnAuthorized2(){
+    this.toast.error('Bu işlem için yetkiniz yok',"", {positionClass:"toast-top-center"})
+  }
   //
 }

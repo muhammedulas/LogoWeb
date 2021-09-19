@@ -138,3 +138,147 @@ ng-container {
   .wrapper {
     overflow: hidden;
   }
+
+  @media screen and (max-width:900px) {
+    .container {
+      width: 100vw;
+      height: 100vh;
+  }
+  
+  .spinner {
+      vertical-align: middle;
+      margin: auto;
+      width: 50%;
+      top: 50%;
+      left: 50%;
+      position: absolute;
+      transform: translate(-50%, -50%);
+  }
+  
+  tr {
+      height: 25px;
+      user-select: none;
+  }
+  thead {
+      height: 10%;
+      user-select: none;
+      text-align: center;
+  }
+  
+  .table-content {
+      width: 100%;
+      height: 93%;
+      overflow-y: scroll;
+      user-select: none;
+      text-align: center;
+      display: inline-block;
+  }
+  
+  tfoot {
+      height: 7%;
+      position: absolute;
+      bottom: 0;
+      left: 1;
+  }
+  
+  .act {
+      background-color: #ebebeb;
+      //#d9dbda;
+  }
+  
+  ng-container {
+      margin-right: auto;
+      margin-left: auto;
+  }
+  
+  .table-responsive {
+      display: block;
+      width: 100%;
+      height: 93%;
+      overflow-x: auto;
+      overflow-y: auto;
+      .mat-table {
+          width: 100%;
+          max-width: 100%;
+          margin-bottom: 1rem;
+          display: table;
+          border-collapse: collapse;
+          margin: 0px;
+      }
+      .mat-row{
+        height: 6.5vh
+      }
+      .mat-row:hover{
+        background-color: #ebebeb;
+      };
+      .mat-header-row {
+          display: table-row;
+      }
+      .mat-cell,
+      .mat-header-cell {
+          text-align: center;
+          word-wrap: initial;
+          display: table-cell;
+          padding: 0px 5px;
+          line-break: unset;
+          width: auto;
+          white-space: nowrap;
+          overflow: hidden;
+          vertical-align: middle;
+      }
+    }
+  
+    ng-content {
+        position: sticky;
+    }
+  
+    .footerContainer {
+      width: 100%;
+      display: inline-block;
+      height: 7%;
+      position: absolute;
+      bottom: 0;
+      left: 1;
+    }
+  
+    .footerElement {
+      vertical-align: middle;
+    }
+  
+  
+  
+    a.iconBtns{
+      width: auto;
+      height: auto;
+      margin-right: 3px;
+      user-select: none;
+      mat-icon{
+        color: purple;
+      }
+      mat-icon:hover{
+        color: blue;
+      }
+    }
+  
+    a.paginationBtns {
+      width: auto;
+      height: auto;
+      margin-right: 25px;
+      user-select: none;
+      mat-icon{
+        color: purple;
+      }
+      mat-icon:hover{
+        color: blue;
+      }
+      mat-icon:active{
+        color: darkblue;
+  
+      }
+    }
+  
+    .wrapper {
+      overflow: hidden;
+    }
+  
+  }

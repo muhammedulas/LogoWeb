@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Dialog_deleteComponent } from 'src/app/components/shared/dialogs/dialog_delete/dialog_delete.component';
 import { purchaseOrder } from 'src/app/models/purchaseOrder';
 import { PurchaseOrdersService } from 'src/app/services/purchaseOrders.service';
+import { RightsService } from 'src/app/services/rights.service';
 import { Dialog_deletePurchaseOrderComponent } from './Dialog_deletePurchaseOrder/Dialog_deletePurchaseOrder.component';
 import { Dialog_editInspectPurchaseOrderComponent } from './dialog_editInspectPurchaseOrder/dialog_editInspectPurchaseOrder.component';
 import { Dialog_newPurchaseOrderComponent } from './dialog_newPurchaseOrder/dialog_newPurchaseOrder.component';
@@ -20,7 +21,8 @@ export class SatinalmaSiparisleriComponent implements OnInit {
     private toast: ToastrService,
     private router: Router,
     private service: PurchaseOrdersService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private rightsService: RightsService
 
   ) { }
   public searchButtonActive: boolean = false;
@@ -68,13 +70,21 @@ export class SatinalmaSiparisleriComponent implements OnInit {
   }
 
   add() {
-    this.dialog.open(Dialog_newPurchaseOrderComponent).afterClosed().subscribe(q => {
+    if(this.rightsService.checkRight(3061) == false){
+      this.tstUnAuthorized2()
+      return
+    }
+    this.dialog.open(Dialog_newPurchaseOrderComponent,{width:"100vw",height:'100vh'}).afterClosed().subscribe(q => {
       this.getAllRecords(0)
       this.currPage = 1
     })
   }
 
   delete(id: number) {
+    if(this.rightsService.checkRight(3063) == false){
+      this.tstUnAuthorized2()
+      return
+    }
     this.dialog.open(Dialog_deletePurchaseOrderComponent, { data: id }).afterClosed().subscribe(q => {
       this.getAllRecords(0)
       this.currPage = 1
@@ -82,6 +92,18 @@ export class SatinalmaSiparisleriComponent implements OnInit {
   }
 
   edit_inspect(inspectMode: boolean) {
+    if(inspectMode){
+      if(this.rightsService.checkRight(3064) == false){
+        this.tstUnAuthorized2()
+        return
+      }
+    }
+    else {
+      if(this.rightsService.checkRight(3062) == false){
+        this.tstUnAuthorized2()
+        return
+      }
+    }
     var data
     this.service.getRecordByID(this.selectedRecord.INTERNAL_REFERENCE).subscribe(res => {
       data = res
@@ -214,5 +236,8 @@ export class SatinalmaSiparisleriComponent implements OnInit {
     this.toast.error('Tekrar Giriş Yapmak İçin Sayfayı Yenileyin', 'Bu işlem İçin Yetkiniz Yok', { positionClass: 'toast-top-center', timeOut: 300000 })
   }
 
+  tstUnAuthorized2(){
+    this.toast.error('Bu işlem için yetkiniz yok',"", {positionClass:"toast-top-center"})
+  }
   //
 }

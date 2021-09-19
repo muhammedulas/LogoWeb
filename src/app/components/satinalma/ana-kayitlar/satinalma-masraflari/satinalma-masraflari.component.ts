@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { purchaseExpense } from 'src/app/models/purchaseExpense';
 import { PurchaseExpensesService } from 'src/app/services/purchaseExpenses.service';
+import { RightsService } from 'src/app/services/rights.service';
 import { Dialog_deletePurchaseExpenseComponent } from './Dialog_deletePurchaseExpense/Dialog_deletePurchaseExpense.component';
 import { Dialog_editInspectPurchaseExpenseComponent } from './Dialog_editInspectPurchaseExpense/Dialog_editInspectPurchaseExpense.component';
 import { Dialog_newPurchaseExpenseComponent } from './Dialog_newPurchaseExpense/Dialog_newPurchaseExpense.component';
@@ -19,7 +20,8 @@ export class SatinalmaMasraflariComponent implements OnInit {
     private toast:ToastrService,
     private router:Router,
     private service:PurchaseExpensesService,
-    private dialog:MatDialog
+    private dialog:MatDialog,
+    private rightsService: RightsService
 
   ) { }
   public searchButtonActive: boolean = false;
@@ -65,6 +67,10 @@ export class SatinalmaMasraflariComponent implements OnInit {
   }
 
   add(){
+    if(this.rightsService.checkRight(3031) == false){
+      this.tstUnAuthorized2()
+      return
+    }
     this.dialog.open(Dialog_newPurchaseExpenseComponent).afterClosed().subscribe(q => {
       this.getAllRecords(0)
       this.currPage = 1
@@ -72,6 +78,10 @@ export class SatinalmaMasraflariComponent implements OnInit {
   }
 
   delete(id:number) {
+    if(this.rightsService.checkRight(3033) == false){
+      this.tstUnAuthorized2()
+      return
+    }
     this.dialog.open(Dialog_deletePurchaseExpenseComponent,{data:id}).afterClosed().subscribe(q => {
       this.getAllRecords(0)
       this.currPage = 1
@@ -79,6 +89,18 @@ export class SatinalmaMasraflariComponent implements OnInit {
   }
 
   edit_inspect(inspectMode:boolean){
+    if(inspectMode){
+      if(this.rightsService.checkRight(3034) == false){
+        this.tstUnAuthorized2()
+        return
+      }
+    }
+    else {
+      if(this.rightsService.checkRight(3032) == false){
+        this.tstUnAuthorized2()
+        return
+      }
+    }
     var record
     this.service.getPurchaseExpenseByID(this.selectedRecord.INTERNAL_REFERENCE).subscribe(res=>{
       record = res
@@ -210,5 +232,8 @@ export class SatinalmaMasraflariComponent implements OnInit {
     this.toast.error('Tekrar Giriş Yapmak İçin Sayfayı Yenileyin', 'Bu işlem İçin Yetkiniz Yok', { positionClass: 'toast-top-center', timeOut: 300000 })
   }
 
+  tstUnAuthorized2(){
+    this.toast.error('Bu işlem için yetkiniz yok',"", {positionClass:"toast-top-center"})
+  }
   //
 }

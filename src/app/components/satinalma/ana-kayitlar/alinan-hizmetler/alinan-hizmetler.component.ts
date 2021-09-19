@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { purchasedService } from 'src/app/models/purchasedService';
 import { PurchasedServicesService } from 'src/app/services/purchasedServices.service';
+import { RightsService } from 'src/app/services/rights.service';
 import { Dialog_deletePurchasedServiceComponent } from './Dialog_deletePurchasedService/Dialog_deletePurchasedService.component';
 import { Dialog_editInspectPurchasedServiceComponent } from './Dialog_editInspectPurchasedService/Dialog_editInspectPurchasedService.component';
 import { Dialog_newPurchasedServiceComponent } from './Dialog_newPurchasedService/Dialog_newPurchasedService.component';
@@ -19,7 +20,8 @@ export class AlinanHizmetlerComponent implements OnInit {
     private toast:ToastrService,
     private router:Router,
     private service:PurchasedServicesService,
-    private dialog:MatDialog
+    private dialog:MatDialog,
+    private rightsService: RightsService
 
   ) { }
   public searchButtonActive: boolean = false;
@@ -67,6 +69,10 @@ export class AlinanHizmetlerComponent implements OnInit {
   }
 
   addPS(){
+    if(this.rightsService.checkRight(3011) == false){
+      this.tstUnAuthorized2()
+      return
+    }
     this.dialog.open(Dialog_newPurchasedServiceComponent).afterClosed().subscribe(q => {
       this.getPSs(0)
       this.currPage = 1
@@ -74,6 +80,10 @@ export class AlinanHizmetlerComponent implements OnInit {
   }
 
   deletePS(id:number) {
+    if(this.rightsService.checkRight(3013) == false){
+      this.tstUnAuthorized2()
+      return
+    }
     this.dialog.open(Dialog_deletePurchasedServiceComponent,{data:id}).afterClosed().subscribe(q => {
       this.getPSs(0)
       this.currPage = 1
@@ -81,6 +91,18 @@ export class AlinanHizmetlerComponent implements OnInit {
   }
 
   edit_inspectPS(inspectMode:boolean){
+    if(inspectMode){
+      if(this.rightsService.checkRight(3014) == false){
+        this.tstUnAuthorized2()
+        return
+      }
+    }
+    else {
+      if(this.rightsService.checkRight(3012) == false){
+        this.tstUnAuthorized2()
+        return
+      }
+    }
     var bank
     this.service.getPurchasedServiceByID(this.selectedPS.INTERNAL_REFERENCE).subscribe(res=>{
       bank = res
@@ -212,5 +234,8 @@ export class AlinanHizmetlerComponent implements OnInit {
     this.toast.error('Tekrar Giriş Yapmak İçin Sayfayı Yenileyin', 'Bu işlem İçin Yetkiniz Yok', { positionClass: 'toast-top-center', timeOut: 300000 })
   }
 
+  tstUnAuthorized2(){
+    this.toast.error('Bu işlem için yetkiniz yok',"", {positionClass:"toast-top-center"})
+  }
   //
 }

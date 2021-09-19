@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Dialog_deleteComponent } from 'src/app/components/shared/dialogs/dialog_delete/dialog_delete.component';
 import { salesInvoice } from 'src/app/models/salesInvoice';
+import { RightsService } from 'src/app/services/rights.service';
 import { SalesInvoicesService } from 'src/app/services/salesInvoices.service';
 import { Dialog_deleteSalesInvoiceComponent } from './dialog_deleteSalesInvoice/dialog_deleteSalesInvoice.component';
 import { Dialog_editInspectSalesInvoiceComponent } from './dialog_editInspectSalesInvoice/dialog_editInspectSalesInvoice.component';
@@ -20,7 +21,8 @@ export class SatisFaturalariComponent implements OnInit {
     private toast: ToastrService,
     private router: Router,
     private service: SalesInvoicesService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private rightsService: RightsService
 
   ) { }
   public searchButtonActive: boolean = false;
@@ -34,7 +36,7 @@ export class SatisFaturalariComponent implements OnInit {
   private errorMsg: string = "";
   private errorCode: string = "";
   public loaded: boolean = false;
-  public displayedColumns: string[] = [  "Date", "FicheNo", "DocNum", "Type", "ARPCode", "Amount"]
+  public displayedColumns: string[] = ["Date", "FicheNo", "DocNum", "Type", "ARPCode", "Amount"]
 
 
 
@@ -68,13 +70,21 @@ export class SatisFaturalariComponent implements OnInit {
   }
 
   add() {
-    this.dialog.open(Dialog_newSalesInvoiceComponent, { width: "60vw"}).afterClosed().subscribe(q => {
+    if (this.rightsService.checkRight(4101) == false) {
+      this.tstUnAuthorized2()
+      return
+    }
+    this.dialog.open(Dialog_newSalesInvoiceComponent, { width: "60vw" }).afterClosed().subscribe(q => {
       this.getAllRecords(0)
       this.currPage = 1
     })
   }
 
   delete(id: number) {
+    if (this.rightsService.checkRight(4103) == false) {
+      this.tstUnAuthorized2()
+      return
+    }
     this.dialog.open(Dialog_deleteSalesInvoiceComponent, { data: id }).afterClosed().subscribe(q => {
       this.getAllRecords(0)
       this.currPage = 1
@@ -82,6 +92,18 @@ export class SatisFaturalariComponent implements OnInit {
   }
 
   edit_inspect(inspectMode: boolean) {
+    if (inspectMode) {
+      if (this.rightsService.checkRight(4104) == false) {
+        this.tstUnAuthorized2()
+        return
+      }
+    }
+    else {
+      if (this.rightsService.checkRight(4102) == false) {
+        this.tstUnAuthorized2()
+        return
+      }
+    }
     var data
     this.service.getRecordByID(this.selectedRecord.INTERNAL_REFERENCE).subscribe(res => {
       data = res
@@ -214,6 +236,9 @@ export class SatisFaturalariComponent implements OnInit {
     this.toast.error('Tekrar Giriş Yapmak İçin Sayfayı Yenileyin', 'Bu işlem İçin Yetkiniz Yok', { positionClass: 'toast-top-center', timeOut: 300000 })
   }
 
+  tstUnAuthorized2() {
+    this.toast.error('Bu işlem için yetkiniz yok', "", { positionClass: "toast-top-center" })
+  }
   //
 
 }

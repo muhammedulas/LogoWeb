@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { salesExpense } from 'src/app/models/salesExpense';
+import { RightsService } from 'src/app/services/rights.service';
 import { SalesExpensesService } from 'src/app/services/salesExpenses.service';
 import { Dialog_deleteSoldDiscountComponent } from '../satis-indirimleri/Dialog_deleteSoldDiscount/Dialog_deleteSoldDiscount.component';
 import { Dialog_editInspectSoldDiscountComponent } from '../satis-indirimleri/Dialog_editInspectSoldDiscount/Dialog_editInspectSoldDiscount.component';
@@ -22,7 +23,8 @@ export class SatisMasraflariComponent implements OnInit {
     private toast:ToastrService,
     private router:Router,
     private service:SalesExpensesService,
-    private dialog:MatDialog
+    private dialog:MatDialog,
+    private rightsService: RightsService
 
   ) { }
   public searchButtonActive: boolean = false;
@@ -70,6 +72,10 @@ export class SatisMasraflariComponent implements OnInit {
   }
 
   add(){
+    if(this.rightsService.checkRight(4031) == false){
+      this.tstUnAuthorized2()
+      return
+    }
     this.dialog.open(Dialog_newSalesExpenseComponent).afterClosed().subscribe(q => {
       this.getAllRecords(0)
       this.currPage = 1
@@ -77,6 +83,10 @@ export class SatisMasraflariComponent implements OnInit {
   }
 
   delete(id:number) {
+    if(this.rightsService.checkRight(4033) == false){
+      this.tstUnAuthorized2()
+      return
+    }
     this.dialog.open(Dialog_deleteSalesExpenseComponent,{data:id}).afterClosed().subscribe(q => {
       this.getAllRecords(0)
       this.currPage = 1
@@ -84,6 +94,18 @@ export class SatisMasraflariComponent implements OnInit {
   }
 
   edit_inspect(inspectMode:boolean){
+    if(inspectMode){
+      if(this.rightsService.checkRight(4034) == false){
+        this.tstUnAuthorized2()
+        return
+      }
+    }
+    else {
+      if(this.rightsService.checkRight(4032) == false){
+        this.tstUnAuthorized2()
+        return
+      }
+    }
     var data
     this.service.getRecordByID(this.selectedRecord.INTERNAL_REFERENCE).subscribe(res=>{
       data = res
@@ -215,6 +237,9 @@ export class SatisMasraflariComponent implements OnInit {
     this.toast.error('Tekrar Giriş Yapmak İçin Sayfayı Yenileyin', 'Bu işlem İçin Yetkiniz Yok', { positionClass: 'toast-top-center', timeOut: 300000 })
   }
 
+  tstUnAuthorized2(){
+    this.toast.error('Bu işlem için yetkiniz yok',"", {positionClass:"toast-top-center"})
+  }
   //
 
 }

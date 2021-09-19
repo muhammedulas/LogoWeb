@@ -15,7 +15,6 @@ export class SatisComponent implements OnInit {
   ngOnInit() {
     if(this.router.url == "/satis") this.menuActive = true
     this.router.events.subscribe(event => {
-      console.log(event)
       if (event instanceof RoutesRecognized) {
         if (event.urlAfterRedirects == "/satis") {
           this.menuActive = true
