@@ -21,6 +21,7 @@ export class LoginServiceService {
   public userNr: number = 0;
   public frmNo: string = "";
   public perNo: string = "";
+  public salesmanCode: string = "";
   public authCodes: authCode[] = [];
   public menuAccess: menuAcces[] = [];
   public loggedIn: boolean = false;
@@ -89,7 +90,19 @@ export class LoginServiceService {
         this.authCodes = res.items;
         console.log(this.authCodes)
       })
+      this.getSalesmanCode();
       console.log('nr: ' + this.userNr)
     })
   }
+
+  getSalesmanCode(){
+    let auth = "Bearer " + localStorage.getItem('Token')
+    let tableName = "LG_SLSMAN"
+    let headers = new HttpHeaders().set('Authorization', auth).set('Accept', 'application/json').set('Content-Type', 'application/json')
+    let queryString = "\" SELECT  CODE FROM " + tableName + " WHERE  USERID = '" + this.userNr + "'\""
+    this.http.post<any>(this.rootUrl + "/api/v1/queries/unsafe", queryString, { headers }).subscribe(res=>{
+      this.salesmanCode = res.items[0].CODE
+    })
+  }
+
 }

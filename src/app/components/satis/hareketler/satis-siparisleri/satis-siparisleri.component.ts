@@ -1,14 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { config } from 'process';
 import { Dialog_deleteComponent } from 'src/app/components/shared/dialogs/dialog_delete/dialog_delete.component';
+import { GlobalVarsService } from 'src/app/globalVars.service';
 import { salesOrder } from 'src/app/models/salesOrder';
 import { RightsService } from 'src/app/services/rights.service';
 import { SalesOrdersService } from 'src/app/services/salesOrders.service';
+import { isJSDocThisTag } from 'typescript';
 import { Dialog_deleteSalesOrderComponent } from './dialog_deleteSalesOrder/dialog_deleteSalesOrder.component';
 import { Dialog_editInspectSalesOrderComponent } from './dialog_editInspectSalesOrder/dialog_editInspectSalesOrder.component';
 import { Dialog_newSalesOrderComponent } from './dialog_newSalesOrder/dialog_newSalesOrder.component';
+import { Dialog_salesOrderComponent } from './dialog_salesOrder/dialog_salesOrder.component';
 
 @Component({
   selector: 'app-satis-siparisleri',
@@ -22,9 +26,12 @@ export class SatisSiparisleriComponent implements OnInit {
     private router: Router,
     private service: SalesOrdersService,
     private dialog: MatDialog,
-    private rightsService: RightsService
+    private rightsService: RightsService,
+    private global: GlobalVarsService
 
   ) { }
+  private scrHeight: number;
+  private scrWidth: number;
   public searchButtonActive: boolean = false;
   public pageCount: number = 0;
   public itemCount: number = 0;
@@ -41,7 +48,15 @@ export class SatisSiparisleriComponent implements OnInit {
 
 
   ngOnInit() {
+    this.getScreenSize()
     this.getAllRecords(0)
+  }
+
+  @HostListener('window:resize', ['$event'])
+  getScreenSize(event?) {
+    this.scrHeight = window.innerHeight;
+    this.scrWidth = window.innerWidth;
+    console.log(this.scrHeight, this.scrWidth);
   }
 
   select(rec: salesOrder) {
@@ -69,19 +84,45 @@ export class SatisSiparisleriComponent implements OnInit {
     )
   }
 
+
   add() {
-    if(this.rightsService.checkRight(4081) == false){
+    if (this.rightsService.checkRight(4081) == false) {
       this.tstUnAuthorized2()
       return
     }
-    this.dialog.open(Dialog_newSalesOrderComponent, { width: "60vw"}).afterClosed().subscribe(q => {
-      this.getAllRecords(0)
-      this.currPage = 1
-    })
+    this.global.getArpCodes().subscribe(res=>{
+      console.log(res)
+    });
+    this.global.getItemCodes().subscribe(res=>{
+      console.log(res)
+    });;
+    let width: string;
+    let height: string;
+    let conf = {}
+    if (this.scrWidth > 1200) {
+      this.dialog.open(Dialog_salesOrderComponent, {
+        height: '80vh',
+        width: '60vw'
+      }).afterClosed().subscribe(q => {
+        this.getAllRecords(0)
+        this.currPage = 1
+      })
+    }
+    else {
+      this.dialog.open(Dialog_salesOrderComponent, {
+        maxWidth: '100vw',
+        maxHeight: '100vh',
+        height: '100%',
+        width: '100%'
+      }).afterClosed().subscribe(q => {
+        this.getAllRecords(0)
+        this.currPage = 1
+      })
+    }
   }
 
   delete(id: number) {
-    if(this.rightsService.checkRight(4083) == false){
+    if (this.rightsService.checkRight(4083) == false) {
       this.tstUnAuthorized2()
       return
     }
@@ -92,14 +133,14 @@ export class SatisSiparisleriComponent implements OnInit {
   }
 
   edit_inspect(inspectMode: boolean) {
-    if(inspectMode){
-      if(this.rightsService.checkRight(4084) == false){
+    if (inspectMode) {
+      if (this.rightsService.checkRight(4084) == false) {
         this.tstUnAuthorized2()
         return
       }
     }
     else {
-      if(this.rightsService.checkRight(4082) == false){
+      if (this.rightsService.checkRight(4082) == false) {
         this.tstUnAuthorized2()
         return
       }
@@ -236,8 +277,8 @@ export class SatisSiparisleriComponent implements OnInit {
     this.toast.error('Tekrar Giriş Yapmak İçin Sayfayı Yenileyin', 'Bu işlem İçin Yetkiniz Yok', { positionClass: 'toast-top-center', timeOut: 300000 })
   }
 
-  tstUnAuthorized2(){
-    this.toast.error('Bu işlem için yetkiniz yok',"", {positionClass:"toast-top-center"})
+  tstUnAuthorized2() {
+    this.toast.error('Bu işlem için yetkiniz yok', "", { positionClass: "toast-top-center" })
   }
   //
 }

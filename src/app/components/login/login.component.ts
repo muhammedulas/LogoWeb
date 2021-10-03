@@ -36,13 +36,17 @@ export class LoginComponent implements OnInit {
         this.loginSvc.changeLoggedInState();
         this.router.navigate(['/']);
         console.log(resp)
+        localStorage.setItem('frmNr', this.frmNr)
+        localStorage.setItem('perNr', this.perNr)
         this.toast.success('Giriş Başarılı', "", { positionClass: "toast-top-center", timeOut: 3000 })
         this.loginSvc.afterLoginProcedure(this.usr);
         this.global.startTimer()
+        this.global.getCodes()
       },
       err => {
         this.error = err
         console.log(this.error)
+        window.alert(this.error)
         if (this.error.ok == false) {
           if (this.error.status == 400 || this.error.status == 0) {
             this.toast.error('Giriş Bilgilerinizi Kontrol Ediniz', "", { positionClass: "toast-top-center", timeOut: 3000 })

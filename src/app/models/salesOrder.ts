@@ -1,7 +1,7 @@
 import { transaction } from "./transaction"
 
 export class salesOrder {
-    "INSPECT":boolean;
+    "INSPECT": boolean;
     "INTERNAL_REFERENCE": number;
     "TYPE": number;
     "NUMBER": string;
@@ -12,6 +12,7 @@ export class salesOrder {
     "AUXIL_CODE": string;
     "AUTH_CODE": string;
     "ARP_CODE": string;
+    "ARP_DEFINITION_"?: string;
     "CLIENTREF": number;
     "ARP_CODE_SHPM": string;
     "RECVREF": number;

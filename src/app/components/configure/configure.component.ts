@@ -30,10 +30,12 @@ export class ConfigureComponent implements OnInit {
 
   setConfigurations() {
     this.global.reloadNeeded = true
-    window.location.href = "/login"
-    localStorage.setItem('rootUrl', this.config.rootUrl),
+    this.router.navigate(['/login']).then(()=>{
+      localStorage.setItem('rootUrl', this.config.rootUrl),
       localStorage.setItem('clientID', this.config.clientID),
       localStorage.setItem('clientSecret', this.config.clientSecret)
+      window.location.href = "/"
+    })
     
   }
 }

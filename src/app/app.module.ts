@@ -103,6 +103,8 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import {MAT_DIALOG_DEFAULT_OPTIONS} from '@angular/material/dialog'
 
 
 import { Dialog_StockComponent } from './components/malzeme-yonetimi/ana-kayitlar/malzemeler/dialog_Stock/dialog_Stock.component';
@@ -180,6 +182,7 @@ import { Dialog_deleteSalesInvoiceComponent } from './components/satis/hareketle
 import { Dialog_newPurchaseInvoiceComponent } from './components/satinalma/hareketler/satinalma-faturalari/dialog_newPurchaseInvoice/dialog_newPurchaseInvoice.component';
 import { Dialog_editInspectPurchaseInvoiceComponent } from './components/satinalma/hareketler/satinalma-faturalari/dialog_editInspectPurchaseInvoice/dialog_editInspectPurchaseInvoice.component';
 import { Dialog_deletePurchaseInvoiceComponent } from './components/satinalma/hareketler/satinalma-faturalari/dialog_deletePurchaseInvoice/dialog_deletePurchaseInvoice.component';
+import { Dialog_salesOrderComponent } from './components/satis/hareketler/satis-siparisleri/dialog_salesOrder/dialog_salesOrder.component'
 import { LoginServiceService } from './services/loginService.service';
 
 
@@ -360,7 +363,8 @@ import { LoginServiceService } from './services/loginService.service';
     Dialog_deleteSalesInvoiceComponent,
     Dialog_newPurchaseInvoiceComponent,
     Dialog_editInspectPurchaseInvoiceComponent,
-    Dialog_deletePurchaseInvoiceComponent
+    Dialog_deletePurchaseInvoiceComponent,
+    Dialog_salesOrderComponent
 
 
 
@@ -474,8 +478,9 @@ import { LoginServiceService } from './services/loginService.service';
     MatAutocompleteModule,
     MatGridListModule,
     MatCheckboxModule,
+    ReactiveFormsModule
   ],
-  providers: [AuthGuardService, LoginComponent, LoginServiceService],
+  providers: [AuthGuardService, LoginComponent, LoginServiceService,{provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {panelClass: 'mat-dialog-override'}}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

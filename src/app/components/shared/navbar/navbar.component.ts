@@ -38,4 +38,8 @@ export class NavbarComponent implements OnInit {
 
   }
 
+  refreshCodes(){
+    this.globalvars.getCodes();
+  }
+
 }

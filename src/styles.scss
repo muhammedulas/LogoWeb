@@ -45,3 +45,20 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   ::-webkit-scrollbar-corner {
     background: transparent;
   }
+
+
+  .mat-dialog-override {
+    height: 0px;
+    mat-dialog-container {
+      > :first-child {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
+      mat-dialog-content,
+      div[mat-dialog-content] {
+        flex-grow: 1;
+        max-height: unset;
+      }
+    }
+  }

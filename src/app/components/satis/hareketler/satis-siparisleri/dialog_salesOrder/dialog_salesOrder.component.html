@@ -1,0 +1,108 @@
+<div class="wrapper">
+  <h2 mat-dialog-title style="text-align: center;">Satış Siparişi</h2>
+  <div mat-dialog-content>
+    <mat-tab-group [dynamicHeight]=true>
+      <mat-tab label="Genel">
+        <div class="flexContainer">
+          <div class="flexItem">
+            <mat-form-field [style.width.%]="100">
+              <input type="text" matInput autocomplete="off" placeholder="Fiş No." [(ngModel)]="newRecord.NUMBER">
+            </mat-form-field>
+          </div>
+          <div class="flexItem">
+            <mat-form-field [style.width.%]="100">
+              <input type="text" matInput autocomplete="off" placeholder="Tarih" [(ngModel)]="newRecord.DATE">
+            </mat-form-field>
+          </div>
+          <div class="flexItem">
+            <mat-form-field [style.width.%]="100">
+              <input #arpCode type="text" matInput autocomplete="off" placeholder="Cari Hesap Kodu"
+                (keyup)="filterArpOptions(arpCode.value, 'code')" 
+                (focusin)="filterArpOptions(arpCode.value, 'code')"
+                [(ngModel)]="newRecord.ARP_CODE"
+                [matAutocomplete]="arpCodeAutoComplete" [ngModelOptions]="{standalone:true}">
+
+              <mat-autocomplete autoActiveFirstOption #arpCodeAutoComplete="matAutocomplete">
+                <mat-option *ngFor="let option of  filteredArpOptions" [value]="option.CODE"
+                  (click)="setArpCode(option, 'code')" (keyup)="setArpCode(option, 'code', $event)">
+                  {{option.CODE}}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+          </div>
+          <div class="flexItem">
+            <mat-form-field [style.width.%]="100">
+              <input #arpdefinition type="text" matInput autocomplete="off" placeholder="Cari Hesap Açıklaması"
+                (keyup)="filterArpOptions(arpdefinition.value, 'definition')"
+                (focusin)="filterArpOptions(arpdefinition.value, 'definition')"                
+                [(ngModel)]="newRecord.ARP_DEFINITION_"
+                [matAutocomplete]="arpDefAutoComplete" [ngModelOptions]="{standalone:true}">
+
+              <mat-autocomplete autoActiveFirstOption #arpDefAutoComplete="matAutocomplete">
+                <mat-option *ngFor="let option of  filteredArpOptions" [value]="option.DEFINITION_"
+                  (click)="setArpCode(option, 'definition')" (keyup)="setArpCode(option, 'definition', $event)">
+                  {{option.DEFINITION_}}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+          </div>
+          <div class="flexItem">
+            <mat-form-field [style.width.%]="100">
+              <input type="text" matInput autocomplete="off" placeholder="Özel Kod" [(ngModel)]="newRecord.AUXIL_CODE">
+            </mat-form-field>
+          </div>
+          <div class="flexItem">
+            <mat-form-field [style.width.%]="100">
+              <input type="text" matInput autocomplete="off" placeholder="Satış Elemanı Kodu"
+                [(ngModel)]="newRecord.SALESMAN_CODE" disabled>
+            </mat-form-field>
+          </div>
+          <div class="flexItem">
+            <mat-form-field [style.width.%]="100">
+              <input #paymentPlan type="text" matInput autocomplete="off" placeholder="Ödeme Planı"
+                (keyup)="filterPaymentOptions(paymentPlan.value)" 
+                (focusin)="filterPaymentOptions(paymentPlan.value)"
+                [(ngModel)]="newRecord.PAYMENT_CODE"
+                [matAutocomplete]="paymentAutoComplete" [ngModelOptions]="{standalone:true}">
+
+              <mat-autocomplete autoActiveFirstOption #paymentAutoComplete="matAutocomplete">
+                <mat-option *ngFor="let option of  filteredPaymentPlans" [value]="option.DEFINITION_"
+                  (click)="setPaymentPlanCode(option)" (keyup)="setPaymentPlanCode(option, $event)">
+                  {{option.CODE}} -> {{option.DEFINITION_}}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+          </div>
+          <div class="flexItem">
+            <mat-form-field [style.width.%]="100">
+              <input type="text" matInput autocomplete="off" placeholder="Proje Kodu"
+                [(ngModel)]="newRecord.PROJECT_CODE">
+            </mat-form-field>
+          </div>
+          <div class="flexItem">
+            <mat-form-field [style.width.%]="100">
+              <input type="text" matInput autocomplete="off" placeholder="Belge No." [(ngModel)]="newRecord.DOC_NUMBER">
+            </mat-form-field>
+          </div>
+        </div>
+      </mat-tab>
+      <mat-tab id="transTab" label="Ürünler">
+
+      </mat-tab>
+      <mat-tab label="Toplamlar">
+
+      </mat-tab>
+    </mat-tab-group>
+
+
+  </div>
+  <div class="spacer"></div>
+  <div mat-dialog-actions align="end">
+    <button mat-stroked-button cdkFocusInitial (click)="create()">
+      Tamam
+    </button>
+    <button mat-stroked-button [mat-dialog-close]>
+      Vazgeç
+    </button>
+  </div>
+</div>

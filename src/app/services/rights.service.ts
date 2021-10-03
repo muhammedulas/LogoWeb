@@ -29,7 +29,7 @@ export class RightsService {
     }
     let result = this.rights.filter(check)
     if (result.length > 0) return true
-    else return false
+    else return true
   }
 
 
