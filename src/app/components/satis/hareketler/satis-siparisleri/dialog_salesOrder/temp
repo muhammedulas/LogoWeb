@@ -1,0 +1,29 @@
+        <mat-form-field [style.width.%]="50">
+          <input type="text" matInput autocomplete="off" placeholder="Malzeme" [(ngModel)]="newRecord.NUMBER">
+        </mat-form-field>
+        &nbsp;
+        <mat-form-field [style.width.%]="10">
+          <input type="number" matInput autocomplete="off" placeholder="Miktar" >
+        </mat-form-field>
+        &nbsp;
+        <mat-form-field [style.width.%]="10">
+          <mat-select placeholder="Birim">
+            <mat-option>
+              Adet
+            </mat-option>
+            <mat-option>
+              Paket
+            </mat-option>
+            <mat-option>
+              Koli
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        &nbsp;
+        <mat-form-field [style.width.%]="10">
+          <input type="number" matInput max="18" placeholder="KDV %">
+        </mat-form-field>
+        &nbsp;
+        <mat-form-field [style.width.%]="10">
+          <input type="number" matInput max="100" placeholder="İndirim %">
+        </mat-form-field>

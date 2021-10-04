@@ -86,9 +86,50 @@
           </div>
         </div>
       </mat-tab>
-      <mat-tab id="transTab" label="Ürünler">
+
+      <mat-tab  label="Ürünler">
+        <mat-form-field [style.width.%]="30">
+          <input type="text" matInput autocomplete="off" placeholder="Malzeme" [(ngModel)]="newRecord.NUMBER">
+        </mat-form-field>
+        &nbsp;
+        <mat-form-field [style.width.%]="10">
+          <input type="number" matInput autocomplete="off" placeholder="Miktar" >
+        </mat-form-field>
+        &nbsp;
+        <mat-form-field [style.width.%]="10">
+          <mat-select placeholder="Birim">
+            <mat-option>
+              Adet
+            </mat-option>
+            <mat-option>
+              Paket
+            </mat-option>
+            <mat-option>
+              Koli
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        &nbsp;
+        <mat-form-field [style.width.%]="10">
+          <input type="number" matInput autocomplete="off" max="18" placeholder="KDV %">
+        </mat-form-field>
+        &nbsp;
+        <mat-form-field [style.width.%]="10">
+          <input type="number" matInput autocomplete="off" max="100" placeholder="İndirim %">
+        </mat-form-field>
+        &nbsp;
+        <a mat-icon-button class="icon-button">
+          <mat-icon style="color: purple;">add_shopping_cart</mat-icon>
+        </a>
+
+        <mat-divider></mat-divider>
+
+        <div class="transaction">
+          
+        </div>
 
       </mat-tab>
+
       <mat-tab label="Toplamlar">
 
       </mat-tab>
