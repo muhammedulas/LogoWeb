@@ -33,6 +33,7 @@ export class LoginComponent implements OnInit {
       resp => {
         this.response = resp;
         localStorage.setItem('Token', resp.access_token);
+        console.log(localStorage.getItem('Token'))
         this.loginSvc.changeLoggedInState();
         this.router.navigate(['/']);
         console.log(resp)

@@ -39,6 +39,7 @@ export class SalesOrdersService {
   add(newRec: salesOrder) {
     let auth = "Bearer " + this.token;
     let headers = new HttpHeaders().set('Authorization', auth).set('Accept', 'application/json').set('Content-Type', 'application/json')
+
     return this.http.post(this.rootUrl + "/api/v1/salesOrders/", JSON.stringify(newRec), { headers })
   }
 

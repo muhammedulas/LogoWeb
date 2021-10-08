@@ -17,10 +17,9 @@
           <div class="flexItem">
             <mat-form-field [style.width.%]="100">
               <input #arpCode type="text" matInput autocomplete="off" placeholder="Cari Hesap Kodu"
-                (keyup)="filterArpOptions(arpCode.value, 'code')" 
-                (focusin)="filterArpOptions(arpCode.value, 'code')"
-                [(ngModel)]="newRecord.ARP_CODE"
-                [matAutocomplete]="arpCodeAutoComplete" [ngModelOptions]="{standalone:true}">
+                (keyup)="filterArpOptions(arpCode.value, 'code')" (focusin)="filterArpOptions(arpCode.value, 'code')"
+                [(ngModel)]="newRecord.ARP_CODE" [matAutocomplete]="arpCodeAutoComplete"
+                [ngModelOptions]="{standalone:true}">
 
               <mat-autocomplete autoActiveFirstOption #arpCodeAutoComplete="matAutocomplete">
                 <mat-option *ngFor="let option of  filteredArpOptions" [value]="option.CODE"
@@ -34,8 +33,7 @@
             <mat-form-field [style.width.%]="100">
               <input #arpdefinition type="text" matInput autocomplete="off" placeholder="Cari Hesap Açıklaması"
                 (keyup)="filterArpOptions(arpdefinition.value, 'definition')"
-                (focusin)="filterArpOptions(arpdefinition.value, 'definition')"                
-                [(ngModel)]="newRecord.ARP_DEFINITION_"
+                (focusin)="filterArpOptions(arpdefinition.value, 'definition')" [(ngModel)]="newRecord.ARP_DEFINITION_"
                 [matAutocomplete]="arpDefAutoComplete" [ngModelOptions]="{standalone:true}">
 
               <mat-autocomplete autoActiveFirstOption #arpDefAutoComplete="matAutocomplete">
@@ -60,10 +58,9 @@
           <div class="flexItem">
             <mat-form-field [style.width.%]="100">
               <input #paymentPlan type="text" matInput autocomplete="off" placeholder="Ödeme Planı"
-                (keyup)="filterPaymentOptions(paymentPlan.value)" 
-                (focusin)="filterPaymentOptions(paymentPlan.value)"
-                [(ngModel)]="newRecord.PAYMENT_CODE"
-                [matAutocomplete]="paymentAutoComplete" [ngModelOptions]="{standalone:true}">
+                (keyup)="filterPaymentOptions(paymentPlan.value)" (focusin)="filterPaymentOptions(paymentPlan.value)"
+                [(ngModel)]="newRecord.PAYMENT_CODE" [matAutocomplete]="paymentAutoComplete"
+                [ngModelOptions]="{standalone:true}">
 
               <mat-autocomplete autoActiveFirstOption #paymentAutoComplete="matAutocomplete">
                 <mat-option *ngFor="let option of  filteredPaymentPlans" [value]="option.DEFINITION_"
@@ -87,45 +84,71 @@
         </div>
       </mat-tab>
 
-      <mat-tab  label="Ürünler">
+      <mat-tab label="Ürünler">
         <mat-form-field [style.width.%]="30">
-          <input type="text" matInput autocomplete="off" placeholder="Malzeme" [(ngModel)]="newRecord.NUMBER">
+          <input #item type="text" matInput autocomplete="off" placeholder="Malzeme"
+            (keyup)="filterItemOptions(item.value)" (focusin)="filterItemOptions(item.value)"
+            [matAutocomplete]="itemAutoComplete">
+
+          <mat-autocomplete autoActiveFirstOption #itemAutoComplete="matAutocomplete">
+            <mat-option *ngFor="let option of  filteredItemOptions" [value]="option.DEFINITION_"
+              (click)="setItemCode(option)" (keyup)="setItemCode(option, $event)">
+              {{option.DEFINITION_}}
+            </mat-option>
+          </mat-autocomplete>
         </mat-form-field>
         &nbsp;
         <mat-form-field [style.width.%]="10">
-          <input type="number" matInput autocomplete="off" placeholder="Miktar" >
+          <input #miktar type="number" matInput min="0" autocomplete="off" placeholder="Miktar">
         </mat-form-field>
         &nbsp;
         <mat-form-field [style.width.%]="10">
-          <mat-select placeholder="Birim">
-            <mat-option>
-              Adet
-            </mat-option>
-            <mat-option>
-              Paket
-            </mat-option>
-            <mat-option>
-              Koli
+          <mat-select placeholder="Birim" *ngIf="selectedUnitSet" [(value)]="selectedUnit">
+            <mat-option *ngFor="let unit of selectedUnitSet.UNITS.items" (click)="setUnit(unit.CODE)" [value]="unit.CODE">
+              {{unit.NAME}}
             </mat-option>
           </mat-select>
         </mat-form-field>
         &nbsp;
         <mat-form-field [style.width.%]="10">
-          <input type="number" matInput autocomplete="off" max="18" placeholder="KDV %">
+          <input type="number" matInput autocomplete="off" min="0" max="18" placeholder="KDV %"
+            [(ngModel)]="selectedItemOption.VAT_RATE">
         </mat-form-field>
         &nbsp;
         <mat-form-field [style.width.%]="10">
-          <input type="number" matInput autocomplete="off" max="100" placeholder="İndirim %">
+          <input #indirim type="number" matInput autocomplete="off" min="0" max="100" placeholder="İndirim %">
         </mat-form-field>
         &nbsp;
-        <a mat-icon-button class="icon-button">
+        <a mat-icon-button class="icon-button" (click)="newLine(miktar.value, indirim.value)">
           <mat-icon style="color: purple;">add_shopping_cart</mat-icon>
         </a>
 
         <mat-divider></mat-divider>
 
         <div class="transaction">
-          
+          <sw-item-list *ngFor="let item of filterLines(); let i = index;" [inside]="item" [item-class]="'list-custom'"
+            [show-mark]="false" [editTemplate]="trashTemplate" [trashTemplate]="empty"
+            [customTemplate]="customTemplateSrc" (swipeCb)="selectLine(item)">
+          </sw-item-list>
+          <ng-template #trashTemplate let-item='item'>
+            <button mat-button class="icon-button" (click)="sil()">
+              <mat-icon style="color: red;">delete</mat-icon>
+            </button>
+          </ng-template>
+
+          <ng-template #empty>
+          </ng-template>
+
+          <ng-template #customTemplateSrc let-item='item'>
+            <div style="display: flex;">
+              <div>
+                <h3 style="margin-top: 0;margin-bottom: 0;">{{item.MASTER_CODE}}</h3>
+                <small style="color:gray;font-weight:500;">{{item.DEFINITION_}}</small>
+              </div>
+            </div>
+          </ng-template>
+
+
         </div>
 
       </mat-tab>

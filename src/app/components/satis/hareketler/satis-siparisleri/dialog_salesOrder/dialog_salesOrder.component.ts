@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
@@ -12,6 +12,10 @@ import { map, startWith } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 import { card } from 'src/app/models/card';
 import { LoginServiceService } from 'src/app/services/loginService.service';
+import { SwipeAngularListComponent } from 'swipe-angular-list';
+import { HammerModule } from '@angular/platform-browser';
+import { unitSet } from 'src/app/models/unitSet';
+import { unit } from 'src/app/models/unit';
 
 
 @Component({
@@ -20,16 +24,48 @@ import { LoginServiceService } from 'src/app/services/loginService.service';
   styleUrls: ['./dialog_salesOrder.component.scss']
 })
 export class Dialog_salesOrderComponent implements OnInit {
+  @ViewChild('item') inputItem;
 
   public arpControl = new FormControl();
   public newRecord: salesOrder = new salesOrder();
   public oTransLines = new Subject<transaction[]>();
+  public unitSets: unitSet[] = [];
+  public selectedUnitSet: unitSet = {
+    "INTERNAL_REFERENCE": 0,
+    "CODE": "",
+    "DESCRIPTION": "",
+    "TYPE": 0,
+    "CREATED_BY": 0,
+    "DATE_CREATED": "",
+    "HOUR_CREATED": 0,
+    "MIN_CREATED": 0,
+    "SEC_CREATED": 0,
+    "DATA_REFERENCE": 0,
+    "UNITS": {
+      "items": [
+        {
+          "INTERNAL_REFERENCE": 0,
+          "CODE": "",
+          "NAME": "",
+          "UNIT_ORDER": 0,
+          "MAIN_UNIT": 0,
+          "CONV_FACT1": 0,
+          "CONV_FACT2": 0,
+          "GLOBAL_CODE": "",
+        }
+      ]
+    },
+    "GUID": ""
+  }
+  public selectedUnit: string;
   public arpOptions: card[] = [];
   public filteredArpOptions: card[] = [];
   public itemOptions: card[] = [];
   public filteredItemOptions: card[] = [];
+  public selectedItemOption: card = new card();
   public paymentPlans: card[] = [];
   public filteredPaymentPlans: card[] = [];
+  public selectedLine: transaction = new transaction();
   constructor(
     public dialogRef: MatDialogRef<Dialog_newSalesOrderComponent>,
     private toast: ToastrService,
@@ -71,10 +107,16 @@ export class Dialog_salesOrderComponent implements OnInit {
       this.filteredPaymentPlans = this.paymentPlans
       console.log(this.paymentPlans)
     })
+    this.global.getUnitSets().subscribe(res => {
+      this.unitSets = res.items
+      console.log(this.unitSets)
+    })
 
   }
 
   create() {
+    console.log(this.newRecord)
+    this.newRecord.TRANSACTIONS.items = this.newRecord.TRANSACTIONS.items.slice(1);
     this.svc.add(this.newRecord).subscribe(res => {
       this.toast.success("Kayıt Başarılı", "", { positionClass: 'toast-top-center', timeOut: 3000 })
       this.dialogRef.close()
@@ -96,11 +138,23 @@ export class Dialog_salesOrderComponent implements OnInit {
     }
   }
 
+  setItemCode(option: card, key?: KeyboardEvent) {
+    if (key && key.key != "Enter") {
+      return
+    }
+    this.selectedItemOption = option
+    this.selectedUnitSet = this.unitSets.filter(q => { return q.INTERNAL_REFERENCE == option.UNITSETREF })[0]
+  }
+
   setPaymentPlanCode(option: card, key?: KeyboardEvent) {
     if (key && key.key != "Enter") {
       return
     }
     this.newRecord.PAYMENT_CODE = option.CODE
+  }
+
+  setUnit(unit: string) {
+    this.selectedUnit = unit
   }
 
   filterArpOptions(val: string, source: string) {
@@ -114,6 +168,15 @@ export class Dialog_salesOrderComponent implements OnInit {
     }
     else {
       this.filteredArpOptions = this.arpOptions
+    }
+  }
+
+  filterItemOptions(val: string) {
+    if (val != "") {
+      this.filteredItemOptions = this.itemOptions.filter(q => { return q.DEFINITION_.toLowerCase().includes(val.toLowerCase()) })
+    }
+    else {
+      this.filteredItemOptions = this.itemOptions
     }
   }
 
@@ -154,19 +217,40 @@ export class Dialog_salesOrderComponent implements OnInit {
   }
 
 
-  newLine() {
+  newLine(quantity, discRate) {
     let line = new transaction();
-    line.QUANTITY = 0;
+    line.MASTER_CODE = this.selectedItemOption.CODE;
+    line.DEFINITION_ = this.selectedItemOption.DEFINITION_;
+    line.QUANTITY = quantity;
     line.PRICE = 0;
-    line.EXCLINE_NET_DISC_AMOUNT = 0
+    line.DISCOUNT_RATE = discRate
     line.TOTAL = 0
-    line.VAT_RATE = 0
+    line.VAT_RATE = this.selectedItemOption.VAT_RATE;
     line.TOTAL_NET = 0
     line.LINENO = this.newRecord.TRANSACTIONS.items[this.newRecord.TRANSACTIONS.items.length - 1].LINENO + 1
+    line.USREF = this.selectedUnitSet.INTERNAL_REFERENCE;
+    line.UNIT_CODE = this.selectedUnit
     let temp = this.newRecord.TRANSACTIONS.items
     temp.push(line)
     this.oTransLines.next(temp)
+    this.inputItem.nativeElement.value = ''
     console.log(this.newRecord.TRANSACTIONS.items)
+  }
+
+  filterLines() {
+    let temp = this.newRecord.TRANSACTIONS.items.filter(q => {
+      return q.LINENO != -1
+    })
+    return temp
+  }
+
+  selectLine(element: transaction) {
+    this.selectedLine = element
+  }
+
+  sil() {
+    let index = this.newRecord.TRANSACTIONS.items.indexOf(this.selectedLine)
+    this.newRecord.TRANSACTIONS.items.splice(index, 1)
   }
 
   initializeRecord() {
@@ -242,17 +326,19 @@ export class Dialog_salesOrderComponent implements OnInit {
       "TRANSACTIONS": {
         "items": [
           {
+            "DEFINITION_": "Açıklaması",
+            "EDIT": true,
             "DEVIR": "0",
             "INTERNAL_REFERENCE": 2,
             "TYPE": 0,
-            "MASTER_CODE": "",
+            "MASTER_CODE": "Kodu",
             "STOCKREF": 0,
             "ORDFICHEREF": 0,
             "CLIENTREF": 0,
             "PREVLINEREF": 0,
             "PREVLINENO": 0,
             "DETLINE": 0,
-            "LINENO": 1,
+            "LINENO": -1,
             "SLIP_TYPE": 1,
             "DATE": "2021-03-05T00:00:00",
             "TIME": "00:00:00",

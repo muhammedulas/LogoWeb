@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, HammerModule, HAMMER_LOADER } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -104,7 +104,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import {MAT_DIALOG_DEFAULT_OPTIONS} from '@angular/material/dialog'
+import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
+import { SwipeAngularListModule } from 'swipe-angular-list';
 
 
 import { Dialog_StockComponent } from './components/malzeme-yonetimi/ana-kayitlar/malzemeler/dialog_Stock/dialog_Stock.component';
@@ -467,7 +468,7 @@ import { LoginServiceService } from './services/loginService.service';
     MatDividerModule,
     HttpClientModule,
     MatTableModule,
-    ToastrModule.forRoot({ maxOpened: 3, autoDismiss:true, preventDuplicates: true, resetTimeoutOnDuplicate: true, includeTitleDuplicates: true }),
+    ToastrModule.forRoot({ maxOpened: 3, autoDismiss: true, preventDuplicates: true, resetTimeoutOnDuplicate: true, includeTitleDuplicates: true }),
     MatProgressSpinnerModule,
     MatDialogModule,
     MatTooltipModule,
@@ -478,9 +479,16 @@ import { LoginServiceService } from './services/loginService.service';
     MatAutocompleteModule,
     MatGridListModule,
     MatCheckboxModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HammerModule,
+    SwipeAngularListModule
   ],
-  providers: [AuthGuardService, LoginComponent, LoginServiceService,{provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {panelClass: 'mat-dialog-override'}}],
+  providers: [
+    AuthGuardService,
+    LoginComponent,
+    LoginServiceService,
+    { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { panelClass: 'mat-dialog-override' } },
+    { provide: HAMMER_LOADER, useValue: () => new Promise(() => { }) }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -149,6 +149,11 @@ div.mat-dialog-content {
     height: 100%;
     margin: 0;
     padding: 0;
+    overflow: hidden;
+}
+
+[mat-dialog-content]{
+    overflow: hidden;
 }
 
 
@@ -158,8 +163,7 @@ div.mat-dialog-content {
     overflow: hidden;
 }
 
-#linesSection{
-    max-height: 75%;
+.transaction{
     width: 100%;
     overflow-x: hidden;
     overflow-y: auto;
@@ -167,4 +171,8 @@ div.mat-dialog-content {
 
 .mat-divider{
     border-top-width: 5px;
+}
+
+::-webkit-scrollbar{
+    width: 3px;
 }

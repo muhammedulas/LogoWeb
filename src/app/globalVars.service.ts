@@ -9,6 +9,8 @@ import { timeStamp } from 'console';
 import { LoginComponent } from './components/login/login.component';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { card } from './models/card';
+import { unitSetsResp } from './models/responseModels/unitSetsResp';
+import { unitSet } from './models/unitSet';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +20,7 @@ export class GlobalVarsService {
   private rootUrl = localStorage.getItem('rootUrl');
   public arpCodes: card[] = [];
   public itemCodes: card[] = [];
+  public unitSets: unitSet[] = [];
   public paymentPlans: card[] = [];
   public routeSnapshot: string = "";
   private idleTimer: any;
@@ -76,16 +79,18 @@ export class GlobalVarsService {
   getItemCodes() {
     let firmNr = "0".repeat(3 - localStorage.getItem('frmNr').length) + localStorage.getItem('frmNr')
     let periodNr = "0".repeat(2 - localStorage.getItem('perNr').length) + localStorage.getItem('perNr')
-    let auth = "Bearer " + this.token;
+    let auth = "Bearer " + localStorage.getItem('Token');
+    console.log(auth)
     let headers = new HttpHeaders().set('Authorization', auth).set('Accept', 'application/json').set('Content-Type', 'application/json')
-    let queryString = "\" SELECT  CODE, NAME AS DEFINITION_ FROM LG_" + firmNr + "_ITEMS \""
+    let queryString = "\" SELECT  CODE, NAME AS DEFINITION_, UNITSETREF, SELLVAT AS VAT_RATE FROM LG_" + firmNr + "_ITEMS WHERE NOT CODE = 'ÿ' AND ACTIVE = 0 \""
     return this.http.post<any>(this.rootUrl + "/api/v1/queries/unsafe", queryString, { headers })
   }
 
   getArpCodes() {
     let firmNr = "0".repeat(3 - localStorage.getItem('frmNr').length) + localStorage.getItem('frmNr')
     let periodNr = "0".repeat(2 - localStorage.getItem('perNr').length) + localStorage.getItem('perNr')
-    let auth = "Bearer " + this.token;
+    let auth = "Bearer " + localStorage.getItem('Token');
+    console.log(auth)
     let headers = new HttpHeaders().set('Authorization', auth).set('Accept', 'application/json').set('Content-Type', 'application/json')
     let queryString = "\" SELECT  CODE,  DEFINITION_ FROM LG_" + firmNr + "_CLCARD WHERE NOT CODE = 'ÿ' \""
     return this.http.post<any>(this.rootUrl + "/api/v1/queries/unsafe", queryString, { headers })
@@ -94,10 +99,19 @@ export class GlobalVarsService {
   getPaymentPlans() {
     let firmNr = "0".repeat(3 - localStorage.getItem('frmNr').length) + localStorage.getItem('frmNr')
     let periodNr = "0".repeat(2 - localStorage.getItem('perNr').length) + localStorage.getItem('perNr')
-    let auth = "Bearer " + this.token;
+    let auth = "Bearer " + localStorage.getItem('Token');
+    console.log(auth)
     let headers = new HttpHeaders().set('Authorization', auth).set('Accept', 'application/json').set('Content-Type', 'application/json')
     let queryString = "\" SELECT  CODE,  DEFINITION_ FROM LG_" + firmNr + "_PAYPLANS \""
     return this.http.post<any>(this.rootUrl + "/api/v1/queries/unsafe", queryString, { headers })
   }
+
+
+  getUnitSets() {
+    let auth = "Bearer " + localStorage.getItem('Token');
+    let headers = new HttpHeaders().set('Authorization', auth).set('Accept', 'application/json')
+    return this.http.get<unitSetsResp>(this.rootUrl + "/api/v1/unitSets", { headers })
+  }
+
 
 }
