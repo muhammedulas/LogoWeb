@@ -1,6 +1,8 @@
+import { dataObjectParameters } from "./dataObjectParameters";
 import { transaction } from "./transaction"
 
 export class salesOrder {
+    "DataObjectParameter"?: dataObjectParameters;
     "INSPECT": boolean;
     "INTERNAL_REFERENCE": number;
     "TYPE": number;

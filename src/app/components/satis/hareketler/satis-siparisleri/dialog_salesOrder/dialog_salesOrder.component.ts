@@ -118,6 +118,7 @@ export class Dialog_salesOrderComponent implements OnInit {
     console.log(this.newRecord)
     this.newRecord.TRANSACTIONS.items = this.newRecord.TRANSACTIONS.items.slice(1);
     this.svc.add(this.newRecord).subscribe(res => {
+      console.log(res)
       this.toast.success("Kayıt Başarılı", "", { positionClass: 'toast-top-center', timeOut: 3000 })
       this.dialogRef.close()
     }, err => {
@@ -255,6 +256,9 @@ export class Dialog_salesOrderComponent implements OnInit {
 
   initializeRecord() {
     this.newRecord = {
+      "DataObjectParameter": {
+        ApplyConditionOnPreSave: true
+      },
       "INSPECT": false,
       "INTERNAL_REFERENCE": 0,
       "TYPE": 1,
