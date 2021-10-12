@@ -37,11 +37,9 @@ export class SalesOrdersService {
   }
 
   add(newRec: salesOrder) {
-    let params = '"DataObjectParameter" : { "ApplyCampaignOnPreSave":false ,"ApplyConditionOnPreSave": true, "FormSeriLotLinesOnPreSave":false, "FillAccCodesOnPreSave":false },'
     let auth = "Bearer " + localStorage.getItem('Token');
-    console.log(params + JSON.stringify(newRec))
     let headers = new HttpHeaders().set('Authorization', auth).set('Accept', 'application/json').set('Content-Type', 'application/json')
-    return this.http.post(this.rootUrl + "/api/v1/salesOrders/", params + JSON.stringify(newRec), { headers })
+    return this.http.post(this.rootUrl + "/api/v1/salesOrders/",  JSON.stringify(newRec), { headers })
   }
 
   update(rec: salesOrder) {

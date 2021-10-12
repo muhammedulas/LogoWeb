@@ -85,7 +85,7 @@
       </mat-tab>
 
       <mat-tab label="Ürünler">
-        <mat-form-field id="inp_malzeme" [style.width.%]="30">
+        <mat-form-field id="inp_malzeme" [style.width.%]="40">
           <input #item type="text" matInput autocomplete="off" placeholder="Malzeme"
             (keyup)="filterItemOptions(item.value)" (focusin)="filterItemOptions(item.value)"
             [matAutocomplete]="itemAutoComplete">
@@ -98,24 +98,29 @@
           </mat-autocomplete>
         </mat-form-field>
         &nbsp;
-        <mat-form-field id="inp_miktar" [style.width.%]="10">
+        <mat-form-field id="inp_miktar">
           <input #miktar type="number" matInput min="0" autocomplete="off" placeholder="Miktar">
         </mat-form-field>
         &nbsp;
-        <mat-form-field id="inp_birim" [style.width.%]="10">
-          <mat-select placeholder="Birim" *ngIf="selectedUnitSet" [(value)]="selectedUnit">
-            <mat-option *ngFor="let unit of selectedUnitSet.UNITS.items" (click)="setUnit(unit.CODE)" [value]="unit.CODE">
+        <mat-form-field id="inp_birim">
+          <mat-select [disabled]="!unitSelectionActive" placeholder="Birim" *ngIf="selectedUnitSet" [(value)]="selectedUnit">
+            <mat-option  *ngFor="let unit of selectedUnitSet.UNITS.items" (click)="setUnit(unit.CODE)" [value]="unit.CODE">
               {{unit.NAME}}
             </mat-option>
           </mat-select>
         </mat-form-field>
         &nbsp;
-        <mat-form-field id="inp_kdv" [style.width.%]="10">
+        <mat-form-field id="inp_birimfiyat" >
+          <input type="number" matInput autocomplete="off" min="0" max="18" placeholder="Birim Fiyat"
+            [(ngModel)]="selectedItemOption.PRICE">
+        </mat-form-field>
+        &nbsp;
+        <mat-form-field id="inp_kdv" >
           <input type="number" matInput autocomplete="off" min="0" max="18" placeholder="KDV %"
             [(ngModel)]="selectedItemOption.VAT_RATE">
         </mat-form-field>
         &nbsp;
-        <mat-form-field id="inp_indirim" [style.width.%]="10">
+        <mat-form-field id="inp_indirim">
           <input #indirim type="number" matInput autocomplete="off" min="0" max="100" placeholder="İndirim %">
         </mat-form-field>
         &nbsp;

@@ -80,9 +80,8 @@ export class GlobalVarsService {
     let firmNr = "0".repeat(3 - localStorage.getItem('frmNr').length) + localStorage.getItem('frmNr')
     let periodNr = "0".repeat(2 - localStorage.getItem('perNr').length) + localStorage.getItem('perNr')
     let auth = "Bearer " + localStorage.getItem('Token');
-    console.log(auth)
     let headers = new HttpHeaders().set('Authorization', auth).set('Accept', 'application/json').set('Content-Type', 'application/json')
-    let queryString = "\" SELECT  CODE, NAME AS DEFINITION_, UNITSETREF, SELLVAT AS VAT_RATE FROM LG_" + firmNr + "_ITEMS WHERE NOT CODE = 'ÿ' AND ACTIVE = 0 \""
+    let queryString = "\" SELECT LOGICALREF AS INTERNAL_REFERENCE, CODE, NAME AS DEFINITION_, UNITSETREF, SELLVAT AS VAT_RATE FROM LG_" + firmNr + "_ITEMS WHERE NOT CODE = 'ÿ' AND ACTIVE = 0 \""
     return this.http.post<any>(this.rootUrl + "/api/v1/queries/unsafe", queryString, { headers })
   }
 
@@ -90,7 +89,6 @@ export class GlobalVarsService {
     let firmNr = "0".repeat(3 - localStorage.getItem('frmNr').length) + localStorage.getItem('frmNr')
     let periodNr = "0".repeat(2 - localStorage.getItem('perNr').length) + localStorage.getItem('perNr')
     let auth = "Bearer " + localStorage.getItem('Token');
-    console.log(auth)
     let headers = new HttpHeaders().set('Authorization', auth).set('Accept', 'application/json').set('Content-Type', 'application/json')
     let queryString = "\" SELECT  CODE,  DEFINITION_ FROM LG_" + firmNr + "_CLCARD WHERE NOT CODE = 'ÿ' \""
     return this.http.post<any>(this.rootUrl + "/api/v1/queries/unsafe", queryString, { headers })
@@ -100,7 +98,6 @@ export class GlobalVarsService {
     let firmNr = "0".repeat(3 - localStorage.getItem('frmNr').length) + localStorage.getItem('frmNr')
     let periodNr = "0".repeat(2 - localStorage.getItem('perNr').length) + localStorage.getItem('perNr')
     let auth = "Bearer " + localStorage.getItem('Token');
-    console.log(auth)
     let headers = new HttpHeaders().set('Authorization', auth).set('Accept', 'application/json').set('Content-Type', 'application/json')
     let queryString = "\" SELECT  CODE,  DEFINITION_ FROM LG_" + firmNr + "_PAYPLANS \""
     return this.http.post<any>(this.rootUrl + "/api/v1/queries/unsafe", queryString, { headers })
@@ -111,6 +108,17 @@ export class GlobalVarsService {
     let auth = "Bearer " + localStorage.getItem('Token');
     let headers = new HttpHeaders().set('Authorization', auth).set('Accept', 'application/json')
     return this.http.get<unitSetsResp>(this.rootUrl + "/api/v1/unitSets", { headers })
+  }
+
+  getSalePrices(itemCode: string) {
+    let firmNr = "0".repeat(3 - localStorage.getItem('frmNr').length) + localStorage.getItem('frmNr')
+    let periodNr = "0".repeat(2 - localStorage.getItem('perNr').length) + localStorage.getItem('perNr')
+    let prefix = "LG_" + firmNr + "_"
+    let queryString = "\" SELECT ITM . LOGICALREF AS STOKREF , ITM . CODE AS [STOK KODU] , ITM . SPECODE [ÖZEL KOD] , ITM . SPECODE2 [ÖZEL KOD2] , ITM . SPECODE3 [ÖZEL KOD3] , ITM . SPECODE4 [ÖZEL KOD4] , ITM . SPECODE5 [ÖZEL KOD5] , ITM . NAME AS [STOK ADI] , USL . CODE AS [BİRİM KODU] , USL . NAME AS [BİRİM ADI] , UA . CONVFACT1 AS ÇEVRİM1 , UA . CONVFACT2 AS [ÇEVRİM 2] , UA . LINENR , ( CASE USL . MAINUNIT WHEN 1 THEN 'EVET' ELSE 'HAYIR' END ) AS [ANA BİRİM(EVET/HAYIR)] , UA . LOGICALREF AS [BİRİM REF] , PRC . PRICE , ( CASE PRC . CURRENCY WHEN 1 THEN 'USD' WHEN 20 THEN 'EURO' ELSE 'TL' END ), (( CONVERT ( DATETIME , PRC . BEGDATE ,102 ))) [Fiyat Başl.] ,(( CONVERT ( DATETIME , PRC . ENDDATE ,102 ))) [Fiyat Bitiş] , prc . LOGICALREF [FİYAT REF] , UA . LOGICALREF [UAREF] , USL . LOGICALREF [USL REF] FROM LG_001_PRCLIST PRC LEFT OUTER JOIN LG_001_ITMUNITA AS UA INNER JOIN LG_001_UNITSETL AS USL INNER JOIN LG_001_UNITSETF AS USF ON USL . UNITSETREF = USF . LOGICALREF ON UA . UNITLINEREF = USL . LOGICALREF INNER JOIN LG_001_ITEMS AS ITM ON UA . ITEMREF = ITM . LOGICALREF AND USF . LOGICALREF = ITM . UNITSETREF ON PRC . UOMREF = USL . LOGICALREF AND PRC . CARDREF = ITM . LOGICALREF WHERE ( ITM . CARDTYPE IN (1 ,12 )) AND PRC . GRPCODE NOT IN ( 'PRM' ) AND PRC . PTYPE =2 AND PRC . ACTIVE =0 AND ITM.CODE = '153.02.002' ORDER BY [STOK KODU]  \""
+    let auth = "Bearer " + localStorage.getItem('Token');
+    console.log(queryString)
+    let headers = new HttpHeaders().set('Authorization', auth).set('Accept', 'application/json').set('Content-Type', 'application/json')
+    return this.http.post<any>(this.rootUrl + "/api/v1/queries/unsafe", queryString, { headers })
   }
 
 

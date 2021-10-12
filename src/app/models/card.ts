@@ -4,4 +4,5 @@ export class card {
     DEFINITION_?: string;
     VAT_RATE?: number;
     UNITSETREF?: number;
+    PRICE?:number;
 }

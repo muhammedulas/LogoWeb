@@ -16,6 +16,8 @@ import { SwipeAngularListComponent } from 'swipe-angular-list';
 import { HammerModule } from '@angular/platform-browser';
 import { unitSet } from 'src/app/models/unitSet';
 import { unit } from 'src/app/models/unit';
+import { detailedItemModel } from 'src/app/models/detailedItemModel';
+import { ItemsService } from 'src/app/services/items.service';
 
 
 @Component({
@@ -26,6 +28,7 @@ import { unit } from 'src/app/models/unit';
 export class Dialog_salesOrderComponent implements OnInit {
   @ViewChild('item') inputItem;
 
+  public restItemCard: detailedItemModel;
   public arpControl = new FormControl();
   public newRecord: salesOrder = new salesOrder();
   public oTransLines = new Subject<transaction[]>();
@@ -66,12 +69,14 @@ export class Dialog_salesOrderComponent implements OnInit {
   public paymentPlans: card[] = [];
   public filteredPaymentPlans: card[] = [];
   public selectedLine: transaction = new transaction();
+  public unitSelectionActive: boolean = false;
   constructor(
     public dialogRef: MatDialogRef<Dialog_newSalesOrderComponent>,
     private toast: ToastrService,
     private svc: SalesOrdersService,
     private global: GlobalVarsService,
-    private login: LoginServiceService
+    private login: LoginServiceService,
+    private itemsService: ItemsService
   ) {
     this.initializeRecord();
     this.getCards();
@@ -144,7 +149,15 @@ export class Dialog_salesOrderComponent implements OnInit {
       return
     }
     this.selectedItemOption = option
-    this.selectedUnitSet = this.unitSets.filter(q => { return q.INTERNAL_REFERENCE == option.UNITSETREF })[0]
+    this.unitSelectionActive = false;
+    this.getSalePrices(option.CODE)
+    let s = this.itemsService.getItemByID(option.INTERNAL_REFERENCE).subscribe(res=>{
+      this.restItemCard = res;
+      console.log(this.restItemCard.UNITS)
+      
+      s.unsubscribe();
+    })
+      this.selectedUnitSet = this.unitSets.filter(q => { return q.INTERNAL_REFERENCE == option.UNITSETREF })[0]
   }
 
   setPaymentPlanCode(option: card, key?: KeyboardEvent) {
@@ -183,6 +196,13 @@ export class Dialog_salesOrderComponent implements OnInit {
 
   filterPaymentOptions(val: string) {
     this.filteredPaymentPlans = this.paymentPlans.filter(q => { return q.CODE.toLowerCase().includes(val.toLowerCase()) || q.DEFINITION_.toLowerCase().includes(val.toLowerCase()) })
+  }
+
+  getSalePrices(code: string) {
+    this.global.getSalePrices(code).subscribe(res => {
+      console.log(res)
+      this.unitSelectionActive = true
+    })
   }
 
 
@@ -256,9 +276,6 @@ export class Dialog_salesOrderComponent implements OnInit {
 
   initializeRecord() {
     this.newRecord = {
-      "DataObjectParameter": {
-        ApplyConditionOnPreSave: true
-      },
       "INSPECT": false,
       "INTERNAL_REFERENCE": 0,
       "TYPE": 1,
