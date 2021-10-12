@@ -57,6 +57,7 @@ import { MillilestirmeFisleriComponent } from './components/ithalat/hareketler/m
 import { Odeme_tahsilatPlanlariComponent } from './components/finans/ana-kayitlar/odeme_tahsilat-planlari/odeme_tahsilat-planlari.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { AuthGuardService } from './services/authGuard.service';
+import { LoadingComponent } from './components/shared/modular/loading/loading.component';
 
 
 import { ItemTypesPipe } from './pipes/itemTypes.pipe';
@@ -194,6 +195,7 @@ import { LoginServiceService } from './services/loginService.service';
     LoginComponent,
     AppComponent,
     ConfigureComponent,
+    LoadingComponent,
     NavbarComponent,
     FooterComponent,
     MainComponent,

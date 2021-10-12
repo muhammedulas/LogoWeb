@@ -1,9 +1,9 @@
 <div class="wrapper">
   <h1 style="text-align: center;"> Satış Siparişleri </h1>
   <mat-card class="container mt-2">
-    <mat-spinner class="spinner" *ngIf="!loaded"></mat-spinner>
-
+    <!-- <mat-spinner class="spinner" *ngIf="!loaded"></mat-spinner> -->
     <div class="table-responsive">
+      <app-loading *ngIf="!loaded"></app-loading>
       <table mat-table [dataSource]="dataSet" class="mat-elevation-z4 mat-table">
 
         <ng-container matColumnDef="Date">

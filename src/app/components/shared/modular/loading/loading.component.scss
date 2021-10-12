@@ -1,0 +1,147 @@
+$clr-light: #ffb300;
+$clr-med: #e53935;
+$clr-dark: #d81b60;
+
+$radius: 2rem;
+
+$animation: cubic-bezier(0.76, 0, 0.24, 1);
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%);
+    z-index: -1;
+    height: 100%;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+
+.loading_dot {
+    width: 2rem;
+    height: 2rem;
+    vertical-align: middle;
+    border-radius: $radius;
+    display: inline-block;
+    margin: 0.5rem;
+    animation: loading 6s $animation infinite;
+}
+
+@keyframes loading {
+    0%,
+    100% {
+        background-color: $clr-light;
+        height: 2rem;
+    }
+    20% {
+        height: 10rem;
+        border-radius: 5px;
+    }
+    40% {
+        height: 2rem;
+    }
+    50% {
+        background-color: $clr-dark;
+        height: 2rem;
+    }
+    70% {
+        height: 10rem;
+        border-radius: 5px;
+    }
+    90% {
+        height: 2rem;
+    }
+}
+
+@for $i from 1 through 6 {
+    .loading_dot:nth-child(#{$i}) {
+        animation-delay: #{$i * 0.2}s;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .loading_dot {
+        width: 1rem;
+        height: 1rem;
+    }
+
+    .loading_dot {
+        width: 2rem;
+        height: 2rem;
+        vertical-align: middle;
+        border-radius: $radius;
+        display: inline-block;
+        margin: 0.5rem;
+        animation: loading 6s $animation infinite;
+    }
+    
+    @keyframes loading {
+        0%,
+        100% {
+            background-color: $clr-light;
+            height: 1rem;
+        }
+        20% {
+            height: 5rem;
+            border-radius: 5px;
+        }
+        40% {
+            height: 1rem;
+        }
+        50% {
+            background-color: $clr-dark;
+            height: 1rem;
+        }
+        70% {
+            height: 5rem;
+            border-radius: 5px;
+        }
+        90% {
+            height: 1rem;
+        }
+    }
+
+    
+}
+
+@media screen and (max-width: 430px) {
+    .loading_dot {
+        width: 0.4rem;
+        height: 0.4rem;
+    }
+
+    @keyframes loading {
+        0%,
+        100% {
+            background-color: $clr-light;
+            height: 0.4rem;
+        }
+        20% {
+            height: 2rem;
+            border-radius: 5px;
+        }
+        40% {
+            height: 0.4rem;
+        }
+        50% {
+            background-color: $clr-dark;
+            height: 0.4rem;
+        }
+        70% {
+            height: 2rem;
+            border-radius: 5px;
+        }
+        90% {
+            height: 0.4rem;
+        }
+    }
+}
