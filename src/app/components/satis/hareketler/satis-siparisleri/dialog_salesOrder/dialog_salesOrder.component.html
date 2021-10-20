@@ -1,7 +1,7 @@
 <div class="wrapper">
   <h2 mat-dialog-title style="text-align: center;">Satış Siparişi</h2>
   <div mat-dialog-content>
-    <mat-tab-group [dynamicHeight]=true>
+    <mat-tab-group [dynamicHeight]="true">
       <mat-tab label="Genel">
         <div class="flexContainer">
           <div class="flexItem">
@@ -11,7 +11,7 @@
           </div>
           <div class="flexItem">
             <mat-form-field [style.width.%]="100">
-              <input type="text" matInput autocomplete="off" placeholder="Tarih" [(ngModel)]="newRecord.DATE">
+              <input type="datetime-local" matInput autocomplete="off" placeholder="Tarih" [(ngModel)]="newRecord.DATE">
             </mat-form-field>
           </div>
           <div class="flexItem">
@@ -85,55 +85,59 @@
       </mat-tab>
 
       <mat-tab label="Ürünler">
-        <mat-form-field id="inp_malzeme" [style.width.%]="40">
-          <input #item type="text" matInput autocomplete="off" placeholder="Malzeme"
-            (keyup)="filterItemOptions(item.value)" (focusin)="filterItemOptions(item.value)"
-            [matAutocomplete]="itemAutoComplete">
+        <div class="selectSection">
+          <mat-form-field id="inp_malzeme" [style.width.%]="40">
+            <input #item type="text" matInput autocomplete="off" placeholder="Malzeme"
+              (keyup)="filterItemOptions(item.value)" (focusin)="filterItemOptions(item.value)"
+              [matAutocomplete]="itemAutoComplete">
 
-          <mat-autocomplete autoActiveFirstOption #itemAutoComplete="matAutocomplete">
-            <mat-option *ngFor="let option of  filteredItemOptions" [value]="option.DEFINITION_"
-              (click)="setItemCode(option)" (keyup)="setItemCode(option, $event)">
-              {{option.DEFINITION_}}
-            </mat-option>
-          </mat-autocomplete>
-        </mat-form-field>
-        &nbsp;
-        <mat-form-field id="inp_miktar">
-          <input #miktar type="number" matInput min="0" autocomplete="off" placeholder="Miktar">
-        </mat-form-field>
-        &nbsp;
-        <mat-form-field id="inp_birim">
-          <mat-select [disabled]="!unitSelectionActive" placeholder="Birim" *ngIf="selectedUnitSet" [(value)]="selectedUnit">
-            <mat-option  *ngFor="let unit of selectedUnitSet.UNITS.items" (click)="setUnit(unit.CODE)" [value]="unit.CODE">
-              {{unit.NAME}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-        &nbsp;
-        <mat-form-field id="inp_birimfiyat" >
-          <input type="number" matInput autocomplete="off" min="0" max="18" placeholder="Birim Fiyat"
-            [(ngModel)]="selectedItemOption.PRICE">
-        </mat-form-field>
-        &nbsp;
-        <mat-form-field id="inp_kdv" >
-          <input type="number" matInput autocomplete="off" min="0" max="18" placeholder="KDV %"
-            [(ngModel)]="selectedItemOption.VAT_RATE">
-        </mat-form-field>
-        &nbsp;
-        <mat-form-field id="inp_indirim">
-          <input #indirim type="number" matInput autocomplete="off" min="0" max="100" placeholder="İndirim %">
-        </mat-form-field>
-        &nbsp;
-        <a mat-icon-button class="icon-button" (click)="newLine(miktar.value, indirim.value)">
-          <mat-icon style="color: purple;">add_shopping_cart</mat-icon>
-        </a>
+            <mat-autocomplete autoActiveFirstOption #itemAutoComplete="matAutocomplete">
+              <mat-option *ngFor="let option of  filteredItemOptions" [value]="option.DEFINITION_"
+                (click)="setItemCode(option)" (keyup)="setItemCode(option, $event)">
+                {{option.DEFINITION_}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+          &nbsp;
+          <mat-form-field id="inp_miktar">
+            <input #quantity type="number" matInput min="0" autocomplete="off" placeholder="Miktar">
+          </mat-form-field>
+          &nbsp;
+          <mat-form-field id="inp_birim">
+            <mat-select [disabled]="!unitSelectionActive" placeholder="Birim" *ngIf="selectedUnitSet"
+              [(value)]="selectedUnit">
+              <mat-option *ngFor="let unit of selectedUnitSet.UNITS.items" (click)="setUnit(unit.CODE)"
+                [value]="unit.CODE">
+                {{unit.NAME}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          &nbsp;
+          <mat-form-field id="inp_birimFiyat">
+            <input type="number" matInput autocomplete="off" min="0" max="18" placeholder="Birim Fiyat"
+              [(ngModel)]="selectedItemOption.PRICE">
+          </mat-form-field>
+          &nbsp;
+          <mat-form-field id="inp_kdv">
+            <input type="number" matInput autocomplete="off" min="0" max="18" placeholder="KDV %"
+              [(ngModel)]="selectedItemOption.VAT_RATE">
+          </mat-form-field>
+          &nbsp;
+          <mat-form-field id="inp_indirim">
+            <input #indirim type="number" matInput autocomplete="off" min="0" max="100" placeholder="İndirim %">
+          </mat-form-field>
+          &nbsp;
+          <a mat-icon-button class="icon-button" (click)="newLine(quantity.value, indirim.value)">
+            <mat-icon style="color: purple;">add_shopping_cart</mat-icon>
+          </a>
+        </div>
 
         <mat-divider></mat-divider>
 
         <div class="transaction">
-          <sw-item-list *ngFor="let item of filterLines(); let i = index;" [inside]="item" [item-class]="'list-custom'"
+          <!--           <sw-item-list *ngFor="let item of filterLines(); let i = index;" [inside]="item" [item-class]="'list-custom'"
             [show-mark]="false" [editTemplate]="trashTemplate" [trashTemplate]="empty"
-            [customTemplate]="customTemplateSrc" (swipeCb)="selectLine(item)">
+            [customTemplate]="customTemplateSrc" (swipeCb)="selectLine(item)" (swipeleft)="gestureTest($event)">
           </sw-item-list>
           <ng-template #trashTemplate let-item='item'>
             <button mat-button class="icon-button" (click)="sil()">
@@ -151,15 +155,72 @@
                 <small style="color:gray;font-weight:500;">{{item.DEFINITION_}}</small>
               </div>
             </div>
-          </ng-template>
+          </ng-template> -->
 
 
+          <div *ngFor="let item of filterLines();" class="lineWrapper">
+            <div>
+            </div>
+            <div class="transline"
+              [style.transform]="selectedLine == item ?'translateX(' + translinePos + 'px)': 'translateX(0px)'"
+              [ngClass]="{'active': selectedLine == item}" (swipeleft)="swLeft(item)" (swipeRight)="swRight(item)">
+              <h3 style="margin-top: 0;margin-bottom: 0; font-size: smaller; white-space: nowrap;">{{item.MASTER_CODE}}
+              </h3>
+              <small style="font-weight:500; font-size: smaller; white-space: nowrap;">{{item.DEFINITION_}}</small>
+              <br>
+
+              <small class="lineDef"> {{item.QUANTITY}} {{item.UNIT_CODE}} x {{item.PRICE}} &#8378; </small>
+              <small class="lineVal"> {{item.TOTAL}} &#8378; </small>
+              <br>
+
+              <small class="lineDef">İndirim Tutarı (%{{item.DISCOUNT_RATE}})</small>
+              <small class="lineVal">{{item.DISCOUNT_DISTR}} &#8378;</small>
+              <br>
+
+              <small class="lineDef">KDV Tutarı ({{item.VAT_RATE}})</small>
+              <small class="lineVal"> {{item.VAT_AMOUNT}} &#8378;</small>
+              <br>
+
+              <small class="lineDef">Toplam</small>
+              <small class="lineVal"> {{item.TOTAL_NET}} &#8378;</small>
+
+              <div class="redline"></div>
+            </div>
+
+            <button [ngClass]="{'active':selectedLine == item}" mat-icon-button (click)="deleteLine()">
+              <mat-icon>delete</mat-icon>
+            </button>
+
+          </div>
         </div>
 
       </mat-tab>
 
       <mat-tab label="Toplamlar">
-
+        <div class="totalContainer">
+          <div class="description">
+            <mat-form-field id="aciklama" [style.height.%]="50" [style.width.rem]="50">
+              <mat-label>Açıklamalar</mat-label>
+              <textarea #detailedDescription matInput cols="50" rows="6" maxlength="300" wrap="hard"
+                [(ngModel)]="newRecord.ITEXT" (keypress)="textareaControl($event)"></textarea>
+            </mat-form-field>
+          </div>
+          <div class="total mat-elevation-z4">
+            <div class="wrapper ">
+              <small class="lineDef">Ara Toplam</small>
+              <small class="lineVal"> {{newRecord.TOTAL_GROSS}} &#8378; </small>
+              <br>
+              <small class="lineDef">İndirim</small>
+              <small class="lineVal"> {{newRecord.TOTAL_DISCOUNTED}} &#8378; </small>
+              <br>
+              <small class="lineDef">KDV Toplamı</small>
+              <small class="lineVal"> {{newRecord.TOTAL_VAT}} &#8378; </small>
+              <br>
+              <small class="lineDef">Genel Toplam</small>
+              <small class="lineVal"> {{newRecord.TOTAL_NET}} &#8378; </small>
+            </div>
+          </div>
+        </div>
       </mat-tab>
     </mat-tab-group>
 

@@ -18,6 +18,7 @@ import { unitSet } from 'src/app/models/unitSet';
 import { unit } from 'src/app/models/unit';
 import { detailedItemModel } from 'src/app/models/detailedItemModel';
 import { ItemsService } from 'src/app/services/items.service';
+import { ToastService } from 'src/app/services/toast.service';
 
 
 @Component({
@@ -27,7 +28,13 @@ import { ItemsService } from 'src/app/services/items.service';
 })
 export class Dialog_salesOrderComponent implements OnInit {
   @ViewChild('item') inputItem;
+  @ViewChild('quantity') inputQuantity;
+  @ViewChild('arpCode') arpCode;
+  @ViewChild('detailedDescription') detailedDescription;
 
+  public translinePos = 0;
+  public transform = "translateX(" + this.translinePos + "px);"
+  private salePrices = [];
   public restItemCard: detailedItemModel;
   public arpControl = new FormControl();
   public newRecord: salesOrder = new salesOrder();
@@ -73,6 +80,7 @@ export class Dialog_salesOrderComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<Dialog_newSalesOrderComponent>,
     private toast: ToastrService,
+    private customToast: ToastService,
     private svc: SalesOrdersService,
     private global: GlobalVarsService,
     private login: LoginServiceService,
@@ -96,22 +104,22 @@ export class Dialog_salesOrderComponent implements OnInit {
     this.paymentPlans = this.global.paymentPlans
     this.filteredPaymentPlans = this.paymentPlans
 
-    this.global.getArpCodes().subscribe(res => {
-      this.arpOptions = res.items;
-      this.filteredArpOptions = this.arpOptions;
-      console.log(this.arpOptions)
-    })
-    this.global.getItemCodes().subscribe(res => {
-      this.itemOptions = res.items
-      this.filteredItemOptions = this.itemOptions
-      console.log(this.itemOptions)
-    })
-
-    this.global.getPaymentPlans().subscribe(res => {
-      this.paymentPlans = res.items
-      this.filteredPaymentPlans = this.paymentPlans
-      console.log(this.paymentPlans)
-    })
+    /*    this.global.getArpCodes().subscribe(res => {
+         this.arpOptions = res.items;
+         this.filteredArpOptions = this.arpOptions;
+         console.log(this.arpOptions)
+       })
+       this.global.getItemCodes().subscribe(res => {
+         this.itemOptions = res.items
+         this.filteredItemOptions = this.itemOptions
+         console.log(this.itemOptions)
+       })
+   
+       this.global.getPaymentPlans().subscribe(res => {
+         this.paymentPlans = res.items
+         this.filteredPaymentPlans = this.paymentPlans
+         console.log(this.paymentPlans)
+       }) */
     this.global.getUnitSets().subscribe(res => {
       this.unitSets = res.items
       console.log(this.unitSets)
@@ -151,13 +159,12 @@ export class Dialog_salesOrderComponent implements OnInit {
     this.selectedItemOption = option
     this.unitSelectionActive = false;
     this.getSalePrices(option.CODE)
-    let s = this.itemsService.getItemByID(option.INTERNAL_REFERENCE).subscribe(res=>{
+    let s = this.itemsService.getItemByID(option.INTERNAL_REFERENCE).subscribe(res => {
       this.restItemCard = res;
       console.log(this.restItemCard.UNITS)
-      
       s.unsubscribe();
     })
-      this.selectedUnitSet = this.unitSets.filter(q => { return q.INTERNAL_REFERENCE == option.UNITSETREF })[0]
+    this.selectedUnitSet = this.unitSets.filter(q => { return q.INTERNAL_REFERENCE == option.UNITSETREF })[0]
   }
 
   setPaymentPlanCode(option: card, key?: KeyboardEvent) {
@@ -169,6 +176,37 @@ export class Dialog_salesOrderComponent implements OnInit {
 
   setUnit(unit: string) {
     this.selectedUnit = unit
+    this.setPrice(unit)
+  }
+
+  setPrice(unit: string) {
+    let units = this.restItemCard.UNITS.items;
+    let prices = this.salePrices
+    console.log("Birimler", units);
+    console.log("Fiyatlar", prices)
+    console.log("Seçili Birim", unit)
+    for (let i = 0; i < this.salePrices.length; i++) {
+      if (unit == prices[i].BIRIM_KODU) {
+        if (prices[i].MAINUNIT == "EVET") {
+          this.selectedItemOption.PRICE = prices[i].PRICE
+        }
+        else {
+          if (prices[i].UNITCONVERT == 1) {
+            let uindex = units.findIndex(q => { return q.UNIT_CODE == unit })
+            console.log('işlem birimi 1', units[uindex])
+            this.selectedItemOption.PRICE = prices[i].PRICE * (units[uindex].CONV_FACT1 * units[uindex].CONV_FACT2)
+            break
+          }
+        }
+      }
+      else if (prices[i].UNITCONVERT == 1) {
+        let uindex = units.findIndex(q => { return q.UNIT_CODE == unit })
+        console.log(uindex)
+        console.log('işlem birimi 2', units[uindex])
+        this.selectedItemOption.PRICE = prices[i].PRICE * (units[uindex].CONV_FACT1 * units[uindex].CONV_FACT2)
+        break
+      }
+    }
   }
 
   filterArpOptions(val: string, source: string) {
@@ -199,9 +237,10 @@ export class Dialog_salesOrderComponent implements OnInit {
   }
 
   getSalePrices(code: string) {
-    this.global.getSalePrices(code).subscribe(res => {
-      console.log(res)
-      this.unitSelectionActive = true
+    this.global.getSalePrices(code, this.arpCode.nativeElement.value).subscribe(res => {
+      console.log('salePrices: ', res)
+      this.salePrices = res.items
+      this.unitSelectionActive = true;
     })
   }
 
@@ -214,23 +253,34 @@ export class Dialog_salesOrderComponent implements OnInit {
       totalNet: 0
     }
     this.newRecord.TRANSACTIONS.items.forEach(t => {
-      t.TOTAL = t.QUANTITY * t.PRICE
-      t.EXCLINE_NET_DISC_AMOUNT = Math.round((t.TOTAL / 100) * t.DISCOUNT_RATE)
-      t.VAT_AMOUNT = (t.QUANTITY * t.PRICE - t.EXCLINE_NET_DISC_AMOUNT) * (t.VAT_RATE / 100)
-      t.TOTAL_NET = t.TOTAL + t.VAT_AMOUNT
 
-      console.log(t.EXCLINE_NET_DISC_AMOUNT)
-
-      temp.discount += t.EXCLINE_NET_DISC_AMOUNT
-      temp.total += t.TOTAL - t.EXCLINE_NET_DISC_AMOUNT
+      temp.discount += t.DISCOUNT_DISTR
+      temp.total += t.TOTAL
       temp.vat += t.VAT_AMOUNT
       temp.totalNet += t.TOTAL_NET
+
+
+      /*   
+            Eski hesaplamalar
+      
+            t.TOTAL = t.QUANTITY * t.PRICE
+            t.EXCLINE_NET_DISC_AMOUNT = Math.round((t.TOTAL / 100) * t.DISCOUNT_RATE)
+            t.VAT_AMOUNT = (t.QUANTITY * t.PRICE - t.EXCLINE_NET_DISC_AMOUNT) * (t.VAT_RATE / 100)
+            t.TOTAL_NET = t.TOTAL + t.VAT_AMOUNT
+      
+            console.log(t.EXCLINE_NET_DISC_AMOUNT)
+      
+            temp.discount += t.EXCLINE_NET_DISC_AMOUNT
+            temp.total += t.TOTAL - t.EXCLINE_NET_DISC_AMOUNT
+            temp.vat += t.VAT_AMOUNT
+            temp.totalNet += t.TOTAL_NET */
+
     })
 
-    this.newRecord.TOTAL_DISCOUNTED = parseInt(temp.discount.toFixed(2))
-    this.newRecord.TOTAL_GROSS = parseInt(temp.total.toFixed(2))
-    this.newRecord.TOTAL_VAT = parseInt(temp.vat.toFixed(2))
-    this.newRecord.TOTAL_NET = parseInt(temp.totalNet.toFixed(2))
+    this.newRecord.TOTAL_DISCOUNTED = parseFloat(temp.discount.toFixed(2))
+    this.newRecord.TOTAL_GROSS = parseFloat(temp.total.toFixed(2))
+    this.newRecord.TOTAL_VAT = parseFloat(temp.vat.toFixed(2))
+    this.newRecord.TOTAL_NET = parseFloat(temp.totalNet.toFixed(2))
   }
 
   observeLines() {
@@ -239,23 +289,47 @@ export class Dialog_salesOrderComponent implements OnInit {
 
 
   newLine(quantity, discRate) {
-    let line = new transaction();
-    line.MASTER_CODE = this.selectedItemOption.CODE;
-    line.DEFINITION_ = this.selectedItemOption.DEFINITION_;
-    line.QUANTITY = quantity;
-    line.PRICE = 0;
-    line.DISCOUNT_RATE = discRate
-    line.TOTAL = 0
-    line.VAT_RATE = this.selectedItemOption.VAT_RATE;
-    line.TOTAL_NET = 0
-    line.LINENO = this.newRecord.TRANSACTIONS.items[this.newRecord.TRANSACTIONS.items.length - 1].LINENO + 1
-    line.USREF = this.selectedUnitSet.INTERNAL_REFERENCE;
-    line.UNIT_CODE = this.selectedUnit
-    let temp = this.newRecord.TRANSACTIONS.items
-    temp.push(line)
-    this.oTransLines.next(temp)
-    this.inputItem.nativeElement.value = ''
-    console.log(this.newRecord.TRANSACTIONS.items)
+    if (this.inputItem.nativeElement.value == "") {
+      console.log()
+      this.customToast.error_top_center("Lütfen malzeme seçin", 2)
+    }
+    else if (!(quantity > 0)) {
+      this.customToast.error_top_center("Lütfen miktar girin!", 2)
+    }
+    else {
+      let line = new transaction();
+      line.MASTER_CODE = this.selectedItemOption.CODE;
+      line.DEFINITION_ = this.selectedItemOption.DEFINITION_;
+      line.QUANTITY = quantity;
+      line.PRICE = this.selectedItemOption.PRICE;
+      line.DISCOUNT_RATE = discRate;
+      line.DISCOUNT_DISTR = parseFloat(((line.PRICE * quantity) / 100 * line.DISCOUNT_RATE).toFixed(2));
+      line.TOTAL = parseFloat(((quantity * line.PRICE)).toFixed(2));
+      line.VAT_RATE = this.selectedItemOption.VAT_RATE;
+      line.VAT_AMOUNT = parseFloat((((line.TOTAL - line.DISCOUNT_DISTR) / 100) * line.VAT_RATE).toFixed(2));
+      line.TOTAL_NET = parseFloat(((line.TOTAL - line.DISCOUNT_DISTR) * (1 + (line.VAT_RATE / 100))).toFixed(2));
+      line.LINENO = this.newRecord.TRANSACTIONS.items[this.newRecord.TRANSACTIONS.items.length - 1].LINENO + 1;
+      line.USREF = this.selectedUnitSet.INTERNAL_REFERENCE;
+      line.UNIT_CODE = this.selectedUnit;
+      let temp = this.newRecord.TRANSACTIONS.items;
+      temp.push(line);
+      this.oTransLines.next(temp);
+      this.calculate();
+
+      this.inputItem.nativeElement.value = '';
+
+      /*  Satır eklendikten sonra input alanlarını temizler
+  
+  
+        this.inputQuantity.nativeElement.value = 0;
+        
+        this.selectedUnit = "";
+        this.selectedLine.PRICE = 0;
+        this.selectedLine.DISCOUNT_RATE = undefined 
+      */
+      console.log(this.newRecord.TRANSACTIONS.items)
+    }
+
   }
 
   filterLines() {
@@ -269,9 +343,90 @@ export class Dialog_salesOrderComponent implements OnInit {
     this.selectedLine = element
   }
 
-  sil() {
+  deleteLine() {
     let index = this.newRecord.TRANSACTIONS.items.indexOf(this.selectedLine)
     this.newRecord.TRANSACTIONS.items.splice(index, 1)
+    this.calculate();
+  }
+
+  /*   panLeft(evt, item: transaction) {
+      if (evt.deltaX > -50 && evt.deltaX < 0) {
+        this.translinePos = evt.deltaX
+        this.transform = "translateX(" + this.translinePos + "px);"
+        console.log(this.transform)
+      }
+      else {
+        this.selectedLine = item
+      }
+    }
+  
+    panRight(evt){
+      if(this.translinePos < 0 && this.translinePos > -50){
+        this.translinePos = evt.deltaX
+        this.transform = "translateX(" + this.translinePos + "px);"
+        console.log(this.transform)
+      }
+      else{
+        this.translinePos = 0
+        this.transform = "translateX(" + this.translinePos + "px);"
+      }
+      if(evt.deltaX == 0){
+        this.selectedLine = this.newRecord.TRANSACTIONS.items[0]
+      }
+    } */
+
+  textareaControl(evt: KeyboardEvent) {
+    let text: string = this.detailedDescription.nativeElement.value;
+    console.log(text)
+    let arr = text.split("\n")
+    arr.forEach(val => {
+      val += "\n"
+    })
+    console.log(arr)
+
+    if (evt.key != "Ctrl" && evt.key != "Alt" && evt.key != "Shift" && evt.key != "Tab" && evt.key != "Backspace" && evt.key != "Escape" && evt.key != "CapsLock" && evt.key != "Space" && evt.key != "Meta" && evt.key != "ContextMenu") {
+      //
+      if (evt.key == "Enter") {
+        if (arr.length >= 6) {
+          arr = arr.slice(0, 6)
+          text = ""
+          arr.forEach(element => {
+            if (arr.indexOf(element) < 5) {
+              element += "\n"
+            }
+            text = text.concat(element)
+          })
+          this.detailedDescription.nativeElement.value = text;
+        }
+      }
+      else {
+        text = "";
+        arr.forEach(el => {
+          if (el.length >= 49) {
+            el = el.slice(0, 49)
+            if (arr.indexOf(el) < 5) el += "\n"
+          }
+          if (arr.length > 6) arr = arr.slice(0, 6)
+          text = text.concat(el)
+          this.detailedDescription.nativeElement.value = text;
+        })
+      }
+
+      //
+    }
+  }
+
+
+  swLeft(item: transaction) {
+    this.translinePos = -50;
+    this.selectedLine = item;
+  }
+
+  swRight(item: transaction) {
+    if (item == this.selectedLine) {
+      this.translinePos = 0;
+      this.selectedLine = new transaction()
+    }
   }
 
   initializeRecord() {
@@ -350,7 +505,7 @@ export class Dialog_salesOrderComponent implements OnInit {
             "DEFINITION_": "Açıklaması",
             "EDIT": true,
             "DEVIR": "0",
-            "INTERNAL_REFERENCE": 2,
+            "INTERNAL_REFERENCE": 0,
             "TYPE": 0,
             "MASTER_CODE": "Kodu",
             "STOCKREF": 0,
@@ -393,13 +548,13 @@ export class Dialog_salesOrderComponent implements OnInit {
             "DISCOUNT_DISTR": 0.0,
             "EXPENSE_DISTR": 0.0,
             "PROMOTION_DISTR": 0.0,
-            "VAT_RATE": 18.0,
-            "VAT_AMOUNT": 1.8,
-            "VAT_BASE": 30.0,
+            "VAT_RATE": 0.0,
+            "VAT_AMOUNT": 0,
+            "VAT_BASE": 0,
             "TRANS_DESCRIPTION": "",
             "UNIT_CODE": "ADET",
-            "UOMREF": 23,
-            "USREF": 5,
+            "UOMREF": 0,
+            "USREF": 0,
             "UNIT_CONV1": 1.0,
             "UNIT_CONV2": 1.0,
             "UNIT_CONV3": 0.0,
@@ -425,7 +580,7 @@ export class Dialog_salesOrderComponent implements OnInit {
             "SOURCE_COST_GRP": 0,
             "DIVISION": 0,
             "DEPARTMENT": 0,
-            "TOTAL_NET": 30.0,
+            "TOTAL_NET": 0.0,
             "SALESMANREF": 0,
             "ORDER_STATUS": 4,
             "DREF": 0,

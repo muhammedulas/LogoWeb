@@ -1,5 +1,6 @@
-import { BrowserModule, HammerModule, HAMMER_LOADER } from '@angular/platform-browser';
+import { BrowserModule, HammerGestureConfig, HammerModule, HAMMER_GESTURE_CONFIG, HAMMER_LOADER } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import * as Hammer from 'hammerjs';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -188,8 +189,16 @@ import { Dialog_salesOrderComponent } from './components/satis/hareketler/satis-
 import { LoginServiceService } from './services/loginService.service';
 
 
+declare var Hammer: any;
 
-
+export class MyHammerConfig extends HammerGestureConfig  {
+  buildHammer(element: HTMLElement) {
+    let mc = new Hammer(element, {
+      touchAction: "pan-y"
+    });
+    return mc;
+  }
+}
 @NgModule({
   declarations: [
     LoginComponent,
@@ -483,14 +492,16 @@ import { LoginServiceService } from './services/loginService.service';
     MatCheckboxModule,
     ReactiveFormsModule,
     HammerModule,
-    SwipeAngularListModule
+    SwipeAngularListModule,
   ],
   providers: [
     AuthGuardService,
     LoginComponent,
     LoginServiceService,
     { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { panelClass: 'mat-dialog-override' } },
-    { provide: HAMMER_LOADER, useValue: () => new Promise(() => { }) }],
+    { provide: HAMMER_LOADER, useValue: () => new Promise(() => { }) },
+    { provide: HAMMER_GESTURE_CONFIG, useClass: MyHammerConfig}],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }
