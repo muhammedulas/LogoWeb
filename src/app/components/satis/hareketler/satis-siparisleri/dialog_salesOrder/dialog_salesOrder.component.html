@@ -6,12 +6,12 @@
         <div class="flexContainer">
           <div class="flexItem">
             <mat-form-field [style.width.%]="100">
-              <input type="text" matInput autocomplete="off" placeholder="Fiş No." [(ngModel)]="newRecord.NUMBER">
+              <input type="text" matInput autocomplete="off" placeholder="Fiş No." [(ngModel)]="newRecord.NUMBER" [disabled]="newRecord.INSPECT">
             </mat-form-field>
           </div>
           <div class="flexItem">
             <mat-form-field [style.width.%]="100">
-              <input type="datetime-local" matInput autocomplete="off" placeholder="Tarih" [(ngModel)]="newRecord.DATE">
+              <input type="datetime-local" matInput autocomplete="off" placeholder="Tarih" [(ngModel)]="newRecord.DATE" [disabled]="newRecord.INSPECT">
             </mat-form-field>
           </div>
           <div class="flexItem">
@@ -19,7 +19,7 @@
               <input #arpCode type="text" matInput autocomplete="off" placeholder="Cari Hesap Kodu"
                 (keyup)="filterArpOptions(arpCode.value, 'code')" (focusin)="filterArpOptions(arpCode.value, 'code')"
                 [(ngModel)]="newRecord.ARP_CODE" [matAutocomplete]="arpCodeAutoComplete"
-                [ngModelOptions]="{standalone:true}">
+                [ngModelOptions]="{standalone:true}" [disabled]="newRecord.INSPECT">
 
               <mat-autocomplete autoActiveFirstOption #arpCodeAutoComplete="matAutocomplete">
                 <mat-option *ngFor="let option of  filteredArpOptions" [value]="option.CODE"
@@ -34,7 +34,7 @@
               <input #arpdefinition type="text" matInput autocomplete="off" placeholder="Cari Hesap Açıklaması"
                 (keyup)="filterArpOptions(arpdefinition.value, 'definition')"
                 (focusin)="filterArpOptions(arpdefinition.value, 'definition')" [(ngModel)]="newRecord.ARP_DEFINITION_"
-                [matAutocomplete]="arpDefAutoComplete" [ngModelOptions]="{standalone:true}">
+                [matAutocomplete]="arpDefAutoComplete" [ngModelOptions]="{standalone:true}" [disabled]="newRecord.INSPECT">
 
               <mat-autocomplete autoActiveFirstOption #arpDefAutoComplete="matAutocomplete">
                 <mat-option *ngFor="let option of  filteredArpOptions" [value]="option.DEFINITION_"
@@ -60,7 +60,7 @@
               <input #paymentPlan type="text" matInput autocomplete="off" placeholder="Ödeme Planı"
                 (keyup)="filterPaymentOptions(paymentPlan.value)" (focusin)="filterPaymentOptions(paymentPlan.value)"
                 [(ngModel)]="newRecord.PAYMENT_CODE" [matAutocomplete]="paymentAutoComplete"
-                [ngModelOptions]="{standalone:true}">
+                [ngModelOptions]="{standalone:true}" [disabled]="newRecord.INSPECT">
 
               <mat-autocomplete autoActiveFirstOption #paymentAutoComplete="matAutocomplete">
                 <mat-option *ngFor="let option of  filteredPaymentPlans" [value]="option.DEFINITION_"
@@ -73,7 +73,7 @@
           <div class="flexItem">
             <mat-form-field [style.width.%]="100">
               <input type="text" matInput autocomplete="off" placeholder="Proje Kodu"
-                [(ngModel)]="newRecord.PROJECT_CODE">
+                [(ngModel)]="newRecord.PROJECT_CODE" [disabled]="newRecord.INSPECT">
             </mat-form-field>
           </div>
           <div class="flexItem">
@@ -87,7 +87,7 @@
       <mat-tab label="Ürünler">
         <div class="selectSection">
           <mat-form-field id="inp_malzeme" [style.width.%]="40">
-            <input #item type="text" matInput autocomplete="off" placeholder="Malzeme"
+            <input [disabled]="newRecord.INSPECT" #item type="text" matInput autocomplete="off" placeholder="Malzeme"
               (keyup)="filterItemOptions(item.value)" (focusin)="filterItemOptions(item.value)"
               [matAutocomplete]="itemAutoComplete">
 
@@ -100,7 +100,7 @@
           </mat-form-field>
           &nbsp;
           <mat-form-field id="inp_miktar">
-            <input #quantity type="number" matInput min="0" autocomplete="off" placeholder="Miktar">
+            <input [disabled]="newRecord.INSPECT" #quantity type="number" matInput min="0" autocomplete="off" placeholder="Miktar">
           </mat-form-field>
           &nbsp;
           <mat-form-field id="inp_birim">
@@ -114,20 +114,20 @@
           </mat-form-field>
           &nbsp;
           <mat-form-field id="inp_birimFiyat">
-            <input type="number" matInput autocomplete="off" min="0" max="18" placeholder="Birim Fiyat"
+            <input [disabled]="newRecord.INSPECT" type="number" matInput autocomplete="off" min="0" max="18" placeholder="Birim Fiyat"
               [(ngModel)]="selectedItemOption.PRICE">
           </mat-form-field>
           &nbsp;
           <mat-form-field id="inp_kdv">
-            <input type="number" matInput autocomplete="off" min="0" max="18" placeholder="KDV %"
+            <input [disabled]="newRecord.INSPECT" type="number" matInput autocomplete="off" min="0" max="18" placeholder="KDV %"
               [(ngModel)]="selectedItemOption.VAT_RATE">
           </mat-form-field>
           &nbsp;
           <mat-form-field id="inp_indirim">
-            <input #indirim type="number" matInput autocomplete="off" min="0" max="100" placeholder="İndirim %">
+            <input [disabled]="newRecord.INSPECT" #indirim type="number" matInput autocomplete="off" min="0" max="100" placeholder="İndirim %">
           </mat-form-field>
           &nbsp;
-          <a mat-icon-button class="icon-button" (click)="newLine(quantity.value, indirim.value)">
+          <a *ngIf="!newRecord.INSPECT" mat-icon-button class="icon-button" (click)="newLine(quantity.value, indirim.value)">
             <mat-icon style="color: purple;">add_shopping_cart</mat-icon>
           </a>
         </div>
@@ -135,29 +135,6 @@
         <mat-divider></mat-divider>
 
         <div class="transaction">
-          <!--           <sw-item-list *ngFor="let item of filterLines(); let i = index;" [inside]="item" [item-class]="'list-custom'"
-            [show-mark]="false" [editTemplate]="trashTemplate" [trashTemplate]="empty"
-            [customTemplate]="customTemplateSrc" (swipeCb)="selectLine(item)" (swipeleft)="gestureTest($event)">
-          </sw-item-list>
-          <ng-template #trashTemplate let-item='item'>
-            <button mat-button class="icon-button" (click)="sil()">
-              <mat-icon style="color: red;">delete</mat-icon>
-            </button>
-          </ng-template>
-
-          <ng-template #empty>
-          </ng-template>
-
-          <ng-template #customTemplateSrc let-item='item'>
-            <div style="display: flex;">
-              <div>
-                <h3 style="margin-top: 0;margin-bottom: 0;">{{item.MASTER_CODE}}</h3>
-                <small style="color:gray;font-weight:500;">{{item.DEFINITION_}}</small>
-              </div>
-            </div>
-          </ng-template> -->
-
-
           <div *ngFor="let item of filterLines();" class="lineWrapper">
             <div>
             </div>
@@ -201,7 +178,7 @@
           <div class="description">
             <mat-form-field id="aciklama" [style.height.%]="50" [style.width.rem]="50">
               <mat-label>Açıklamalar</mat-label>
-              <textarea #detailedDescription matInput cols="50" rows="6" maxlength="300" wrap="hard"
+              <textarea [disabled]="newRecord.INSPECT" #detailedDescription matInput cols="50" rows="6" maxlength="300" wrap="hard"
                 [(ngModel)]="newRecord.ITEXT" (keypress)="textareaControl($event)"></textarea>
             </mat-form-field>
           </div>
@@ -211,6 +188,9 @@
               <small class="lineVal"> {{newRecord.TOTAL_GROSS}} &#8378; </small>
               <br>
               <small class="lineDef">İndirim</small>
+              <small class="lineVal"> {{newRecord.TOTAL_DISCOUNTS}} &#8378; </small>
+              <br>
+              <small class="lineDef">İndirimli Tutar</small>
               <small class="lineVal"> {{newRecord.TOTAL_DISCOUNTED}} &#8378; </small>
               <br>
               <small class="lineDef">KDV Toplamı</small>
@@ -228,8 +208,11 @@
   </div>
   <div class="spacer"></div>
   <div mat-dialog-actions align="end">
-    <button mat-stroked-button cdkFocusInitial (click)="create()">
+    <button [disabled]="newRecord.INSPECT" *ngIf="newRecord.isNew" mat-stroked-button cdkFocusInitial (click)="create()">
       Tamam
+    </button>
+    <button [disabled]="newRecord.INSPECT" mat-stroked-button cdkFocusInitial *ngIf="!newRecord.isNew || newRecord.INSPECT" (click)="update()">
+      Güncelle
     </button>
     <button mat-stroked-button [mat-dialog-close]>
       Vazgeç

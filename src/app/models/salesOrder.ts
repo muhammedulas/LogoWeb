@@ -3,6 +3,7 @@ import { transaction } from "./transaction"
 
 export class salesOrder {
     "DataObjectParameter"?: dataObjectParameters;
+    "isNew"?:boolean;
     "INSPECT": boolean;
     "INTERNAL_REFERENCE": number;
     "TYPE": number;

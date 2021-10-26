@@ -90,6 +90,7 @@ ng-container {
       position: sticky;
   }
 
+  
   .footerContainer {
     width: 100%;
     display: inline-block;
@@ -137,6 +138,7 @@ ng-container {
 
   .wrapper {
     overflow: hidden;
+    height: 100%;
   }
 
   app-loading{
@@ -145,4 +147,46 @@ ng-container {
     left: 50%;
     transform: translate(-50%);
     vertical-align: middle;
+  }
+
+  @media screen and (max-width:1350px) {
+    .container{
+      width: 100vw;
+      height: calc(90vh - 38px)
+    }
+
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+      border-radius: 3em;
+    }
+    ::-webkit-scrollbar-button {
+      width: 0px;
+      height: 0px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #673ab7;
+      border: 9px none #ffffff;
+      border-radius: 50px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #673ac8;
+    }
+    ::-webkit-scrollbar-thumb:active {
+      background: #673ac8;
+    }
+    ::-webkit-scrollbar-track {
+      background: #c5c3c3;
+      border: 21px none #ffffff;
+      border-radius: 50px;
+    }
+    ::-webkit-scrollbar-track:hover {
+      background: #c5c3c3;
+    }
+    ::-webkit-scrollbar-track:active {
+      background: #c5c3c3;
+    }
+    ::-webkit-scrollbar-corner {
+      background: transparent;
+    }
   }

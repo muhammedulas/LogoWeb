@@ -1,6 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { Observable, Subject } from 'rxjs';
 import { GlobalVarsService } from 'src/app/globalVars.service';
@@ -19,6 +19,7 @@ import { unit } from 'src/app/models/unit';
 import { detailedItemModel } from 'src/app/models/detailedItemModel';
 import { ItemsService } from 'src/app/services/items.service';
 import { ToastService } from 'src/app/services/toast.service';
+import { Dialog_editInspectSalesOrderComponent } from '../dialog_editInspectSalesOrder/dialog_editInspectSalesOrder.component';
 
 
 @Component({
@@ -67,7 +68,7 @@ export class Dialog_salesOrderComponent implements OnInit {
     },
     "GUID": ""
   }
-  public selectedUnit: string;
+  public selectedUnit: string = "";
   public arpOptions: card[] = [];
   public filteredArpOptions: card[] = [];
   public itemOptions: card[] = [];
@@ -79,15 +80,21 @@ export class Dialog_salesOrderComponent implements OnInit {
   public unitSelectionActive: boolean = false;
   constructor(
     public dialogRef: MatDialogRef<Dialog_newSalesOrderComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: salesOrder,
     private toast: ToastrService,
     private customToast: ToastService,
     private svc: SalesOrdersService,
     private global: GlobalVarsService,
     private login: LoginServiceService,
-    private itemsService: ItemsService
+    private itemsService: ItemsService,
   ) {
     this.initializeRecord();
     this.getCards();
+    if (data) {
+      data.ARP_DEFINITION_ = this.global.arpCodes[this.global.arpCodes.findIndex(q => { return q.CODE == data.ARP_CODE })].DEFINITION_
+      this.newRecord = data;
+      console.log(this.newRecord)
+    }
   }
 
   ngOnInit() {
@@ -103,7 +110,6 @@ export class Dialog_salesOrderComponent implements OnInit {
     this.filteredItemOptions = this.itemOptions
     this.paymentPlans = this.global.paymentPlans
     this.filteredPaymentPlans = this.paymentPlans
-
     /*    this.global.getArpCodes().subscribe(res => {
          this.arpOptions = res.items;
          this.filteredArpOptions = this.arpOptions;
@@ -130,6 +136,13 @@ export class Dialog_salesOrderComponent implements OnInit {
   create() {
     console.log(this.newRecord)
     this.newRecord.TRANSACTIONS.items = this.newRecord.TRANSACTIONS.items.slice(1);
+    let text: string = this.detailedDescription.nativeElement.value;
+    let textArray = text.split("\n")
+    for (let i = 0; i < 6; i++) {
+      let order = `NOTES${i}`
+      this.newRecord[order] = textArray[i]
+    }
+    console.log(this.newRecord)
     this.svc.add(this.newRecord).subscribe(res => {
       console.log(res)
       this.toast.success("Kayıt Başarılı", "", { positionClass: 'toast-top-center', timeOut: 3000 })
@@ -137,6 +150,16 @@ export class Dialog_salesOrderComponent implements OnInit {
     }, err => {
       this.toast.error(err.error.ModelState.ValError0[0], "", { positionClass: 'toast-top-center', timeOut: 3000 })
       console.log(err)
+    })
+  }
+
+  update() {
+    let ref = this.svc.update(this.newRecord).subscribe(res => {
+      this.toast.success("Kayıt Başarılı", "", { positionClass: 'toast-top-center', timeOut: 3000 })
+      ref.unsubscribe()
+    }, err => {
+      this.toast.error(err.error.ModelState.ValError0[0], "", { positionClass: 'toast-top-center', timeOut: 3000 })
+      ref.unsubscribe()
     })
   }
 
@@ -276,9 +299,9 @@ export class Dialog_salesOrderComponent implements OnInit {
             temp.totalNet += t.TOTAL_NET */
 
     })
-
-    this.newRecord.TOTAL_DISCOUNTED = parseFloat(temp.discount.toFixed(2))
-    this.newRecord.TOTAL_GROSS = parseFloat(temp.total.toFixed(2))
+    this.newRecord.TOTAL_DISCOUNTS = parseFloat(temp.discount.toFixed(2))
+    this.newRecord.TOTAL_GROSS = parseFloat((temp.total).toFixed(2))
+    this.newRecord.TOTAL_DISCOUNTED = parseFloat((temp.total - temp.discount).toFixed(2))
     this.newRecord.TOTAL_VAT = parseFloat(temp.vat.toFixed(2))
     this.newRecord.TOTAL_NET = parseFloat(temp.totalNet.toFixed(2))
   }
@@ -291,10 +314,13 @@ export class Dialog_salesOrderComponent implements OnInit {
   newLine(quantity, discRate) {
     if (this.inputItem.nativeElement.value == "") {
       console.log()
-      this.customToast.error_top_center("Lütfen malzeme seçin", 2)
+      this.customToast.error_top_center("Malzeme seçimi yapılmalıdır!", 2)
     }
     else if (!(quantity > 0)) {
       this.customToast.error_top_center("Lütfen miktar girin!", 2)
+    }
+    else if (this.selectedUnit == "") {
+      this.customToast.error_top_center("Birim seçimi yapılmalıdır!", 2)
     }
     else {
       let line = new transaction();
@@ -316,13 +342,10 @@ export class Dialog_salesOrderComponent implements OnInit {
       this.oTransLines.next(temp);
       this.calculate();
 
-      this.inputItem.nativeElement.value = '';
-
       /*  Satır eklendikten sonra input alanlarını temizler
-  
-  
+
+        this.inputItem.nativeElement.value = '';
         this.inputQuantity.nativeElement.value = 0;
-        
         this.selectedUnit = "";
         this.selectedLine.PRICE = 0;
         this.selectedLine.DISCOUNT_RATE = undefined 
@@ -392,7 +415,7 @@ export class Dialog_salesOrderComponent implements OnInit {
           text = ""
           arr.forEach(element => {
             if (arr.indexOf(element) < 5) {
-              element += "\n"
+              element += "&#10;"
             }
             text = text.concat(element)
           })
@@ -404,25 +427,26 @@ export class Dialog_salesOrderComponent implements OnInit {
         arr.forEach(el => {
           if (el.length >= 49) {
             el = el.slice(0, 49)
-            if (arr.indexOf(el) < 5) el += "\n"
           }
+          /*           if (arr.indexOf(el) < 5) el += "\n" */
           if (arr.length > 6) arr = arr.slice(0, 6)
           text = text.concat(el)
           this.detailedDescription.nativeElement.value = text;
         })
       }
-
       //
     }
   }
 
 
   swLeft(item: transaction) {
+    if (this.newRecord.INSPECT) return
     this.translinePos = -50;
     this.selectedLine = item;
   }
 
   swRight(item: transaction) {
+    if (this.newRecord.INSPECT) return
     if (item == this.selectedLine) {
       this.translinePos = 0;
       this.selectedLine = new transaction()
@@ -431,6 +455,7 @@ export class Dialog_salesOrderComponent implements OnInit {
 
   initializeRecord() {
     this.newRecord = {
+      "isNew": true,
       "INSPECT": false,
       "INTERNAL_REFERENCE": 0,
       "TYPE": 1,
@@ -442,6 +467,7 @@ export class Dialog_salesOrderComponent implements OnInit {
       "AUXIL_CODE": "",
       "AUTH_CODE": "",
       "ARP_CODE": "",
+      "ARP_DEFINITION_": "",
       "CLIENTREF": 0,
       "ARP_CODE_SHPM": "",
       "RECVREF": 0,

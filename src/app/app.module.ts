@@ -108,6 +108,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 import { SwipeAngularListModule } from 'swipe-angular-list';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 
 import { Dialog_StockComponent } from './components/malzeme-yonetimi/ana-kayitlar/malzemeler/dialog_Stock/dialog_Stock.component';
@@ -493,6 +494,7 @@ export class MyHammerConfig extends HammerGestureConfig  {
     ReactiveFormsModule,
     HammerModule,
     SwipeAngularListModule,
+    MatPaginatorModule
   ],
   providers: [
     AuthGuardService,
