@@ -11,7 +11,8 @@ import { salesOrder } from '../models/salesOrder';
 })
 export class SalesOrdersService {
 
-  constructor(private http: HttpClient, private loginComp: LoginComponent) {}
+  constructor(private http: HttpClient, private loginComp: LoginComponent) { }
+  private date = new Date();
   private token = localStorage.getItem('Token');
   private rootUrl = localStorage.getItem('rootUrl');
 
@@ -26,11 +27,21 @@ export class SalesOrdersService {
     else return this.http.get<salesOrderResp>(this.rootUrl + "/api/v1/salesOrders?offset=" + offset + "&limit=" + lim + "&q=(NUMBER like '*" + q + "*' or ARP_CODE like '*" + q + "* 'or DIVISION like '*" + q + "*' or DOC_NUMBER like '*" + q + "*' or TOTAL_NET like '*" + q + "*')" + "&withCount=true", { headers })
   }
 
-  getRecordsUnsafe(){
+  getRecordsUnsafe(lastMonth: boolean) {
     let firmNr = "0".repeat(3 - this.loginComp.frmNr.length) + this.loginComp.frmNr;
     let periodNr = "0".repeat(2 - this.loginComp.perNr.length) + this.loginComp.perNr;
     let cardTablePrefix = `LG_${firmNr}_`
     let transTablePrefix = `LG_${firmNr}_${periodNr}_`
+    let queries = "";
+    if (lastMonth) {
+      let startDate = new Date();
+      let endDate = new Date();
+      startDate.setDate(this.date.getMonth() - 1);
+      endDate.setDate(this.date.getDate());
+
+      queries += ` AND LGMAIN.DATE_ BETWEEN '${startDate.toISOString().slice(0, 19).replace('T', ' ')}' AND '${endDate.toISOString().slice(0, 19).replace('T', ' ')}' `
+      console.log(queries)
+    }
     let auth = `Bearer ${this.token}`;
     let headers = new HttpHeaders().set('Authorization', auth).set('Accept', 'application/json').set('Content-Type', 'application/json')
     let body = `"SET ROWCOUNT 0
@@ -40,12 +51,12 @@ export class SalesOrdersService {
      FROM 
     ${transTablePrefix}ORFICHE LGMAIN WITH(NOLOCK) LEFT OUTER JOIN ${cardTablePrefix}CLCARD CLNTC WITH(NOLOCK) ON (LGMAIN.CLIENTREF  =  CLNTC.LOGICALREF) LEFT OUTER JOIN LG_SLSMAN SLSMC WITH(NOLOCK) ON (LGMAIN.SALESMANREF  =  SLSMC.LOGICALREF)
      WHERE 
-    (LGMAIN.TRCODE = 1)
+    (LGMAIN.TRCODE = 1 ${queries})
     
     ORDER BY 
     LGMAIN.TRCODE, LGMAIN.DATE_, LGMAIN.TIME_, LGMAIN.LOGICALREF"`
     console.log(body)
-    return this.http.post<orderPreviewResp>(`${this.rootUrl}/api/v1/queries/unsafe`, body, {headers})
+    return this.http.post<orderPreviewResp>(`${this.rootUrl}/api/v1/queries/unsafe`, body, { headers })
   }
 
 
@@ -66,7 +77,7 @@ export class SalesOrdersService {
     console.log(newRec)
     let auth = "Bearer " + localStorage.getItem('Token');
     let headers = new HttpHeaders().set('Authorization', auth).set('Accept', 'application/json').set('Content-Type', 'application/json')
-    return this.http.post(this.rootUrl + "/api/v1/salesOrders/",  JSON.stringify(newRec), { headers })
+    return this.http.post(this.rootUrl + "/api/v1/salesOrders/", JSON.stringify(newRec), { headers })
   }
 
   update(rec: salesOrder) {

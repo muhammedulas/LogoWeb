@@ -1,6 +1,14 @@
 .container {
     width: 90vw;
     height: 80vh;
+    position: relative;;
+}
+
+.container button{
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background-color: white;
 }
 
 .spinner {

@@ -1,6 +1,11 @@
 <div class="wrapper">
   <h1 style="text-align: center;"> Satış Siparişleri </h1>
   <mat-card class="container mt-2">
+    <button mat-button [matMenuTriggerFor]="menu">Tarih Aralığı</button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="getAllRecords(false)">Tümü</button>
+      <button mat-menu-item (click)="getAllRecords(true)">Son 1 Ay</button>
+    </mat-menu>
     <!-- <mat-spinner class="spinner" *ngIf="!loaded"></mat-spinner> -->
     <div class="table-responsive">
       <app-loading *ngIf="!loaded"></app-loading>

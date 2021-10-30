@@ -52,7 +52,7 @@ export class SatisSiparisleriComponent implements OnInit {
 
   ngOnInit() {
     this.getScreenSize()
-    this.getAllRecords(0)
+    this.getAllRecords(true)
   }
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -80,7 +80,7 @@ export class SatisSiparisleriComponent implements OnInit {
     console.log('s', this.selectedRecord)
   }
 
-  getAllRecords(offset: number, q?: string) {
+  getAllRecords(lastMonth:boolean) {
     /*     this.service.getRecords(this.recLimit, offset, q).subscribe((resp) => {
           this.response = resp
           console.log(this.response)
@@ -99,7 +99,7 @@ export class SatisSiparisleriComponent implements OnInit {
           }
         ) */
 
-    this.service.getRecordsUnsafe().subscribe(res => {
+    this.service.getRecordsUnsafe(lastMonth).subscribe(res => {
       this.dataSet = res.items;
       console.log(res);
       this.itemCount = res.count;
@@ -133,7 +133,7 @@ export class SatisSiparisleriComponent implements OnInit {
         height: '80vh',
         width: '60vw'
       }).afterClosed().subscribe(q => {
-        this.getAllRecords(0)
+        this.getAllRecords(true)
         this.currPage = 1
       })
     }
@@ -144,7 +144,7 @@ export class SatisSiparisleriComponent implements OnInit {
         height: '100%',
         width: '100%'
       }).afterClosed().subscribe(q => {
-        this.getAllRecords(0)
+        this.getAllRecords(true)
         this.currPage = 1
       })
     }
@@ -156,7 +156,7 @@ export class SatisSiparisleriComponent implements OnInit {
       return
     }
     this.dialog.open(Dialog_deleteSalesOrderComponent, { data: id }).afterClosed().subscribe(q => {
-      this.getAllRecords(0)
+      this.getAllRecords(true)
       this.currPage = 1
     })
   }
@@ -185,7 +185,7 @@ export class SatisSiparisleriComponent implements OnInit {
         width: "100vw",
         height: "100vh"
       }).afterClosed().subscribe(q => {
-        this.getAllRecords(0)
+        this.getAllRecords(true)
         this.currPage = 1
       })
     }, err => {
@@ -209,7 +209,7 @@ export class SatisSiparisleriComponent implements OnInit {
     this.currPage = 1
     this.recLimit = newLim
     this.loaded = false
-    this.getAllRecords(0)
+    this.getAllRecords(true)
     this.pageCount = Math.floor(this.itemCount / this.recLimit)
     this.router.navigate(['/satis/satis-siparisleri'])
   }
@@ -261,7 +261,7 @@ export class SatisSiparisleriComponent implements OnInit {
   firstPage() {
     this.loaded = false
     this.currPage = 1
-    this.getAllRecords(0)
+    this.getAllRecords(true)
     this.router.navigate(['/satis/satis-siparisleri'])
   }
 
