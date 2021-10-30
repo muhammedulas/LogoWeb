@@ -31,7 +31,7 @@ export class RoutingServiceService {
   }
 
   unAuthorized(r) {
-    this.router.navigate([r])
+    /* this.router.navigate([r]) */
     this.toast.error("Bu menü için yetkiniz bulunmamaktadır", "", { positionClass: "toast-top-center" })
   }
 

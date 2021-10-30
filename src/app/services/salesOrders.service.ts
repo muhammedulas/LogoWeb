@@ -42,6 +42,9 @@ export class SalesOrdersService {
       queries += ` AND LGMAIN.DATE_ BETWEEN '${startDate.toISOString().slice(0, 19).replace('T', ' ')}' AND '${endDate.toISOString().slice(0, 19).replace('T', ' ')}' `
       console.log(queries)
     }
+    if(localStorage.getItem('salesmanCode' && localStorage.getItem('salesmanCode')) != "" ){
+      queries += ` AND SLSMC.CODE = '${localStorage.getItem("salesmanCode")}'`
+    }
     let auth = `Bearer ${this.token}`;
     let headers = new HttpHeaders().set('Authorization', auth).set('Accept', 'application/json').set('Content-Type', 'application/json')
     let body = `"SET ROWCOUNT 0

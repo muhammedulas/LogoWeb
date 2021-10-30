@@ -35,11 +35,9 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('Token', resp.access_token);
         console.log(localStorage.getItem('Token'))
         this.loginSvc.changeLoggedInState();
-        this.router.navigate(['/']);
         console.log(resp)
         localStorage.setItem('frmNr', this.frmNr)
         localStorage.setItem('perNr', this.perNr)
-        this.toast.success('Giriş Başarılı', "", { positionClass: "toast-top-center", timeOut: 3000 })
         this.loginSvc.afterLoginProcedure(this.usr);
         this.global.startTimer()
         this.global.getCodes()

@@ -71,7 +71,7 @@ export class LoginServiceService {
     return this.http.post<authCodeResp>(this.rootUrl + "/api/v1/queries/unsafe", queryString, { headers })
   }
 
-  getMenuAccesses(){
+  getMenuAccesses() {
     let auth = "Bearer " + localStorage.getItem('Token')
     let headers = new HttpHeaders().set('Authorization', auth).set('Content-Type', 'application/json').set('Accept', 'application/json');
     let queryString = "\"SELECT * FROM MOB_MENU_ACCESS WHERE USERNR = '" + this.userNr + "'\""
@@ -82,26 +82,30 @@ export class LoginServiceService {
     this.getUserNr(username).subscribe(res => {
       console.log(res)
       this.userNr = res.items[0].NR;
-      this.getMenuAccesses().subscribe(res=>{
+      this.getMenuAccesses().subscribe(res => {
         this.menuAccess = res.items
         console.log(res.items)
       })
       this.getAuthCodes(this.userNr).subscribe(res => {
         this.authCodes = res.items;
         console.log(this.authCodes)
+        this.router.navigate(['/']);
+        this.toastr.success('Giriş Başarılı', "", { positionClass: "toast-top-center", timeOut: 3000 })
       })
       this.getSalesmanCode();
       console.log('nr: ' + this.userNr)
     })
   }
 
-  getSalesmanCode(){
+  getSalesmanCode() {
     let auth = "Bearer " + localStorage.getItem('Token')
     let tableName = "LG_SLSMAN"
     let headers = new HttpHeaders().set('Authorization', auth).set('Accept', 'application/json').set('Content-Type', 'application/json')
     let queryString = "\" SELECT  CODE FROM " + tableName + " WHERE  USERID = '" + this.userNr + "'\""
-    this.http.post<any>(this.rootUrl + "/api/v1/queries/unsafe", queryString, { headers }).subscribe(res=>{
+    this.http.post<any>(this.rootUrl + "/api/v1/queries/unsafe", queryString, { headers }).subscribe(res => {
       this.salesmanCode = res.items[0].CODE
+      localStorage.setItem("salesmanCode", res.items[0].CODE)
+      console.log(this.salesmanCode)
     })
   }
 
